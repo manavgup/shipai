@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixture-of-Experts Architecture</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 24px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+        }
+
+        .viz-container {
+            padding: 30px 40px;
+            min-height: 500px;
+        }
+
+        #moe-viz {
+            width: 100%;
+            height: 480px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 0 40px 30px;
+        }
+
+        .stat-card {
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-total {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stat-active {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+        }
+
+        .stat-ratio {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+        }
+
+        .stat-value {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .explanation {
+            margin: 0 40px 30px;
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .explanation h3 {
+            font-size: 18px;
+            color: #1a1a2e;
+            margin-bottom: 12px;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .explanation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .explanation-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .explanation-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+
+        .explanation-text p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f1f3f4;
+            color: #495057;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .source {
+            text-align: center;
+            padding: 16px;
+            background: #f8f9fa;
+            font-size: 11px;
+            color: #868e96;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .expert-node {
+            transition: all 0.3s ease;
+        }
+
+        .expert-node.active {
+            filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.6));
+        }
+
+        .expert-node.inactive {
+            opacity: 0.3;
+        }
+
+        .flow-path {
+            fill: none;
+            stroke-width: 2;
+            opacity: 0;
+        }
+
+        .flow-path.active {
+            opacity: 0.8;
+            animation: flowPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes flowPulse {
+            0%, 100% { stroke-opacity: 0.4; }
+            50% { stroke-opacity: 1; }
+        }
+
+        .token-dot {
+            fill: #ff5722;
+            filter: drop-shadow(0 0 4px rgba(255, 87, 34, 0.6));
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mixture-of-Experts: The Efficiency Breakthrough</h1>
+            <div class="subtitle">How DeepSeek-V3 achieves frontier performance with 5.5% parameter activation</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card stat-total">
+                <div class="stat-value">671B</div>
+                <div class="stat-label">Total Parameters</div>
+            </div>
+            <div class="stat-card stat-active">
+                <div class="stat-value">37B</div>
+                <div class="stat-label">Active Per Token</div>
+            </div>
+            <div class="stat-card stat-ratio">
+                <div class="stat-value">5.5%</div>
+                <div class="stat-label">Activation Ratio</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn-primary" onclick="animateRouting()">Animate Token Routing</button>
+            <button class="btn-secondary" onclick="resetAnimation()">Reset</button>
+        </div>
+
+        <div class="viz-container">
+            <svg id="moe-viz"></svg>
+        </div>
+
+        <div class="explanation">
+            <h3>How It Works</h3>
+            <div class="explanation-grid">
+                <div class="explanation-item">
+                    <div class="explanation-icon" style="background: #e8eaf6;">🧠</div>
+                    <div class="explanation-text">
+                        <h4>Traditional Dense Models</h4>
+                        <p>Every parameter activates for every token. GPT-4 likely uses 1.8T parameters — all active for each word generated.</p>
+                    </div>
+                </div>
+                <div class="explanation-item">
+                    <div class="explanation-icon" style="background: #e8f5e9;">⚡</div>
+                    <div class="explanation-text">
+                        <h4>Mixture-of-Experts (MoE)</h4>
+                        <p>A "router" network selects which experts to activate. Only 37B of 671B params work per token — massive efficiency gain.</p>
+                    </div>
+                </div>
+                <div class="explanation-item">
+                    <div class="explanation-icon" style="background: #fff3e0;">🎯</div>
+                    <div class="explanation-text">
+                        <h4>Fine-Grained Experts</h4>
+                        <p>DeepSeek uses many small, specialized experts. Some are "shared" for common knowledge; others specialize deeply.</p>
+                    </div>
+                </div>
+                <div class="explanation-item">
+                    <div class="explanation-icon" style="background: #fce4ec;">💡</div>
+                    <div class="explanation-text">
+                        <h4>Hardware Advantage</h4>
+                        <p>Lower active parameters = less memory bandwidth needed. Perfect for Chinese chips with limited HBM capacity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="source">
+            Source: DeepSeek-V3 Technical Report (arxiv.org/abs/2412.19437) | December 2024
+        </div>
+    </div>
+
+    <script>
+        const width = 1100;
+        const height = 480;
+
+        const svg = d3.select('#moe-viz')
+            .attr('viewBox', `0 0 ${width} ${height}`)
+            .attr('preserveAspectRatio', 'xMidYMid meet');
+
+        // Define gradients
+        const defs = svg.append('defs');
+
+        const expertGradient = defs.append('linearGradient')
+            .attr('id', 'expertGradient')
+            .attr('x1', '0%').attr('y1', '0%')
+            .attr('x2', '100%').attr('y2', '100%');
+        expertGradient.append('stop').attr('offset', '0%').attr('stop-color', '#667eea');
+        expertGradient.append('stop').attr('offset', '100%').attr('stop-color', '#764ba2');
+
+        const activeGradient = defs.append('linearGradient')
+            .attr('id', 'activeGradient')
+            .attr('x1', '0%').attr('y1', '0%')
+            .attr('x2', '100%').attr('y2', '100%');
+        activeGradient.append('stop').attr('offset', '0%').attr('stop-color', '#4caf50');
+        activeGradient.append('stop').attr('offset', '100%').attr('stop-color', '#45a049');
+
+        const routerGradient = defs.append('linearGradient')
+            .attr('id', 'routerGradient')
+            .attr('x1', '0%').attr('y1', '0%')
+            .attr('x2', '100%').attr('y2', '100%');
+        routerGradient.append('stop').attr('offset', '0%').attr('stop-color', '#ff9800');
+        routerGradient.append('stop').attr('offset', '100%').attr('stop-color', '#f57c00');
+
+        // Layout
+        const inputX = 80;
+        const routerX = 280;
+        const expertsStartX = 480;
+        const expertsEndX = 900;
+        const outputX = 1020;
+        const centerY = height / 2;
+
+        // Draw input
+        svg.append('rect')
+            .attr('x', inputX - 40)
+            .attr('y', centerY - 30)
+            .attr('width', 80)
+            .attr('height', 60)
+            .attr('rx', 8)
+            .attr('fill', '#e3f2fd')
+            .attr('stroke', '#2196f3')
+            .attr('stroke-width', 2);
+
+        svg.append('text')
+            .attr('x', inputX)
+            .attr('y', centerY - 5)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '14px')
+            .attr('font-weight', '600')
+            .attr('fill', '#1565c0')
+            .text('Input');
+
+        svg.append('text')
+            .attr('x', inputX)
+            .attr('y', centerY + 12)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '12px')
+            .attr('fill', '#1976d2')
+            .text('Token');
+
+        // Draw router
+        svg.append('polygon')
+            .attr('points', `${routerX - 50},${centerY - 40} ${routerX + 50},${centerY - 40} ${routerX + 60},${centerY} ${routerX + 50},${centerY + 40} ${routerX - 50},${centerY + 40} ${routerX - 60},${centerY}`)
+            .attr('fill', 'url(#routerGradient)')
+            .attr('stroke', '#e65100')
+            .attr('stroke-width', 2);
+
+        svg.append('text')
+            .attr('x', routerX)
+            .attr('y', centerY - 5)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '14px')
+            .attr('font-weight', '600')
+            .attr('fill', 'white')
+            .text('Router');
+
+        svg.append('text')
+            .attr('x', routerX)
+            .attr('y', centerY + 12)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '11px')
+            .attr('fill', 'rgba(255,255,255,0.9)')
+            .text('Network');
+
+        // Draw experts (256 total, showing representative sample)
+        const numExpertsShown = 16;
+        const expertSpacing = (expertsEndX - expertsStartX) / 4;
+        const expertRows = 4;
+        const rowHeight = 80;
+
+        const experts = [];
+        for (let row = 0; row < expertRows; row++) {
+            for (let col = 0; col < 4; col++) {
+                const x = expertsStartX + col * expertSpacing + 30;
+                const y = centerY - ((expertRows - 1) / 2 - row) * rowHeight;
+                const isShared = row === 0 && col < 2; // First 2 are shared
+                experts.push({ x, y, isShared, id: row * 4 + col });
+            }
+        }
+
+        // Expert group
+        const expertGroup = svg.append('g').attr('class', 'experts');
+
+        // Draw connections from router to all experts (faded)
+        experts.forEach(expert => {
+            svg.append('path')
+                .attr('class', `flow-path expert-path-${expert.id}`)
+                .attr('d', `M ${routerX + 60} ${centerY} Q ${(routerX + expert.x) / 2} ${(centerY + expert.y) / 2 - 20} ${expert.x - 20} ${expert.y}`)
+                .attr('stroke', expert.isShared ? '#ff9800' : '#667eea')
+                .attr('stroke-dasharray', '4,2');
+        });
+
+        // Draw expert nodes
+        experts.forEach(expert => {
+            const g = expertGroup.append('g')
+                .attr('class', `expert-node expert-${expert.id}`)
+                .attr('transform', `translate(${expert.x}, ${expert.y})`);
+
+            g.append('circle')
+                .attr('r', 22)
+                .attr('fill', expert.isShared ? 'url(#routerGradient)' : 'url(#expertGradient)')
+                .attr('stroke', 'white')
+                .attr('stroke-width', 2);
+
+            g.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('dy', '0.35em')
+                .attr('font-size', '11px')
+                .attr('font-weight', '600')
+                .attr('fill', 'white')
+                .text(expert.isShared ? 'S' : 'E');
+
+            g.append('text')
+                .attr('y', 35)
+                .attr('text-anchor', 'middle')
+                .attr('font-size', '9px')
+                .attr('fill', '#666')
+                .text(expert.isShared ? 'Shared' : `Expert ${expert.id - 1}`);
+        });
+
+        // Draw output
+        svg.append('rect')
+            .attr('x', outputX - 40)
+            .attr('y', centerY - 30)
+            .attr('width', 80)
+            .attr('height', 60)
+            .attr('rx', 8)
+            .attr('fill', '#e8f5e9')
+            .attr('stroke', '#4caf50')
+            .attr('stroke-width', 2);
+
+        svg.append('text')
+            .attr('x', outputX)
+            .attr('y', centerY - 5)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '14px')
+            .attr('font-weight', '600')
+            .attr('fill', '#2e7d32')
+            .text('Output');
+
+        svg.append('text')
+            .attr('x', outputX)
+            .attr('y', centerY + 12)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '12px')
+            .attr('fill', '#388e3c')
+            .text('Token');
+
+        // Arrow from input to router
+        svg.append('path')
+            .attr('d', `M ${inputX + 40} ${centerY} L ${routerX - 60} ${centerY}`)
+            .attr('stroke', '#adb5bd')
+            .attr('stroke-width', 2)
+            .attr('marker-end', 'url(#arrow)');
+
+        // Arrow marker
+        defs.append('marker')
+            .attr('id', 'arrow')
+            .attr('viewBox', '0 0 10 10')
+            .attr('refX', 8)
+            .attr('refY', 5)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M 0 0 L 10 5 L 0 10 z')
+            .attr('fill', '#adb5bd');
+
+        // Labels
+        svg.append('text')
+            .attr('x', expertsStartX + (expertsEndX - expertsStartX) / 2)
+            .attr('y', 30)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '16px')
+            .attr('font-weight', '600')
+            .attr('fill', '#1a1a2e')
+            .text('671B Parameters (256 Experts)');
+
+        svg.append('text')
+            .attr('x', expertsStartX + (expertsEndX - expertsStartX) / 2)
+            .attr('y', 50)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '12px')
+            .attr('fill', '#666')
+            .text('Only 37B active per token');
+
+        // Token dot for animation
+        const tokenDot = svg.append('circle')
+            .attr('class', 'token-dot')
+            .attr('r', 8)
+            .attr('cx', inputX)
+            .attr('cy', centerY)
+            .attr('opacity', 0);
+
+        // Randomly select which experts to activate (simulating routing)
+        let activeExperts = [];
+
+        function animateRouting() {
+            // Reset first
+            resetAnimation();
+
+            // Select random experts (2 shared + 4 regular, mimicking real routing)
+            activeExperts = [0, 1]; // Shared experts always active
+            const regularExperts = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+            for (let i = 0; i < 4; i++) {
+                const idx = Math.floor(Math.random() * regularExperts.length);
+                activeExperts.push(regularExperts.splice(idx, 1)[0]);
+            }
+
+            // Animate token moving to router
+            tokenDot
+                .attr('opacity', 1)
+                .attr('cx', inputX)
+                .transition()
+                .duration(500)
+                .attr('cx', routerX);
+
+            // After reaching router, show active paths
+            setTimeout(() => {
+                // Fade inactive experts
+                experts.forEach(expert => {
+                    const node = d3.select(`.expert-${expert.id}`);
+                    if (activeExperts.includes(expert.id)) {
+                        node.classed('active', true);
+                        d3.select(`.expert-path-${expert.id}`).classed('active', true);
+                    } else {
+                        node.classed('inactive', true);
+                    }
+                });
+
+                // Animate token to first active expert
+                const firstActive = experts.find(e => activeExperts.includes(e.id));
+                tokenDot
+                    .transition()
+                    .duration(400)
+                    .attr('cx', firstActive.x)
+                    .attr('cy', firstActive.y);
+
+                // Create multiple token dots for parallel processing effect
+                setTimeout(() => {
+                    activeExperts.forEach((id, i) => {
+                        const expert = experts.find(e => e.id === id);
+                        svg.append('circle')
+                            .attr('class', 'token-dot animated-dot')
+                            .attr('r', 6)
+                            .attr('cx', routerX)
+                            .attr('cy', centerY)
+                            .transition()
+                            .duration(400)
+                            .delay(i * 50)
+                            .attr('cx', expert.x)
+                            .attr('cy', expert.y)
+                            .transition()
+                            .delay(500)
+                            .duration(400)
+                            .attr('cx', outputX)
+                            .attr('cy', centerY)
+                            .remove();
+                    });
+
+                    // Move main token to output
+                    tokenDot
+                        .transition()
+                        .delay(800)
+                        .duration(500)
+                        .attr('cx', outputX)
+                        .attr('cy', centerY)
+                        .transition()
+                        .delay(200)
+                        .duration(300)
+                        .attr('opacity', 0);
+                }, 300);
+
+            }, 600);
+        }
+
+        function resetAnimation() {
+            tokenDot.attr('opacity', 0).attr('cx', inputX).attr('cy', centerY);
+            d3.selectAll('.animated-dot').remove();
+            d3.selectAll('.expert-node').classed('active', false).classed('inactive', false);
+            d3.selectAll('.flow-path').classed('active', false);
+        }
+    </script>
+</body>
+</html>

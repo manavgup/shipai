@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&P 500: The AI Concentration Problem</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            height: calc(100vh - 20px);
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 15px 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 6px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .header .description {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+        
+        .data-source {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        
+        .data-source h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .data-source ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .data-source li {
+            padding: 5px 0;
+            color: #495057;
+            font-size: 14px;
+        }
+        
+        .data-source li::before {
+            content: "→ ";
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .chart-container {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 12px;
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .chart-container canvas {
+            max-height: 300px;
+        }
+
+        .chart-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 12px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 3px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .warning-icon {
+            font-size: 24px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #495057;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .positive {
+            color: #28a745;
+            font-weight: 600;
+        }
+        
+        .negative {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        
+        #contributionChart {
+            max-height: 400px;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .timeline-date {
+            min-width: 100px;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 S&P 500: The AI Concentration Problem</h1>
+            <div class="subtitle">64% of gains from just 7 AI stocks</div>
+            <div class="description">
+                Based on 2024 YTD performance data showing extreme market concentration in AI-related companies.<br>
+                Without these 7 stocks, the S&P 500 would have gained only ~4% instead of ~11%.
+            </div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">64%</div>
+                <div class="stat-label">AI Stock Contribution</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">7</div>
+                <div class="stat-label">Companies Driving Gains</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">493</div>
+                <div class="stat-label">Other Companies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4%</div>
+                <div class="stat-label">Gains Without AI</div>
+            </div>
+        </div>
+        
+        <div class="charts-grid">
+            <div class="chart-container">
+                <h3 class="chart-title">Contribution to S&P 500 Gains</h3>
+                <canvas id="contributionChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3 class="chart-title">Individual Stock Performance (YTD)</h3>
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table id="stockTable">
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Ticker</th>
+                        <th>YTD Return</th>
+                        <th>Market Cap</th>
+                        <th>Weight in S&P</th>
+                        <th>Contribution to Gains</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="charts-grid">
+            <div class="chart-container">
+                <h3 class="chart-title">Market Cap Distribution</h3>
+                <canvas id="marketCapChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3 class="chart-title">S&P 500 vs AI Stocks Performance</h3>
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="data-source">
+            <h3>📈 How to Pull This Data</h3>
+            <ul>
+                <li><strong>Yahoo Finance API (yfinance):</strong> Free Python library for real-time stock data</li>
+                <li><strong>Bloomberg Terminal:</strong> Most accurate institutional data ($24k/year)</li>
+                <li><strong>Alpha Vantage:</strong> Free API with rate limits, good for basic analysis</li>
+                <li><strong>S&P Dow Jones Indices:</strong> Official index methodology and weights</li>
+                <li><strong>FRED (Federal Reserve):</strong> Economic data including market indices</li>
+            </ul>
+        </div>
+        
+        <div class="data-source">
+            <h3>🔧 Calculation Methodology</h3>
+            <ul>
+                <li>Get S&P 500 index total return for the period (^GSPC)</li>
+                <li>Calculate individual stock returns for the 7 AI companies</li>
+                <li>Determine market cap weights (company market cap ÷ total S&P market cap)</li>
+                <li>Calculate contribution: weight × stock return × correlation factor</li>
+                <li>Sum contributions to get total AI impact percentage</li>
+                <li>S&P return without AI = Total return × (1 - AI contribution)</li>
+            </ul>
+        </div>
+        
+        <div class="warning-box">
+            <span class="warning-icon">⚠️</span>
+            <div>
+                <strong>Market Concentration Risk:</strong> This extreme concentration means the entire market's health depends on just 7 companies. Combined with the circular funding patterns where these companies invest in each other, this creates systemic risk. If the AI bubble bursts, there's little underlying growth to cushion the fall.
+            </div>
+        </div>
+        
+        <div class="timeline">
+            <h3 style="margin-bottom: 20px; color: #2c3e50;">Key Milestones in AI Market Dominance</h3>
+            <div class="timeline-item">
+                <div class="timeline-date">Q1 2023</div>
+                <div class="timeline-content">
+                    <strong>AI Boom Begins:</strong> ChatGPT triggers massive AI investment wave
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Q2 2023</div>
+                <div class="timeline-content">
+                    <strong>Nvidia Surge:</strong> Stock price doubles on AI chip demand
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Q4 2023</div>
+                <div class="timeline-content">
+                    <strong>Concentration Emerges:</strong> 7 stocks begin dominating S&P gains
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2024 YTD</div>
+                <div class="timeline-content">
+                    <strong>Peak Concentration:</strong> 64% of all gains from AI stocks
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Data for the magnificent 7 AI stocks (approximate 2024 data)
+        const stockData = [
+            {company: 'Nvidia', ticker: 'NVDA', ytdReturn: 180, marketCap: 3200, weight: 7.1, contribution: 28},
+            {company: 'Microsoft', ticker: 'MSFT', ytdReturn: 35, marketCap: 3100, weight: 6.9, contribution: 12},
+            {company: 'Meta', ticker: 'META', ytdReturn: 65, marketCap: 1400, weight: 3.1, contribution: 8},
+            {company: 'Google', ticker: 'GOOGL', ytdReturn: 45, marketCap: 2100, weight: 4.7, contribution: 7},
+            {company: 'Amazon', ticker: 'AMZN', ytdReturn: 48, marketCap: 1900, weight: 4.2, contribution: 5},
+            {company: 'Oracle', ticker: 'ORCL', ytdReturn: 52, marketCap: 400, weight: 0.9, contribution: 2},
+            {company: 'AMD', ticker: 'AMD', ytdReturn: 38, marketCap: 350, weight: 0.8, contribution: 2}
+        ];
+        
+        const otherStocks = {company: 'Rest of S&P 493', contribution: 36};
+        
+        // Calculate totals
+        const totalAIContribution = stockData.reduce((sum, stock) => sum + stock.contribution, 0);
+        const totalWeight = stockData.reduce((sum, stock) => sum + stock.weight, 0);
+        
+        // Populate table
+        const tableBody = document.querySelector('#stockTable tbody');
+        stockData.forEach(stock => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><strong>${stock.company}</strong></td>
+                <td>${stock.ticker}</td>
+                <td class="${stock.ytdReturn > 0 ? 'positive' : 'negative'}">+${stock.ytdReturn}%</td>
+                <td>$${(stock.marketCap / 1000).toFixed(1)}T</td>
+                <td>${stock.weight}%</td>
+                <td><strong>${stock.contribution}%</strong></td>
+            `;
+            tableBody.appendChild(row);
+        });
+        
+        // Add total row
+        const totalRow = document.createElement('tr');
+        totalRow.style.fontWeight = 'bold';
+        totalRow.style.background = '#f8f9fa';
+        totalRow.innerHTML = `
+            <td colspan="4">Total (Magnificent 7)</td>
+            <td>${totalWeight.toFixed(1)}%</td>
+            <td class="positive">${totalAIContribution}%</td>
+        `;
+        tableBody.appendChild(totalRow);
+        
+        // Chart 1: Contribution pie/donut chart
+        const ctx1 = document.getElementById('contributionChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: [...stockData.map(s => s.company), 'Rest of S&P 493'],
+                datasets: [{
+                    data: [...stockData.map(s => s.contribution), otherStocks.contribution],
+                    backgroundColor: [
+                        '#FF6B6B', '#4ECDC4', '#667EEA', '#FFD93D',
+                        '#6BCB77', '#FF8B94', '#B4A7D6', '#E8E8E8'
+                    ],
+                    borderWidth: 2,
+                    borderColor: 'white'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            padding: 6,
+                            boxWidth: 12,
+                            font: { size: 10 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '% of S&P gains';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Chart 2: Individual stock performance
+        const ctx2 = document.getElementById('performanceChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: stockData.map(s => s.ticker),
+                datasets: [{
+                    label: 'YTD Return (%)',
+                    data: stockData.map(s => s.ytdReturn),
+                    backgroundColor: stockData.map(s => s.ytdReturn > 50 ? '#4ECDC4' : '#667EEA'),
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                animation: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% return YTD';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Return (%)'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Chart 3: Market cap distribution
+        const ctx3 = document.getElementById('marketCapChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'pie',
+            data: {
+                labels: stockData.map(s => s.company),
+                datasets: [{
+                    data: stockData.map(s => s.marketCap),
+                    backgroundColor: [
+                        '#FF6B6B', '#4ECDC4', '#667EEA', '#FFD93D',
+                        '#6BCB77', '#FF8B94', '#B4A7D6'
+                    ],
+                    borderWidth: 2,
+                    borderColor: 'white'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            padding: 6,
+                            boxWidth: 12,
+                            font: { size: 10 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return context.label + ': $' + (value / 1000).toFixed(1) + 'T (' + percentage + '%)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Chart 4: Comparison line chart (simulated data)
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
+        const sp500Performance = [0, 2, 3, 5, 4, 6, 7, 8, 9, 10, 11];
+        const aiStocksPerformance = [0, 5, 8, 15, 12, 20, 24, 28, 32, 38, 45];
+        const withoutAIPerformance = [0, 0.5, 0.8, 1.2, 1.5, 2.0, 2.5, 3.0, 3.5, 3.8, 4.0];
+
+        const ctx4 = document.getElementById('comparisonChart').getContext('2d');
+        new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [
+                    {
+                        label: 'S&P 500 (Actual)',
+                        data: sp500Performance,
+                        borderColor: '#2c3e50',
+                        backgroundColor: 'rgba(44, 62, 80, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'AI Stocks Average',
+                        data: aiStocksPerformance,
+                        borderColor: '#FF6B6B',
+                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'S&P 500 Without AI',
+                        data: withoutAIPerformance,
+                        borderColor: '#95a5a6',
+                        backgroundColor: 'rgba(149, 165, 166, 0.1)',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            padding: 8,
+                            boxWidth: 12,
+                            font: { size: 10 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'YTD Return (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month (2024)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

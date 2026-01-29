@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bifurcating AI Stack</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 24px 20px;
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+        }
+
+        .stack-container {
+            padding: 30px 40px;
+        }
+
+        .stack-row {
+            display: grid;
+            grid-template-columns: 120px 1fr 80px 1fr;
+            gap: 16px;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+
+        .layer-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: right;
+            padding-right: 16px;
+        }
+
+        .stack-item {
+            padding: 16px 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stack-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .western-stack {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #3b82f6;
+        }
+
+        .chinese-stack {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 2px solid #dc2626;
+        }
+
+        .vs-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #94a3b8;
+        }
+
+        .item-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .western-stack .item-title { color: #1e40af; }
+        .chinese-stack .item-title { color: #991b1b; }
+
+        .item-detail {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .item-companies {
+            font-size: 10px;
+            color: #888;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .column-header {
+            display: grid;
+            grid-template-columns: 120px 1fr 80px 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .column-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .western-title {
+            color: #3b82f6;
+        }
+
+        .chinese-title {
+            color: #dc2626;
+        }
+
+        .flag-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .comparison-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 0 40px 30px;
+        }
+
+        .comparison-card {
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .comparison-west {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #93c5fd;
+        }
+
+        .comparison-china {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fca5a5;
+        }
+
+        .comparison-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .comparison-west .comparison-title { color: #1e40af; }
+        .comparison-china .comparison-title { color: #991b1b; }
+
+        .comparison-list {
+            list-style: none;
+        }
+
+        .comparison-list li {
+            font-size: 13px;
+            color: #4b5563;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .insight-box {
+            margin: 0 40px 30px;
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-left: 4px solid #475569;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .insight-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .insight-text {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .dependency-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #fef3c7;
+            color: #92400e;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        .independent-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        .source {
+            text-align: center;
+            padding: 16px;
+            background: #f8f9fa;
+            font-size: 11px;
+            color: #868e96;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .chokepoint-indicator {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 20px;
+            height: 20px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>The Bifurcating AI Stack</h1>
+            <div class="subtitle">Two parallel technology ecosystems emerging from US-China tech decoupling</div>
+        </div>
+
+        <div class="stack-container">
+            <div class="column-header">
+                <div></div>
+                <div class="column-title western-title">
+                    <div class="flag-icon">🇺🇸</div>
+                    Western Stack
+                </div>
+                <div></div>
+                <div class="column-title chinese-title">
+                    <div class="flag-icon">🇨🇳</div>
+                    Chinese Stack
+                </div>
+            </div>
+
+            <!-- Applications Layer -->
+            <div class="stack-row">
+                <div class="layer-label">Applications</div>
+                <div class="stack-item western-stack">
+                    <div class="item-title">ChatGPT, Claude, Gemini</div>
+                    <div class="item-detail">Consumer & Enterprise AI</div>
+                    <div class="item-companies">OpenAI, Anthropic, Google</div>
+                </div>
+                <div class="vs-divider">⟷</div>
+                <div class="stack-item chinese-stack">
+                    <div class="item-title">Doubao, Kimi, Wenxin</div>
+                    <div class="item-detail">Domestic AI Assistants</div>
+                    <div class="item-companies">ByteDance, Moonshot, Baidu</div>
+                </div>
+            </div>
+
+            <!-- Models Layer -->
+            <div class="stack-row">
+                <div class="layer-label">Frontier Models</div>
+                <div class="stack-item western-stack">
+                    <div class="item-title">GPT-4, Claude 3, Gemini Ultra</div>
+                    <div class="item-detail">Mostly Proprietary / API</div>
+                    <div class="item-companies">OpenAI, Anthropic, Google</div>
+                </div>
+                <div class="vs-divider">⟷</div>
+                <div class="stack-item chinese-stack">
+                    <div class="item-title">DeepSeek-V3, Qwen 2.5, Yi</div>
+                    <div class="item-detail">Mostly Open Weights</div>
+                    <div class="item-companies">DeepSeek, Alibaba, 01.AI</div>
+                    <div class="independent-badge">Open Source Leader</div>
+                </div>
+            </div>
+
+            <!-- Training Framework -->
+            <div class="stack-row">
+                <div class="layer-label">Frameworks</div>
+                <div class="stack-item western-stack">
+                    <div class="item-title">PyTorch + CUDA</div>
+                    <div class="item-detail">NVIDIA Ecosystem</div>
+                    <div class="item-companies">Meta, NVIDIA</div>
+                </div>
+                <div class="vs-divider">⟷</div>
+                <div class="stack-item chinese-stack">
+                    <div class="item-title">MindSpore + CANN</div>
+                    <div class="item-detail">Huawei Ecosystem</div>
+                    <div class="item-companies">Huawei, Ascend</div>
+                    <div class="dependency-badge">Building Ecosystem</div>
+                </div>
+            </div>
+
+            <!-- Cloud Layer -->
+            <div class="stack-row">
+                <div class="layer-label">Cloud / Infra</div>
+                <div class="stack-item western-stack">
+                    <div class="item-title">AWS, Azure, GCP</div>
+                    <div class="item-detail">Global Hyperscalers</div>
+                    <div class="item-companies">Amazon, Microsoft, Google</div>
+                </div>
+                <div class="vs-divider">⟷</div>
+                <div class="stack-item chinese-stack">
+                    <div class="item-title">Alibaba Cloud, Tencent, Huawei</div>
+                    <div class="item-detail">Domestic Cloud Giants</div>
+                    <div class="item-companies">BAT + Huawei</div>
+                </div>
+            </div>
+
+            <!-- GPU Layer -->
+            <div class="stack-row">
+                <div class="layer-label">AI Accelerators</div>
+                <div class="stack-item western-stack">
+                    <div class="item-title">NVIDIA H100/B200</div>
+                    <div class="item-detail">World's Leading AI GPUs</div>
+                    <div class="item-companies">NVIDIA, AMD, Intel</div>
+                </div>
+                <div class="vs-divider">⟷</div>
+                <div class="stack-item chinese-stack">
+                    <div class="item-title">Ascend 910B/910C</div>
+                    <div class="item-detail">Huawei's Alternative</div>
+                    <div class="item-companies">Huawei, Biren, Moore Threads</div>
+                    <div class="dependency-badge">2-3 Gen Behind</div>
+                    <div class="chokepoint-indicator">!</div>
+                </div>
+            </div>
+
+            <!-- Memory Layer -->
+            <div class="stack-row">
+                <div class="layer-label">HBM Memory</div>
+                <div class="stack-item western-stack">
+                    <div class="item-title">HBM3/HBM3e</div>
+                    <div class="item-detail">High-Bandwidth Memory</div>
+                    <div class="item-companies">SK Hynix, Samsung, Micron</div>
+                </div>
+                <div class="vs-divider">⟷</div>
+                <div class="stack-item chinese-stack">
+                    <div class="item-title">HBM2e → HBM3 (dev)</div>
+                    <div class="item-detail">CXMT Developing</div>
+                    <div class="item-companies">CXMT (Big Fund III target)</div>
+                    <div class="dependency-badge">Critical Chokepoint</div>
+                    <div class="chokepoint-indicator">!</div>
+                </div>
+            </div>
+
+            <!-- Fab Layer -->
+            <div class="stack-row">
+                <div class="layer-label">Fabrication</div>
+                <div class="stack-item western-stack">
+                    <div class="item-title">TSMC 3nm/2nm</div>
+                    <div class="item-detail">Leading-Edge Nodes</div>
+                    <div class="item-companies">TSMC, Samsung, Intel</div>
+                </div>
+                <div class="vs-divider">⟷</div>
+                <div class="stack-item chinese-stack">
+                    <div class="item-title">SMIC 7nm (DUV)</div>
+                    <div class="item-detail">Workarounds for EUV ban</div>
+                    <div class="item-companies">SMIC, Hua Hong</div>
+                    <div class="dependency-badge">Node Gap Widening</div>
+                    <div class="chokepoint-indicator">!</div>
+                </div>
+            </div>
+
+            <!-- EDA Layer -->
+            <div class="stack-row">
+                <div class="layer-label">EDA Tools</div>
+                <div class="stack-item western-stack">
+                    <div class="item-title">Synopsys, Cadence, Siemens</div>
+                    <div class="item-detail">Chip Design Software</div>
+                    <div class="item-companies">US/EU Dominance</div>
+                </div>
+                <div class="vs-divider">⟷</div>
+                <div class="stack-item chinese-stack">
+                    <div class="item-title">Empyrean, X-FAB</div>
+                    <div class="item-detail">Domestic Alternatives</div>
+                    <div class="item-companies">Big Fund III target</div>
+                    <div class="dependency-badge">Major Gap</div>
+                    <div class="chokepoint-indicator">!</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <div class="comparison-card comparison-west">
+                <div class="comparison-title">🇺🇸 Western Advantages</div>
+                <ul class="comparison-list">
+                    <li><span class="check-icon">✓</span> Leading-edge silicon (3nm, 2nm)</li>
+                    <li><span class="check-icon">✓</span> NVIDIA CUDA ecosystem dominance</li>
+                    <li><span class="check-icon">✓</span> HBM3e memory supply chain</li>
+                    <li><span class="check-icon">✓</span> EDA tool monopoly</li>
+                    <li><span class="check-icon">✓</span> Global cloud infrastructure</li>
+                </ul>
+            </div>
+            <div class="comparison-card comparison-china">
+                <div class="comparison-title">🇨🇳 Chinese Advantages</div>
+                <ul class="comparison-list">
+                    <li><span class="check-icon">✓</span> Open-weight model leadership</li>
+                    <li><span class="check-icon">✓</span> Efficiency innovations (MoE, MLA)</li>
+                    <li><span class="check-icon">✓</span> State-backed capital ($47.5B Big Fund III)</li>
+                    <li><span class="check-icon">✓</span> Massive domestic market</li>
+                    <li><span class="check-icon">✓</span> Manufacturing scale advantage</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <div class="insight-title">The Chokepoint Strategy</div>
+            <div class="insight-text">
+                US export controls target <strong>4 critical chokepoints</strong> (marked with !) where China lacks alternatives:
+                advanced GPUs, HBM memory, leading-edge fabrication, and EDA software. China's response through Big Fund III
+                specifically targets these gaps, but closing them requires 5-10 years of sustained investment. Meanwhile,
+                China leads in <strong>algorithmic efficiency</strong> — DeepSeek's MoE architecture achieves comparable results
+                with 18x less compute cost.
+            </div>
+        </div>
+
+        <div class="source">
+            Sources: Industry analysis | SemiAnalysis | Huawei | NVIDIA | TSMC | Synopsys
+        </div>
+    </div>
+
+    <script>
+        // Add subtle animation to stack items on load
+        document.querySelectorAll('.stack-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                item.style.transition = 'all 0.5s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 100 + index * 80);
+        });
+
+        // Add hover effect for chokepoint indicators
+        document.querySelectorAll('.chokepoint-indicator').forEach(indicator => {
+            indicator.title = 'Critical chokepoint targeted by US export controls';
+        });
+    </script>
+</body>
+</html>
