@@ -3,20 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="slidev:version" content="0.49.29">
-<link rel="icon" href="https://cdn.jsdelivr.net/gh/slidevjs/slidev/assets/favicon.png">
-<title>State of AI 2025 - Slidev</title>
-<meta name="description" content="## State of AI 2025\nA video podcast series exploring AI trends, economics, and implications.\n">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@200;400;600&family=Nunito+Sans:wght@200;400;600&family=Fira+Code:wght@200;400;600&display=swap" type="text/css">
-  <script type="module" crossorigin src="/shipai/assets/index-Dxd_gNjE.js"></script>
-  <link rel="modulepreload" crossorigin href="/shipai/assets/modules/vue-ClX13Vh0.js">
-  <link rel="modulepreload" crossorigin href="/shipai/assets/modules/shiki-CoS8ht4k.js">
-  <link rel="stylesheet" crossorigin href="/shipai/assets/modules/shiki-Bxv373Z5.css">
-  <link rel="stylesheet" crossorigin href="/shipai/assets/index-B8NOfy_v.css">
+  <title>Ship AI - Podcast by Manav Gupta</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header {
+      text-align: center;
+      padding: 80px 24px 48px;
+      max-width: 720px;
+    }
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .header p {
+      font-size: 1.25rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 960px;
+      width: 100%;
+      padding: 0 24px 80px;
+    }
+    .series-card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 32px;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .series-card:hover {
+      border-color: #ccc;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .series-card .label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .series-card h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .series-card .description {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .series-card .meta {
+      font-size: 0.875rem;
+      color: #888;
+    }
+    .label--active { background: #e0f2fe; color: #0369a1; }
+    .label--upcoming { background: #f0fdf4; color: #15803d; }
+    .footer {
+      padding: 32px 24px;
+      text-align: center;
+      color: #999;
+      font-size: 0.875rem;
+    }
+  </style>
 </head>
 <body>
-  <div id="app"></div>
-  <div id="mermaid-rendering-container"></div>
-  
+  <div class="header">
+    <h1>Ship AI</h1>
+    <p>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists.</p>
+    <p style="margin-top: 8px; color: #888; font-size: 1rem;">Hosted by Manav Gupta</p>
+  </div>
+
+  <div class="series-grid">
+    <a href="./state-of-ai/" class="series-card">
+      <span class="label label--active">6-Part Series</span>
+      <h2>State of AI 2025</h2>
+      <p class="description">A deep dive into the BOND AI Trends Report — adoption speed, economics, global competition, workforce impact, and what's next.</p>
+      <div class="meta">Episodes 1–4 available</div>
+    </a>
+
+    <div class="series-card" style="opacity: 0.5; cursor: default;">
+      <span class="label label--upcoming">Coming Soon</span>
+      <h2>Guest Conversations</h2>
+      <p class="description">Interviews with AI leaders, practitioners, and researchers shaping the future of enterprise AI.</p>
+      <div class="meta">Stay tuned</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Manav Gupta
+  </div>
 </body>
 </html>
