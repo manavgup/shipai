@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ship AI</title>
+  <script>
+    // SPA redirect for GitHub Pages
+    // GitHub Pages only serves 404.html from the repo root.
+    // This script detects which Slidev SPA should handle the route,
+    // stores the sub-path, and redirects to the SPA's index.html.
+    // A script in each SPA's <head> then restores the original URL
+    // via history.replaceState before the router initializes.
+    var path = location.pathname;
+    var search = location.search;
+    var hash = location.hash;
+
+    // Match /shipai/state-of-ai/epXX/...
+    var match = path.match(/^(\/shipai\/state-of-ai\/ep\d+\/)(.*)/);
+    if (!match) {
+      // Match /shipai/state-of-ai/...
+      match = path.match(/^(\/shipai\/state-of-ai\/)(.*)/);
+    }
+
+    if (match && match[2]) {
+      sessionStorage.setItem('spa-redirect', match[2] + search + hash);
+      location.replace(match[1]);
+    } else {
+      // Unknown route — go home
+      location.replace('/shipai/');
+    }
+  </script>
+</head>
+<body></body>
+</html>
