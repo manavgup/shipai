@@ -170,7 +170,7 @@ const StoryMode = {
   },
 
   async loadData() {
-    const response = await fetch('Models_table.csv');
+    const response = await fetch('top-50.csv');
     const csvText = await response.text();
     this.data = this.parseCSV(csvText);
     console.log(`Loaded ${this.data.length} models`);

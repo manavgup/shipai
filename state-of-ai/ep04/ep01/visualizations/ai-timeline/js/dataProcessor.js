@@ -8,7 +8,7 @@ const DataProcessor = {
   processedData: [],
   
   // Load CSV file and process data
-  loadData: async function(csvUrl = 'Models_table.csv') {
+  loadData: async function(csvUrl = 'top-50.csv') {
     try {
       console.log('Loading data from:', csvUrl);
       const response = await fetch(csvUrl);
