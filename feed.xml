@@ -1,13 +1,171 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-02-11T23:56:43+00:00</updated><id>https://manavgup.github.io/shipai/feed.xml</id><title type="html">Ship AI | Episodes</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">What’s Next</title><link href="https://manavgup.github.io/shipai/episodes/whats-next/" rel="alternate" type="text/html" title="What’s Next" /><published>2026-02-10T00:00:00+00:00</published><updated>2026-02-10T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/whats-next</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/whats-next/"><![CDATA[<p>Physical AI, autonomous systems, and where the technology is heading.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-02-12T15:40:13+00:00</updated><id>https://manavgup.github.io/shipai/feed.xml</id><title type="html">Ship AI | Episodes</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">What’s Next</title><link href="https://manavgup.github.io/shipai/episodes/whats-next/" rel="alternate" type="text/html" title="What’s Next" /><published>2026-02-10T00:00:00+00:00</published><updated>2026-02-10T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/whats-next</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/whats-next/"><![CDATA[<p>Physical AI, autonomous systems, and where the technology is heading.</p>
 
-<p>In the series finale, we look beyond today’s language models to the next frontiers: physical AI, autonomous agents, robotics, and the convergence of AI with the physical world. What does the trajectory of the past year tell us about where AI goes from here?</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Physical AI, autonomous systems, and where the technology is heading.]]></summary></entry><entry><title type="html">AI In Banking — Vinh Tran, RBC</title><link href="https://manavgup.github.io/shipai/episodes/ai-in-banking/" rel="alternate" type="text/html" title="AI In Banking — Vinh Tran, RBC" /><published>2026-02-03T00:00:00+00:00</published><updated>2026-02-03T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/ai-in-banking</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/ai-in-banking/"><![CDATA[<p>Vinh Tran — VP of Data and AI Platforms at RBC and an RBC Fellow — shares how one of the world’s largest banks is approaching AI at enterprise scale.</p>
+<p>In the series finale, we look beyond today’s language models to the next frontiers: physical AI, autonomous agents, robotics, and the convergence of AI with the physical world. What does the trajectory of the past year tell us about where AI goes from here?</p>
 
-<p>Key takeaways: “You have to control AI in banking — it’s not optional.” Vinh discusses the unique challenges of deploying AI in a highly regulated industry, the importance of governance frameworks, building internal AI platforms, and why the path from pilot to production requires a fundamentally different approach than most organizations expect.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Vinh Tran, VP of Data and AI Platforms at RBC and an RBC Fellow, shares how one of the world's largest banks is approaching AI at enterprise scale.]]></summary></entry><entry><title type="html">AI At Work</title><link href="https://manavgup.github.io/shipai/episodes/ai-at-work/" rel="alternate" type="text/html" title="AI At Work" /><published>2026-02-03T00:00:00+00:00</published><updated>2026-02-03T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/ai-at-work</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/ai-at-work/"><![CDATA[<p>The conversation explores the impact of AI adoption on the labor market, job tasks, disruption, and fluency.</p>
+<h2 id="show-notes">Show Notes</h2>
 
-<p>AI is changing work at every level — not just automating tasks, but restructuring how jobs are defined and performed. We look at which roles are most exposed, how AI fluency is becoming the new literacy, and what the data tells us about the gap between AI hype and actual workplace adoption.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[The conversation explores the impact of AI adoption on the labor market, job tasks, disruption, and fluency.]]></summary></entry><entry><title type="html">The Red Silicon Curtain</title><link href="https://manavgup.github.io/shipai/episodes/the-red-silicon-curtain/" rel="alternate" type="text/html" title="The Red Silicon Curtain" /><published>2026-01-27T00:00:00+00:00</published><updated>2026-01-27T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/the-red-silicon-curtain</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/the-red-silicon-curtain/"><![CDATA[<p>Sanctions didn’t kill Chinese AI — they mutated it into something more formidable: a leaner, inference-optimized, vertically-integrated competitor.</p>
+<p>The final episode of the <em>State of AI</em> series looks ahead. After four episodes examining where we are — the pace of change, the money, the geopolitics, and the workforce impact — we turn to the question everyone is asking: what comes next?</p>
 
-<p>In this episode, we unpack how US export controls forced Chinese AI labs to innovate “up the stack,” producing models like DeepSeek that achieve frontier performance with a fraction of the compute. We explore the bifurcating AI ecosystem, China’s massive government-backed chip investment, and why the technology cold war may be creating two parallel AI superpowers.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Sanctions didn't kill Chinese AI — they mutated it into something more formidable: a leaner, inference-optimized, vertically-integrated competitor.]]></summary></entry><entry><title type="html">Follow the Money</title><link href="https://manavgup.github.io/shipai/episodes/follow-the-money/" rel="alternate" type="text/html" title="Follow the Money" /><published>2026-01-20T00:00:00+00:00</published><updated>2026-01-20T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/follow-the-money</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/follow-the-money/"><![CDATA[<p>In 2014, the largest tech companies spent $44 billion on capital investments. By 2024, that number passed $200 billion — almost all of it tied to AI. This isn’t an innovation budget. This is an arms race.</p>
+<h3 id="physical-ai-and-robotics">Physical AI and Robotics</h3>
 
-<p>We follow the money to understand who’s investing, where it’s going, and what the economics of AI infrastructure really look like. From hyperscaler CapEx to the GPU supply chain, the financial signals tell a clear story about where AI is heading.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[In 2014, the largest tech companies spent $44 billion on capital investments. By 2024, that number passed $200 billion — almost all of it tied to AI. This isn't an innovation budget.]]></summary></entry><entry><title type="html">The Speed of Now</title><link href="https://manavgup.github.io/shipai/episodes/the-speed-of-now/" rel="alternate" type="text/html" title="The Speed of Now" /><published>2026-01-13T00:00:00+00:00</published><updated>2026-01-13T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/the-speed-of-now</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/the-speed-of-now/"><![CDATA[<p>The conversation delves into the exponential growth of AI models, the impact of compute abundance, global adoption of AI, and the comparison of AI performance with human capability.</p>
+<p>The current AI revolution has been largely digital — language models, image generators, coding assistants. The next wave brings AI into the physical world. Advances in robotics, embodied intelligence, and simulation-to-real transfer are making physical AI systems increasingly capable. We explore the companies, research, and timelines driving this shift.</p>
 
-<p>AI isn’t just getting better — it’s getting better faster than anything we’ve seen before. In this first episode, we set the stage by looking at the pace of change: how quickly models are improving, how compute costs are plummeting, and what it means when AI adoption outpaces every prior technology wave.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[The conversation delves into the exponential growth of AI models, the impact of compute abundance, global adoption of AI, and the comparison of AI performance with human capability.]]></summary></entry></feed>
+<h3 id="from-lab-to-real-world">From Lab to Real World</h3>
+
+<p>Autonomous systems — from self-driving vehicles to warehouse robots to agricultural drones — are crossing the threshold from controlled lab environments to messy real-world deployment. We look at what’s changed to make this possible and what challenges remain around safety, regulation, and reliability.</p>
+
+<h3 id="the-rise-of-ai-agents">The Rise of AI Agents</h3>
+
+<p>Beyond simple chatbots and single-turn interactions, AI agents are emerging that can plan, reason, use tools, and execute multi-step workflows with minimal human supervision. We discuss the agent frameworks taking shape, the use cases gaining traction, and why agentic AI could be the most transformative application pattern since the web browser.</p>
+
+<h3 id="edge-ai-and-on-device-intelligence">Edge AI and On-Device Intelligence</h3>
+
+<p>Not everything can or should run in the cloud. Edge AI — running models directly on devices like phones, sensors, and embedded systems — is enabling a new class of applications that demand low latency, offline capability, or data privacy. We explore how on-device intelligence is expanding the reach of AI into environments where cloud connectivity isn’t guaranteed.</p>
+
+<h3 id="the-road-to-general-purpose-ai">The Road to General-Purpose AI</h3>
+
+<p>The trajectory of AI development points from narrow, task-specific systems toward broader, more general-purpose capabilities. We discuss what this means in practice — not as a distant science-fiction scenario, but as a near-term evolution in how AI systems are built, deployed, and integrated into every industry.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Physical AI, autonomous systems, and where the technology is heading.]]></summary></entry><entry><title type="html">Lawrence Wan, Chief Architect, BMO</title><link href="https://manavgup.github.io/shipai/episodes/lawrence-wan-chief-architect-bmo/" rel="alternate" type="text/html" title="Lawrence Wan, Chief Architect, BMO" /><published>2026-02-10T00:00:00+00:00</published><updated>2026-02-10T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/lawrence-wan-chief-architect-bmo</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/lawrence-wan-chief-architect-bmo/"><![CDATA[<p>Lawrence Wan, Chief Architect and Innovation Officer at Bank of Montreal, shares insights on how one of Canada’s largest financial institutions approaches technology transformation, AI adoption, and the future of agentic systems in a heavily regulated industry.</p>
+
+<h2 id="show-notes">Show Notes</h2>
+
+<h3 id="technology-leadership-at-bmo">Technology Leadership at BMO</h3>
+
+<p>Lawrence discusses the role of a Chief Architect at a major Canadian bank — balancing the demands of legacy systems, regulatory requirements, and the imperative to innovate. He shares how BMO approaches technology strategy and the principles that guide their architecture decisions.</p>
+
+<h3 id="designing-for-scale-and-future-technologies">Designing for Scale and Future Technologies</h3>
+
+<p>Building systems that can absorb new capabilities without constant rearchitecting is a core challenge in enterprise banking. Lawrence explains BMO’s approach to creating flexible, scalable foundations that can integrate emerging technologies like AI without disrupting existing operations.</p>
+
+<h3 id="ai-in-banking-current-applications-and-future-prospects">AI in Banking: Current Applications and Future Prospects</h3>
+
+<p>From customer-facing applications to internal operations, AI is already transforming how banks operate. Lawrence shares concrete examples of where AI is delivering value today and where he sees the biggest opportunities ahead.</p>
+
+<h3 id="generative-ai-productivity-gains-and-challenges">Generative AI: Productivity Gains and Challenges</h3>
+
+<p>Generative AI tools are producing real productivity gains across BMO, but adoption comes with unique challenges in a regulated environment. Lawrence discusses how the bank is navigating these tradeoffs and measuring real impact.</p>
+
+<h3 id="the-future-of-ai-agents-in-banking">The Future of AI Agents in Banking</h3>
+
+<p>Agentic AI represents the next frontier for financial services. Lawrence shares his vision for how autonomous AI agents will operate within banking — and the guardrails needed to ensure they operate safely and compliantly.</p>
+
+<h3 id="the-evolving-role-of-technologists">The Evolving Role of Technologists</h3>
+
+<p>As AI reshapes what’s possible, the role of technologists in banking is changing. Lawrence reflects on what skills and mindsets matter most for the next generation of technology leaders in financial services.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Lawrence Wan, Chief Architect and Innovation Officer at Bank of Montreal, shares insights on how one of Canada's largest financial institutions approaches technology transformation, AI adoption, and the future of agentic systems in a heavily regulated industry.]]></summary></entry><entry><title type="html">AI In Banking — Vinh Tran, RBC</title><link href="https://manavgup.github.io/shipai/episodes/ai-in-banking/" rel="alternate" type="text/html" title="AI In Banking — Vinh Tran, RBC" /><published>2026-02-03T00:00:00+00:00</published><updated>2026-02-03T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/ai-in-banking</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/ai-in-banking/"><![CDATA[<p>Vinh Tran — VP of Data and AI Platforms at RBC and an RBC Fellow — shares how one of the world’s largest banks is approaching AI at enterprise scale.</p>
+
+<p>Key takeaways: “You have to control AI in banking — it’s not optional.” Vinh discusses the unique challenges of deploying AI in a highly regulated industry, the importance of governance frameworks, building internal AI platforms, and why the path from pilot to production requires a fundamentally different approach than most organizations expect.</p>
+
+<h2 id="show-notes">Show Notes</h2>
+
+<p>In this inaugural <em>Guest Conversations</em> episode, Manav sits down with Vinh Tran, VP of Data and AI Platforms at Royal Bank of Canada (RBC) and an RBC Fellow, for an in-depth conversation about what it actually looks like to deploy AI at one of the world’s largest financial institutions.</p>
+
+<h3 id="building-an-ai-platform-at-scale">Building an AI Platform at Scale</h3>
+
+<p>RBC didn’t approach AI as a collection of one-off projects. Instead, they built a centralized AI platform designed to serve thousands of developers and data scientists across the organization. Vinh walks through the architecture decisions, the build-vs-buy tradeoffs, and what it takes to create a platform that’s both powerful enough for advanced use cases and accessible enough for broad adoption.</p>
+
+<h3 id="governance-and-responsible-ai-in-regulated-industries">Governance and Responsible AI in Regulated Industries</h3>
+
+<p>Banking operates under some of the strictest regulatory frameworks in the world. Every AI model that touches customer data, credit decisions, or financial transactions must meet rigorous standards for explainability, fairness, and auditability. Vinh shares how RBC has built governance into the fabric of its AI platform — not as an afterthought, but as a core design principle.</p>
+
+<h3 id="the-innovation-risk-balance">The Innovation-Risk Balance</h3>
+
+<p>One of the hardest challenges in enterprise AI is moving fast without breaking things — especially when “things” include customer trust and regulatory compliance. Vinh discusses how RBC navigates this tension, fostering a culture of experimentation while maintaining the controls that a major financial institution requires.</p>
+
+<h3 id="from-poc-to-production">From POC to Production</h3>
+
+<p>The graveyard of enterprise AI is full of successful proofs of concept that never made it to production. Vinh is candid about why this happens and what RBC has learned about bridging the gap. The answer isn’t just better technology — it’s better processes, clearer ownership, and realistic expectations about what production-grade AI demands.</p>
+
+<h3 id="lessons-for-enterprise-leaders">Lessons for Enterprise Leaders</h3>
+
+<p>Whether you’re in financial services or any other industry, the challenges RBC faces with AI — governance, scale, talent, change management — are universal. Vinh shares practical advice for enterprise leaders looking to move from AI experimentation to real, measurable business impact.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Vinh Tran, VP of Data and AI Platforms at RBC and an RBC Fellow, shares how one of the world's largest banks is approaching AI at enterprise scale.]]></summary></entry><entry><title type="html">AI At Work</title><link href="https://manavgup.github.io/shipai/episodes/ai-at-work/" rel="alternate" type="text/html" title="AI At Work" /><published>2026-02-03T00:00:00+00:00</published><updated>2026-02-03T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/ai-at-work</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/ai-at-work/"><![CDATA[<p>The conversation explores the impact of AI adoption on the labor market, job tasks, disruption, and fluency.</p>
+
+<p>AI is changing work at every level — not just automating tasks, but restructuring how jobs are defined and performed. We look at which roles are most exposed, how AI fluency is becoming the new literacy, and what the data tells us about the gap between AI hype and actual workplace adoption.</p>
+
+<h2 id="show-notes">Show Notes</h2>
+
+<p>Episode 4 turns the lens inward — to the workplace — and examines how AI is already transforming the nature of work, who it affects most, and what organizations need to do to keep up.</p>
+
+<h3 id="tasks-not-jobs">Tasks, Not Jobs</h3>
+
+<p>One of the most important reframes in the AI-and-work conversation is that AI disrupts tasks, not entire jobs. Most roles are a bundle of tasks, and AI is selectively automating or augmenting specific ones — drafting documents, analyzing data, writing code, summarizing meetings — while leaving others untouched. This nuance matters enormously for how organizations plan their workforce strategies.</p>
+
+<h3 id="knowledge-workers-in-the-crosshairs">Knowledge Workers in the Crosshairs</h3>
+
+<p>Contrary to earlier waves of automation that primarily affected manual and routine work, AI’s immediate impact falls heaviest on knowledge workers: analysts, writers, programmers, marketers, and other white-collar professionals. We walk through the research on which task categories are most exposed and what that means for career planning.</p>
+
+<h3 id="ai-fluency-as-the-new-literacy">AI Fluency as the New Literacy</h3>
+
+<p>The ability to use AI tools effectively — prompt engineering, understanding model strengths and limitations, integrating AI into workflows — is becoming a core professional skill. Workers who develop AI fluency are seeing measurable productivity gains, while those who don’t risk falling behind. We discuss how this skill gap is emerging and what it means for hiring, training, and career development.</p>
+
+<h3 id="the-change-management-challenge">The Change Management Challenge</h3>
+
+<p>Even when AI tools deliver clear productivity gains, organizations struggle to adopt them at scale. The barriers are rarely technical — they’re cultural, procedural, and organizational. We explore why AI change management is so difficult, what successful companies are doing differently, and why the gap between AI’s potential and actual workplace adoption remains stubbornly wide.</p>
+
+<h3 id="uneven-gains">Uneven Gains</h3>
+
+<p>Productivity improvements from AI are real, but they’re not evenly distributed. Early adopters, skilled users, and organizations with strong data infrastructure capture the lion’s share of benefits. We look at the data on who’s winning and who’s being left behind in the AI productivity race.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[The conversation explores the impact of AI adoption on the labor market, job tasks, disruption, and fluency.]]></summary></entry><entry><title type="html">The Red Silicon Curtain</title><link href="https://manavgup.github.io/shipai/episodes/the-red-silicon-curtain/" rel="alternate" type="text/html" title="The Red Silicon Curtain" /><published>2026-01-27T00:00:00+00:00</published><updated>2026-01-27T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/the-red-silicon-curtain</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/the-red-silicon-curtain/"><![CDATA[<p>Sanctions didn’t kill Chinese AI — they mutated it into something more formidable: a leaner, inference-optimized, vertically-integrated competitor.</p>
+
+<p>In this episode, we unpack how US export controls forced Chinese AI labs to innovate “up the stack,” producing models like DeepSeek that achieve frontier performance with a fraction of the compute. We explore the bifurcating AI ecosystem, China’s massive government-backed chip investment, and why the technology cold war may be creating two parallel AI superpowers.</p>
+
+<h2 id="show-notes">Show Notes</h2>
+
+<p>Episode 3 tackles the geopolitical dimension of AI — specifically, the intensifying technology competition between the United States and China. The picture that emerges is far more nuanced than the simple “sanctions will contain China” narrative suggests.</p>
+
+<h3 id="sanctions-as-a-catalyst">Sanctions as a Catalyst</h3>
+
+<p>The US imposed sweeping export controls on advanced semiconductors and AI chips starting in 2022, aiming to slow China’s AI progress. The result was not what many expected. Rather than falling behind, Chinese AI labs were forced to innovate under constraint — optimizing for efficiency, developing novel architectures, and building more with less. The sanctions didn’t stop the race; they changed its character.</p>
+
+<h3 id="deepseek-and-the-efficiency-revolution">DeepSeek and the Efficiency Revolution</h3>
+
+<p>DeepSeek exemplifies the new Chinese approach: achieving frontier-class model performance with a fraction of the compute budget that US labs require. By focusing on inference efficiency, mixture-of-experts architectures, and algorithmic innovation, Chinese labs have demonstrated that raw compute isn’t the only path to capable AI. We break down the technical strategies behind these gains.</p>
+
+<h3 id="the-bifurcating-stack">The Bifurcating Stack</h3>
+
+<p>The AI technology landscape is splitting into two parallel ecosystems. The US-led stack centers on NVIDIA GPUs, proprietary cloud platforms, and Western open-source communities. The China-led stack is building on domestic chips (Huawei Ascend, etc.), homegrown cloud infrastructure, and its own open-source ecosystem. We explore what this bifurcation means for global companies that need to operate in both worlds.</p>
+
+<h3 id="open-source-as-geopolitical-strategy">Open-Source as Geopolitical Strategy</h3>
+
+<p>Open-source AI has taken on a new dimension in the US-China competition. Both sides are using open-weight model releases strategically — to build ecosystems, attract developers, and shape global AI standards. We discuss how open-source has become a tool of influence in the technology cold war, and what that means for the future of AI governance.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Sanctions didn't kill Chinese AI — they mutated it into something more formidable: a leaner, inference-optimized, vertically-integrated competitor.]]></summary></entry><entry><title type="html">Follow the Money</title><link href="https://manavgup.github.io/shipai/episodes/follow-the-money/" rel="alternate" type="text/html" title="Follow the Money" /><published>2026-01-20T00:00:00+00:00</published><updated>2026-01-20T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/follow-the-money</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/follow-the-money/"><![CDATA[<p>In 2014, the largest tech companies spent $44 billion on capital investments. By 2024, that number passed $200 billion — almost all of it tied to AI. This isn’t an innovation budget. This is an arms race.</p>
+
+<p>We follow the money to understand who’s investing, where it’s going, and what the economics of AI infrastructure really look like. From hyperscaler CapEx to the GPU supply chain, the financial signals tell a clear story about where AI is heading.</p>
+
+<h2 id="show-notes">Show Notes</h2>
+
+<p>Episode 2 digs into the financial engine powering the AI revolution. The scale of investment is historically unprecedented — and it raises critical questions about sustainability, returns, and who ultimately controls the infrastructure of intelligence.</p>
+
+<h3 id="the-capex-explosion">The CapEx Explosion</h3>
+
+<p>The biggest story in AI economics isn’t the models — it’s the infrastructure spend. The largest technology companies have collectively increased their capital expenditures from $44 billion in 2014 to over $200 billion by 2024. Nearly all of that incremental spending is AI-related: data centers, GPUs, networking, and cooling. This is the largest infrastructure buildout since the fiber-optic boom of the late 1990s.</p>
+
+<h3 id="the-gpu-bottleneck">The GPU Bottleneck</h3>
+
+<p>Demand for AI accelerators — particularly NVIDIA GPUs — continues to massively outpace supply. This has created a cascading set of effects: companies are hoarding chips, delivery timelines stretch to months or quarters, and the GPU supply chain has become a strategic asset. We explore how this bottleneck shapes who can and can’t compete in AI.</p>
+
+<h3 id="hyperscalers-as-the-new-gatekeepers">Hyperscalers as the New Gatekeepers</h3>
+
+<p>AWS, Microsoft Azure, and Google Cloud have emerged as the de facto infrastructure layer for AI. Their massive scale advantages in compute, data, and distribution mean that most AI workloads — from training to inference — run on their platforms. We discuss what this concentration of power means for the industry.</p>
+
+<h3 id="the-roi-question">The ROI Question</h3>
+
+<p>For all the investment, revenue from AI applications is still catching up. Enterprise adoption is growing, but many organizations are still in pilot mode. AI startups are raising record rounds, yet many lack proven revenue models. We examine the gap between investment and returns — and when (or whether) the economics will balance out.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[In 2014, the largest tech companies spent $44 billion on capital investments. By 2024, that number passed $200 billion — almost all of it tied to AI. This isn't an innovation budget.]]></summary></entry><entry><title type="html">The Speed of Now</title><link href="https://manavgup.github.io/shipai/episodes/the-speed-of-now/" rel="alternate" type="text/html" title="The Speed of Now" /><published>2026-01-13T00:00:00+00:00</published><updated>2026-01-13T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/episodes/the-speed-of-now</id><content type="html" xml:base="https://manavgup.github.io/shipai/episodes/the-speed-of-now/"><![CDATA[<p>The conversation delves into the exponential growth of AI models, the impact of compute abundance, global adoption of AI, and the comparison of AI performance with human capability.</p>
+
+<p>AI isn’t just getting better — it’s getting better faster than anything we’ve seen before. In this first episode, we set the stage by looking at the pace of change: how quickly models are improving, how compute costs are plummeting, and what it means when AI adoption outpaces every prior technology wave.</p>
+
+<h2 id="show-notes">Show Notes</h2>
+
+<p>This episode opens the <em>State of AI</em> series by establishing the sheer velocity of the AI revolution. We explore the data behind the headlines — and the numbers are staggering.</p>
+
+<h3 id="the-adoption-curve-is-broken">The Adoption Curve Is Broken</h3>
+
+<p>Every major technology — from electricity to the internet to smartphones — followed a roughly similar adoption curve. AI has shattered that pattern. ChatGPT reached 365 billion searches in just two years, a feat that took Google over a decade. This isn’t incremental progress; it’s a phase change in how quickly technology embeds itself in daily life.</p>
+
+<h3 id="compute-is-getting-cheaper-fast">Compute Is Getting Cheaper, Fast</h3>
+
+<p>One of the most underappreciated drivers of the AI boom is the collapse in compute costs. Over the past two years, the cost of running AI workloads has dropped by roughly 90%. This means that capabilities once reserved for the largest tech companies are now within reach of startups, researchers, and even individuals.</p>
+
+<h3 id="capabilities-are-compounding">Capabilities Are Compounding</h3>
+
+<p>AI model performance is doubling every 6-9 months. This pace dramatically exceeds Moore’s Law and means that the models available today will look primitive compared to what arrives in 12-18 months. We walk through the benchmarks and what they tell us about where things are headed.</p>
+
+<h3 id="a-global-phenomenon">A Global Phenomenon</h3>
+
+<p>Previous technology waves spread regionally — starting in one country or market and gradually diffusing outward over years or decades. AI adoption is happening everywhere, all at once. From Silicon Valley to Shenzhen, from London to Bangalore, organizations and governments are racing to integrate AI at the same time. This simultaneity has profound implications for competition, regulation, and global economic power.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[The conversation delves into the exponential growth of AI models, the impact of compute abundance, global adoption of AI, and the comparison of AI performance with human capability.]]></summary></entry></feed>
