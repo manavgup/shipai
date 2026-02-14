@@ -390,17 +390,35 @@ a { color: #0369a1; }
   font-size: 0.875rem;
   line-height: 1.8;
   color: #555;
-  padding-top: 12px;
-  max-height: 600px;
+  max-height: 70vh;
   overflow-y: auto;
   border: 1px solid #e5e5e5;
   border-radius: 8px;
-  padding: 16px;
+  padding: 20px;
   background: #fff;
+  margin-top: 12px;
 }
 
 .transcript-body p {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.transcript-body strong {
+  display: block;
+  color: #1a1a1a;
+  margin-top: 20px;
+  margin-bottom: 2px;
+}
+
+.transcript-body p:first-child strong {
+  margin-top: 0;
+}
+
+.transcript-body .ts {
+  font-size: 0.75rem;
+  color: #999;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
 }
 
 /* === Episodes archive === */
