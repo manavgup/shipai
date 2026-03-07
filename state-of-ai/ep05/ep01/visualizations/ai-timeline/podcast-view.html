@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script>(function(){var p=sessionStorage.getItem("spa-redirect");if(p){sessionStorage.removeItem("spa-redirect");history.replaceState(null,"",location.pathname+p);}})()</script>
+  <meta charset="UTF-8">
+  <title>Speed of AI - Model Release Timeline</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="podcast-styles.css">
+</head>
+<body>
+  <h1>The Speed of AI</h1>
+  <p class="subtitle">Watch the acceleration of AI model releases unfold</p>
+
+  <!-- Metrics Dashboard -->
+  <div class="metrics-dashboard">
+    <div class="metric-card">
+      <div class="metric-value" id="total-models">0</div>
+      <div class="metric-label">Total Models</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value" id="models-per-quarter">0</div>
+      <div class="metric-label">Models This Quarter</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value" id="current-year">2017</div>
+      <div class="metric-label">Current Period</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value" id="top-mmlu">0%</div>
+      <div class="metric-label">Best MMLU Score</div>
+    </div>
+  </div>
+
+  <!-- Milestone Banner -->
+  <div id="milestone-banner" class="milestone-banner hidden">
+    <span class="milestone-icon"></span>
+    <span class="milestone-text"></span>
+  </div>
+
+  <div id="loading">Loading data and preparing visualization...</div>
+
+  <div class="visualization-container">
+    <svg id="timeline" width="1200" height="650"></svg>
+    <div id="timeline-controls-container"></div>
+  </div>
+
+  <div class="controls-row">
+    <button id="restartBtn">Restart Animation</button>
+    <button id="speedBtn" data-speed="1">Speed: 1x</button>
+  </div>
+
+  <!-- Load D3.js -->
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+
+  <!-- Load modules -->
+  <script src="js/storyMode.js"></script>
+</body>
+</html>
