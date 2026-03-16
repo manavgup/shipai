@@ -172,9 +172,57 @@ a { color: #0369a1; }
   transition: box-shadow 0.2s, border-color 0.2s;
 }
 
+.episode-card.has-thumb {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
 .episode-card:hover {
   border-color: #ccc;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* Episode thumbnail */
+.ep-thumb-link {
+  position: relative;
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+
+.ep-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.ep-thumb-link:hover .ep-thumb {
+  transform: scale(1.03);
+}
+
+.ep-thumb-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.15);
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: #fff;
+}
+
+.ep-thumb-link:hover .ep-thumb-play {
+  opacity: 1;
+}
+
+.ep-card-body {
+  min-width: 0;
 }
 
 .ep-number {
@@ -316,6 +364,26 @@ a { color: #0369a1; }
   letter-spacing: 0.05em;
   color: #888;
   margin-bottom: 12px;
+}
+
+/* YouTube video embed (responsive 16:9) */
+.ep-video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+  margin-bottom: 8px;
+}
+
+.ep-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .ep-embed {
@@ -689,6 +757,12 @@ a { color: #0369a1; }
   .header h1 { font-size: 2.25rem; }
   .series-section { padding: 24px 16px; }
   .episode-card { padding: 20px; }
+  .episode-card.has-thumb {
+    grid-template-columns: 1fr;
+  }
+  .ep-thumb-link {
+    max-height: 200px;
+  }
   .episode-detail { padding: 32px 16px; }
   .page-archive { padding: 32px 16px; }
   .page-about { padding: 32px 16px; }
