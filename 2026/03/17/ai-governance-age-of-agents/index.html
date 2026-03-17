@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Governance in the Age of Agents — Ship AI</title>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AI Governance in the Age of Agents | Ship AI</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="AI Governance in the Age of Agents" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A practitioner’s guide to governing AI at enterprise scale — frameworks, risks, lifecycle models, and the tooling capabilities every organization needs as AI agents move from chatbots to autonomous systems." />
+<meta property="og:description" content="A practitioner’s guide to governing AI at enterprise scale — frameworks, risks, lifecycle models, and the tooling capabilities every organization needs as AI agents move from chatbots to autonomous systems." />
+<link rel="canonical" href="https://manavgup.github.io/shipai/2026/03/17/ai-governance-age-of-agents/" />
+<meta property="og:url" content="https://manavgup.github.io/shipai/2026/03/17/ai-governance-age-of-agents/" />
+<meta property="og:site_name" content="Ship AI" />
+<meta property="og:image" content="https://manavgup.github.io/shipai/assets/images/og/post-ai-governance-age-of-agents.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://manavgup.github.io/shipai/assets/images/og/post-ai-governance-age-of-agents.png" />
+<meta property="twitter:title" content="AI Governance in the Age of Agents" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-03-17T00:00:00+00:00","datePublished":"2026-03-17T00:00:00+00:00","description":"A practitioner’s guide to governing AI at enterprise scale — frameworks, risks, lifecycle models, and the tooling capabilities every organization needs as AI agents move from chatbots to autonomous systems.","headline":"AI Governance in the Age of Agents","image":"https://manavgup.github.io/shipai/assets/images/og/post-ai-governance-age-of-agents.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://manavgup.github.io/shipai/2026/03/17/ai-governance-age-of-agents/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://manavgup.github.io/shipai/assets/images/og/default.png"}},"url":"https://manavgup.github.io/shipai/2026/03/17/ai-governance-age-of-agents/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/shipai/assets/css/main.css">
+  <link rel="alternate" type="application/atom+xml" title="Ship AI" href="/shipai/feed.xml">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/shipai/" class="nav-brand">Ship AI</a>
+      <div class="nav-links">
+        
+          <a href="/shipai/episodes/">Episodes</a>
+        
+          <a href="/shipai/blog/">Blog</a>
+        
+          <a href="/shipai/state-of-ai/">Slides</a>
+        
+          <a href="/shipai/about/">About</a>
+        
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="post-detail">
+  <div class="post-meta">
+    <span>March 17, 2026</span>
+    
+    
+    
+    
+    <span>9 min read</span>
+  </div>
+  <h1 class="post-detail-title">AI Governance in the Age of Agents</h1>
+
+  
+  <div class="post-tags">
+    
+    
+      <span class="post-tag">ai-governance</span>
+    
+      <span class="post-tag">agentic-ai</span>
+    
+      <span class="post-tag">enterprise-ai</span>
+    
+      <span class="post-tag">eu-ai-act</span>
+    
+      <span class="post-tag">compliance</span>
+    
+  </div>
+  
+
+  <div class="post-section">
+    <div class="post-body">
+      <p>We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility to govern them. This article explores what it really means to direct, monitor, and manage AI in a world of agents: the frameworks, the risks, the lifecycle models, and the tooling capabilities every enterprise needs to think about.</p>
+
+<h2 id="what-is-ai-governance">What Is AI Governance?</h2>
+
+<p>At its core, AI governance is the process of directing, monitoring, and managing the AI activities of an organization through automation. That definition sounds deceptively simple. In practice, it spans every stakeholder — from the data scientist building a model to the compliance officer accountable for its regulatory footprint — and every decision made along the way.</p>
+
+<blockquote>
+  <p>“AI Governance enables organizations to align AI systems with business, legal, and ethical requirements at every stage of the lifecycle of AI models of any type.”</p>
+</blockquote>
+
+<p>A mature governance platform should be built on three pillars: centralized AI lifecycle management (tracking every model, app, and agent from idea to retirement), proactive risk and security management (detecting and mitigating threats before they materialize), and trustworthy dynamic compliance (maintaining regulatory alignment as rules evolve). Critically, it must be platform-agnostic — capable of governing AI deployed across any cloud, any vendor, any model provider.</p>
+
+<h2 id="governance-in-practice-macro-and-micro">Governance in Practice: Macro and Micro</h2>
+
+<p>One of the most useful frameworks for operationalizing AI governance is the distinction between macro-level and micro-level governance — and understanding that organizations need both running simultaneously.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/macro-micro-governance.png" alt="AI governance operates at two levels: macro and micro" />
+<em>AI governance operates at two levels: macro (policy, legal obligations, risk frameworks, organizational roles) and micro (specific requirements at each phase of the AI system lifecycle).</em></p>
+
+<p>At the <strong>macro level</strong>, governance means articulating AI principles, defining legal obligations, extending the enterprise risk framework, establishing an AI governance board with clear escalation paths, and building organization-wide awareness and skills. These are the guardrails that frame everything else.</p>
+
+<p>At the <strong>micro level</strong>, governance plays out across the full AI system lifecycle — from ideation and development through deployment, monitoring, and eventual retirement. Each phase carries specific requirements: risk assessments, bias mitigation, explainability documentation, go/no-go decisions, conformity assessments, regulatory registration, adversarial defense, and incident management. Governance is not a one-time gate — it is a continuous loop.</p>
+
+<h2 id="the-risk-landscape-traditional-amplified-and-new">The Risk Landscape: Traditional, Amplified, and New</h2>
+
+<p>AI’s benefits — productivity gains, shorter time-to-value, the ability to process diverse data modalities, amortized operational costs — are compelling. But they come alongside a significant and growing risk surface that organizations must actively manage.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/risk-landscape.png" alt="AI risk categories" />
+<em>AI carries three categories of risk: traditional risks inherited from classical AI, known risks amplified by generative AI, and entirely new risks intrinsic to generative models.</em></p>
+
+<p><strong>Traditional Risks:</strong></p>
+<ul>
+  <li>Data poisoning</li>
+  <li>Decision bias</li>
+  <li>Model transparency</li>
+  <li>Personal data in training</li>
+  <li>Re-identification</li>
+</ul>
+
+<p><strong>Amplified by GenAI:</strong></p>
+<ul>
+  <li>Data bias &amp; curation</li>
+  <li>Unexplainable output</li>
+  <li>Over/under reliance</li>
+  <li>Source attribution</li>
+  <li>Impact on jobs &amp; agency</li>
+</ul>
+
+<p><strong>New Risks (GenAI):</strong></p>
+<ul>
+  <li>Hallucination</li>
+  <li>Prompt-based attacks</li>
+  <li>Copyright infringement</li>
+  <li>Toxic output</li>
+  <li>Legal accountability</li>
+</ul>
+
+<h2 id="the-agent-dimension-a-new-risk-frontier">The Agent Dimension: A New Risk Frontier</h2>
+
+<p>If generative AI expanded the risk surface, agentic AI is expanding it further — and in qualitatively different ways. Agents don’t just respond; they act. They call tools, take sequences of decisions, interact with external systems, and can cascade errors in ways that are difficult to trace or reverse.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/agent-risks.png" alt="Agent-specific risks" />
+<em>AI agents introduce entirely new risks (function-calling hallucination, redundant actions, attacks on external resources) while amplifying known ones (misaligned actions, lack of transparency, unauthorized use).</em></p>
+
+<p>Responsible AI research has identified three categories of agent-specific concerns:</p>
+
+<ul>
+  <li><strong>New risks intrinsic to agents</strong> — including function-calling hallucination, redundant actions, and attacks targeting an agent’s external resources</li>
+  <li><strong>Amplified risks</strong> — misaligned or discriminatory actions, unauthorized use, trust mismatch exploitation, unexplainable or untraceable decision chains</li>
+  <li><strong>Societal impacts</strong> — effects on human dignity, agency, employment, and the environment</li>
+</ul>
+
+<p>The governance challenge unique to agents is the accountability gap: when a multi-step autonomous workflow produces a harmful outcome, who is responsible, and how do you trace the causal chain back through dozens of tool calls?</p>
+
+<blockquote>
+  <p>“When agents act autonomously across systems, governance can’t be an afterthought — it has to be embedded in the architecture.”</p>
+</blockquote>
+
+<h2 id="what-counts-as-ai-the-eu-ai-acts-taxonomy">What Counts as AI? The EU AI Act’s Taxonomy</h2>
+
+<p>Before you can govern AI, you need to know what it is — and the EU AI Act has introduced the most comprehensive legal definition to date. Not every algorithm is an AI system under the Act, and the distinction matters enormously for compliance obligations.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/eu-ai-act-taxonomy.png" alt="EU AI Act taxonomy" />
+<em>The EU AI Act’s taxonomy distinguishes classical methods (regression, decision trees) from ML, Deep Learning, and Generative AI — each with increasing interpretability challenges and governance implications.</em></p>
+
+<p>Classical statistical methods — regression, decision trees — sit outside the AI definition when they merely approximate functions or parameters in optimization problems. Machine learning, deep learning, and generative AI fall inside it. The key criterion is whether the system includes a learning component and is generally difficult to interpret. This matters because the vast majority of AI Act obligations apply specifically to high-risk AI systems — and most deployed systems won’t meet that threshold.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/eu-ai-act-risk-pyramid.png" alt="EU AI Act risk pyramid" />
+<em>The EU AI Act establishes a risk pyramid: prohibited practices at the top, high-risk systems subject to compliance requirements in the middle, and low/medium risk systems with no special requirements at the base.</em></p>
+
+<h2 id="one-size-does-not-fit-all-ml-vs-genai-governance">One Size Does Not Fit All: ML vs. GenAI Governance</h2>
+
+<p>A recurring theme in mature AI governance programs is that traditional ML models and generative AI models require fundamentally different governance approaches — even as they sit within the same organizational inventory.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/ml-vs-genai-governance.png" alt="ML vs GenAI governance" />
+<em>Traditional ML models (like credit risk scoring) and GenAI agents have different lifecycle shapes, risk profiles, and monitoring requirements — necessitating unified but differentiated governance approaches.</em></p>
+
+<p>Traditional ML — credit risk scoring, loan approval, mortgage servicing — often runs core business processes in banking and healthcare. Many of these models fall squarely in the EU AI Act’s high-risk category, meaning sustained compliance is tied directly to business continuity. Organizations need lifecycle traceability, bias monitoring, and audit-ready documentation baked into operations.</p>
+
+<p>GenAI governance introduces a different set of challenges: foundation model selection criteria, prompt lifecycle management, output quality metrics that don’t exist for classical models, and a much fuzzier boundary between “the system” and “the user.” Treating both with the same governance model leads to either over-burdening GenAI projects or under-governing high-stakes ML deployments.</p>
+
+<h2 id="the-classic-ml-lifecycle">The Classic ML Lifecycle</h2>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/classic-ml-lifecycle.png" alt="Classic ML lifecycle" />
+<em>The classic ML model lifecycle runs from business problem through use case approval, model training, review, deployment, monitoring, issue management, change requests, and eventual decommission — each stage a governance checkpoint.</em></p>
+
+<p>For traditional ML, the lifecycle is well-understood: a business problem drives use case approval, model training, review, deployment, continuous monitoring, and eventual decommission — with change request loops connecting these phases. Each node in this lifecycle is a governance checkpoint: documented decisions, risk assessments, bias evaluations, and explainability requirements. The key discipline is making sure none of these checkpoints are skipped under delivery pressure.</p>
+
+<h2 id="the-genai-lifecycle">The GenAI Lifecycle</h2>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/genai-lifecycle.png" alt="GenAI lifecycle" />
+<em>The GenAI lifecycle adds significant complexity: foundation model review precedes use case selection, prompt development becomes a governed activity, and evaluation criteria (faithfulness, groundedness, precision) are entirely new.</em></p>
+
+<p>For generative AI, the lifecycle looks different. It begins with foundation model review — evaluating candidates against security, performance, cost, and alignment criteria — before use case selection. Prompt engineering becomes a governed activity, with version-controlled prompts and systematic evaluation. Retrieval-augmented generation (RAG) introduces a retrieval layer that must be evaluated independently. And the evaluation criteria themselves — faithfulness, groundedness, context relevance, answer relevance, retrieval precision — are entirely new. Every change — model swap, fine-tuning decision, prompt adjustment — triggers its own review cycle.</p>
+
+<h2 id="rag-governance-in-practice-a-real-world-example">RAG Governance in Practice: A Real-World Example</h2>
+
+<p>A concrete example makes the governance challenge tangible. Consider a RAG recruitment assistant: a candidate submits a question; the system retrieves relevant document chunks from a knowledge base; the combined question and context is sent to a foundation model; and the full transaction — question, retrieved context, and answer — is logged to a governance platform for audit and evaluation.</p>
+
+<p>What makes this architecture governance-ready is the logging layer. Every inference is captured, enabling retrieval quality and faithfulness evaluation at any point. A governance dashboard can surface retrieval precision, context relevance, and average precision metrics — along with threshold violation distributions across transactions — giving compliance and operations teams the visibility they need.</p>
+
+<p>Drilling into individual transactions, governance operators can see faithfulness and answer relevance scores alongside source highlights — color-coded green for faithful passages, orange for somewhat faithful, red for unfaithful. This is the kind of per-inference traceability that regulators and audit committees are beginning to demand.</p>
+
+<h2 id="agentic-ai-governance-three-capabilities-every-platform-needs">Agentic AI Governance: Three Capabilities Every Platform Needs</h2>
+
+<p>For agentic AI specifically, a governance platform needs to go well beyond model-level monitoring. Three distinct capabilities are required.</p>
+
+<h3 id="1-agent-onboarding-and-lifecycle-governance">1. Agent Onboarding and Lifecycle Governance</h3>
+
+<p>Before an agent is deployed, it must be onboarded through a structured process: documenting the business goal, completing a risk questionnaire that identifies regulatory compliance needs, assigning a business owner, and obtaining cross-functional stakeholder approval. The output should be a documented risk assessment — covering risks like hallucination, toxic output, and prompt injection — with inherent and residual risk ratings for each dimension.</p>
+
+<h3 id="2-agent-evaluation">2. Agent Evaluation</h3>
+
+<p>Evaluating agents is fundamentally harder than evaluating static models. Agents execute multi-step workflows — evaluation must capture performance across the entire chain, not just the final output. Robust evaluation frameworks integrate with agent orchestration layers, measuring metrics like task completion rate, tool call accuracy, and contextual faithfulness across workflow configurations. Root cause analysis on underperforming runs is essential for iterative improvement.</p>
+
+<h3 id="3-a-managed-tool-catalog">3. A Managed Tool Catalog</h3>
+
+<p>One of the most underappreciated governance challenges in multi-agent systems is tool sprawl — organizations accumulating dozens of overlapping, inconsistently documented tool implementations across teams. A managed tool catalog addresses this with a consolidated, searchable inventory of approved tools: lineage tracking, quality metrics, usage statistics, and side-by-side comparison capabilities. Promoting approved tools reduces redundant security reviews and enforces consistent quality standards across every agent project.</p>
+
+<h2 id="security-tackling-shadow-ai">Security: Tackling Shadow AI</h2>
+
+<p>Governance without security is incomplete. One of the highest-risk categories in enterprise AI today is Shadow AI — models, applications, and agents running in the organization’s cloud or network entirely outside formal governance processes.</p>
+
+<p>An AI security layer integrated into the governance platform should automatically discover shadow AI deployments and surface them for formal onboarding. Beyond discovery, it needs to provide security compliance validation, vulnerability detection, and real-time guardrails at inference time.</p>
+
+<p>Specifically, a mature AI security capability should validate compliance against major regulatory libraries (EU AI Act, ISO 42001, NIST AI RMF, OWASP), detect and help remediate high-risk vulnerabilities through automated penetration testing, and provide a real-time guardrails library for continuous runtime monitoring of AI security risks.</p>
+
+<h2 id="compliance-acceleration">Compliance Acceleration</h2>
+
+<p>The compliance function in AI governance is often the most time-consuming element — and the one most at risk of becoming a bottleneck as AI deployments scale. The answer is automation: mapping AI use cases to applicable regulations automatically, identifying compliance gaps proactively based on use case characteristics and deployment context, and providing configurable assessment workflows that serve both AI owners and compliance professionals efficiently. The target regulatory landscape includes the EU AI Act, ISO 42001, NIST AI RMF, and a growing body of regional and sector-specific rules.</p>
+
+<h2 id="the-general-purpose-ai-code-of-practice">The General-Purpose AI Code of Practice</h2>
+
+<p>At the industry level, the EU’s General-Purpose AI (GPAI) Code of Practice represents a significant step toward voluntary harmonization before mandatory enforcement kicks in. The code covers three chapters: Transparency, Copyright, and Safety and Security. Major AI providers — including Amazon, Anthropic, Google, Microsoft, Mistral AI, OpenAI, ServiceNow, and many others — have signed on, demonstrating that the industry recognizes the value of proactive governance commitments rather than waiting for enforcement pressure.</p>
+
+<h2 id="key-conclusions">Key Conclusions</h2>
+
+<p>Experience across enterprise AI deployments — at scale, across regulated industries — consistently surfaces the same hard-won lessons:</p>
+
+<ul>
+  <li><strong>The algorithm alone doesn’t define the system.</strong> Context, deployment purpose, and real-world impact determine governance obligations more than the underlying method.</li>
+  <li><strong>Interdisciplinary teams are mandatory.</strong> Legal, technology, business, compliance, and security must collaborate — governance siloed in any single function will fail.</li>
+  <li><strong>Business value must be defined first.</strong> A prerequisite for operating any AI system responsibly is articulating what it’s supposed to accomplish and how success is measured.</li>
+  <li><strong>Data is the foundation.</strong> Quality, availability, and security of training and inference data underpin every other governance capability.</li>
+  <li><strong>New risks are hard to predict.</strong> Continuous monitoring isn’t optional — the pace of change in AI capabilities means yesterday’s risk model is already incomplete.</li>
+  <li><strong>Risk challenges are shared across industries.</strong> Poor data quality, integration failures, insufficient model performance, business resistance, and over-reliance on external model providers are universal problems requiring collective attention.</li>
+</ul>
+
+<blockquote>
+  <p>“The goal isn’t to slow AI down. It’s to build the trust infrastructure that lets organizations scale AI with confidence.”</p>
+</blockquote>
+
+<p>The age of agents is here. Governing it well is the defining enterprise AI challenge of the next decade — and the organizations that invest in governance architecture now will be the ones who can move fastest and farthest, with the confidence that comes from knowing their systems are transparent, traceable, and trustworthy.</p>
+
+    </div>
+  </div>
+
+  
+  <div class="post-section">
+    <h3>Related Episodes</h3>
+    <div class="episodes-grid">
+      
+        
+        
+          
+
+<div class="episode-card has-thumb">
+  
+    
+    <a href="/shipai/episodes/ai-agents/" class="ep-thumb-link">
+      <img src="https://img.youtube.com/vi/nImYX3MdqFE/mqdefault.jpg"
+           alt="AI Agents."
+           class="ep-thumb"
+           loading="lazy"
+           width="320" height="180">
+      <span class="ep-thumb-play">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+    </a>
+  
+  <div class="ep-card-body">
+    <div class="ep-number">Episode 6</div>
+    <a href="/shipai/episodes/ai-agents/" class="ep-title-link">
+      <div class="ep-title">AI Agents.</div>
+    </a>
+    <div class="ep-meta">
+      <span>Mar 6, 2026</span>
+      <span>53 min</span>
+    </div>
+    <p class="ep-description">The episode explores the rise of AI agents, their evolution from chatbots, and the challenges and opportunities in deploying and scaling AI agents. It delves into the characteristics of AI agents, ...</p>
+  </div>
+  <div class="ep-actions">
+    
+    
+      
+<div class="platform-buttons">
+  
+    <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" class="btn btn--platform" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Spotify
+    </a>
+  
+  
+    <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" class="btn btn--platform" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
+      Apple
+    </a>
+  
+  
+    <a href="https://www.youtube.com/watch?v=nImYX3MdqFE" class="btn btn--platform" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+  
+</div>
+
+    
+  </div>
+</div>
+
+        
+      
+        
+        
+          
+
+<div class="episode-card has-thumb">
+  
+    
+    <a href="/shipai/episodes/mihai-criveti-ibm-context-forge/" class="ep-thumb-link">
+      <img src="https://img.youtube.com/vi/XFKjVkMRRdU/mqdefault.jpg"
+           alt="The Man Behind IBM's AI Agent Gateway"
+           class="ep-thumb"
+           loading="lazy"
+           width="320" height="180">
+      <span class="ep-thumb-play">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+    </a>
+  
+  <div class="ep-card-body">
+    <div class="ep-number">Episode 3</div>
+    <a href="/shipai/episodes/mihai-criveti-ibm-context-forge/" class="ep-title-link">
+      <div class="ep-title">The Man Behind IBM's AI Agent Gateway</div>
+    </a>
+    <div class="ep-meta">
+      <span>Mar 4, 2026</span>
+      <span>54 min</span>
+    </div>
+    <p class="ep-description">Mihai Criveti, Distinguished Engineer at IBM and creator of Context Forge, on why AI agents need agentic middleware, MCP's enterprise gaps, and what production-grade agent architecture actually loo...</p>
+  </div>
+  <div class="ep-actions">
+    
+    
+      
+<div class="platform-buttons">
+  
+    <a href="" class="btn btn--platform" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Spotify
+    </a>
+  
+  
+    <a href="" class="btn btn--platform" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
+      Apple
+    </a>
+  
+  
+    <a href="https://www.youtube.com/watch?v=XFKjVkMRRdU" class="btn btn--platform" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+  
+</div>
+
+    
+  </div>
+</div>
+
+        
+      
+    </div>
+  </div>
+  
+</div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      &copy; 2026 Manav Gupta &middot;
+      <a href="/shipai/feed.xml">RSS</a>
+    </div>
+  </footer>
+</body>
+</html>

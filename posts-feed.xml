@@ -1,4 +1,176 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-03-17T06:26:59+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">AI Is Changing Work, Not Replacing Workers</title><link href="https://manavgup.github.io/shipai/blog/2026/02/05/ai-changing-work-not-replacing-workers/" rel="alternate" type="text/html" title="AI Is Changing Work, Not Replacing Workers" /><published>2026-02-05T00:00:00+00:00</published><updated>2026-02-05T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/02/05/ai-changing-work-not-replacing-workers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/02/05/ai-changing-work-not-replacing-workers/"><![CDATA[<p>Episode 4 of Ship AI was the hardest one to make. Not because the data was difficult to find – there’s more research on AI and labor markets than on almost any other AI topic right now. It was hard because the data tells a story that defies the two dominant narratives. AI is neither the job-destroying apocalypse that some fear nor the effortless productivity miracle that vendors promise. The reality is messier and, frankly, more interesting.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-03-17T16:09:21+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">AI Governance in the Age of Agents</title><link href="https://manavgup.github.io/shipai/2026/03/17/ai-governance-age-of-agents/" rel="alternate" type="text/html" title="AI Governance in the Age of Agents" /><published>2026-03-17T00:00:00+00:00</published><updated>2026-03-17T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/2026/03/17/ai-governance-age-of-agents</id><content type="html" xml:base="https://manavgup.github.io/shipai/2026/03/17/ai-governance-age-of-agents/"><![CDATA[<p>We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility to govern them. This article explores what it really means to direct, monitor, and manage AI in a world of agents: the frameworks, the risks, the lifecycle models, and the tooling capabilities every enterprise needs to think about.</p>
+
+<h2 id="what-is-ai-governance">What Is AI Governance?</h2>
+
+<p>At its core, AI governance is the process of directing, monitoring, and managing the AI activities of an organization through automation. That definition sounds deceptively simple. In practice, it spans every stakeholder — from the data scientist building a model to the compliance officer accountable for its regulatory footprint — and every decision made along the way.</p>
+
+<blockquote>
+  <p>“AI Governance enables organizations to align AI systems with business, legal, and ethical requirements at every stage of the lifecycle of AI models of any type.”</p>
+</blockquote>
+
+<p>A mature governance platform should be built on three pillars: centralized AI lifecycle management (tracking every model, app, and agent from idea to retirement), proactive risk and security management (detecting and mitigating threats before they materialize), and trustworthy dynamic compliance (maintaining regulatory alignment as rules evolve). Critically, it must be platform-agnostic — capable of governing AI deployed across any cloud, any vendor, any model provider.</p>
+
+<h2 id="governance-in-practice-macro-and-micro">Governance in Practice: Macro and Micro</h2>
+
+<p>One of the most useful frameworks for operationalizing AI governance is the distinction between macro-level and micro-level governance — and understanding that organizations need both running simultaneously.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/macro-micro-governance.png" alt="AI governance operates at two levels: macro and micro" />
+<em>AI governance operates at two levels: macro (policy, legal obligations, risk frameworks, organizational roles) and micro (specific requirements at each phase of the AI system lifecycle).</em></p>
+
+<p>At the <strong>macro level</strong>, governance means articulating AI principles, defining legal obligations, extending the enterprise risk framework, establishing an AI governance board with clear escalation paths, and building organization-wide awareness and skills. These are the guardrails that frame everything else.</p>
+
+<p>At the <strong>micro level</strong>, governance plays out across the full AI system lifecycle — from ideation and development through deployment, monitoring, and eventual retirement. Each phase carries specific requirements: risk assessments, bias mitigation, explainability documentation, go/no-go decisions, conformity assessments, regulatory registration, adversarial defense, and incident management. Governance is not a one-time gate — it is a continuous loop.</p>
+
+<h2 id="the-risk-landscape-traditional-amplified-and-new">The Risk Landscape: Traditional, Amplified, and New</h2>
+
+<p>AI’s benefits — productivity gains, shorter time-to-value, the ability to process diverse data modalities, amortized operational costs — are compelling. But they come alongside a significant and growing risk surface that organizations must actively manage.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/risk-landscape.png" alt="AI risk categories" />
+<em>AI carries three categories of risk: traditional risks inherited from classical AI, known risks amplified by generative AI, and entirely new risks intrinsic to generative models.</em></p>
+
+<p><strong>Traditional Risks:</strong></p>
+<ul>
+  <li>Data poisoning</li>
+  <li>Decision bias</li>
+  <li>Model transparency</li>
+  <li>Personal data in training</li>
+  <li>Re-identification</li>
+</ul>
+
+<p><strong>Amplified by GenAI:</strong></p>
+<ul>
+  <li>Data bias &amp; curation</li>
+  <li>Unexplainable output</li>
+  <li>Over/under reliance</li>
+  <li>Source attribution</li>
+  <li>Impact on jobs &amp; agency</li>
+</ul>
+
+<p><strong>New Risks (GenAI):</strong></p>
+<ul>
+  <li>Hallucination</li>
+  <li>Prompt-based attacks</li>
+  <li>Copyright infringement</li>
+  <li>Toxic output</li>
+  <li>Legal accountability</li>
+</ul>
+
+<h2 id="the-agent-dimension-a-new-risk-frontier">The Agent Dimension: A New Risk Frontier</h2>
+
+<p>If generative AI expanded the risk surface, agentic AI is expanding it further — and in qualitatively different ways. Agents don’t just respond; they act. They call tools, take sequences of decisions, interact with external systems, and can cascade errors in ways that are difficult to trace or reverse.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/agent-risks.png" alt="Agent-specific risks" />
+<em>AI agents introduce entirely new risks (function-calling hallucination, redundant actions, attacks on external resources) while amplifying known ones (misaligned actions, lack of transparency, unauthorized use).</em></p>
+
+<p>Responsible AI research has identified three categories of agent-specific concerns:</p>
+
+<ul>
+  <li><strong>New risks intrinsic to agents</strong> — including function-calling hallucination, redundant actions, and attacks targeting an agent’s external resources</li>
+  <li><strong>Amplified risks</strong> — misaligned or discriminatory actions, unauthorized use, trust mismatch exploitation, unexplainable or untraceable decision chains</li>
+  <li><strong>Societal impacts</strong> — effects on human dignity, agency, employment, and the environment</li>
+</ul>
+
+<p>The governance challenge unique to agents is the accountability gap: when a multi-step autonomous workflow produces a harmful outcome, who is responsible, and how do you trace the causal chain back through dozens of tool calls?</p>
+
+<blockquote>
+  <p>“When agents act autonomously across systems, governance can’t be an afterthought — it has to be embedded in the architecture.”</p>
+</blockquote>
+
+<h2 id="what-counts-as-ai-the-eu-ai-acts-taxonomy">What Counts as AI? The EU AI Act’s Taxonomy</h2>
+
+<p>Before you can govern AI, you need to know what it is — and the EU AI Act has introduced the most comprehensive legal definition to date. Not every algorithm is an AI system under the Act, and the distinction matters enormously for compliance obligations.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/eu-ai-act-taxonomy.png" alt="EU AI Act taxonomy" />
+<em>The EU AI Act’s taxonomy distinguishes classical methods (regression, decision trees) from ML, Deep Learning, and Generative AI — each with increasing interpretability challenges and governance implications.</em></p>
+
+<p>Classical statistical methods — regression, decision trees — sit outside the AI definition when they merely approximate functions or parameters in optimization problems. Machine learning, deep learning, and generative AI fall inside it. The key criterion is whether the system includes a learning component and is generally difficult to interpret. This matters because the vast majority of AI Act obligations apply specifically to high-risk AI systems — and most deployed systems won’t meet that threshold.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/eu-ai-act-risk-pyramid.png" alt="EU AI Act risk pyramid" />
+<em>The EU AI Act establishes a risk pyramid: prohibited practices at the top, high-risk systems subject to compliance requirements in the middle, and low/medium risk systems with no special requirements at the base.</em></p>
+
+<h2 id="one-size-does-not-fit-all-ml-vs-genai-governance">One Size Does Not Fit All: ML vs. GenAI Governance</h2>
+
+<p>A recurring theme in mature AI governance programs is that traditional ML models and generative AI models require fundamentally different governance approaches — even as they sit within the same organizational inventory.</p>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/ml-vs-genai-governance.png" alt="ML vs GenAI governance" />
+<em>Traditional ML models (like credit risk scoring) and GenAI agents have different lifecycle shapes, risk profiles, and monitoring requirements — necessitating unified but differentiated governance approaches.</em></p>
+
+<p>Traditional ML — credit risk scoring, loan approval, mortgage servicing — often runs core business processes in banking and healthcare. Many of these models fall squarely in the EU AI Act’s high-risk category, meaning sustained compliance is tied directly to business continuity. Organizations need lifecycle traceability, bias monitoring, and audit-ready documentation baked into operations.</p>
+
+<p>GenAI governance introduces a different set of challenges: foundation model selection criteria, prompt lifecycle management, output quality metrics that don’t exist for classical models, and a much fuzzier boundary between “the system” and “the user.” Treating both with the same governance model leads to either over-burdening GenAI projects or under-governing high-stakes ML deployments.</p>
+
+<h2 id="the-classic-ml-lifecycle">The Classic ML Lifecycle</h2>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/classic-ml-lifecycle.png" alt="Classic ML lifecycle" />
+<em>The classic ML model lifecycle runs from business problem through use case approval, model training, review, deployment, monitoring, issue management, change requests, and eventual decommission — each stage a governance checkpoint.</em></p>
+
+<p>For traditional ML, the lifecycle is well-understood: a business problem drives use case approval, model training, review, deployment, continuous monitoring, and eventual decommission — with change request loops connecting these phases. Each node in this lifecycle is a governance checkpoint: documented decisions, risk assessments, bias evaluations, and explainability requirements. The key discipline is making sure none of these checkpoints are skipped under delivery pressure.</p>
+
+<h2 id="the-genai-lifecycle">The GenAI Lifecycle</h2>
+
+<p><img src="/assets/images/posts/ai-governance-age-of-agents/genai-lifecycle.png" alt="GenAI lifecycle" />
+<em>The GenAI lifecycle adds significant complexity: foundation model review precedes use case selection, prompt development becomes a governed activity, and evaluation criteria (faithfulness, groundedness, precision) are entirely new.</em></p>
+
+<p>For generative AI, the lifecycle looks different. It begins with foundation model review — evaluating candidates against security, performance, cost, and alignment criteria — before use case selection. Prompt engineering becomes a governed activity, with version-controlled prompts and systematic evaluation. Retrieval-augmented generation (RAG) introduces a retrieval layer that must be evaluated independently. And the evaluation criteria themselves — faithfulness, groundedness, context relevance, answer relevance, retrieval precision — are entirely new. Every change — model swap, fine-tuning decision, prompt adjustment — triggers its own review cycle.</p>
+
+<h2 id="rag-governance-in-practice-a-real-world-example">RAG Governance in Practice: A Real-World Example</h2>
+
+<p>A concrete example makes the governance challenge tangible. Consider a RAG recruitment assistant: a candidate submits a question; the system retrieves relevant document chunks from a knowledge base; the combined question and context is sent to a foundation model; and the full transaction — question, retrieved context, and answer — is logged to a governance platform for audit and evaluation.</p>
+
+<p>What makes this architecture governance-ready is the logging layer. Every inference is captured, enabling retrieval quality and faithfulness evaluation at any point. A governance dashboard can surface retrieval precision, context relevance, and average precision metrics — along with threshold violation distributions across transactions — giving compliance and operations teams the visibility they need.</p>
+
+<p>Drilling into individual transactions, governance operators can see faithfulness and answer relevance scores alongside source highlights — color-coded green for faithful passages, orange for somewhat faithful, red for unfaithful. This is the kind of per-inference traceability that regulators and audit committees are beginning to demand.</p>
+
+<h2 id="agentic-ai-governance-three-capabilities-every-platform-needs">Agentic AI Governance: Three Capabilities Every Platform Needs</h2>
+
+<p>For agentic AI specifically, a governance platform needs to go well beyond model-level monitoring. Three distinct capabilities are required.</p>
+
+<h3 id="1-agent-onboarding-and-lifecycle-governance">1. Agent Onboarding and Lifecycle Governance</h3>
+
+<p>Before an agent is deployed, it must be onboarded through a structured process: documenting the business goal, completing a risk questionnaire that identifies regulatory compliance needs, assigning a business owner, and obtaining cross-functional stakeholder approval. The output should be a documented risk assessment — covering risks like hallucination, toxic output, and prompt injection — with inherent and residual risk ratings for each dimension.</p>
+
+<h3 id="2-agent-evaluation">2. Agent Evaluation</h3>
+
+<p>Evaluating agents is fundamentally harder than evaluating static models. Agents execute multi-step workflows — evaluation must capture performance across the entire chain, not just the final output. Robust evaluation frameworks integrate with agent orchestration layers, measuring metrics like task completion rate, tool call accuracy, and contextual faithfulness across workflow configurations. Root cause analysis on underperforming runs is essential for iterative improvement.</p>
+
+<h3 id="3-a-managed-tool-catalog">3. A Managed Tool Catalog</h3>
+
+<p>One of the most underappreciated governance challenges in multi-agent systems is tool sprawl — organizations accumulating dozens of overlapping, inconsistently documented tool implementations across teams. A managed tool catalog addresses this with a consolidated, searchable inventory of approved tools: lineage tracking, quality metrics, usage statistics, and side-by-side comparison capabilities. Promoting approved tools reduces redundant security reviews and enforces consistent quality standards across every agent project.</p>
+
+<h2 id="security-tackling-shadow-ai">Security: Tackling Shadow AI</h2>
+
+<p>Governance without security is incomplete. One of the highest-risk categories in enterprise AI today is Shadow AI — models, applications, and agents running in the organization’s cloud or network entirely outside formal governance processes.</p>
+
+<p>An AI security layer integrated into the governance platform should automatically discover shadow AI deployments and surface them for formal onboarding. Beyond discovery, it needs to provide security compliance validation, vulnerability detection, and real-time guardrails at inference time.</p>
+
+<p>Specifically, a mature AI security capability should validate compliance against major regulatory libraries (EU AI Act, ISO 42001, NIST AI RMF, OWASP), detect and help remediate high-risk vulnerabilities through automated penetration testing, and provide a real-time guardrails library for continuous runtime monitoring of AI security risks.</p>
+
+<h2 id="compliance-acceleration">Compliance Acceleration</h2>
+
+<p>The compliance function in AI governance is often the most time-consuming element — and the one most at risk of becoming a bottleneck as AI deployments scale. The answer is automation: mapping AI use cases to applicable regulations automatically, identifying compliance gaps proactively based on use case characteristics and deployment context, and providing configurable assessment workflows that serve both AI owners and compliance professionals efficiently. The target regulatory landscape includes the EU AI Act, ISO 42001, NIST AI RMF, and a growing body of regional and sector-specific rules.</p>
+
+<h2 id="the-general-purpose-ai-code-of-practice">The General-Purpose AI Code of Practice</h2>
+
+<p>At the industry level, the EU’s General-Purpose AI (GPAI) Code of Practice represents a significant step toward voluntary harmonization before mandatory enforcement kicks in. The code covers three chapters: Transparency, Copyright, and Safety and Security. Major AI providers — including Amazon, Anthropic, Google, Microsoft, Mistral AI, OpenAI, ServiceNow, and many others — have signed on, demonstrating that the industry recognizes the value of proactive governance commitments rather than waiting for enforcement pressure.</p>
+
+<h2 id="key-conclusions">Key Conclusions</h2>
+
+<p>Experience across enterprise AI deployments — at scale, across regulated industries — consistently surfaces the same hard-won lessons:</p>
+
+<ul>
+  <li><strong>The algorithm alone doesn’t define the system.</strong> Context, deployment purpose, and real-world impact determine governance obligations more than the underlying method.</li>
+  <li><strong>Interdisciplinary teams are mandatory.</strong> Legal, technology, business, compliance, and security must collaborate — governance siloed in any single function will fail.</li>
+  <li><strong>Business value must be defined first.</strong> A prerequisite for operating any AI system responsibly is articulating what it’s supposed to accomplish and how success is measured.</li>
+  <li><strong>Data is the foundation.</strong> Quality, availability, and security of training and inference data underpin every other governance capability.</li>
+  <li><strong>New risks are hard to predict.</strong> Continuous monitoring isn’t optional — the pace of change in AI capabilities means yesterday’s risk model is already incomplete.</li>
+  <li><strong>Risk challenges are shared across industries.</strong> Poor data quality, integration failures, insufficient model performance, business resistance, and over-reliance on external model providers are universal problems requiring collective attention.</li>
+</ul>
+
+<blockquote>
+  <p>“The goal isn’t to slow AI down. It’s to build the trust infrastructure that lets organizations scale AI with confidence.”</p>
+</blockquote>
+
+<p>The age of agents is here. Governing it well is the defining enterprise AI challenge of the next decade — and the organizations that invest in governance architecture now will be the ones who can move fastest and farthest, with the confidence that comes from knowing their systems are transparent, traceable, and trustworthy.</p>]]></content><author><name></name></author><category term="ai-governance" /><category term="agentic-ai" /><category term="enterprise-ai" /><category term="eu-ai-act" /><category term="compliance" /><summary type="html"><![CDATA[A practitioner's guide to governing AI at enterprise scale — frameworks, risks, lifecycle models, and the tooling capabilities every organization needs as AI agents move from chatbots to autonomous systems.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://manavgup.github.io/shipai/assets/images/og/post-ai-governance-age-of-agents.png" /><media:content medium="image" url="https://manavgup.github.io/shipai/assets/images/og/post-ai-governance-age-of-agents.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">AI Is Changing Work, Not Replacing Workers</title><link href="https://manavgup.github.io/shipai/blog/2026/02/05/ai-changing-work-not-replacing-workers/" rel="alternate" type="text/html" title="AI Is Changing Work, Not Replacing Workers" /><published>2026-02-05T00:00:00+00:00</published><updated>2026-02-05T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/02/05/ai-changing-work-not-replacing-workers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/02/05/ai-changing-work-not-replacing-workers/"><![CDATA[<p>Episode 4 of Ship AI was the hardest one to make. Not because the data was difficult to find – there’s more research on AI and labor markets than on almost any other AI topic right now. It was hard because the data tells a story that defies the two dominant narratives. AI is neither the job-destroying apocalypse that some fear nor the effortless productivity miracle that vendors promise. The reality is messier and, frankly, more interesting.</p>
 
 <h2 id="the-numbers-that-frame-everything">The Numbers That Frame Everything</h2>
 
