@@ -3,744 +3,494 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ship AI — Podcast by Manav Gupta — Ship AI</title>
-  <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Ship AI — Podcast by Manav Gupta | Ship AI</title>
-<meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="Ship AI — Podcast by Manav Gupta" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta." />
-<meta property="og:description" content="A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta." />
-<link rel="canonical" href="https://manavgup.github.io/shipai/" />
-<meta property="og:url" content="https://manavgup.github.io/shipai/" />
-<meta property="og:site_name" content="Ship AI" />
-<meta property="og:image" content="https://manavgup.github.io/shipai/assets/images/og/default.png" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://manavgup.github.io/shipai/assets/images/og/default.png" />
-<meta property="twitter:title" content="Ship AI — Podcast by Manav Gupta" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.","headline":"Ship AI — Podcast by Manav Gupta","image":"https://manavgup.github.io/shipai/assets/images/og/default.png","name":"Manav Gupta","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://manavgup.github.io/shipai/assets/images/og/default.png"}},"sameAs":["https://www.youtube.com/playlist?list=PLF0cewATp-wl_xK1rbE2bX2YcRVlZKUhM","https://www.linkedin.com/in/manavgupta/","https://medium.com/@manavg","https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3"],"url":"https://manavgup.github.io/shipai/"}</script>
-<!-- End Jekyll SEO tag -->
+  <title>Ship AI - Podcast by Manav Gupta</title>
+  <meta name="description" content="A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
 
-  <link rel="stylesheet" href="/shipai/assets/css/main.css">
-  <link rel="alternate" type="application/atom+xml" title="Ship AI" href="/shipai/feed.xml">
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 64px 24px 32px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .header .tagline {
+      font-size: 1.25rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    .header .host {
+      margin-top: 8px;
+      color: #888;
+      font-size: 1rem;
+    }
+
+    /* Podcast platforms */
+    .platforms {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .platforms a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+      background: #fff;
+      color: #333;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .platforms a:hover {
+      border-color: #ccc;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .platforms svg { width: 18px; height: 18px; }
+
+    /* Series section */
+    .series-section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+    .series-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .series-header h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .series-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .badge--s1 { background: #e0f2fe; color: #0369a1; }
+    .badge--s2 { background: #f0fdf4; color: #15803d; }
+    .series-desc {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Episode cards */
+    .episodes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .episode-card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 24px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .episode-card:hover {
+      border-color: #ccc;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .ep-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .ep-info { flex: 1; }
+    .ep-number {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #888;
+      margin-bottom: 4px;
+    }
+    .ep-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .ep-meta {
+      font-size: 0.8rem;
+      color: #999;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ep-description {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+      margin-top: 12px;
+    }
+    .ep-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn--listen {
+      background: #1a1a1a;
+      color: #fff;
+    }
+    .btn--listen:hover { background: #333; }
+    .btn--slides {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+    .btn--slides:hover { background: #bae6fd; }
+    .btn svg { width: 14px; height: 14px; }
+
+    /* Resources expandable */
+    .ep-resources {
+      margin-top: 12px;
+    }
+    .ep-resources summary {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #666;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+    .ep-resources summary:hover { color: #333; }
+    .resource-list {
+      list-style: none;
+      padding: 8px 0 0 0;
+    }
+    .resource-list li {
+      margin-bottom: 6px;
+    }
+    .resource-list a {
+      font-size: 0.8rem;
+      color: #0369a1;
+      text-decoration: none;
+    }
+    .resource-list a:hover { text-decoration: underline; }
+
+    /* Loading / Error states */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 48px 24px 32px;
+      color: #999;
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 640px) {
+      .header { padding: 48px 16px 24px; }
+      .header h1 { font-size: 2.25rem; }
+      .series-section { padding: 24px 16px; }
+      .episode-card { padding: 20px; }
+    }
+  </style>
 </head>
 <body>
-  <nav class="site-nav">
-    <div class="nav-inner">
-      <a href="/shipai/" class="nav-brand">Ship AI</a>
-      <div class="nav-links">
-        
-          <a href="/shipai/episodes/">Episodes</a>
-        
-          <a href="/shipai/blog/">Blog</a>
-        
-          <a href="/shipai/state-of-ai/">Slides</a>
-        
-          <a href="/shipai/about/">About</a>
-        
-      </div>
-    </div>
-  </nav>
-
-  <main>
-    <div class="header">
-  <h1>Ship AI</h1>
-  <p class="tagline">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists.</p>
-  <p class="host">Hosted by Manav Gupta</p>
-  <div class="platforms">
-    
-      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+  <div class="header">
+    <h1>Ship AI</h1>
+    <p class="tagline">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists.</p>
+    <p class="host">Hosted by Manav Gupta</p>
+    <div class="platforms">
+      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
         Spotify
       </a>
-    
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399zM12 6.528c3.03 0 5.496 2.458 5.496 5.496 0 1.632-.576 2.832-1.392 3.744-.468.516-1.008.924-1.536 1.26-.312.192-.612.36-.876.48a3.6 3.6 0 01-.456.18c-.072.024-.144.024-.168.024h-.024l-.048-.024c-.048-.024-.048-.048-.072-.072-.024-.048-.024-.072-.024-.12 0-.072.024-.12.048-.168.048-.048.096-.072.144-.096a5.56 5.56 0 00.408-.192c.264-.144.564-.336.84-.552.492-.384.936-.84 1.272-1.392.336-.552.552-1.2.552-2.064 0-2.376-1.92-4.296-4.296-4.296-2.376 0-4.296 1.92-4.296 4.296 0 .864.216 1.512.552 2.064.336.552.78 1.008 1.272 1.392.276.216.576.408.84.552.12.072.264.144.408.192.048.024.096.048.144.096.024.048.048.096.048.168 0 .048 0 .072-.024.12-.024.024-.024.048-.072.072l-.048.024h-.024c-.024 0-.096 0-.168-.024a3.6 3.6 0 01-.456-.18 8.5 8.5 0 01-.876-.48c-.528-.336-1.068-.744-1.536-1.26C6.576 14.856 6 13.656 6 12.024 6 8.986 8.462 6.528 12 6.528zm-.024 3.168c1.296 0 2.352 1.056 2.352 2.352 0 .672-.168 1.2-.48 1.632-.312.408-.72.72-1.176.96a.132.132 0 01-.048.024.12.12 0 01-.072-.024.12.12 0 01-.024-.072c0-.048.024-.072.048-.096.408-.216.744-.48.984-.816.264-.36.384-.792.384-1.296v-.312c0-1.104-.864-1.968-1.968-1.968s-1.968.864-1.968 1.968v.312c0 .504.12.936.384 1.296.24.336.576.6.984.816.024.024.048.048.048.096a.12.12 0 01-.024.072.12.12 0 01-.072.024.132.132 0 01-.048-.024 3.36 3.36 0 01-1.176-.96c-.312-.432-.48-.96-.48-1.632 0-1.296 1.056-2.352 2.352-2.352zM12 13.2a.792.792 0 01.792.792v3.48c0 .12-.024.24-.072.348l-.696 1.632a.132.132 0 01-.048.048.084.084 0 01-.048 0 .084.084 0 01-.048 0 .132.132 0 01-.048-.048l-.696-1.632A.816.816 0 0111.064 17.472v-3.48A.792.792 0 0112 13.2z"/></svg>
+      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399zM12 6.528c3.03 0 5.496 2.458 5.496 5.496 0 1.632-.576 2.832-1.392 3.744-.468.516-1.008.924-1.536 1.26-.312.192-.612.36-.876.48a3.6 3.6 0 01-.456.18c-.072.024-.144.024-.168.024h-.024l-.048-.024c-.048-.024-.048-.048-.072-.072-.024-.048-.024-.072-.024-.12 0-.072.024-.12.048-.168.048-.048.096-.072.144-.096a5.56 5.56 0 00.408-.192c.264-.144.564-.336.84-.552.492-.384.936-.84 1.272-1.392.336-.552.552-1.2.552-2.064 0-2.376-1.92-4.296-4.296-4.296-2.376 0-4.296 1.92-4.296 4.296 0 .864.216 1.512.552 2.064.336.552.78 1.008 1.272 1.392.276.216.576.408.84.552.12.072.264.144.408.192.048.024.096.048.144.096.024.048.048.096.048.168 0 .048 0 .072-.024.12-.024.024-.024.048-.072.072l-.048.024h-.024c-.024 0-.096 0-.168-.024a3.6 3.6 0 01-.456-.18 8.5 8.5 0 01-.876-.48c-.528-.336-1.068-.744-1.536-1.26C6.576 14.856 6 13.656 6 12.024 6 8.986 8.462 6.528 12 6.528zm-.024 3.168c1.296 0 2.352 1.056 2.352 2.352 0 .672-.168 1.2-.48 1.632-.312.408-.72.72-1.176.96a.132.132 0 01-.048.024.12.12 0 01-.072-.024.12.12 0 01-.024-.072c0-.048.024-.072.048-.096.408-.216.744-.48.984-.816.264-.36.384-.792.384-1.296v-.312c0-1.104-.864-1.968-1.968-1.968s-1.968.864-1.968 1.968v.312c0 .504.12.936.384 1.296.24.336.576.6.984.816.024.024.048.048.048.096a.12.12 0 01-.024.072.12.12 0 01-.072.024.132.132 0 01-.048-.024 3.36 3.36 0 01-1.176-.96c-.312-.432-.48-.96-.48-1.632 0-1.296 1.056-2.352 2.352-2.352zM12 13.2a.792.792 0 01.792.792v3.48c0 .12-.024.24-.072.348l-.696 1.632a.132.132 0 01-.048.048.084.084 0 01-.048 0 .084.084 0 01-.048 0 .132.132 0 01-.048-.048l-.696-1.632A.816.816 0 0111.064 17.472v-3.48A.792.792 0 0112 13.2z"/></svg>
         Apple Podcasts
       </a>
-    
-      <a href="https://www.youtube.com/playlist?list=PLF0cewATp-wl_xK1rbE2bX2YcRVlZKUhM" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      <a href="https://www.youtube.com/@ShipAIPodcast" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         YouTube
       </a>
-    
-  </div>
-</div>
-
-
-
-
-
-<div class="series-section">
-  <div class="series-header">
-    <h2>State of AI 2025</h2>
-    <span class="series-badge badge--s1">6-Part Series</span>
-  </div>
-  <p class="series-desc">A deep dive into the BOND AI Trends Report — adoption speed, economics, global competition, workforce impact, and what's next.</p>
-  <div class="episodes-grid">
-    
-      
-
-<div class="episode-card">
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 0</div>
-    <a href="/shipai/episodes/mihai-criveti-context-forge/" class="ep-title-link">
-      <div class="ep-title">Mihai Criveti, Context Forge</div>
-    </a>
-    <div class="ep-meta">
-      <span>Mar 10, 2026</span>
-      <span>55 min</span>
     </div>
-    <p class="ep-description">In this episode, Manav sits down with Mihai Criveti — IBM Distinguished Engineer and the creator of Context Forge, IBM's open-source agentic middleware — for a candid, technical conversation about ...</p>
   </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/@manavgupta1284" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
 
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/the-speed-of-now/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/pLwnbZOGMlw/mqdefault.jpg"
-           alt="The Speed of Now"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 1</div>
-    <a href="/shipai/episodes/the-speed-of-now/" class="ep-title-link">
-      <div class="ep-title">The Speed of Now</div>
-    </a>
-    <div class="ep-meta">
-      <span>Jan 13, 2026</span>
-      <span>59 min</span>
+  <!-- State of AI 2025 Series -->
+  <div class="series-section" id="state-of-ai">
+    <div class="series-header">
+      <h2>State of AI 2025</h2>
+      <span class="series-badge badge--s1">6-Part Series</span>
     </div>
-    <p class="ep-description">The conversation delves into the exponential growth of AI models, the impact of compute abundance, global adoption of AI, and the comparison of AI performance with human capability.</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep01/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/4gjzKp52DJ4xjqzaOMS8KJ" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/episode-1-the-speed-of-now/id1832355436?i=1000744980784" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=pLwnbZOGMlw" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/follow-the-money/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/jHBq7leglS4/mqdefault.jpg"
-           alt="Follow the Money"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 2</div>
-    <a href="/shipai/episodes/follow-the-money/" class="ep-title-link">
-      <div class="ep-title">Follow the Money</div>
-    </a>
-    <div class="ep-meta">
-      <span>Jan 20, 2026</span>
-      <span>1h 10 min</span>
+    <p class="series-desc">A deep dive into the BOND AI Trends Report — adoption speed, economics, global competition, workforce impact, and what's next.</p>
+    <div class="episodes-grid" id="s1-episodes">
+      <div class="loading">Loading episodes...</div>
     </div>
-    <p class="ep-description">In 2014, the largest tech companies spent $44 billion on capital investments. By 2024, that number passed $200 billion — almost all of it tied to AI.</p>
   </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep02/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/4TDh40AR5Z8zP62BXpvwqL" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/episode-2-follow-the-money/id1832355436?i=1000745889839" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=jHBq7leglS4" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
 
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/the-red-silicon-curtain/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/IfG6wYkNxYs/mqdefault.jpg"
-           alt="The Red Silicon Curtain"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 3</div>
-    <a href="/shipai/episodes/the-red-silicon-curtain/" class="ep-title-link">
-      <div class="ep-title">The Red Silicon Curtain</div>
-    </a>
-    <div class="ep-meta">
-      <span>Jan 27, 2026</span>
-      <span>51 min</span>
+  <!-- Guest Conversations Series -->
+  <div class="series-section" id="guest-conversations">
+    <div class="series-header">
+      <h2>Guest Conversations</h2>
+      <span class="series-badge badge--s2">Interview Series</span>
     </div>
-    <p class="ep-description">Sanctions didn't kill Chinese AI — they mutated it into something more formidable: a leaner, inference-optimized, vertically-integrated competitor.</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep03/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/5OQt4WYX8NTsfaKTV0uH9J" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/episode-3-the-red-silicon-curtain/id1832355436?i=1000746844707" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=IfG6wYkNxYs" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/ai-at-work/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/4FrIimMGAzE/mqdefault.jpg"
-           alt="AI At Work"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 4</div>
-    <a href="/shipai/episodes/ai-at-work/" class="ep-title-link">
-      <div class="ep-title">AI At Work</div>
-    </a>
-    <div class="ep-meta">
-      <span>Feb 3, 2026</span>
-      <span>32 min</span>
+    <p class="series-desc">Interviews with AI leaders, practitioners, and researchers shaping the future of enterprise AI.</p>
+    <div class="episodes-grid" id="s2-episodes">
+      <div class="loading">Loading episodes...</div>
     </div>
-    <p class="ep-description">The conversation explores the impact of AI adoption on the labor market, job tasks, disruption, and fluency.</p>
   </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep04/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/1EVz1rHYVMDj9jCXLtSalr" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/episode-4-ai-at-work/id1832355436?i=1000747719674" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=4FrIimMGAzE" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
 
-    
+  <div class="footer">
+    &copy; 2025 Manav Gupta
   </div>
-</div>
 
-    
-      
+  <script>
+    // Configuration
+    var RSS_URL = 'https://api.riverside.fm/hosting/BRN2bEu8.rss';
 
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/whats-next/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/NKqZ8WLez1o/mqdefault.jpg"
-           alt="What's Next"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 5</div>
-    <a href="/shipai/episodes/whats-next/" class="ep-title-link">
-      <div class="ep-title">What's Next</div>
-    </a>
-    <div class="ep-meta">
-      <span>Feb 10, 2026</span>
-      <span>45 min</span>
-    </div>
-    <p class="ep-description">Physical AI, autonomous systems, and where the technology is heading.</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep05/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=NKqZ8WLez1o" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
+    // Slide availability map (episode number -> true if slides deployed)
+    var SLIDES_MAP = {
+      's1-1': './state-of-ai/ep01/',
+      's1-2': './state-of-ai/ep02/',
+      's1-3': './state-of-ai/ep03/',
+      's1-4': './state-of-ai/ep04/',
+      's1-5': './state-of-ai/ep05/',
+    };
 
-    
-  </div>
-</div>
+    // Interactive artifacts/resources map
+    // Slidev copies the full public/ dir into each episode build,
+    // so paths are: dist/state-of-ai/epXX/epXX/visualizations/...
+    var ARTIFACTS_MAP = {
+      's1-1': [
+        { title: 'AI Model Timeline (Interactive)', url: './state-of-ai/ep01/ep01/visualizations/ai-timeline/podcast-view.html' },
+      ],
+      's1-2': [
+        { title: 'S&P 500 vs AI Stocks', url: './state-of-ai/ep02/ep02/sp500vsAI.html' },
+        { title: 'CapEx Visualization', url: './state-of-ai/ep02/ep02/visualizationv3.html' },
+      ],
+      's1-3': [
+        { title: 'MoE Architecture', url: './state-of-ai/ep03/ep03/visualizations/moe-architecture.html' },
+        { title: 'Training Cost Trends', url: './state-of-ai/ep03/ep03/visualizations/training-cost.html' },
+        { title: 'China Big Fund Timeline', url: './state-of-ai/ep03/ep03/visualizations/big-fund-timeline.html' },
+        { title: 'China Infrastructure Map', url: './state-of-ai/ep03/ep03/visualizations/china-infrastructure.html' },
+        { title: 'Bifurcation Stack', url: './state-of-ai/ep03/ep03/visualizations/bifurcation-stack.html' },
+        { title: 'VC Divergence', url: './state-of-ai/ep03/ep03/visualizations/vc-divergence.html' },
+        { title: 'Humanoid Robot Price Trends', url: './state-of-ai/ep03/ep03/visualizations/humanoid-price.html' },
+      ],
+    };
 
-    
-      
+    // Fallback static content if RSS fetch fails
+    var FALLBACK = {
+      s1: [
+        { num: 1, title: 'The Speed of Now', date: 'Jan 13, 2026', duration: '59 min', desc: 'The fastest technology adoption in history. AI adoption is 5-10x faster than any previous technology wave.' },
+        { num: 2, title: 'Follow the Money', date: 'Jan 20, 2026', duration: '71 min', desc: '$200+ billion in annual AI infrastructure investments — the economics of compute, training, and inference.' },
+        { num: 3, title: 'The Red Silicon Curtain', date: 'Jan 27, 2026', duration: '51 min', desc: 'US export controls, DeepSeek efficiency breakthroughs, and China\'s $47.5B sovereign compute play.' },
+        { num: 4, title: 'AI at Work', date: 'Feb 2, 2026', duration: '33 min', desc: 'CEO mandates, +448% AI jobs vs -9% traditional IT, and the workforce transformation already underway.' },
+        { num: 5, title: 'What\'s Next', date: 'Coming Soon', duration: '', desc: 'Physical AI, autonomous systems, and where the technology is heading.' },
+      ],
+      s2: [
+        { num: 1, title: 'AI In Banking — Vinh Tran, RBC', date: 'Feb 3, 2026', duration: '41 min', desc: 'VP of Data and AI at RBC on enterprise-scale AI deployment, control planes, and scaling AI responsibly.' },
+      ],
+    };
 
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/ai-agents/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/nImYX3MdqFE/mqdefault.jpg"
-           alt="AI Agents."
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 6</div>
-    <a href="/shipai/episodes/ai-agents/" class="ep-title-link">
-      <div class="ep-title">AI Agents.</div>
-    </a>
-    <div class="ep-meta">
-      <span>Mar 6, 2026</span>
-      <span>53 min</span>
-    </div>
-    <p class="ep-description">The episode explores the rise of AI agents, their evolution from chatbots, and the challenges and opportunities in deploying and scaling AI agents. It delves into the characteristics of AI agents, ...</p>
-  </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=nImYX3MdqFE" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
+    function formatDate(dateStr) {
+      var d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
 
-    
-  </div>
-</div>
+    function formatDuration(durStr) {
+      if (!durStr) return '';
+      var parts = durStr.split(':');
+      if (parts.length === 3) {
+        var h = parseInt(parts[0], 10);
+        var m = parseInt(parts[1], 10);
+        if (h > 0) return h + 'h ' + m + ' min';
+        return m + ' min';
+      }
+      return durStr;
+    }
 
-    
-      
+    function renderEpisodeCard(ep, seasonKey) {
+      var key = seasonKey + '-' + ep.num;
+      var card = document.createElement('div');
+      card.className = 'episode-card';
 
-<div class="episode-card">
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 7</div>
-    <a href="/shipai/episodes/agi-is-coming/" class="ep-title-link">
-      <div class="ep-title">AGI is coming</div>
-    </a>
-    <div class="ep-meta">
-      <span>Mar 17, 2026</span>
-      <span>1h 0 min</span>
-    </div>
-    <p class="ep-description">Seven Minutes to Midnight: AGI Is Coming What is AGI? When is it arriving? And what does it mean for your career, your organization, and humanity?In this episode of Ship AI, Manav Gupta delivers on...</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep07/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/@manavgupta1284" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
+      var html = '<div class="ep-top"><div class="ep-info">';
+      html += '<div class="ep-number">Episode ' + ep.num + '</div>';
+      html += '<div class="ep-title">' + escapeHtml(ep.title) + '</div>';
+      html += '<div class="ep-meta">';
+      if (ep.date) html += '<span>' + escapeHtml(ep.date) + '</span>';
+      if (ep.duration) html += '<span>' + escapeHtml(ep.duration) + '</span>';
+      html += '</div></div></div>';
 
-    
-  </div>
-</div>
+      if (ep.desc) {
+        html += '<div class="ep-description">' + escapeHtml(ep.desc) + '</div>';
+      }
 
-    
-  </div>
-</div>
+      html += '<div class="ep-actions">';
+      if (ep.audioUrl) {
+        html += '<a href="' + ep.audioUrl + '" class="btn btn--listen" target="_blank" rel="noopener">';
+        html += '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Listen</a>';
+      }
+      if (SLIDES_MAP[key]) {
+        html += '<a href="' + SLIDES_MAP[key] + '" class="btn btn--slides">';
+        html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> View Slides</a>';
+      }
+      html += '</div>';
 
+      // Artifacts / Resources
+      var artifacts = ARTIFACTS_MAP[key];
+      if (artifacts && artifacts.length > 0) {
+        html += '<details class="ep-resources"><summary>Interactive Resources (' + artifacts.length + ')</summary>';
+        html += '<ul class="resource-list">';
+        for (var i = 0; i < artifacts.length; i++) {
+          html += '<li><a href="' + artifacts[i].url + '" target="_blank" rel="noopener">' + escapeHtml(artifacts[i].title) + '</a></li>';
+        }
+        html += '</ul></details>';
+      }
 
+      card.innerHTML = html;
+      return card;
+    }
 
-<div class="series-section">
-  <div class="series-header">
-    <h2>Guest Conversations</h2>
-    <span class="series-badge badge--s2">Interview Series</span>
-  </div>
-  <p class="series-desc">Interviews with AI leaders, practitioners, and researchers shaping the future of enterprise AI.</p>
-  <div class="episodes-grid">
-    
-      
+    function escapeHtml(str) {
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
 
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/ai-in-banking/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/eyelv9dUxPg/mqdefault.jpg"
-           alt="AI In Banking — Vinh Tran, RBC"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 1</div>
-    <a href="/shipai/episodes/ai-in-banking/" class="ep-title-link">
-      <div class="ep-title">AI In Banking — Vinh Tran, RBC</div>
-    </a>
-    <div class="ep-meta">
-      <span>Feb 3, 2026</span>
-      <span>40 min</span>
-    </div>
-    <p class="ep-description">Vinh Tran, VP of Data and AI Platforms at RBC, shares how one of the world's largest banks is approaching AI at enterprise scale.</p>
-  </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/0Ip4P7B6qbAjmHSPEFgmSp" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ai-in-banking-vinh-tran-rbc/id1832355436?i=1000747861001" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=eyelv9dUxPg" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
+    function renderFallback() {
+      renderSeason('s1', FALLBACK.s1);
+      renderSeason('s2', FALLBACK.s2);
+    }
 
-    
-  </div>
-</div>
+    function renderSeason(seasonKey, episodes) {
+      var container = document.getElementById(seasonKey + '-episodes');
+      container.innerHTML = '';
+      if (!episodes || episodes.length === 0) {
+        container.innerHTML = '<div class="loading">No episodes yet — stay tuned!</div>';
+        return;
+      }
+      for (var i = 0; i < episodes.length; i++) {
+        container.appendChild(renderEpisodeCard(episodes[i], seasonKey));
+      }
+    }
 
-    
-      
+    function parseRSS(xmlText) {
+      var parser = new DOMParser();
+      var xml = parser.parseFromString(xmlText, 'text/xml');
+      var items = xml.querySelectorAll('item');
+      var seasons = { s1: [], s2: [] };
 
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/lawrence-wan-chief-architect-bmo/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/AAOwv4hqYPs/mqdefault.jpg"
-           alt="Lawrence Wan, Chief Architect, BMO"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 2</div>
-    <a href="/shipai/episodes/lawrence-wan-chief-architect-bmo/" class="ep-title-link">
-      <div class="ep-title">Lawrence Wan, Chief Architect, BMO</div>
-    </a>
-    <div class="ep-meta">
-      <span>Feb 10, 2026</span>
-      <span>39 min</span>
-    </div>
-    <p class="ep-description">Lawrence Wan, Chief Architect and Innovation Officer at BMO, shares insights on technology transformation, AI adoption, and the future of agentic systems in banking.</p>
-  </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/3k7htSbgrddU43epjL7XR3" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/lawrence-wan-chief-architect-bmo/id1832355436?i=1000749085451" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=AAOwv4hqYPs" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+        var title = (item.querySelector('title') || {}).textContent || '';
+        var desc = (item.querySelector('description') || {}).textContent || '';
+        var pubDate = (item.querySelector('pubDate') || {}).textContent || '';
+        var enclosure = item.querySelector('enclosure');
+        var audioUrl = enclosure ? enclosure.getAttribute('url') : '';
 
-    
-  </div>
-</div>
+        // itunes namespace elements
+        var seasonEl = item.getElementsByTagName('itunes:season')[0];
+        var episodeEl = item.getElementsByTagName('itunes:episode')[0];
+        var durationEl = item.getElementsByTagName('itunes:duration')[0];
 
-    
-      
+        var season = seasonEl ? parseInt(seasonEl.textContent, 10) : 1;
+        var epNum = episodeEl ? parseInt(episodeEl.textContent, 10) : 0;
+        var duration = durationEl ? durationEl.textContent : '';
 
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/mihai-criveti-ibm-context-forge/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/XFKjVkMRRdU/mqdefault.jpg"
-           alt="The Man Behind IBM's AI Agent Gateway"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 3</div>
-    <a href="/shipai/episodes/mihai-criveti-ibm-context-forge/" class="ep-title-link">
-      <div class="ep-title">The Man Behind IBM's AI Agent Gateway</div>
-    </a>
-    <div class="ep-meta">
-      <span>Mar 4, 2026</span>
-      <span>54 min</span>
-    </div>
-    <p class="ep-description">Mihai Criveti, Distinguished Engineer at IBM and creator of Context Forge, on why AI agents need agentic middleware, MCP's enterprise gaps, and what production-grade agent architecture actually loo...</p>
-  </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=XFKjVkMRRdU" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
+        var key = season === 2 ? 's2' : 's1';
+        seasons[key].push({
+          num: epNum,
+          title: title,
+          date: formatDate(pubDate),
+          duration: formatDuration(duration),
+          desc: desc.replace(/<[^>]*>/g, '').substring(0, 300),
+          audioUrl: audioUrl,
+        });
+      }
 
-    
-  </div>
-</div>
+      // Sort by episode number
+      seasons.s1.sort(function(a, b) { return a.num - b.num; });
+      seasons.s2.sort(function(a, b) { return a.num - b.num; });
 
-    
-  </div>
-</div>
+      // Deduplicate by episode number (keep the latest published)
+      function dedup(eps) {
+        var seen = {};
+        var result = [];
+        for (var i = eps.length - 1; i >= 0; i--) {
+          if (!seen[eps[i].num]) {
+            seen[eps[i].num] = true;
+            result.unshift(eps[i]);
+          }
+        }
+        return result;
+      }
+      seasons.s1 = dedup(seasons.s1);
+      seasons.s2 = dedup(seasons.s2);
 
+      return seasons;
+    }
 
-
-
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      &copy; 2026 Manav Gupta &middot;
-      <a href="/shipai/feed.xml">RSS</a>
-    </div>
-  </footer>
+    // Fetch and render
+    (function() {
+      // file:// protocol can't fetch — skip straight to fallback
+      if (location.protocol === 'file:') {
+        console.info('Local file mode — using fallback content');
+        renderFallback();
+        return;
+      }
+      fetch(RSS_URL)
+        .then(function(res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.text();
+        })
+        .then(function(xmlText) {
+          var seasons = parseRSS(xmlText);
+          renderSeason('s1', seasons.s1);
+          renderSeason('s2', seasons.s2);
+        })
+        .catch(function(err) {
+          console.warn('RSS fetch failed, using fallback:', err);
+          renderFallback();
+        });
+    })();
+  </script>
 </body>
 </html>
