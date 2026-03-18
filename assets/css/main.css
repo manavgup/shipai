@@ -1,0 +1,773 @@
+/* Ship AI — main stylesheet
+   Based on the original landing page design. No framework, no theme. */
+
+/* === Reset === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* === Base === */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #fafafa;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; }
+
+a { color: #0369a1; }
+
+/* === Navigation === */
+.site-nav {
+  border-bottom: 1px solid #e5e5e5;
+  background: #fff;
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #1a1a1a;
+}
+
+/* === Header / Hero === */
+.header {
+  text-align: center;
+  padding: 64px 24px 32px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.header .tagline {
+  font-size: 1.25rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.header .host {
+  margin-top: 8px;
+  color: #888;
+  font-size: 1rem;
+}
+
+/* === Platform buttons === */
+.platforms {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.platforms a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.platforms a:hover {
+  border-color: #ccc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.platforms svg { width: 18px; height: 18px; }
+
+/* === Series sections === */
+.series-section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.series-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.series-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.series-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.badge--s1 { background: #e0f2fe; color: #0369a1; }
+.badge--s2 { background: #f0fdf4; color: #15803d; }
+
+.series-desc {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* === Episode grid === */
+.episodes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* === Episode card === */
+.episode-card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 24px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.episode-card.has-thumb {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.episode-card:hover {
+  border-color: #ccc;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* Episode thumbnail */
+.ep-thumb-link {
+  position: relative;
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+
+.ep-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s;
+}
+
+.ep-thumb-link:hover .ep-thumb {
+  transform: scale(1.03);
+}
+
+.ep-thumb-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.15);
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: #fff;
+}
+
+.ep-thumb-link:hover .ep-thumb-play {
+  opacity: 1;
+}
+
+.ep-card-body {
+  min-width: 0;
+}
+
+.ep-number {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.ep-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.ep-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.ep-title-link:hover .ep-title {
+  color: #0369a1;
+}
+
+.ep-meta {
+  font-size: 0.8rem;
+  color: #999;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ep-description {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+  margin-top: 12px;
+}
+
+.ep-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* === Buttons === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.btn--slides {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.btn--slides:hover { background: #bae6fd; }
+
+.btn--platform {
+  background: #f5f5f5;
+  color: #555;
+}
+
+.btn--platform:hover { background: #eee; }
+
+.btn svg { width: 14px; height: 14px; }
+
+.platform-buttons {
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* === Resources === */
+.ep-resources {
+  margin-top: 12px;
+}
+
+.ep-resources summary {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.ep-resources summary:hover { color: #333; }
+
+.resource-list {
+  list-style: none;
+  padding: 8px 0 0 0;
+}
+
+.resource-list li {
+  margin-bottom: 6px;
+}
+
+.resource-list a {
+  font-size: 0.8rem;
+  color: #0369a1;
+  text-decoration: none;
+}
+
+.resource-list a:hover { text-decoration: underline; }
+
+/* === Episode detail page === */
+.episode-detail {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.ep-detail-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 8px 0 12px;
+  line-height: 1.25;
+}
+
+.ep-section {
+  margin-top: 32px;
+}
+
+.ep-section h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+/* YouTube video embed (responsive 16:9) */
+.ep-video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+  margin-bottom: 8px;
+}
+
+.ep-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.ep-embed {
+  margin-bottom: 16px;
+}
+
+.ep-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+.ep-body p {
+  margin-bottom: 16px;
+}
+
+.ep-body h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 28px;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.ep-body ul, .ep-body ol {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+.ep-body li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+/* === Takeaways === */
+.takeaway-list {
+  list-style: none;
+  padding: 0;
+}
+
+.takeaway-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.takeaway-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #0369a1;
+  font-weight: 600;
+}
+
+/* === Transcript === */
+.transcript-toggle summary {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #0369a1;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.transcript-toggle summary:hover {
+  color: #075985;
+}
+
+.transcript-body {
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: #555;
+  max-height: 70vh;
+  overflow-y: auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
+  margin-top: 12px;
+}
+
+.transcript-body p {
+  margin-bottom: 16px;
+}
+
+.transcript-body strong {
+  display: block;
+  color: #1a1a1a;
+  margin-top: 20px;
+  margin-bottom: 2px;
+}
+
+.transcript-body p:first-child strong {
+  margin-top: 0;
+}
+
+.transcript-body .ts {
+  font-size: 0.75rem;
+  color: #999;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+}
+
+/* === Episodes archive === */
+.page-archive {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.page-archive h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* === Blog grid === */
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* === Blog card === */
+.blog-card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 24px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.blog-card:hover {
+  border-color: #ccc;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.blog-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.blog-card-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-card-title-link:hover .blog-card-title {
+  color: #0369a1;
+}
+
+.blog-card-excerpt {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.empty-state {
+  color: #888;
+  font-size: 1rem;
+  margin-top: 16px;
+}
+
+/* === Blog post detail page === */
+.post-detail {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.post-detail-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 8px 0 12px;
+  line-height: 1.25;
+}
+
+.post-meta {
+  font-size: 0.8rem;
+  color: #999;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.post-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.post-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: #f0f0f0;
+  color: #555;
+}
+
+.post-tag--category {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.post-section {
+  margin-top: 32px;
+}
+
+.post-section h3 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.post-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+.post-body p {
+  margin-bottom: 16px;
+}
+
+.post-body h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 28px;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.post-body h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+
+.post-body li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.post-body blockquote {
+  border-left: 3px solid #e5e5e5;
+  padding-left: 16px;
+  margin: 16px 0;
+  color: #666;
+  font-style: italic;
+}
+
+.post-body code {
+  font-size: 0.875em;
+  background: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.post-body pre {
+  background: #f5f5f5;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+}
+
+.post-body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.post-body a {
+  color: #0369a1;
+  text-decoration: none;
+}
+
+.post-body a:hover {
+  text-decoration: underline;
+}
+
+/* === About page === */
+.page-about {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.page-about h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.page-about h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
+.page-about p,
+.page-about li {
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.page-about ul {
+  padding-left: 20px;
+}
+
+.page-about .lead {
+  font-size: 1.15rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* === Footer === */
+.site-footer {
+  border-top: 1px solid #e5e5e5;
+  background: #fff;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: center;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.footer-inner a {
+  color: #999;
+  text-decoration: none;
+}
+
+.footer-inner a:hover {
+  color: #666;
+}
+
+/* === Responsive === */
+@media (max-width: 640px) {
+  .header { padding: 48px 16px 24px; }
+  .header h1 { font-size: 2.25rem; }
+  .series-section { padding: 24px 16px; }
+  .episode-card { padding: 20px; }
+  .episode-card.has-thumb {
+    grid-template-columns: 1fr;
+  }
+  .ep-thumb-link {
+    max-height: 200px;
+  }
+  .episode-detail { padding: 32px 16px; }
+  .page-archive { padding: 32px 16px; }
+  .page-about { padding: 32px 16px; }
+  .post-detail { padding: 32px 16px; }
+  .blog-card { padding: 20px; }
+  .nav-inner { padding: 12px 16px; }
+  .nav-links { gap: 16px; }
+}

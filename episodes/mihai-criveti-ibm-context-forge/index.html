@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Man Behind IBM's AI Agent Gateway — Ship AI</title>
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>The Man Behind IBM’s AI Agent Gateway | Ship AI</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="The Man Behind IBM’s AI Agent Gateway" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Mihai Criveti, Distinguished Engineer for Agentic AI at IBM and creator of Context Forge, explains why enterprise AI agents need middleware — not better models — and how an open-source gateway is becoming the control plane for agents, tools, and protocols." />
+<meta property="og:description" content="Mihai Criveti, Distinguished Engineer for Agentic AI at IBM and creator of Context Forge, explains why enterprise AI agents need middleware — not better models — and how an open-source gateway is becoming the control plane for agents, tools, and protocols." />
+<link rel="canonical" href="https://manavgup.github.io/shipai/episodes/mihai-criveti-ibm-context-forge/" />
+<meta property="og:url" content="https://manavgup.github.io/shipai/episodes/mihai-criveti-ibm-context-forge/" />
+<meta property="og:site_name" content="Ship AI" />
+<meta property="og:image" content="https://manavgup.github.io/shipai/assets/images/og/mihai-criveti-ibm-context-forge.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://manavgup.github.io/shipai/assets/images/og/mihai-criveti-ibm-context-forge.png" />
+<meta property="twitter:title" content="The Man Behind IBM’s AI Agent Gateway" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-03-04T00:00:00+00:00","datePublished":"2026-03-04T00:00:00+00:00","description":"Mihai Criveti, Distinguished Engineer for Agentic AI at IBM and creator of Context Forge, explains why enterprise AI agents need middleware — not better models — and how an open-source gateway is becoming the control plane for agents, tools, and protocols.","headline":"The Man Behind IBM’s AI Agent Gateway","image":"https://manavgup.github.io/shipai/assets/images/og/mihai-criveti-ibm-context-forge.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://manavgup.github.io/shipai/episodes/mihai-criveti-ibm-context-forge/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://manavgup.github.io/shipai/assets/images/og/default.png"}},"url":"https://manavgup.github.io/shipai/episodes/mihai-criveti-ibm-context-forge/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/shipai/assets/css/main.css">
+  <link rel="alternate" type="application/atom+xml" title="Ship AI" href="/shipai/feed.xml">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/shipai/" class="nav-brand">Ship AI</a>
+      <div class="nav-links">
+        
+          <a href="/shipai/episodes/">Episodes</a>
+        
+          <a href="/shipai/blog/">Blog</a>
+        
+          <a href="/shipai/state-of-ai/">Slides</a>
+        
+          <a href="/shipai/about/">About</a>
+        
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastEpisode",
+  "name": "The Man Behind IBM's AI Agent Gateway",
+  "description": "Mihai Criveti, Distinguished Engineer for Agentic AI at IBM and creator of Context Forge, explains why enterprise AI agents need middleware — not better models — and how an open-source gateway is becoming the control plane for agents, tools, and protocols.",
+  "datePublished": "2026-03-04T00:00:00+00:00",
+  "duration": "54 min",
+  "episodeNumber": 3,
+  "url": "https://manavgup.github.io/shipai/episodes/mihai-criveti-ibm-context-forge/",
+  "image": "https://manavgup.github.io/shipai/assets/images/og/mihai-criveti-ibm-context-forge.png",
+  "partOfSeries": {
+    "@type": "PodcastSeries",
+    "name": "Ship AI",
+    "url": "https://manavgup.github.io/shipai/",
+    "description": "A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta."
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Manav Gupta"
+  }
+}
+</script>
+
+<div class="episode-detail">
+  
+  <div class="ep-number">Guest conversations — Episode 3</div>
+  <h1 class="ep-detail-title">The Man Behind IBM's AI Agent Gateway</h1>
+  <div class="ep-meta">
+    <span>March 4, 2026</span>
+    <span>54 min</span>
+  </div>
+
+  
+  
+  <div class="ep-section">
+    <h3>Watch</h3>
+    <div class="ep-video">
+      <iframe src="https://www.youtube.com/embed/XFKjVkMRRdU"
+              title="The Man Behind IBM's AI Agent Gateway"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"></iframe>
+    </div>
+  </div>
+  
+
+  
+  <div class="ep-section">
+    <h3>Listen</h3>
+    
+    <div class="ep-actions">
+      
+<div class="platform-buttons">
+  
+    <a href="" class="btn btn--platform" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Spotify
+    </a>
+  
+  
+    <a href="" class="btn btn--platform" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
+      Apple
+    </a>
+  
+  
+    <a href="https://www.youtube.com/watch?v=XFKjVkMRRdU" class="btn btn--platform" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+  
+</div>
+
+    </div>
+  </div>
+  
+
+  
+
+  <div class="ep-section">
+    <h3>About This Episode</h3>
+    <div class="ep-body">
+      <p>Mihai Criveti, Distinguished Engineer for Agentic AI at IBM and creator of Context Forge, joins Manav to discuss why enterprise AI agents need a fundamentally different infrastructure layer — and how an open-source gateway became the answer.</p>
+
+<h2 id="show-notes">Show Notes</h2>
+
+<h3 id="the-problem-context-forge-solves">The Problem Context Forge Solves</h3>
+
+<p>Mihai built Context Forge after realizing that MCP as a protocol was “insufficient, incomplete” for enterprise needs — lacking security, authentication, authorization, observability, monitoring, reliability, high availability, and routing. What started as an MCP gateway evolved into full agentic middleware supporting MCP, A2A, REST, and gRPC, with a plugins framework for pre-hooks and post-hooks that can transform, filter, guard, and route any agent-to-tool communication.</p>
+
+<h3 id="why-models-alone-dont-work-for-enterprise">Why Models Alone Don’t Work for Enterprise</h3>
+
+<p>LLMs have been trained on public data from last year. Enterprise data is private, current, and domain-specific. Every successful enterprise AI implementation Mihai has seen relies on agentic AI with proper tooling — agents with access to internal systems, governed identity and access management, and evaluation pipelines that go far beyond “ask another LLM if the output looks right.”</p>
+
+<h3 id="mcp-imperfect-but-here-to-stay">MCP: Imperfect but Here to Stay</h3>
+
+<p>The Docker analogy: Docker wasn’t innovative technology (cgroups and namespaces already existed), but it provided a great developer experience, a free hub, and massive community adoption. MCP has the same trajectory — 20,000+ servers, adoption by even Anthropic’s competitors, and enough momentum that building on top of it (via gateways and code mode) beats waiting for something better.</p>
+
+<h3 id="production-grade-agent-architecture">Production-Grade Agent Architecture</h3>
+
+<p>Two speeds: visual tools for rapid prototyping, coded agents for production. Production requires reproducible runtimes, CI/CD pipelines with 60+ automated checkers, make commands for static analysis, linting, deployment testing, and the same stringent software engineering practices you’d apply in banking or financial services. “If you apply that process, you’re gonna be successful. But you have to treat AI as an army of interns.”</p>
+
+<h3 id="skills-workforce-and-no-ai-tuesdays">Skills, Workforce, and “No AI Tuesdays”</h3>
+
+<p>Mihai’s advice to students: traditional skills matter more than ever. Communication, collaboration, debugging, problem decomposition — AI accelerates whatever you were doing before, including heading toward a brick wall. His prescription: pick one day a week with zero AI, build something the traditional way, and understand how things actually work. “How do you know what to prompt if you’ve never done it before?”</p>
+
+<h3 id="the-productivity-paradox">The Productivity Paradox</h3>
+
+<p>Mihai reports being 100x more productive — but working 3x the hours. AI has made work more complex, not simpler. The gamification (“one more prompt”) is addictive. And the technology is nowhere near the point where you can leave it unsupervised at scale. The next 2-3 years will determine whether things stabilize or the human input requirement shrinks.</p>
+
+    </div>
+  </div>
+
+  
+  <div class="ep-section">
+    <h3>Key Takeaways</h3>
+    <ul class="takeaway-list">
+      
+      <li>Large language models alone are insufficient for enterprise use cases — virtually every successful implementation relies on agentic AI with the right tools to access enterprise data, internal systems, and current information.</li>
+      
+      <li>MCP as a protocol is imperfect but has massive community momentum (20,000+ servers). Like Docker before it, an imperfect standard with network effects beats waiting for a perfect one.</li>
+      
+      <li>Context Forge acts as agentic middleware — a centralized point of enforcement sitting between AI applications and their tools, handling authentication, authorization, observability, routing, and protocol translation (MCP, A2A, REST, gRPC).</li>
+      
+      <li>Visual no-code agent builders are good for prototyping but don't scale. Production-grade agent architecture requires coded agents with reproducible runtimes, CI/CD pipelines, and hundreds of automated checks.</li>
+      
+      <li>AI agent evaluation is a multilayered problem — you can't just use another LLM to evaluate. Production evaluation requires non-LLM metrics: does the code compile, pass linting, pass load testing, deploy successfully?</li>
+      
+      <li>AI doesn't necessarily make work faster — it makes it more efficient. You still need senior experts for governance, merges, and debugging. The bottlenecks haven't disappeared; they've shifted to expertise.</li>
+      
+    </ul>
+  </div>
+  
+
+  
+
+  
+</div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      &copy; 2026 Manav Gupta &middot;
+      <a href="/shipai/feed.xml">RSS</a>
+    </div>
+  </footer>
+</body>
+</html>
