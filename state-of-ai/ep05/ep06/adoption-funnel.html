@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script>(function(){var p=sessionStorage.getItem("spa-redirect");if(p){sessionStorage.removeItem("spa-redirect");history.replaceState(null,"",location.pathname+p);}})()</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Adoption Gap — AI Agent Reality Check</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+  :root {
+    --bg: #FAFBFE;
+    --bg-surface: #FFFFFF;
+    --bg-elevated: #F0EDE8;
+    --text: #1A1A2E;
+    --text-secondary: #4A4A68;
+    --text-muted: #8E8EA0;
+    --border: rgba(0,0,0,0.07);
+    --border-strong: rgba(0,0,0,0.12);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(66,133,244,0.03), transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(224,64,80,0.02), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    width: 1200px;
+    height: 675px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    z-index: 1;
+  }
+
+  /* Subtle grid background */
+  .container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .title-area {
+    position: absolute;
+    top: 32px;
+    left: 60px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .title-area.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .title-area h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--text);
+  }
+  .title-area .subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .funnel-area {
+    position: absolute;
+    top: 105px;
+    left: 60px;
+    right: 60px;
+    bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    height: 72px;
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  .bar-row.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .bar-label {
+    width: 200px;
+    flex-shrink: 0;
+    text-align: right;
+    padding-right: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 48px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 9px;
+    position: relative;
+    width: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 16px;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .bar-pct {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.4s ease 0.8s;
+  }
+  .bar-row.visible .bar-pct {
+    opacity: 1;
+  }
+
+  /* Colors per tier */
+  .tier-0 .bar-fill { background: linear-gradient(90deg, #4285f4, #5b9cf6); }
+  .tier-1 .bar-fill { background: linear-gradient(90deg, #059669, #10b981); }
+  .tier-2 .bar-fill { background: linear-gradient(90deg, #D97706, #F59E0B); }
+  .tier-3 .bar-fill { background: linear-gradient(90deg, #DC2626, #EF4444); }
+  .tier-4 .bar-fill { background: linear-gradient(90deg, #991B1B, #DC2626); }
+
+  /* Glow effects */
+  .tier-0 .bar-fill { box-shadow: 0 2px 8px rgba(66,133,244,0.25), 0 0 16px rgba(66,133,244,0.15); }
+  .tier-1 .bar-fill { box-shadow: 0 2px 8px rgba(5,150,105,0.25), 0 0 16px rgba(5,150,105,0.15); }
+  .tier-2 .bar-fill { box-shadow: 0 2px 8px rgba(217,119,6,0.25), 0 0 16px rgba(217,119,6,0.15); }
+  .tier-3 .bar-fill { box-shadow: 0 2px 8px rgba(220,38,38,0.25), 0 0 16px rgba(220,38,38,0.15); }
+  .tier-4 .bar-fill { box-shadow: 0 2px 8px rgba(153,27,27,0.3), 0 0 20px rgba(153,27,27,0.2); }
+
+  /* Drop-off annotations */
+  .drop-arrow {
+    position: absolute;
+    right: -56px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: #DC2626;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    white-space: nowrap;
+  }
+  .bar-row.visible .drop-arrow {
+    opacity: 0.7;
+  }
+
+  /* Bottom callout */
+  .callout {
+    position: absolute;
+    bottom: 20px;
+    left: 60px;
+    right: 60px;
+    height: 54px;
+    background: rgba(220, 38, 38, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    letter-spacing: 0.2px;
+    box-shadow: var(--shadow-sm);
+  }
+  .callout.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .callout span {
+    color: #DC2626;
+    font-weight: 800;
+    margin: 0 3px;
+  }
+
+  /* Pulse on the 6% bar */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 2px 8px rgba(153,27,27,0.3), 0 0 20px rgba(153,27,27,0.2);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 4px 16px rgba(153,27,27,0.5), 0 0 32px rgba(153,27,27,0.3);
+      transform: scale(1.01);
+    }
+  }
+  .tier-4.pulsing .bar-fill {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Replay button */
+  .replay-btn {
+    position: absolute;
+    top: 32px;
+    right: 60px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-sm);
+  }
+  .replay-btn:hover {
+    background: var(--bg-elevated);
+    color: var(--text);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+  .replay-btn.visible { opacity: 1; }
+
+  /* Watermark */
+  .watermark {
+    position: absolute;
+    bottom: 76px;
+    right: 60px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    opacity: 0.3;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="title-area" id="title">
+    <h1>THE ADOPTION GAP</h1>
+    <div class="subtitle">From experimentation to meaningful impact</div>
+  </div>
+
+  <button class="replay-btn" id="replayBtn" onclick="replay()">&#x21bb; Replay</button>
+
+  <div class="funnel-area">
+    <div class="bar-row tier-0" data-pct="88" data-delay="600">
+      <div class="bar-label">Regular AI Use</div>
+      <div class="bar-track">
+        <div class="bar-fill"><span class="bar-pct">88%</span></div>
+      </div>
+    </div>
+    <div class="bar-row tier-1" data-pct="62" data-delay="1800">
+      <div class="bar-label">Experimenting /<br>Scaling Agents</div>
+      <div class="bar-track">
+        <div class="bar-fill"><span class="bar-pct">62%</span></div>
+        <div class="drop-arrow">-26pp</div>
+      </div>
+    </div>
+    <div class="bar-row tier-2" data-pct="52" data-delay="3000">
+      <div class="bar-label">Deployed in<br>Production</div>
+      <div class="bar-track">
+        <div class="bar-fill"><span class="bar-pct">52%</span></div>
+        <div class="drop-arrow">-10pp</div>
+      </div>
+    </div>
+    <div class="bar-row tier-3" data-pct="23" data-delay="4200">
+      <div class="bar-label">Scaling<br>Successfully</div>
+      <div class="bar-track">
+        <div class="bar-fill"><span class="bar-pct">23%</span></div>
+        <div class="drop-arrow">-29pp</div>
+      </div>
+    </div>
+    <div class="bar-row tier-4" data-pct="6" data-delay="5600">
+      <div class="bar-label">Achieved Meaningful<br>Impact</div>
+      <div class="bar-track">
+        <div class="bar-fill"><span class="bar-pct">6%</span></div>
+        <div class="drop-arrow">-17pp</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" id="callout">
+    Gartner: <span>40%+</span> of agentic AI projects will fail or be canceled by <span>2027</span>
+  </div>
+
+  <div class="watermark">SHIP AI &middot; EPISODE 6</div>
+</div>
+
+<script>
+  const bars = document.querySelectorAll('.bar-row');
+  const title = document.getElementById('title');
+  const callout = document.getElementById('callout');
+  const replayBtn = document.getElementById('replayBtn');
+
+  function reset() {
+    title.classList.remove('visible');
+    callout.classList.remove('visible');
+    replayBtn.classList.remove('visible');
+    bars.forEach(row => {
+      row.classList.remove('visible', 'pulsing');
+      row.style.transition = 'none';
+      row.querySelector('.bar-fill').style.width = '0%';
+      row.querySelector('.bar-fill').style.transition = 'none';
+    });
+  }
+
+  function animate() {
+    reset();
+
+    // Force reflow
+    void document.body.offsetHeight;
+
+    // Restore transitions
+    bars.forEach(row => {
+      row.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      row.querySelector('.bar-fill').style.transition = 'width 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+    });
+
+    // Show title
+    setTimeout(() => title.classList.add('visible'), 200);
+
+    // Animate each bar
+    bars.forEach((row, i) => {
+      const delay = parseInt(row.dataset.delay);
+      const pct = row.dataset.pct;
+
+      setTimeout(() => {
+        row.classList.add('visible');
+        row.querySelector('.bar-fill').style.width = pct + '%';
+      }, delay);
+    });
+
+    // Pulse on the 6% bar
+    setTimeout(() => {
+      bars[4].classList.add('pulsing');
+    }, 7200);
+
+    // Show callout
+    setTimeout(() => callout.classList.add('visible'), 7600);
+
+    // Show replay
+    setTimeout(() => replayBtn.classList.add('visible'), 8200);
+  }
+
+  function replay() {
+    replayBtn.classList.remove('visible');
+    setTimeout(animate, 300);
+  }
+
+  // Start on load
+  setTimeout(animate, 400);
+</script>
+</div>
+</body>
+</html>

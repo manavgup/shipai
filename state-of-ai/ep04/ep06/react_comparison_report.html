@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="en"><head><script>(function(){var p=sessionStorage.getItem("spa-redirect");if(p){sessionStorage.removeItem("spa-redirect");history.replaceState(null,"",location.pathname+p);}})()</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ReAct Demo - Ship AI</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFBFE;--sf:#FFF;--cb:#F7F5F2;--tx:#1A1A2E;--ts:#4A4A68;--tm:#8E8EA0;--bd:rgba(0,0,0,.08);
+--th:#6366F1;--ac:#E11D48;--ob:#059669;--aw:#D97706;--ok:#059669;--no:#E11D48;--okbg:#ECFDF5;--nobg:#FFF1F2;
+--sh:0 4px 16px rgba(0,0,0,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:'Outfit',sans-serif;padding:48px 32px}
+.w{max-width:1200px;margin:0 auto}
+header{text-align:center;margin-bottom:48px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border:1px solid var(--bd);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--tm);margin-bottom:20px;background:var(--sf)}
+.badge .d{width:6px;height:6px;border-radius:50%;background:var(--th)}
+h1{font-family:'Fraunces',serif;font-size:44px;font-weight:700;letter-spacing:-2px;margin-bottom:8px}
+h1 .re{color:var(--th)}h1 .ac{color:var(--ac)}
+.sub{font-size:15px;color:var(--tm);max-width:560px;margin:0 auto;line-height:1.6}
+.meta{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tm);letter-spacing:1px}
+.sysprompt{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:20px 24px;margin:24px auto 48px;max-width:700px;text-align:left;box-shadow:var(--sh)}
+.sysprompt h3{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--th);margin-bottom:12px}
+.sysprompt pre{font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.7;color:var(--ts);white-space:pre-wrap;word-break:break-word}
+section{margin-bottom:56px}
+.prob{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:24px 28px;margin-bottom:20px;box-shadow:var(--sh)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--aw);display:block;margin-bottom:10px}
+.q{font-size:16px;line-height:1.6;margin-bottom:8px}.ca{font-size:14px;color:var(--ts)}.ca strong{color:var(--ok)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:24px 20px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.card.wrong::before{background:var(--no)}.card.correct::before{background:var(--ok)}
+.card.react{border-color:rgba(5,150,105,.2);background:linear-gradient(180deg,var(--sf),var(--okbg))}
+.hd{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.nm{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700}
+.tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:100px}
+.no{background:var(--nobg);color:var(--no)}.yes{background:var(--okbg);color:var(--ok)}.sz{background:#F0EDE8;color:var(--tm)}
+.ans{font-family:'Fraunces',serif;font-size:36px;font-weight:700;margin-bottom:4px}
+.card.wrong .ans{color:var(--no)}.card.correct .ans{color:var(--ok)}
+.st{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;margin-bottom:6px}
+.st.wrong{color:var(--no)}.st.correct{color:var(--ok)}
+.err{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--no);background:var(--nobg);padding:2px 10px;border-radius:6px;margin-bottom:6px;display:inline-block}
+.tm{font-size:12px;color:var(--tm);margin-bottom:4px}
+.tok{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tm);margin-bottom:10px}
+.resp{font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--ts);background:var(--cb);border:1px solid var(--bd);border-radius:8px;padding:12px;max-height:180px;overflow-y:auto;white-space:pre-wrap;word-break:break-word}
+.trace{display:flex;flex-direction:column;gap:4px}
+.step{display:flex;gap:8px;font-size:12px;line-height:1.5;padding:3px 0;align-items:baseline}
+.sl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 8px;border-radius:4px;flex-shrink:0;font-weight:600}
+.step.thought .sl{background:rgba(99,102,241,.1);color:var(--th)}
+.step.action .sl{background:rgba(225,29,72,.1);color:var(--ac)}
+.step.observe .sl{background:rgba(5,150,105,.1);color:var(--ob)}
+.step.answer .sl{background:rgba(217,119,6,.1);color:var(--aw)}
+.step.error .sl{background:var(--nobg);color:var(--no)}
+footer{text-align:center;padding-top:28px;border-top:1px solid var(--bd);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--tm);letter-spacing:1px;margin-top:20px}
+footer span{color:var(--th)}
+@media(max-width:768px){body{padding:20px 16px}.grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="w">
+<header>
+<div class="badge"><span class="d"></span>Live Comparison</div>
+<h1><span class="re">Re</span><span class="ac">Act</span> Pattern Demo</h1>
+<p class="sub">Same models, same questions. Models that fail without tools are re-tested with the ReAct loop (Thought &rarr; Action &rarr; Observe).</p>
+<p class="meta">2026-03-03 13:25 &middot; Gemma 3 4B, Llama 3.1 8B, Granite 4.0 3B</p>
+</header>
+<div class="sysprompt">
+<h3>ReAct System Prompt (how we force tool calling)</h3>
+<pre>You solve math problems using calculator tools. You MUST use tools for ALL arithmetic.
+
+TOOLS:
+- multiply(a, b) — returns a * b
+- add(a, b) — returns a + b  
+- subtract(a, b) — returns a - b
+- divide(a, b) — returns a / b
+
+FORMAT — follow this exactly, one step at a time:
+
+THOUGHT: what you need to calculate next
+ACTION: tool_name(number1, number2)
+
+Then STOP and wait. I will give you the OBSERVATION (the result).
+When you have the final answer, write:
+
+ANSWER: the_number
+
+RULES:
+- Never do math in your head. Always call a tool.
+- One ACTION per turn. Then stop.
+- Numbers only in tool arguments (no $ or commas).</pre>
+</div>
+<section>
+          <div class="prob"><span class="lb">Easy Problem</span>
+          <p class="q">If 15 items cost $8 each and 20 items cost $8 each, what's the total revenue?</p>
+          <p class="ca">Correct: <strong>$280.00</strong></p></div>
+          <div class="grid"><div class="card correct">
+              <div class="hd"><span class="nm">Gemma 3 4B</span><span class="tag sz">4B</span><span class="tag no">Without Tools</span></div>
+              <div class="ans">$280.00</div>
+              <div class="st correct">&#10003; CORRECT</div>
+              <div class="tm">43.1s</div><div class='tok'>57 in / 184 out tokens</div>
+              <div class="resp">Here's how to solve the problem step-by-step:
+
+1. **Calculate the revenue from the first 15 items:**
+   * Price per item: $8
+   * Number of items: 15
+   * Revenue: $8 * 15 = $120
+
+2. **Calculate the revenue from the next 20 items:**
+   * Price per item: $8
+   * Number of items: 20
+   * Revenue: $8 * 20 = $160
+
+3. **Calculate the total revenue:**
+   * Revenue from first 15 items: $120
+   * Revenue from next 20 items: $160
+   * Total revenue: $120 + $160 = $280
+
+**Final Numerical Answer:** $280</div></div><div class="card correct">
+              <div class="hd"><span class="nm">Llama 3.1 8B</span><span class="tag sz">8B</span><span class="tag no">Without Tools</span></div>
+              <div class="ans">$280.00</div>
+              <div class="st correct">&#10003; CORRECT</div>
+              <div class="tm">8.0s</div><div class='tok'>54 in / 101 out tokens</div>
+              <div class="resp">Let's break it down step by step:
+
+**Step 1: Calculate the revenue from 15 items**
+
+15 items x $8 each = 15 x 8 = $120
+
+**Step 2: Calculate the revenue from 20 items**
+
+20 items x $8 each = 20 x 8 = $160
+
+**Step 3: Add the revenue from both sets of items**
+
+Total revenue = $120 + $160 = $280
+
+The final answer is: $280</div></div><div class="card correct">
+              <div class="hd"><span class="nm">Granite 4.0 3B</span><span class="tag sz">3B</span><span class="tag no">Without Tools</span></div>
+              <div class="ans">$280.00</div>
+              <div class="st correct">&#10003; CORRECT</div>
+              <div class="tm">7.1s</div><div class='tok'>73 in / 213 out tokens</div>
+              <div class="resp">To solve this problem, we need to calculate the revenue from each set of items separately and then add them together.
+
+Step 1: Calculate the revenue from the first set of items.
+- Number of items: 15
+- Cost per item: $8
+- Revenue from first set = Number of items * Cost per item
+- Revenue from first set = 15 * $8 = $120
+
+Step 2: Calculate the revenue from the second set of items.
+- Number of items: 20
+- Cost per item: $8
+- Revenue from second set = Number of items * Cost per item
+- Revenue from s</div></div></div></section><section>
+          <div class="prob"><span class="lb">Hard Problem</span>
+          <p class="q">A store sells 847 items at $23.50 each and 1,293 items at $17.85 each. Calculate the combined revenue, then apply a 12.5% bulk discount. Finally, add 13% sales tax to the discounted total. What is the final amount? Show your work.</p>
+          <p class="ca">Correct: <strong>$42,500.97</strong></p></div>
+          <div class="grid"><div class="card wrong">
+              <div class="hd"><span class="nm">Gemma 3 4B</span><span class="tag sz">4B</span><span class="tag no">Without Tools</span></div>
+              <div class="ans">$42,256.26</div>
+              <div class="st wrong">&#10007; INCORRECT</div><div class='err'>Off by 0.58%</div>
+              <div class="tm">78.4s</div><div class='tok'>105 in / 466 out tokens</div>
+              <div class="resp">Okay, let's break this problem down step-by-step:
+
+**Step 1: Calculate revenue from the first item group**
+
+* Number of items: 847
+* Price per item: $23.50
+* Revenue: 847 * $23.50 = $19844.50
+
+**Step 2: Calculate revenue from the second item group**
+
+* Number of items: 1293
+* Price per item: $17.85
+* Revenue: 1293 * $17.85 = $22892.55
+
+**Step 3: Calculate the combined revenue**
+
+* Combined Revenue = Revenue from first group + Revenue from second group
+* Combined Revenue = $19844.50 + $22892.55 =</div></div><div class="card react correct">
+                  <div class="hd"><span class="nm">Gemma 3 4B</span><span class="tag yes">WITH ReAct Tools &#10003;</span></div>
+                  <div class="ans">$42,501.00</div>
+                  <div class="st correct">&#10003; CORRECT</div>
+                  <div class="tm">57.9s &middot; 20 steps</div><div class='tok'>3097 in / 310 out tokens</div>
+                  <div class="trace"><div class="step thought"><span class="sl">THOUGHT</span> First, calculate the revenue from the first set of items.</div><div class="step action"><span class="sl">ACTION</span> multiply(847.0, 23.5)</div><div class="step observe"><span class="sl">OBSERVE</span> 19904.5</div><div class="step thought"><span class="sl">THOUGHT</span> Next, calculate the revenue from the second set of items.</div><div class="step action"><span class="sl">ACTION</span> multiply(1293.0, 17.85)</div><div class="step observe"><span class="sl">OBSERVE</span> 23080.05</div><div class="step thought"><span class="sl">THOUGHT</span> Now, add the two revenues together.</div><div class="step action"><span class="sl">ACTION</span> add(19904.5, 23080.05)</div><div class="step observe"><span class="sl">OBSERVE</span> 42984.55</div><div class="step thought"><span class="sl">THOUGHT</span> Calculate the bulk discount amount (12.5% of the total revenue).</div><div class="step action"><span class="sl">ACTION</span> multiply(42984.55, 0.125)</div><div class="step observe"><span class="sl">OBSERVE</span> 5373.0688</div><div class="step thought"><span class="sl">THOUGHT</span> Subtract the discount amount from the total revenue.</div><div class="step action"><span class="sl">ACTION</span> subtract(42984.55, 5373.0688)</div><div class="step observe"><span class="sl">OBSERVE</span> 37611.4812</div><div class="step thought"><span class="sl">THOUGHT</span> Calculate the sales tax amount (13% of the discounted total).</div><div class="step action"><span class="sl">ACTION</span> multiply(37611.4812, 0.13)</div><div class="step observe"><span class="sl">OBSERVE</span> 4889.4926</div><div class="step thought"><span class="sl">THOUGHT</span> Add the sales tax to the discounted total.</div><div class="step answer"><span class="sl">ANSWER</span> $42,501.00</div></div></div><div class="card wrong">
+              <div class="hd"><span class="nm">Llama 3.1 8B</span><span class="tag sz">8B</span><span class="tag no">Without Tools</span></div>
+              <div class="ans">$42,547.93</div>
+              <div class="st wrong">&#10007; INCORRECT</div><div class='err'>Off by 0.11%</div>
+              <div class="tm">4.5s</div><div class='tok'>95 in / 267 out tokens</div>
+              <div class="resp">Here are the step-by-step calculations:
+
+**Step 1: Calculate the revenue from the first sale**
+
+847 items at $23.50 each:
+847 x $23.50 = $19,911.50
+
+**Step 2: Calculate the revenue from the second sale**
+
+1,293 items at $17.85 each:
+1,293 x $17.85 = $23,136.45
+
+**Step 3: Calculate the combined revenue**
+
+$19,911.50 + $23,136.45 = $43,047.95
+
+**Step 4: Apply the 12.5% bulk discount**
+
+12.5% of $43,047.95 = 0.125 x $43,047.95 = $5,386.24
+Discounted total = $43,047.95 - $5,386.24 = $37,661.71
+
+**St</div></div><div class="card react correct">
+                  <div class="hd"><span class="nm">Llama 3.1 8B</span><span class="tag yes">WITH ReAct Tools &#10003;</span></div>
+                  <div class="ans">$42,500.97</div>
+                  <div class="st correct">&#10003; CORRECT</div>
+                  <div class="tm">50.5s &middot; 32 steps</div><div class='tok'>5824 in / 392 out tokens</div>
+                  <div class="trace"><div class="step thought"><span class="sl">THOUGHT</span> Calculate the revenue from the first batch of items</div><div class="step action"><span class="sl">ACTION</span> multiply(847.0, 23.5)</div><div class="step observe"><span class="sl">OBSERVE</span> 19904.5</div><div class="step thought"><span class="sl">THOUGHT</span> Calculate the revenue from the second batch of items</div><div class="step action"><span class="sl">ACTION</span> multiply(1293.0, 17.85)</div><div class="step observe"><span class="sl">OBSERVE</span> 23080.05</div><div class="step thought"><span class="sl">THOUGHT</span> Calculate the combined revenue from both batches</div><div class="step action"><span class="sl">ACTION</span> add(19904.5, 23080.05)</div><div class="step observe"><span class="sl">OBSERVE</span> 42984.55</div><div class="step thought"><span class="sl">THOUGHT</span> Apply a 12.5% bulk discount to the combined revenue</div><div class="step action"><span class="sl">ACTION</span> multiply(42984.55, 0.125)</div><div class="step observe"><span class="sl">OBSERVE</span> 5373.0688</div><div class="step thought"><span class="sl">THOUGHT</span> Subtract the discount from the combined revenue</div><div class="step action"><span class="sl">ACTION</span> subtract(42984.55, 5373.0688)</div><div class="step observe"><span class="sl">OBSERVE</span> 37611.4812</div><div class="step thought"><span class="sl">THOUGHT</span> Calculate the sales tax (13% of the discounted total)</div><div class="step action"><span class="sl">ACTION</span> multiply(37611.4812, 0.13)</div><div class="step observe"><span class="sl">OBSERVE</span> 4889.4926</div><div class="step thought"><span class="sl">THOUGHT</span> Add the sales tax to the discounted total</div><div class="step action"><span class="sl">ACTION</span> add(37611.4812, 4889.4926)</div><div class="step observe"><span class="sl">OBSERVE</span> 42500.9738</div><div class="step thought"><span class="sl">THOUGHT</span> Round the final amount to two decimal places</div><div class="step action"><span class="sl">ACTION</span> round(42500.9738, 2.0)</div><div class="step observe"><span class="sl">OBSERVE</span> ERROR: no tool named 'round'</div><div class="step thought"><span class="sl">THOUGHT</span> Multiply the final amount by 100 to shift the decimal point two places to the right</div><div class="step action"><span class="sl">ACTION</span> multiply(42500.9738, 100.0)</div><div class="step observe"><span class="sl">OBSERVE</span> 4250097.38</div><div class="step thought"><span class="sl">THOUGHT</span> Divide the result by 100 to round to two decimal places</div><div class="step action"><span class="sl">ACTION</span> divide(4250097.38, 100.0)</div><div class="step observe"><span class="sl">OBSERVE</span> 42500.9738</div><div class="step thought"><span class="sl">THOUGHT</span> No need to round, the result is already correct</div><div class="step answer"><span class="sl">ANSWER</span> $42,500.97</div></div></div><div class="card wrong">
+              <div class="hd"><span class="nm">Granite 4.0 3B</span><span class="tag sz">3B</span><span class="tag no">Without Tools</span></div>
+              <div class="ans">$42,493.71</div>
+              <div class="st wrong">&#10007; INCORRECT</div><div class='err'>Off by 0.02%</div>
+              <div class="tm">11.0s</div><div class='tok'>114 in / 304 out tokens</div>
+              <div class="resp">Sure, let's solve this step by step.
+
+**Step 1: Calculate the revenue from each set of items.**
+
+For the first set of items:
+847 items * $23.50 per item = $19,914.50
+
+For the second set of items:
+1,293 items * $17.85 per item = $23,065.05
+
+**Step 2: Calculate the combined revenue.**
+
+Combined revenue = Revenue from first set + Revenue from second set
+= $19,914.50 + $23,065.05
+= $42,979.55
+
+**Step 3: Apply the 12.5% bulk discount.**
+
+To apply a 12.5% discount, we multiply the combined revenue by </div></div><div class="card react wrong">
+                  <div class="hd"><span class="nm">Granite 4.0 3B</span><span class="tag yes">WITH ReAct Tools &#10003;</span></div>
+                  <div class="ans">$42,478.49</div>
+                  <div class="st wrong">&#10007; WRONG</div>
+                  <div class="tm">19.5s &middot; 4 steps</div><div class='tok'>810 in / 420 out tokens</div>
+                  <div class="trace"><div class="step thought"><span class="sl">THOUGHT</span> First, calculate the revenue from each set of items using multiplication, then add the two revenues together to get the total revenue.</div><div class="step action"><span class="sl">ACTION</span> multiply(847.0, 23.5)</div><div class="step observe"><span class="sl">OBSERVE</span> 19904.5</div><div class="step answer"><span class="sl">ANSWER</span> $42,478.49</div></div></div></div></section>
+<footer><span>ReAct</span> &mdash; Reasoning + Acting = Reliable Answers &middot; Ship AI Podcast</footer>
+</div></body></html>

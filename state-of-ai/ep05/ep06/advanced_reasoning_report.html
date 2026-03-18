@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script>(function(){var p=sessionStorage.getItem("spa-redirect");if(p){sessionStorage.removeItem("spa-redirect");history.replaceState(null,"",location.pathname+p);}})()</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Advanced Reasoning Demo - Ship AI</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAFBFE;--sf:#FFF;--cb:#F7F5F2;--tx:#1A1A2E;--ts:#4A4A68;--tm:#8E8EA0;--bd:rgba(0,0,0,.08);
+--th:#6366F1;--ac:#E11D48;--ok:#059669;--no:#E11D48;--okbg:#ECFDF5;--nobg:#FFF1F2;--sh:0 4px 16px rgba(0,0,0,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:'Outfit',sans-serif;padding:48px 32px}
+.w{max-width:1400px;margin:0 auto}
+header{text-align:center;margin-bottom:48px}
+h1{font-family:'Fraunces',serif;font-size:44px;font-weight:700;letter-spacing:-2px;margin-bottom:12px}
+.sub{font-size:15px;color:var(--tm);max-width:700px;margin:0 auto 8px;line-height:1.6}
+.meta{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tm);letter-spacing:1px}
+section{margin-bottom:56px}
+.prob{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:24px 28px;margin-bottom:20px;box-shadow:var(--sh)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--th);display:block;margin-bottom:10px}
+.q{font-size:15px;line-height:1.6;margin-bottom:8px}
+.ca{font-size:14px;color:var(--ts)}
+.ca strong{color:var(--ok)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:24px 20px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.card.wrong::before{background:var(--no)}
+.card.correct::before{background:var(--ok)}
+.card.reasoning{border-color:rgba(99,102,241,.3);background:linear-gradient(180deg,var(--sf),rgba(99,102,241,.03))}
+.hd{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.nm{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700}
+.tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:100px}
+.tag.standard{background:#F0EDE8;color:var(--tm)}
+.tag.reasoning{background:rgba(99,102,241,.15);color:var(--th)}
+.ans{font-family:'Fraunces',serif;font-size:32px;font-weight:700;margin-bottom:4px}
+.card.wrong .ans{color:var(--no)}
+.card.correct .ans{color:var(--ok)}
+.st{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;margin-bottom:6px}
+.st.wrong{color:var(--no)}
+.st.correct{color:var(--ok)}
+.err{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--no);background:var(--nobg);padding:2px 10px;border-radius:6px;margin-bottom:6px;display:inline-block}
+.tm{font-size:12px;color:var(--tm);margin-bottom:4px}
+.tok{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tm);margin-bottom:6px}
+.tok .think{color:var(--th);font-weight:600}
+.budget{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--th);background:rgba(99,102,241,.1);padding:4px 10px;border-radius:6px;margin-bottom:10px;display:inline-block}
+.resp{font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.7;color:var(--ts);background:var(--cb);border:1px solid var(--bd);border-radius:8px;padding:12px;max-height:200px;overflow-y:auto;white-space:pre-wrap;word-break:break-word}
+footer{text-align:center;padding-top:28px;border-top:1px solid var(--bd);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--tm);margin-top:20px}
+@media(max-width:768px){body{padding:20px 16px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+<h1>Advanced Reasoning Patterns</h1>
+<p class="sub">Demonstrating test-time compute: reasoning models invest more tokens at inference to achieve better results.</p>
+<p class="meta">2026-03-03 11:40 &middot; Ship AI Podcast</p>
+</header>
+<section>
+          <div class="prob"><span class="lb">Complex Math Problem</span>
+          <p class="q">A store sells 847 items at $23.50 each and 1,293 items at $17.85 each. Calculate the combined revenue, then apply a 12.5% bulk discount. Finally, add 13% sales tax to the discounted total. What is the final amount?</p>
+          <p class="ca">Correct: <strong>42500.97</strong></p></div>
+          <div class="grid"><div class="card wrong standard">
+              <div class="hd"><span class="nm">Gemma 3 4B</span><span class='tag standard'>Standard Model</span></div>
+              <div class="ans">$42,242.81</div>
+              <div class="st wrong">&#10007; INCORRECT</div>
+              <div class='err'>Off by 0.61%</div>
+              <div class="tm">41.6s</div>
+              <div class='tok'>95 in / 422 out</div>
+              
+              <div class="resp">Okay, let's break this problem down step-by-step:
+
+**Step 1: Calculate revenue from the first item type**
+
+* Number of items: 847
+* Price per item: $23.50
+* Revenue: 847 * $23.50 = $19844.50
+
+**Step 2: Calculate revenue from the second item type**
+
+* Number of items: 1293
+* Price per item: $17.85
+* Revenue: 1293 * $17.85 = $22879.05
+
+**Step 3: Calculate the combined revenue**
+
+* Combined revenue: $19844.50 + $22879.05 = $42723.55
+
+**Step 4: Calculate the bulk discount**
+
+* Discount rate: 12.5%
+* Discount amount: $42723.55 * 0.125 = $5340.44375
+* Discounted revenue: $42723.55 - $5340.44375 = $3</div>
+            </div><div class="card correct standard">
+              <div class="hd"><span class="nm">Llama 3.1 8B</span><span class='tag standard'>Standard Model</span></div>
+              <div class="ans">$42,521.90</div>
+              <div class="st correct">&#10003; CORRECT</div>
+              
+              <div class="tm">8.2s</div>
+              <div class='tok'>84 in / 399 out</div>
+              
+              <div class="resp">To solve this problem, we will follow the steps outlined below:
+
+## Step 1: Calculate the revenue from the first set of items
+The store sells 847 items at $23.50 each. To find the revenue from these items, we multiply the number of items by the price per item: 847 * $23.50 = $19,911.50.
+
+## Step 2: Calculate the revenue from the second set of items
+The store sells 1,293 items at $17.85 each. To find the revenue from these items, we multiply the number of items by the price per item: 1,293 * $17.85 = $23,094.45.
+
+## Step 3: Calculate the combined revenue
+To find the combined revenue, we add the</div>
+            </div><div class="card correct reasoning">
+              <div class="hd"><span class="nm">DeepSeek-R1 (Low Budget (1K tokens))</span><span class='tag reasoning'>Reasoning Model</span></div>
+              <div class="ans">$42,500.97</div>
+              <div class="st correct">&#10003; CORRECT</div>
+              
+              <div class="tm">114.7s</div>
+              <div class='tok'>78 in / <span class='think'>3123 thinking</span> / 4462 out</div>
+              <div class='budget'>Budget: 1000 tokens</div>
+              <div class="resp">The final amount after calculating the combined revenue, applying a 12.5% bulk discount, and adding 13% sales tax is determined as follows:
+
+1. **Calculate revenue from each product group:**
+   - **First group:** \(847 \text{ items} \times \$23.50 = \$19,\!904.50\)
+   - **Second group:** \(1,\!293 \text{ items} \times \$17.85 = \$23,\!080.05\)
+
+2. **Sum the revenues:**
+   \[
+   \$19,\!904.50 + \$23,\!080.05 = \$42,\!984.55
+   \]
+
+3. **Apply a 12.5% bulk discount:**
+   \[
+   \text{Discounted Total} = \$42,\!984.55 \times (1 - 0.125) = \$42,\!984.55 \times 0.875 = \$37,\!611.48
+   \]
+
+4. **Add 1</div>
+            </div><div class="card correct reasoning">
+              <div class="hd"><span class="nm">DeepSeek-R1 (High Budget (4K tokens))</span><span class='tag reasoning'>Reasoning Model</span></div>
+              <div class="ans">$42,500.97</div>
+              <div class="st correct">&#10003; CORRECT</div>
+              
+              <div class="tm">63.8s</div>
+              <div class='tok'>78 in / <span class='think'>1931 thinking</span> / 2759 out</div>
+              <div class='budget'>Budget: 4000 tokens</div>
+              <div class="resp">The final amount after calculating revenue, applying the discount, and adding tax is **$42,500.97**. Here's the breakdown:
+
+1. **Calculate Total Revenue:**
+   - For 847 items at $23.50:  
+     \(847 \times 23.50 = \$19,\!904.50\)
+   - For 1,293 items at $17.85:  
+     \(1,\!293 \times 17.85 = \$23,\!080.05\)
+   - **Combined Revenue:**  
+     \(\$19,\!904.50 + \$23,\!080.05 = \$42,\!984.55\)
+
+2. **Apply 12.5% Bulk Discount:**  
+   Multiply by \(87.5\% \; (1 - 0.125)\):  
+   \(\$42,\!984.55 \times 0.875 = \$37,\!611.48\)
+
+3. **Add 13% Sales Tax:**  
+   Multiply by \(113\% \; (1 + 0.13)\):  
+   \</div>
+            </div></div>
+        </section><section>
+          <div class="prob"><span class="lb">Logic Puzzle Problem</span>
+          <p class="q">Five people (Alice, Bob, Carol, Dave, Eve) finish a race. Alice finishes before Bob but after Carol. Dave finishes before Eve but after Bob. Eve finishes before Alice. What is the finishing order from first to last? Respond with just the names in order, comma-separated.</p>
+          <p class="ca">Correct: <strong>Carol, Eve, Alice, Bob, Dave</strong></p></div>
+          <div class="grid"><div class="card wrong standard">
+              <div class="hd"><span class="nm">Gemma 3 4B</span><span class='tag standard'>Standard Model</span></div>
+              <div class="ans">Carol, Alice, Bob, Dave, Eve</div>
+              <div class="st wrong">&#10007; INCORRECT</div>
+              
+              <div class="tm">4.5s</div>
+              <div class='tok'>85 in / 154 out</div>
+              
+              <div class="resp">Okay, let's break down this race finishing order puzzle step-by-step:
+
+1. **"Alice finishes before Bob but after Carol."**  This gives us the order: Carol -&gt; Alice -&gt; Bob
+
+2. **"Dave finishes before Eve but after Bob."** This gives us the order: Bob -&gt; Dave -&gt; Eve
+
+3. **"Eve finishes before Alice."** This combines with our previous information to give us: Eve -&gt; Alice -&gt; Bob -&gt; Dave -&gt; Eve.
+
+4. Combining all the information, we have: Carol -&gt; Alice -&gt; Bob -&gt; Dave -&gt; Eve.
+
+Therefore, the finishing order is: Carol, Alice, Bob, Dave, Eve.
+
+**Final Answer:** Car</div>
+            </div><div class="card correct standard">
+              <div class="hd"><span class="nm">Llama 3.1 8B</span><span class='tag standard'>Standard Model</span></div>
+              <div class="ans">Carol, Eve, Alice, Bob, Dave</div>
+              <div class="st correct">&#10003; CORRECT</div>
+              
+              <div class="tm">17.1s</div>
+              <div class='tok'>83 in / 301 out</div>
+              
+              <div class="resp">To solve this problem, we need to analyze the given information step by step.
+
+Step 1: Alice finishes before Bob but after Carol.
+This means the order for these three is: Carol, Alice, Bob.
+
+Step 2: Dave finishes before Eve but after Bob.
+This means the order for these three is: Bob, Dave, Eve.
+
+Step 3: Eve finishes before Alice.
+This means Eve is before Alice in the overall order.
+
+Now, we need to combine the information from steps 1 and 2 with step 3. We know Eve is before Alice, and from step 1, Alice is after Carol. So, the order for these three is: Carol, Eve, Alice.
+
+From step 2, we know</div>
+            </div><div class="card correct reasoning">
+              <div class="hd"><span class="nm">DeepSeek-R1 (Low Budget (1K tokens))</span><span class='tag reasoning'>Reasoning Model</span></div>
+              <div class="ans">Carol, Eve, Alice, Bob, Dave</div>
+              <div class="st correct">&#10003; CORRECT</div>
+              
+              <div class="tm">171.8s</div>
+              <div class='tok'>79 in / <span class='think'>4561 thinking</span> / 6517 out</div>
+              <div class='budget'>Budget: 1000 tokens</div>
+              <div class="resp">Carol, Eve, Alice, Bob, Dave
+
+**Step-by-Step Explanation:**
+
+1. **Clue 1:** Carol &lt; Alice &lt; Bob.
+2. **Clue 3:** Eve &lt; Alice.
+3. Combine 1 and 3: Eve must be placed before Alice. Possible order: Carol, Eve, Alice, Bob.
+4. **Clue 2:** Bob &lt; Dave &lt; Eve. However, Eve must already be before Alice (from 3), requiring Dave to be placed after Bob but before Eve. Since Eve is already before Alice, this creates a conflict unless Eve is between Carol and Alice, and Dave is placed after Bob but before Eve (which is impossible given Eve's position). 
+
+**Final Resolution:** Given the contradi</div>
+            </div><div class="card correct reasoning">
+              <div class="hd"><span class="nm">DeepSeek-R1 (High Budget (4K tokens))</span><span class='tag reasoning'>Reasoning Model</span></div>
+              <div class="ans">Carol,Eve,Alice,Bob,Dave</div>
+              <div class="st correct">&#10003; CORRECT</div>
+              
+              <div class="tm">223.0s</div>
+              <div class='tok'>79 in / <span class='think'>5948 thinking</span> / 8498 out</div>
+              <div class='budget'>Budget: 4000 tokens</div>
+              <div class="resp">Carol,Eve,Alice,Bob,Dave</div>
+            </div></div>
+        </section>
+<footer>Test-Time Compute &mdash; The New Scaling Law &middot; Ship AI Podcast</footer>
+</div>
+</body>
+</html>

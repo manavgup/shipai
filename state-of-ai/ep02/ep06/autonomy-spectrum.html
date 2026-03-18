@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script>(function(){var p=sessionStorage.getItem("spa-redirect");if(p){sessionStorage.removeItem("spa-redirect");history.replaceState(null,"",location.pathname+p);}})()</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Spectrum of Autonomy — Interactive Demo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fraunces:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+  :root {
+    --bg: #FAFBFE;
+    --bg-surface: #FFFFFF;
+    --bg-elevated: #F0EDE8;
+    --text: #1A1A2E;
+    --text-secondary: #4A4A68;
+    --text-muted: #8E8EA0;
+    --border: rgba(0,0,0,0.07);
+    --border-strong: rgba(0,0,0,0.12);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(66,133,244,0.03), transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(0,201,183,0.02), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    width: 1200px;
+    height: 675px;
+    position: relative;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  h1 {
+    position: absolute;
+    top: 28px;
+    left: 60px;
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--text);
+  }
+
+  .task-label {
+    position: absolute;
+    top: 32px;
+    right: 60px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: right;
+    line-height: 1.4;
+  }
+  .task-label strong {
+    color: var(--text-secondary);
+  }
+
+  /* Slider area */
+  .slider-area {
+    position: absolute;
+    top: 82px;
+    left: 60px;
+    right: 60px;
+    height: 80px;
+  }
+
+  .slider-track {
+    position: relative;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    margin-top: 36px;
+    cursor: pointer;
+  }
+
+  .slider-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease;
+  }
+
+  .slider-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid var(--bg-surface);
+    cursor: pointer;
+    transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 0.5s ease, box-shadow 0.5s ease;
+    z-index: 2;
+    box-shadow: var(--shadow-md);
+  }
+
+  .level-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+  }
+
+  .level-marker {
+    text-align: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 25%;
+    background: var(--bg-surface);
+    border: 1px solid transparent;
+  }
+  .level-marker:hover {
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-sm);
+  }
+  .level-marker.active {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  .level-marker .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    opacity: 0.4;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    letter-spacing: 1.5px;
+  }
+  .level-marker.active .lbl {
+    opacity: 1;
+  }
+  .level-marker .role {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Level colors */
+  .c0 { --lc: #4285f4; }
+  .c1 { --lc: #00c9b7; }
+  .c2 { --lc: #ff8c00; }
+  .c3 { --lc: #e04050; }
+
+  /* Demo panel */
+  .demo-panel {
+    position: absolute;
+    top: 200px;
+    left: 60px;
+    right: 60px;
+    bottom: 60px;
+    display: flex;
+    gap: 24px;
+  }
+
+  /* Scene: the task being done */
+  .scene {
+    flex: 1;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .scene-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  /* Chat simulation */
+  .chat-log {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 330px;
+    overflow-y: auto;
+  }
+
+  .msg {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 90%;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: msg-in 0.4s ease forwards;
+  }
+
+  @keyframes msg-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg.human {
+    background: rgba(66, 133, 244, 0.08);
+    border: 1px solid rgba(66, 133, 244, 0.15);
+    align-self: flex-end;
+    color: var(--text-secondary);
+  }
+  .msg.agent {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    color: var(--text-secondary);
+  }
+  .msg.action {
+    background: rgba(0, 201, 183, 0.06);
+    border: 1px solid rgba(0, 201, 183, 0.15);
+    align-self: flex-start;
+    color: #059669;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .msg.alert {
+    background: rgba(217, 119, 6, 0.06);
+    border: 1px solid rgba(217, 119, 6, 0.15);
+    align-self: center;
+    color: #D97706;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .msg .sender {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    opacity: 0.7;
+  }
+
+  /* Right side: info card */
+  .info-card {
+    width: 340px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .level-badge {
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+    text-align: center;
+    transition: border-color 0.5s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-sm);
+  }
+  .level-badge .level-num {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
+    font-weight: 700;
+    transition: color 0.5s ease;
+  }
+  .level-badge .level-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: 8px;
+    color: var(--text);
+  }
+  .level-badge .level-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  .involvement-meter {
+    padding: 20px;
+    border-radius: 14px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .involvement-meter .meter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .meter-track {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .meter-fill-human {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #4285f4, #5b9cf6);
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .meter-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .key-insight {
+    padding: 20px;
+    border-radius: 14px;
+    border-left: 3px solid;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    transition: border-color 0.5s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .watermark {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    opacity: 0.3;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>THE SPECTRUM OF AUTONOMY</h1>
+  <div class="task-label"><strong>Task:</strong> "Process this month's expense reports"</div>
+
+  <div class="slider-area">
+    <div class="slider-track" id="sliderTrack">
+      <div class="slider-fill" id="sliderFill"></div>
+      <div class="slider-thumb" id="sliderThumb"></div>
+    </div>
+    <div class="level-markers">
+      <div class="level-marker c0 active" onclick="setLevel(0)">
+        <div class="lbl">L1 — COPILOT</div>
+        <div class="role">Human: Operator</div>
+      </div>
+      <div class="level-marker c1" onclick="setLevel(1)">
+        <div class="lbl">L2 — WORKFLOWS</div>
+        <div class="role">Human: Supervisor</div>
+      </div>
+      <div class="level-marker c2" onclick="setLevel(2)">
+        <div class="lbl">L3 — SEMI-AUTO</div>
+        <div class="role">Human: Approver</div>
+      </div>
+      <div class="level-marker c3" onclick="setLevel(3)">
+        <div class="lbl">L4 — AUTONOMOUS</div>
+        <div class="role">Human: Goal-setter</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-panel">
+    <div class="scene">
+      <div class="scene-title">Live Scenario</div>
+      <div class="chat-log" id="chatLog"></div>
+    </div>
+    <div class="info-card">
+      <div class="level-badge" id="levelBadge">
+        <div class="level-num" id="levelNum">L1</div>
+        <div class="level-name" id="levelName">COPILOT</div>
+        <div class="level-desc" id="levelDesc">AI suggests, humans decide</div>
+      </div>
+      <div class="involvement-meter">
+        <div class="meter-label">Human Involvement</div>
+        <div class="meter-track"><div class="meter-fill-human" id="humanMeter" style="width:90%"></div></div>
+        <div class="meter-labels"><span>Low</span><span>High</span></div>
+      </div>
+      <div class="key-insight" id="keyInsight">
+        Every decision passes through a human. Safe but slow — you're doing most of the work.
+      </div>
+    </div>
+  </div>
+
+  <div class="watermark">SHIP AI &middot; EPISODE 6</div>
+</div>
+
+<script>
+const COLORS = ['#4285f4', '#00c9b7', '#ff8c00', '#e04050'];
+
+const LEVELS = [
+  {
+    num: 'L1', name: 'COPILOT', desc: 'AI suggests, humans decide',
+    human: 90,
+    insight: 'Every decision passes through a human. Safe but slow — you\'re doing most of the work.',
+    chat: [
+      { type: 'human', sender: 'You', text: 'I need to process this month\'s 47 expense reports.' },
+      { type: 'agent', sender: 'AI Copilot', text: 'I\'ve scanned the reports. Here are 12 that look like they may have policy violations. Would you like me to list them?' },
+      { type: 'human', sender: 'You', text: 'Yes, show me.' },
+      { type: 'agent', sender: 'AI Copilot', text: 'Report #23 — $847 dinner (exceeds $100 limit)\nReport #31 — Missing receipt for $220 charge\nReport #38 — Personal expense flagged ($65 Netflix)\n... 9 more' },
+      { type: 'human', sender: 'You', text: 'OK, I\'ll review each one manually and decide.' },
+      { type: 'agent', sender: 'AI Copilot', text: 'Standing by. Let me know if you need any other data pulled up.' },
+    ]
+  },
+  {
+    num: 'L2', name: 'AGENTIC WORKFLOWS', desc: 'Defined sequences, deterministic',
+    human: 60,
+    insight: 'The agent runs a fixed pipeline you designed — extract, validate, route — but you review the output batch before anything gets submitted.',
+    chat: [
+      { type: 'human', sender: 'You', text: 'Run the monthly expense processing pipeline.' },
+      { type: 'action', sender: 'Agent', text: '> Running pipeline: extract → validate → categorize → flag\n> Processing 47 reports...' },
+      { type: 'agent', sender: 'Agent', text: 'Pipeline complete.\n✓ 35 reports passed all checks\n⚠ 12 reports flagged for review\nBatch report ready for your sign-off.' },
+      { type: 'human', sender: 'You', text: 'Approve the 35 clean ones. Let me see the 12 flagged.' },
+      { type: 'action', sender: 'Agent', text: '> Submitting 35 approved reports to finance system\n> Generating detailed flag report...' },
+      { type: 'agent', sender: 'Agent', text: 'Done. 35 submitted. Flagged report attached. I\'ll wait for your decisions on the remaining 12.' },
+    ]
+  },
+  {
+    num: 'L3', name: 'SEMI-AUTONOMOUS', desc: 'Guardrailed decisions, approval gates',
+    human: 30,
+    insight: 'Agent handles routine decisions independently. Only escalates when it hits a policy edge case or a high-dollar threshold.',
+    chat: [
+      { type: 'action', sender: 'Agent', text: '> Auto-processing 47 expense reports\n> Applying company policy v3.2...' },
+      { type: 'agent', sender: 'Agent', text: '35 reports approved and submitted automatically.\n9 minor violations auto-resolved (receipt reminders sent).\n3 require your approval:' },
+      { type: 'alert', text: '⚡ APPROVAL GATE — 3 items above $500 threshold' },
+      { type: 'agent', sender: 'Agent', text: '#23 — VP dinner $847 (client entertainment?)\n#31 — Conference hotel $1,200 (no pre-approval)\n#44 — Equipment $950 (not in budget)' },
+      { type: 'human', sender: 'You', text: 'Approve #23 (client dinner), reject #31, escalate #44 to dept head.' },
+      { type: 'action', sender: 'Agent', text: '> Done. Notifications sent. Total processing time: 4 minutes.' },
+    ]
+  },
+  {
+    num: 'L4', name: 'FULLY AUTONOMOUS', desc: 'System 2 reasoning, self-correction',
+    human: 8,
+    insight: 'You set the goal and the guardrails. Agent processes, decides, learns, and only surfaces true anomalies. You review a weekly dashboard.',
+    chat: [
+      { type: 'action', sender: 'Agent', text: '> Monthly expense cycle triggered\n> Processing 47 reports with policy engine v3.2\n> Cross-referencing travel calendars, project codes, vendor history...' },
+      { type: 'action', sender: 'Agent', text: '> 44 reports processed and submitted\n> 2 auto-corrected (miscategorized meals → client entertainment)\n> 1 anomaly detected — investigating...' },
+      { type: 'agent', sender: 'Agent', text: 'Report #31: $1,200 hotel charge has no matching travel approval, no calendar event, and the vendor has a fraud flag from last quarter. Blocked and reported to compliance.' },
+      { type: 'action', sender: 'Agent', text: '> Updated policy model: added vendor cross-check rule\n> Generated weekly summary for your dashboard\n> Next cycle scheduled: April 1' },
+      { type: 'agent', sender: 'Agent', text: '📊 Dashboard updated. This month: 98% auto-resolved. 1 fraud flag. Avg processing: 12 seconds/report. No human action needed unless you review the flag.' },
+    ]
+  },
+];
+
+let currentLevel = 0;
+
+function setLevel(level) {
+  currentLevel = level;
+  const data = LEVELS[level];
+  const color = COLORS[level];
+  const pct = (level / 3) * 100;
+
+  // Slider
+  document.getElementById('sliderFill').style.width = pct + '%';
+  document.getElementById('sliderFill').style.background = `linear-gradient(90deg, #4285f4, ${color})`;
+  document.getElementById('sliderThumb').style.left = pct + '%';
+  document.getElementById('sliderThumb').style.background = color;
+  document.getElementById('sliderThumb').style.boxShadow = `0 0 12px ${color}80`;
+
+  // Markers
+  document.querySelectorAll('.level-marker').forEach((m, i) => {
+    m.classList.toggle('active', i === level);
+  });
+
+  // Info card
+  document.getElementById('levelNum').textContent = data.num;
+  document.getElementById('levelNum').style.color = color;
+  document.getElementById('levelName').textContent = data.name;
+  document.getElementById('levelDesc').textContent = data.desc;
+  document.getElementById('levelBadge').style.borderColor = color + '40';
+  document.getElementById('humanMeter').style.width = data.human + '%';
+  document.getElementById('keyInsight').textContent = data.insight;
+  document.getElementById('keyInsight').style.borderColor = color;
+
+  // Chat log — animate messages
+  const log = document.getElementById('chatLog');
+  log.innerHTML = '';
+
+  data.chat.forEach((msg, i) => {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'msg ' + msg.type;
+      if (msg.sender) {
+        el.innerHTML = `<div class="sender">${msg.sender}</div>${msg.text.replace(/\n/g, '<br>')}`;
+      } else {
+        el.textContent = msg.text;
+      }
+      el.style.animationDelay = '0s';
+      log.appendChild(el);
+      log.scrollTop = log.scrollHeight;
+    }, i * 500);
+  });
+}
+
+// Initialize
+setLevel(0);
+</script>
+</body>
+</html>

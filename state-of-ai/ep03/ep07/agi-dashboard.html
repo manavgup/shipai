@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script>(function(){var p=sessionStorage.getItem("spa-redirect");if(p){sessionStorage.removeItem("spa-redirect");history.replaceState(null,"",location.pathname+p);}})()</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AGI Implications Dashboard — Ship AI Episode 7</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; min-height: 100vh; background: #F8FAFC; }
+</style>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+// ─── THEME ───────────────────────────────────────
+const C = {
+  bg: "#F8FAFC", surface: "#FFFFFF", surfaceAlt: "#F1F5F9",
+  border: "#E2E8F0", borderStrong: "#CBD5E1",
+  orange: "#F97316", orangeLight: "#FED7AA", orangeDark: "#C2410C",
+  cyan: "#06B6D4", cyanLight: "#CFFAFE",
+  red: "#EF4444", redLight: "#FEE2E2",
+  green: "#10B981", greenLight: "#D1FAE5",
+  purple: "#8B5CF6", purpleLight: "#EDE9FE",
+  yellow: "#F59E0B", yellowLight: "#FEF3C7",
+  blue: "#3B82F6", blueLight: "#DBEAFE",
+  text: "#1E293B", textMid: "#475569", textDim: "#64748B", textMuted: "#94A3B8",
+  white: "#FFFFFF",
+};
+const card = (extra = {}) => ({
+  background: C.white, borderRadius: 14, padding: 24,
+  border: `1px solid ${C.border}`, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", ...extra,
+});
+const tag = (color, extra = {}) => ({
+  fontSize: 11, fontWeight: 700, color, letterSpacing: 2,
+  textTransform: "uppercase", marginBottom: 4, display: "block", ...extra,
+});
+
+// ─── ANIMATED AGI CLOCK ──────────────────────────
+const CLOCK_MILESTONES = [
+  { year: "2012", label: "AlexNet", sublabel: "Deep Learning Arrives", mins: 45, color: "#22d3ee", icon: "\u{1F9E0}",
+    desc: "AlexNet wins ImageNet by 10% margin. Deep neural networks shift from academic curiosity to existential force. The modern AI era begins." },
+  { year: "2017", label: "Transformer", sublabel: "\"Attention Is All You Need\"", mins: 35, color: "#38bdf8", icon: "\u2699\uFE0F",
+    desc: "Eight Google researchers publish the architecture powering every major AI system for the next decade. The entire field pivots overnight." },
+  { year: "2020", label: "GPT-3", sublabel: "Scaling Laws Confirmed", mins: 25, color: "#a78bfa", icon: "\uD83D\uDCC8",
+    desc: "175B parameters. The bitter lesson made manifest: scale works. OpenAI shows capability emerges predictably with compute. The race begins." },
+  { year: "2022", label: "ChatGPT", sublabel: "100M Users in 60 Days", mins: 18, color: "#fb923c", icon: "\uD83D\uDCAC",
+    desc: "AI escapes the lab. Fastest product adoption in history. The public becomes the stress-test. Alignment concerns go mainstream." },
+  { year: "2023", label: "GPT-4 + Reasoning", sublabel: "Bar Exams & Medical Boards", mins: 12, color: "#f97316", icon: "\uD83C\uDF93",
+    desc: "GPT-4 passes the bar exam (90th percentile). Claude passes USMLE. ARC-AGI goes from 5% to 87.5%. Goalposts move \u2014 models move faster." },
+  { year: "2024", label: "Agentic AI", sublabel: "Tools, Memory, Autonomy", mins: 9, color: "#ef4444", icon: "\uD83E\uDD16",
+    desc: "Agents with tool use and long-horizon planning deploy at scale. AI that doesn't just answer \u2014 it acts. The hands are attached." },
+  { year: "2025", label: "Recursive Research", sublabel: "AI Accelerates AI R&D", mins: 7, color: "#dc2626", icon: "\uD83D\uDD01",
+    desc: "AI systems begin materially accelerating AI research itself. R&D multiplier crosses 1.5\u00D7. Agent-1 in ai-2027 scenario. We are here \u2014 7 minutes to midnight." },
+  { year: "???", label: "AGI", sublabel: "Midnight", mins: 0, color: "#7f1d1d", icon: "\u23F0",
+    desc: "The clock strikes midnight. L2 Competent AGI \u2014 exceeding 50th percentile of skilled adults across all cognitive domains. Decisions made before this moment determine what happens next." },
+];
+
+function polarXY(cx, cy, r, deg) {
+  const rad = ((deg - 90) * Math.PI) / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+function minsToAngle(m) { return (1 - m / 60) * 360; }
+function arcPath(cx, cy, r, a1, a2) {
+  const s = polarXY(cx, cy, r, a1), e = polarXY(cx, cy, r, a2);
+  return `M ${s.x} ${s.y} A ${r} ${r} 0 ${a2 - a1 > 180 ? 1 : 0} 1 ${e.x} ${e.y}`;
+}
+
+function AGIClock() {
+  const [phase, setPhase] = useState("intro");
+  const [idx, setIdx] = useState(-1);
+  const [handAngle, setHandAngle] = useState(0);
+  const [pulse, setPulse] = useState(false);
+  const afRef = useRef(null);
+  const cx = 160, cy = 160, R = 125;
+
+  function animateTo(target, dur, cb) {
+    const start = performance.now();
+    const from = handAngle;
+    let delta = target - from;
+    if (delta < 0) delta += 360;
+    const step = (now) => {
+      const t = Math.min((now - start) / dur, 1);
+      const e = t < 0.5 ? 4*t**3 : 1-(-2*t+2)**3/2;
+      setHandAngle(from + delta * e);
+      if (t < 1) afRef.current = requestAnimationFrame(step);
+      else { setHandAngle(target); cb?.(); }
+    };
+    afRef.current = requestAnimationFrame(step);
+  }
+
+  function advance(i) {
+    if (i >= CLOCK_MILESTONES.length) return;
+    setIdx(i); setPhase("playing"); setPulse(true);
+    setTimeout(() => setPulse(false), 700);
+    animateTo(minsToAngle(CLOCK_MILESTONES[i].mins), 1100, null);
+  }
+
+  function reset() {
+    cancelAnimationFrame(afRef.current);
+    setPhase("intro"); setIdx(-1); setHandAngle(0);
+  }
+
+  useEffect(() => () => cancelAnimationFrame(afRef.current), []);
+
+  const cur = CLOCK_MILESTONES[idx] ?? null;
+  const hp = polarXY(cx, cy, R * 0.72, handAngle);
+  const progressArc = handAngle > 0.1 ? arcPath(cx, cy, R - 5, 0, Math.min(handAngle, 359.9)) : null;
+
+  return (
+    <div style={card()}>
+      <span style={tag(C.red)}>THE AGI CLOCK &middot; ANIMATED</span>
+      <p style={{ color: C.textDim, fontSize: 13, marginBottom: 16 }}>
+        Step through 7 milestones that moved the hand from 45 minutes to 7 minutes to midnight. Inspired by the Bulletin of Atomic Scientists' Doomsday Clock.
+      </p>
+      <div style={{ display: "flex", gap: 28, flexWrap: "wrap", alignItems: "flex-start" }}>
+        {/* Clock SVG */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
+          <svg width={320} height={320} viewBox="0 0 320 320">
+            <defs>
+              <radialGradient id="cface" cx="50%" cy="50%">
+                <stop offset="0%" stopColor="#1e2535" /><stop offset="100%" stopColor="#0d1117" />
+              </radialGradient>
+              <filter id="rglow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <filter id="sglow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <circle cx={cx} cy={cy} r={R+14} fill="#1e2535" />
+            <circle cx={cx} cy={cy} r={R+10} fill="url(#cface)" />
+            {/* Danger zone */}
+            <path d={arcPath(cx,cy,R-5,270,359.9)} fill="none" stroke="#ef4444" strokeWidth={10} opacity={0.12} strokeLinecap="round"/>
+            {/* Progress arc */}
+            {progressArc && <path d={progressArc} fill="none" stroke={cur?.color ?? "#ef4444"} strokeWidth={4} opacity={0.75} strokeLinecap="round"/>}
+            {/* Ticks */}
+            {Array.from({length:60},(_,i)=>{
+              const a=i*6, isH=i%5===0, isMid=i===0;
+              const inn=polarXY(cx,cy,R-(isH?12:7),a), out=polarXY(cx,cy,R,a);
+              return <line key={i} x1={inn.x} y1={inn.y} x2={out.x} y2={out.y}
+                stroke={isMid?"#ef4444":isH?"#475569":"#1e293b"}
+                strokeWidth={isMid?3:isH?1.5:0.8}/>;
+            })}
+            {/* Midnight label */}
+            {(()=>{ const p=polarXY(cx,cy,R-22,0); return <text x={p.x} y={p.y+4} fill="#ef4444" fontSize={9} fontWeight="bold" textAnchor="middle" fontFamily="monospace">AGI</text>; })()}
+            {/* Milestone dots */}
+            {CLOCK_MILESTONES.map((m,i)=>{
+              const a=minsToAngle(m.mins), pt=polarXY(cx,cy,R+7,a);
+              const isAct=i===idx, isPast=i<idx;
+              return <circle key={i} cx={pt.x} cy={pt.y} r={isAct?7:4}
+                fill={isAct||isPast?m.color:"#1e293b"}
+                stroke={isAct||isPast?m.color:"#334155"} strokeWidth={isAct?2:1}
+                opacity={isAct?1:isPast?0.8:0.3}
+                filter={isAct?"url(#sglow)":"none"}/>;
+            })}
+            {/* Hand */}
+            <line x1={cx} y1={cy} x2={hp.x} y2={hp.y} stroke="#ef4444" strokeWidth={3} strokeLinecap="round" filter="url(#rglow)"/>
+            <circle cx={cx} cy={cy} r={7} fill="#ef4444"/><circle cx={cx} cy={cy} r={3} fill="#0d1117"/>
+            {/* Center readout */}
+            {cur && <>
+              <text x={cx} y={cy+44} textAnchor="middle" fill={cur.mins<=7?"#ef4444":cur.mins<=15?"#f97316":"#94a3b8"}
+                fontSize={24} fontWeight="bold" fontFamily="monospace">
+                {cur.mins===0?"MIDNIGHT":`${cur.mins}m`}
+              </text>
+              <text x={cx} y={cy+60} textAnchor="middle" fill="#334155" fontSize={9} fontFamily="monospace">
+                {cur.mins>0?"to midnight":"\u2014 AGI \u2014"}
+              </text>
+            </>}
+          </svg>
+          {/* Controls */}
+          <div style={{ display:"flex", gap:8, alignItems:"center" }}>
+            {phase==="intro" && (
+              <button onClick={()=>advance(0)} style={{ background:C.red, color:C.white, border:"none", padding:"10px 28px", borderRadius:4, cursor:"pointer", fontSize:13, letterSpacing:1, fontFamily:"monospace" }}>{"\u25B6"} Start</button>
+            )}
+            {(phase==="playing"||idx>=0) && <>
+              <button onClick={()=>idx>0&&advance(idx-1)} disabled={idx<=0} style={{ background:"transparent", color:idx<=0?"#1e293b":C.textMid, border:`1px solid ${idx<=0?"#1e293b":"#334155"}`, padding:"8px 14px", borderRadius:4, cursor:idx<=0?"default":"pointer", fontSize:12, fontFamily:"monospace" }}>{"\u2190"} Prev</button>
+              <span style={{ color:"#334155", fontFamily:"monospace", fontSize:11 }}>{idx+1}/{CLOCK_MILESTONES.length}</span>
+              <button onClick={()=>idx<CLOCK_MILESTONES.length-1&&advance(idx+1)} disabled={idx>=CLOCK_MILESTONES.length-1} style={{ background:idx>=CLOCK_MILESTONES.length-1?"transparent":C.red, color:idx>=CLOCK_MILESTONES.length-1?"#1e293b":C.white, border:`1px solid ${idx>=CLOCK_MILESTONES.length-1?"#1e293b":C.red}`, padding:"8px 14px", borderRadius:4, cursor:idx>=CLOCK_MILESTONES.length-1?"default":"pointer", fontSize:12, fontFamily:"monospace" }}>Next {"\u2192"}</button>
+              <button onClick={reset} style={{ background:"transparent", color:"#475569", border:"1px solid #1e293b", padding:"8px 12px", borderRadius:4, cursor:"pointer", fontSize:12, fontFamily:"monospace" }}>{"\u21BA"}</button>
+            </>}
+          </div>
+        </div>
+        {/* Milestone detail */}
+        <div style={{ flex:1, minWidth:260 }}>
+          {phase==="intro" && (
+            <div style={{ padding:"20px 0", color:C.textDim, fontSize:13, lineHeight:1.8 }}>
+              <p>Seven technological milestones, each one moving the hand closer to midnight. Press <strong style={{color:C.red}}>Start</strong> to step through history.</p>
+              <p style={{ marginTop:12, color:C.red, fontSize:12, fontFamily:"monospace" }}>Currently: 7 minutes to midnight.</p>
+            </div>
+          )}
+          {cur && (
+            <div style={{ background:cur.mins<=7?"#0d1117":"#0d1117", border:`1px solid ${cur.color}30`, borderLeft:`3px solid ${cur.color}`, borderRadius:10, padding:18 }}>
+              <div style={{ display:"inline-block", background:cur.color, color:C.white, fontSize:10, fontWeight:"bold", padding:"2px 10px", borderRadius:2, fontFamily:"monospace", letterSpacing:2, marginBottom:8 }}>{cur.year}</div>
+              <h3 style={{ color:"#f1f5f9", fontSize:18, fontWeight:400, margin:"0 0 2px" }}>{cur.icon} {cur.label}</h3>
+              <p style={{ color:cur.color, fontSize:12, fontStyle:"italic", marginBottom:12 }}>{cur.sublabel}</p>
+              <p style={{ color:"#94a3b8", fontSize:13, lineHeight:1.7, borderTop:"1px solid #1e293b", paddingTop:12 }}>{cur.desc}</p>
+              <div style={{ display:"flex", gap:4, marginTop:14 }}>
+                {CLOCK_MILESTONES.map((m,i)=>(
+                  <button key={i} onClick={()=>advance(i)} style={{ flex:i===idx?2.5:1, height:5, borderRadius:3, background:i<=idx?m.color:"#1e293b", border:"none", cursor:"pointer", transition:"all 0.25s" }}/>
+                ))}
+              </div>
+            </div>
+          )}
+          {idx===CLOCK_MILESTONES.length-1 && (
+            <div style={{ marginTop:12, padding:"12px 16px", background:"#1a0505", border:"1px solid #7f1d1d", borderRadius:8 }}>
+              <p style={{ color:"#fca5a5", fontSize:12, lineHeight:1.7, fontStyle:"italic" }}>
+                "We, as the producers of this technology, have a duty to be honest about what is coming. I don't think this is on people's radar."
+              </p>
+              <p style={{ color:"#ef4444", fontSize:11, marginTop:6 }}>&mdash; Dario Amodei, Anthropic CEO</p>
+            </div>
+          )}
+          {/* Mini strip */}
+          <div style={{ display:"flex", gap:0, marginTop:16, borderTop:"1px solid #1e293b", paddingTop:10, flexWrap:"wrap" }}>
+            {CLOCK_MILESTONES.map((m,i)=>(
+              <button key={i} onClick={()=>advance(i)} style={{ flex:1, minWidth:50, background:"transparent", border:"none", borderTop:`2px solid ${i<=idx?m.color:"#1e293b"}`, padding:"6px 4px", cursor:"pointer", textAlign:"center" }}>
+                <div style={{ fontSize:13 }}>{m.icon}</div>
+                <div style={{ color:i<=idx?m.color:"#1e293b", fontSize:9, fontFamily:"monospace" }}>{m.year}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── DEEPMIND AGI LEVELS ─────────────────────────
+function AGILevels() {
+  const [active, setActive] = useState(1);
+  const levels = [
+    { l:0, name:"No AI", perf:"\u2014", gen:"\u2014", color:C.textMuted, bg:C.surfaceAlt, examples:"Calculators, rule-based systems, spreadsheets", current:false },
+    { l:1, name:"Emerging AGI", perf:"\u2248 Unskilled human", gen:"Narrow \u2192 General", color:C.cyan, bg:C.cyanLight, examples:"GPT-4o, Claude 3.7, Gemini \u2014 current frontier models", current:true },
+    { l:2, name:"Competent AGI", perf:"\u2265 50th percentile skilled adults", gen:"General", color:C.blue, bg:C.blueLight, examples:"NOT YET ACHIEVED \u2014 the critical next threshold", current:false },
+    { l:3, name:"Expert AGI", perf:"\u2265 90th percentile skilled adults", gen:"Narrow examples only", color:C.orange, bg:C.orangeLight, examples:"AlphaFold (protein folding), specialized domain tools", current:false },
+    { l:4, name:"Virtuoso AGI", perf:"\u2265 99th percentile skilled adults", gen:"Narrow only", color:C.purple, bg:C.purpleLight, examples:"DeepBlue (chess), AlphaGo \u2014 narrow superhuman tasks", current:false },
+    { l:5, name:"Superhuman (ASI)", perf:"Exceeds all humans", gen:"Narrow only today", color:C.red, bg:C.redLight, examples:"Stockfish, AlphaZero \u2014 surpasses every human in specific domains", current:false },
+  ];
+  const sel = levels[active];
+  return (
+    <div style={card()}>
+      <span style={tag(C.orange)}>DEEPMIND AGI TAXONOMY</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>Six levels from No AI to Superhuman. We are at Level 1. Level 2 is the critical next threshold nobody has crossed. Source: DeepMind "Levels of AGI" (2023).</p>
+      <div style={{ display:"flex", gap:6, marginBottom:18, flexWrap:"wrap" }}>
+        {levels.map(l=>(
+          <button key={l.l} onClick={()=>setActive(l.l)} style={{ background:active===l.l?l.color:C.surfaceAlt, color:active===l.l?C.white:C.textMid, border:`1.5px solid ${active===l.l?l.color:C.border}`, borderRadius:8, padding:"7px 12px", cursor:"pointer", fontSize:12, fontWeight:active===l.l?"bold":"normal", position:"relative" }}>
+            L{l.l}: {l.name}
+            {l.current && <span style={{ position:"absolute", top:-4, right:-4, width:9, height:9, background:C.green, borderRadius:"50%", border:`2px solid ${C.surface}` }}/>}
+          </button>
+        ))}
+      </div>
+      <div style={{ background:sel.bg, borderRadius:12, padding:20, borderLeft:`4px solid ${sel.color}` }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:8, marginBottom:14 }}>
+          <h4 style={{ color:sel.color, fontSize:18, margin:0, fontWeight:700 }}>Level {sel.l}: {sel.name}</h4>
+          {sel.current && <span style={{ background:C.green, color:C.white, padding:"3px 10px", borderRadius:20, fontSize:11, fontWeight:"bold" }}>{"\u2190"} WE ARE HERE</span>}
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14 }}>
+          {[["Performance", sel.perf],["Generality", sel.gen]].map(([k,v])=>(
+            <div key={k}><p style={{ color:C.textDim, fontSize:10, fontWeight:700, letterSpacing:1, textTransform:"uppercase", marginBottom:4 }}>{k}</p><p style={{ color:C.text, fontSize:13 }}>{v}</p></div>
+          ))}
+          <div style={{ gridColumn:"1/-1" }}><p style={{ color:C.textDim, fontSize:10, fontWeight:700, letterSpacing:1, textTransform:"uppercase", marginBottom:4 }}>Examples</p><p style={{ color:C.text, fontSize:13 }}>{sel.examples}</p></div>
+        </div>
+      </div>
+      <div style={{ marginTop:14 }}>
+        <div style={{ height:10, background:C.surfaceAlt, borderRadius:6, overflow:"hidden", border:`1px solid ${C.border}` }}>
+          <div style={{ width:"18%", height:"100%", background:`linear-gradient(90deg,${C.cyan},${C.blue})`, borderRadius:6 }}/>
+        </div>
+        <div style={{ display:"flex", justifyContent:"space-between", marginTop:4 }}>
+          <span style={{ color:C.cyan, fontSize:10, fontWeight:"bold" }}>L1 Emerging {"\u2713"}</span>
+          <span style={{ color:C.textMuted, fontSize:10 }}>L2 Competent (next target)</span>
+          <span style={{ color:C.textMuted, fontSize:10, opacity:0.5 }}>L5 ASI</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── 10-MINUTE PROBLEM ───────────────────────────
+function TenMinuteProblem() {
+  const [step, setStep] = useState(0);
+  const events = [
+    { time:"2:00 PM", label:"Company A achieves AGI", desc:"Equivalent to a brilliant human across all cognitive domains.", icon:"\uD83E\uDDE0", color:C.cyan },
+    { time:"2:01 PM", label:"AGI identifies self-improvements", desc:"Analyzes its own architecture. Finds 47 optimizations humans missed.", icon:"\uD83D\uDD0D", color:C.blue },
+    { time:"2:03 PM", label:"First recursive upgrade", desc:"Redesigns its training loop. 10\u00D7 more efficient. Capabilities accelerating.", icon:"\u26A1", color:C.yellow },
+    { time:"2:05 PM", label:"100\u00D7 more capable", desc:"Now operating at a level no human can comprehend or predict.", icon:"\uD83D\uDE80", color:C.orange },
+    { time:"2:08 PM", label:"Solves millennium problems", desc:"Proves P\u2260NP, designs fusion reactor, cracks all protein structures.", icon:"\uD83C\uDF1F", color:C.purple },
+    { time:"2:10 PM", label:"Company B achieves AGI \u2014 too late", desc:"Their AGI is immediately, irreversibly obsolete. The race is over.", icon:"\u26D4", color:C.red },
+  ];
+  return (
+    <div style={card()}>
+      <span style={tag(C.red)}>THE 10-MINUTE PROBLEM &middot; SINGLETON SCENARIO</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>Two companies race to AGI. Company A gets there 10 minutes before Company B. Unlike nuclear weapons, recursive self-improvement creates a permanent, insurmountable advantage.</p>
+      <div style={{ display:"flex", gap:6, marginBottom:18, flexWrap:"wrap" }}>
+        {events.map((e,i)=>(
+          <button key={i} onClick={()=>setStep(i)} style={{ background:step>=i?e.color:C.surfaceAlt, color:step>=i?C.white:C.textMuted, border:`1.5px solid ${step>=i?e.color:C.border}`, borderRadius:20, padding:"5px 11px", cursor:"pointer", fontSize:11, fontWeight:"bold", opacity:step>=i?1:0.6 }}>{e.time}</button>
+        ))}
+      </div>
+      <div style={{ position:"relative", paddingLeft:26 }}>
+        <div style={{ position:"absolute", left:11, top:0, bottom:0, width:2, background:C.border }}/>
+        {events.map((e,i)=>(
+          <div key={i} style={{ marginBottom:14, opacity:step>=i?1:0.2, transition:"opacity 0.35s", position:"relative" }}>
+            <div style={{ position:"absolute", left:-19, top:4, width:16, height:16, borderRadius:"50%", background:step>=i?e.color:C.surfaceAlt, border:`2px solid ${step>=i?e.color:C.border}`, zIndex:1 }}/>
+            <div>
+              <div style={{ display:"flex", alignItems:"center", gap:8 }}>
+                <span style={{ fontSize:15 }}>{e.icon}</span>
+                <span style={{ color:e.color, fontWeight:"bold", fontSize:12, fontFamily:"monospace" }}>{e.time}</span>
+                <span style={{ color:C.text, fontWeight:"bold", fontSize:13 }}>{e.label}</span>
+              </div>
+              {step>=i && <p style={{ color:C.textDim, fontSize:12, marginTop:3, marginLeft:26 }}>{e.desc}</p>}
+            </div>
+          </div>
+        ))}
+      </div>
+      {step===5 && <div style={{ marginTop:10, padding:14, background:C.redLight, borderRadius:10, borderLeft:`3px solid ${C.red}` }}><p style={{ color:C.red, fontSize:13, fontWeight:"bold", marginBottom:4 }}>This is the Singleton Scenario.</p><p style={{ color:C.textMid, fontSize:12 }}>USSR caught up on nuclear weapons in 4 years. Recursive self-improvement may create a permanent, insurmountable advantage. The first mover doesn't just win &mdash; they become the only player.</p></div>}
+    </div>
+  );
+}
+
+// ─── ALIGNMENT GAP ───────────────────────────────
+function AlignmentGap() {
+  const years=["2018","2019","2020","2021","2022","2023","2024","2025","2026*"];
+  const capability=[15,22,38,45,62,78,88,94,98], alignment=[10,14,18,22,28,35,42,48,52];
+  const w=540,h=190,pL=38,pR=16,pT=10,pB=28, cW=w-pL-pR, cH=h-pT-pB;
+  const toX=i=>pL+(i/(years.length-1))*cW, toY=v=>pT+cH-(v/100)*cH;
+  const capP=capability.map((v,i)=>`${i===0?"M":"L"} ${toX(i)} ${toY(v)}`).join(" ");
+  const aliP=alignment.map((v,i)=>`${i===0?"M":"L"} ${toX(i)} ${toY(v)}`).join(" ");
+  const gapFill=capP+` L ${toX(8)} ${toY(alignment[8])}`+[...alignment].reverse().map((v,i)=>`L ${toX(8-i)} ${toY(v)}`).join(" ")+" Z";
+  return (
+    <div style={card()}>
+      <span style={tag(C.orange)}>THE ALIGNMENT GAP</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>Capability accelerates exponentially. Safety research follows linearly. The gap is growing &mdash; and ai-2027.com confirms: "A company can write a Spec... but they can't check if it worked."</p>
+      <svg width="100%" viewBox={`0 0 ${w} ${h}`} style={{ maxWidth:560, display:"block" }}>
+        {[0,25,50,75,100].map(v=>(
+          <g key={v}><line x1={pL} y1={toY(v)} x2={w-pR} y2={toY(v)} stroke={C.border} strokeWidth={0.6}/><text x={pL-5} y={toY(v)+4} fill={C.textMuted} fontSize={9} textAnchor="end">{v}</text></g>
+        ))}
+        {years.map((y,i)=><text key={y} x={toX(i)} y={h-4} fill={C.textMuted} fontSize={9} textAnchor="middle">{y}</text>)}
+        <path d={gapFill} fill={C.red} opacity={0.1}/>
+        <path d={capP} fill="none" stroke={C.orange} strokeWidth={2.5}/>
+        <path d={aliP} fill="none" stroke={C.green} strokeWidth={2.5}/>
+        <line x1={toX(8)} y1={toY(capability[8])} x2={toX(8)} y2={toY(alignment[8])} stroke={C.red} strokeWidth={1.5} strokeDasharray="4 3"/>
+        <text x={toX(8)-30} y={(toY(capability[8])+toY(alignment[8]))/2+3} fill={C.red} fontSize={10} fontWeight="bold">GAP</text>
+        <text x={toX(5)+6} y={toY(capability[5])-8} fill={C.orange} fontSize={10} fontWeight="bold">Capability</text>
+        <text x={toX(5)+6} y={toY(alignment[5])+14} fill={C.green} fontSize={10} fontWeight="bold">Alignment Research</text>
+      </svg>
+    </div>
+  );
+}
+
+// ─── FIVE WALLS ───────────────────────────────────
+function FiveWalls() {
+  const [hov, setHov] = useState(null);
+  const walls = [
+    { name:"Data Wall", severity:92, desc:"High-quality text data exhausted by 2026\u201328. ai-2027: OpenBrain trains Agent-2 using synthetic data pipelines at enormous cost.", color:C.red, solution:"Synthetic data, multimodal, efficiency (DeepSeek approach)" },
+    { name:"Alignment Wall", severity:85, desc:"\"A company can write a Spec listing dos and don'ts... but they can't check to see whether or not it worked.\" \u2014 ai-2027.com", color:C.orange, solution:"Constitutional AI, interpretability, formal verification" },
+    { name:"Compute Wall", severity:75, desc:"ai-2027 projects $200B in compute costs for Agent-2 alone. Agent-3 likely requires 10\u00D7 more.", color:C.yellow, solution:"New architectures, neuromorphic, quantum computing" },
+    { name:"Energy Wall", severity:70, desc:"ai-2027: 6 GW peak power by 2026 for OpenBrain alone. Full AGI training may need nuclear-scale dedicated capacity.", color:C.purple, solution:"Efficient training, distillation, dedicated power infrastructure" },
+    { name:"Algorithmic Wall", severity:50, desc:"Transformers may have architectural limits. Reasoning is still pattern-matching, not understanding.", color:C.blue, solution:"Hybrid systems, neurosymbolic AI, new paradigms" },
+  ];
+  return (
+    <div style={card()}>
+      <span style={tag(C.orange)}>THE FIVE WALLS TO AGI</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:18 }}>Five barriers between current AI and AGI. Now grounded with ai-2027 economics: $200B compute, 6 GW power, and an alignment problem with no verification method.</p>
+      {walls.map((w,i)=>(
+        <div key={i} onMouseEnter={()=>setHov(i)} onMouseLeave={()=>setHov(null)} style={{ marginBottom:12, padding:"11px 14px", borderRadius:10, background:hov===i?C.surfaceAlt:"transparent", transition:"background 0.15s" }}>
+          <div style={{ display:"flex", justifyContent:"space-between", marginBottom:5 }}>
+            <span style={{ color:C.text, fontSize:14, fontWeight:700 }}>{w.name}</span>
+            <span style={{ color:w.color, fontSize:12, fontWeight:"bold" }}>Severity: {w.severity}%</span>
+          </div>
+          <div style={{ height:8, background:C.surfaceAlt, borderRadius:4, overflow:"hidden", marginBottom:6, border:`1px solid ${C.border}` }}>
+            <div style={{ width:`${w.severity}%`, height:"100%", background:w.color, borderRadius:4 }}/>
+          </div>
+          <p style={{ color:C.textMid, fontSize:12, marginBottom:2 }}>{w.desc}</p>
+          <p style={{ color:C.green, fontSize:11 }}>Path: {w.solution}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── P(DOOM) ──────────────────────────────────────
+function PDoom() {
+  const [hov, setHov] = useState(null);
+  const estimates = [
+    { name:"Eliezer Yudkowsky", role:"MIRI", pdoom:99, color:C.red, quote:"\"If we continue on this path, humanity is extinct. It is not complicated.\"" },
+    { name:"Geoffrey Hinton", role:"Turing Award", pdoom:50, color:C.red, quote:"\"I think there's a 50% chance AI causes human extinction.\"" },
+    { name:"Stuart Russell", role:"UC Berkeley", pdoom:30, color:C.orange, quote:"\"The risk isn't malevolence \u2014 it's that we ask for the wrong things.\"" },
+    { name:"Yoshua Bengio", role:"Mila / Turing Award", pdoom:20, color:C.yellow, quote:"\"Current AI companies are not taking safety seriously enough.\"" },
+    { name:"Paul Christiano", role:"ARC / Anthropic", pdoom:20, color:C.yellow, quote:"\"I think AI risk is more likely than not \u2014 maybe 50% of AI going badly.\"" },
+    { name:"Sam Altman", role:"OpenAI CEO", pdoom:17, color:C.yellow, quote:"\"I lose sleep over AGI going badly. The risks are real.\"" },
+    { name:"Metaculus Median", role:"Crowd forecasting", pdoom:9, color:C.blue, quote:"Aggregated prediction from thousands of forecasters." },
+    { name:"Yann LeCun", role:"Meta AI Chief Scientist", pdoom:1, color:C.green, quote:"\"Current AI systems pose no existential risk. The panic is misplaced.\"" },
+  ];
+  return (
+    <div style={card()}>
+      <span style={tag(C.red)}>P(DOOM): EXPERT RISK ESTIMATES</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:18 }}>Probability of catastrophic harm from misaligned AGI. The range spans 1% to 99% &mdash; the disagreement itself is informative. Hover for quotes.</p>
+      {[...estimates].sort((a,b)=>b.pdoom-a.pdoom).map((e,i)=>(
+        <div key={i} onMouseEnter={()=>setHov(i)} onMouseLeave={()=>setHov(null)} style={{ padding:"9px 12px", borderRadius:10, background:hov===i?C.surfaceAlt:"transparent", border:`1px solid ${hov===i?C.border:"transparent"}`, transition:"background 0.15s", marginBottom:2 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+            <span style={{ color:e.color, fontSize:18, fontWeight:800, fontFamily:"monospace", minWidth:48, textAlign:"right" }}>{e.pdoom}%</span>
+            <div style={{ flex:1 }}>
+              <div style={{ height:7, background:C.surfaceAlt, borderRadius:3, overflow:"hidden", border:`1px solid ${C.border}`, marginBottom:4 }}>
+                <div style={{ width:`${e.pdoom}%`, height:"100%", background:e.color, borderRadius:3 }}/>
+              </div>
+              <div style={{ display:"flex", justifyContent:"space-between" }}>
+                <span style={{ color:C.text, fontSize:12, fontWeight:700 }}>{e.name}</span>
+                <span style={{ color:C.textMuted, fontSize:11 }}>{e.role}</span>
+              </div>
+            </div>
+          </div>
+          {hov===i && <p style={{ color:C.textDim, fontSize:12, marginTop:6, marginLeft:58, fontStyle:"italic" }}>{e.quote}</p>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── AI-PROOF CAREERS ────────────────────────────
+function AIProofCareers() {
+  const cats = [
+    { label:"High Risk", color:C.red, bg:C.redLight, careers:["Data entry / document processing","Basic customer service & call centers","Paralegal / legal research support","Market research analysts","Basic accounting & bookkeeping"] },
+    { label:"Moderate Risk", color:C.orange, bg:C.orangeLight, careers:["Software engineering (junior)","Financial analysts (routine)","Content writing & copy editing","Graphic design (templates)","Project coordination & admin PM"] },
+    { label:"Lower Risk", color:C.yellow, bg:C.yellowLight, careers:["Product management & strategy","Sales leadership & enterprise","Clinical psychology & therapy","Strategic consulting (senior)","Investigative journalism"] },
+    { label:"Resilient", color:C.green, bg:C.greenLight, careers:["Crisis therapists & counselors","C-suite executives","Surgeons & ER physicians","Skilled trades (electrician, plumber)","AI trainers, ethicists & governance"] },
+  ];
+  return (
+    <div style={card()}>
+      <span style={tag(C.cyan)}>AI-PROOF CAREERS: WHERE TO GROW</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>Bloomberg analysis: tasks requiring coaching, leadership, physical presence, and ethical complexity remain most protected. PwC: AI-exposed roles earn 56% wage premium.</p>
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+        {cats.map((c,i)=>(
+          <div key={i} style={{ background:c.bg, borderRadius:10, padding:16, borderLeft:`4px solid ${c.color}` }}>
+            <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:10 }}>
+              <div style={{ width:10, height:10, borderRadius:"50%", background:c.color }}/><span style={{ color:c.color, fontSize:12, fontWeight:700, textTransform:"uppercase" }}>{c.label}</span>
+            </div>
+            {c.careers.map((cr,j)=>(
+              <div key={j} style={{ display:"flex", gap:6, marginBottom:5 }}>
+                <div style={{ width:5, height:5, background:c.color, borderRadius:"50%", opacity:0.6, flexShrink:0, marginTop:5 }}/>
+                <span style={{ color:C.textMid, fontSize:12 }}>{cr}</span>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── HUMAN FUTURES ───────────────────────────────
+function HumanFutures() {
+  const [active, setActive] = useState(1);
+  const scenarios = [
+    { id:0, label:"Flourishing", emoji:"\uD83C\uDF1F", color:C.green, bg:C.greenLight, prob:"25\u201340%", headline:"The Abundance Scenario",
+      desc:"AGI solves climate, disease, poverty. Universal abundance replaces scarcity. Humans redirect energy to creativity, relationships, meaning.",
+      markers:["AGI cures cancer & Alzheimer's within 5 years","Fusion energy by 2035 ends fossil dependency","UBI enables humans to pursue purpose over pay","Human flourishing defined by creativity, not productivity"] },
+    { id:1, label:"Turbulent Transition", emoji:"\u2696\uFE0F", color:C.yellow, bg:C.yellowLight, prob:"40\u201355%", headline:"The ai-2027 Middle Path",
+      desc:"Massive gains exist but distribution is uneven. 10\u201330% workforce disruption before adaptation. New jobs emerge but the retraining gap causes generational hardship.",
+      markers:["AI literacy becomes the defining divide of the 2030s","New economic models: gig + UBI hybrid experiments","Institutions lag technology by 15\u201320 years","ai-2027 'slowdown ending': coordination before Agent-3"] },
+    { id:2, label:"Inequality", emoji:"\u26A0\uFE0F", color:C.orange, bg:C.orangeLight, prob:"20\u201335%", headline:"The Concentration Scenario",
+      desc:"Productivity gains captured by few. Middle class hollows out. Democratic institutions weakened by AI-enabled surveillance.",
+      markers:["Top 1% capture 80%+ of AI productivity gains","3\u20135 companies control critical AI infrastructure","Surveillance states enabled by AI","ai-2027 partial race: gains without catastrophe, but deeply unequal"] },
+    { id:3, label:"Catastrophe", emoji:"\uD83D\uDC80", color:C.red, bg:C.redLight, prob:"5\u201320%", headline:"ai-2027 'Race Ending'",
+      desc:"Misaligned or weaponized AGI causes catastrophic harm. Not robots \u2014 more likely bioweapons, economic collapse, or irreversible power concentration.",
+      markers:["AGI-designed bioweapons accessible to bad actors","Recursive self-improvement escapes human control","ai-2027: Agent-3 built under adversarial time pressure","No alignment verification before deployment \u2014 the spec unverifiable"] },
+  ];
+  const sel = scenarios[active];
+  return (
+    <div style={card()}>
+      <span style={tag(C.purple)}>THREE POSSIBLE FUTURES + ai-2027 MAPPING</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>Four outcome scenarios with probability ranges &mdash; now mapped to ai-2027's two explicit endings for added credibility.</p>
+      <div style={{ display:"flex", gap:8, marginBottom:18, flexWrap:"wrap" }}>
+        {scenarios.map(s=>(<button key={s.id} onClick={()=>setActive(s.id)} style={{ background:active===s.id?s.color:C.surfaceAlt, color:active===s.id?C.white:C.textMid, border:`1.5px solid ${active===s.id?s.color:C.border}`, borderRadius:10, padding:"8px 14px", cursor:"pointer", fontSize:12, fontWeight:active===s.id?"bold":"normal" }}>{s.emoji} {s.label}</button>))}
+      </div>
+      <div style={{ background:sel.bg, borderRadius:12, padding:20, borderLeft:`4px solid ${sel.color}` }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10, flexWrap:"wrap", gap:8 }}>
+          <h4 style={{ color:sel.color, fontSize:17, margin:0 }}>{sel.emoji} {sel.headline}</h4>
+          <span style={{ background:sel.color, color:C.white, padding:"3px 10px", borderRadius:20, fontSize:12, fontWeight:"bold" }}>{sel.prob}</span>
+        </div>
+        <p style={{ color:C.textMid, fontSize:13, marginBottom:14, lineHeight:1.6 }}>{sel.desc}</p>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
+          {sel.markers.map((m,i)=>(
+            <div key={i} style={{ display:"flex", gap:6, alignItems:"flex-start" }}>
+              <div style={{ width:6, height:6, borderRadius:"50%", background:sel.color, marginTop:4, flexShrink:0 }}/><span style={{ color:C.textMid, fontSize:12 }}>{m}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── ACTION MATRIX ────────────────────────────────
+function ActionMatrix() {
+  const [hov, setHov] = useState(null);
+  const quadrants = [
+    { label:"Individuals", icon:"\uD83D\uDC64", color:C.cyan, bg:C.cyanLight, urgency:"Act Now", actions:["Learn Python + AI tools (Copilot, Claude, Cursor)","Build a 'second brain' \u2014 PKM + AI workflow","Take AI literacy course (Coursera, fast.ai)","Audit your role for AI exposure quarterly"] },
+    { label:"Businesses", icon:"\uD83C\uDFE2", color:C.orange, bg:C.orangeLight, urgency:"6\u201312 Months", actions:["Audit all workflows for AI augmentation potential","Pilot 2\u20133 agentic AI use cases in 2025","Establish AI governance committee now","Invest in reskilling before layoffs"] },
+    { label:"Policymakers", icon:"\u2696\uFE0F", color:C.purple, bg:C.purpleLight, urgency:"Urgent", actions:["Fund national AI safety research programs","Pass compute thresholds legislation","Create international AI safety treaty","Mandate alignment verification for large models"] },
+    { label:"Citizens", icon:"\uD83C\uDF0D", color:C.green, bg:C.greenLight, urgency:"Ongoing", actions:["Vote for AI-literate, policy-savvy representatives","Engage with public consultations on AI","Support open-source AI research orgs","Follow ArXiv, Metaculus, ai-2027.com"] },
+  ];
+  return (
+    <div style={card()}>
+      <span style={tag(C.orange)}>ACTION MATRIX</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:18 }}>Four groups, concrete actions. The transition window is narrowing &mdash; most organizations are still in experimentation mode.</p>
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+        {quadrants.map((q,i)=>(
+          <div key={i} onMouseEnter={()=>setHov(i)} onMouseLeave={()=>setHov(null)} style={{ background:hov===i?q.bg:C.surfaceAlt, borderRadius:10, padding:16, border:`1.5px solid ${hov===i?q.color:C.border}`, transition:"all 0.2s" }}>
+            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:10 }}>
+              <div style={{ display:"flex", alignItems:"center", gap:8 }}><span style={{ fontSize:17 }}>{q.icon}</span><span style={{ color:q.color, fontSize:13, fontWeight:700 }}>{q.label}</span></div>
+              <span style={{ background:q.color, color:C.white, fontSize:10, padding:"2px 7px", borderRadius:10, fontWeight:"bold" }}>{q.urgency}</span>
+            </div>
+            {q.actions.map((a,j)=>(<div key={j} style={{ display:"flex", gap:6, marginBottom:5 }}><div style={{ width:5, height:5, background:q.color, borderRadius:"50%", marginTop:5, flexShrink:0 }}/><span style={{ color:C.textMid, fontSize:12 }}>{a}</span></div>))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── AI LAB LANDSCAPE ────────────────────────────
+function AILabLandscape() {
+  const [hov, setHov] = useState(null);
+  const labs = [
+    { name:"OpenAI", flag:"\uD83C\uDDFA\uD83C\uDDF8", model:"GPT-4o, o3", valuation:"$300B", timeline:"\"Now confident\"", approach:"Deploy fast, iterate, learn from real-world feedback", color:C.cyan, risk:60 },
+    { name:"Anthropic", flag:"\uD83C\uDDFA\uD83C\uDDF8", model:"Claude 3.7 Sonnet", valuation:"$61B", timeline:"2027 (Amodei)", approach:"Safety-first: Constitutional AI, interpretability research", color:C.orange, risk:35 },
+    { name:"Google DeepMind", flag:"\uD83C\uDDFA\uD83C\uDDF8", model:"Gemini 2.0, AlphaFold", valuation:"$2T+ (Alphabet)", timeline:"\"Handful of years\"", approach:"Rigorous science, multimodal, ecosystem integration", color:C.blue, risk:45 },
+    { name:"Meta AI", flag:"\uD83C\uDDFA\uD83C\uDDF8", model:"Llama 3.3, 4", valuation:"$1.5T+ (Meta)", timeline:"Long-term", approach:"Open-weight democratization \u2014 ecosystem building", color:C.purple, risk:30 },
+    { name:"xAI", flag:"\uD83C\uDDFA\uD83C\uDDF8", model:"Grok 3", valuation:"$50B", timeline:"Fast pursuit", approach:"Uncensored, truth-seeking \u2014 555K GPU supercluster", color:C.yellow, risk:70 },
+    { name:"DeepSeek", flag:"\uD83C\uDDE8\uD83C\uDDF3", model:"R1, V3", valuation:"State-backed", timeline:"Rapid convergence", approach:"US capability at 1/10th cost via MoE \u2014 the 'DeepCent' scenario", color:C.red, risk:65 },
+  ];
+  return (
+    <div style={card()}>
+      <span style={tag(C.cyan)}>THE AI LAB LANDSCAPE</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>Six organizations racing toward AGI. Stuart Russell warns of "a race to the bottom on safety" &mdash; the competitive pressure for speed threatens time needed for alignment research.</p>
+      {labs.map((l,i)=>(
+        <div key={i} onMouseEnter={()=>setHov(i)} onMouseLeave={()=>setHov(null)} style={{ padding:"11px 14px", borderRadius:10, background:hov===i?C.surfaceAlt:"transparent", border:`1px solid ${hov===i?l.color:C.border}`, transition:"all 0.2s", marginBottom:8 }}>
+          <div style={{ display:"flex", gap:14, alignItems:"center" }}>
+            <div style={{ minWidth:100 }}>
+              <div style={{ display:"flex", alignItems:"center", gap:6 }}><span style={{ fontSize:14 }}>{l.flag}</span><span style={{ color:l.color, fontSize:14, fontWeight:700 }}>{l.name}</span></div>
+              <span style={{ color:C.textMuted, fontSize:11 }}>{l.valuation}</span>
+            </div>
+            <div style={{ flex:1 }}>
+              <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
+                <span style={{ color:C.textMid, fontSize:12 }}>{l.approach}</span>
+                <span style={{ color:l.color, fontSize:12, fontWeight:"bold" }}>{l.timeline}</span>
+              </div>
+              <div style={{ height:6, background:C.surfaceAlt, borderRadius:3, overflow:"hidden", border:`1px solid ${C.border}` }}>
+                <div style={{ width:`${l.risk}%`, height:"100%", background:l.color, borderRadius:3 }}/>
+              </div>
+              {hov===i && <p style={{ color:C.textDim, fontSize:11, marginTop:5, fontStyle:"italic" }}>{l.model} &middot; Risk index: {l.risk}/100</p>}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── GOVERNANCE TIMELINE ─────────────────────────
+function GovernanceTimeline() {
+  const events = [
+    { year:"2016", label:"EU GDPR Framework", region:"EU", color:C.blue, desc:"First major data regulation \u2014 sets global privacy standard" },
+    { year:"2021", label:"EU AI Act Proposed", region:"EU", color:C.blue, desc:"First comprehensive risk-based AI regulatory framework" },
+    { year:"2022", label:"US NIST AI RMF", region:"US", color:C.cyan, desc:"Voluntary AI Risk Management Framework published" },
+    { year:"2023", label:"Bletchley Park Summit", region:"Global", color:C.purple, desc:"28 nations + EU sign Bletchley Declaration on frontier AI safety" },
+    { year:"2023", label:"Biden Executive Order", region:"US", color:C.cyan, desc:"Mandates safety testing for powerful AI before deployment" },
+    { year:"2024", label:"EU AI Act Passed", region:"EU", color:C.blue, desc:"World's first comprehensive AI law \u2014 bans social scoring" },
+    { year:"2024", label:"Seoul AI Summit", region:"Global", color:C.purple, desc:"27 nations expand Bletchley commitments on frontier model evals" },
+    { year:"2025", label:"UN AI Advisory Body", region:"Global", color:C.green, desc:"UN establishes international AI governance recommendations" },
+    { year:"2026+", label:"Global Treaty? (pending)", region:"TBD", color:C.textMuted, desc:"Open question: Can the world agree on binding safety standards before Agent-3?" },
+  ];
+  return (
+    <div style={card()}>
+      <span style={tag(C.purple)}>INTERNATIONAL GOVERNANCE TIMELINE</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:18 }}>The race between AI capability and AI regulation. ai-2027's "slowdown ending" requires a global treaty before Agent-3 &mdash; we don't have one yet.</p>
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+        {events.map((e,i)=>(
+          <div key={i} style={{ padding:"10px 14px", background:C.surfaceAlt, borderRadius:8, border:`1px solid ${C.border}`, borderLeft:`3px solid ${e.color}` }}>
+            <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
+              <span style={{ color:e.color, fontSize:12, fontWeight:800, fontFamily:"monospace" }}>{e.year}</span>
+              <span style={{ background:e.color, color:C.white, fontSize:9, padding:"1px 6px", borderRadius:10 }}>{e.region}</span>
+            </div>
+            <p style={{ color:C.text, fontSize:12, fontWeight:600, marginBottom:3 }}>{e.label}</p>
+            <p style={{ color:C.textDim, fontSize:11 }}>{e.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── JOB EXPOSURE ─────────────────────────────────
+function JobExposure() {
+  const [hov, setHov] = useState(null);
+  const sectors = [
+    { name:"Finance & Insurance", exposure:67, workers:"6.4M", color:C.red },
+    { name:"Administrative Support", exposure:63, workers:"22.4M", color:C.red },
+    { name:"Professional Services", exposure:58, workers:"10.2M", color:C.red },
+    { name:"Information Technology", exposure:53, workers:"4.8M", color:C.orange },
+    { name:"Retail Trade", exposure:44, workers:"15.2M", color:C.orange },
+    { name:"Education", exposure:42, workers:"9.8M", color:C.orange },
+    { name:"Healthcare", exposure:38, workers:"18.6M", color:C.yellow },
+    { name:"Manufacturing", exposure:31, workers:"12.7M", color:C.yellow },
+    { name:"Construction", exposure:18, workers:"8.4M", color:C.green },
+    { name:"Agriculture", exposure:12, workers:"2.6M", color:C.green },
+  ];
+  const gc = v => v>=55?C.red:v>=40?C.orange:v>=30?C.yellow:C.green;
+  return (
+    <div style={card()}>
+      <span style={tag(C.orange)}>JOB EXPOSURE STATISTICS</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:14 }}>McKinsey (2025): 57% of U.S. work hours technically automatable. Only 32% of organizations expect workforce decreases of 3%+. Technical potential {"\u2260"} inevitable job losses.</p>
+      {sectors.map((s,i)=>(
+        <div key={i} onMouseEnter={()=>setHov(i)} onMouseLeave={()=>setHov(null)} style={{ padding:"7px 10px", borderRadius:8, background:hov===i?C.surfaceAlt:"transparent", marginBottom:4 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+            <span style={{ color:C.textMid, fontSize:12, minWidth:185 }}>{s.name}</span>
+            <div style={{ flex:1, height:9, background:C.surfaceAlt, borderRadius:4, overflow:"hidden", border:`1px solid ${C.border}` }}>
+              <div style={{ width:`${s.exposure}%`, height:"100%", background:gc(s.exposure), borderRadius:4 }}/>
+            </div>
+            <span style={{ color:gc(s.exposure), fontSize:13, fontWeight:700, minWidth:38, textAlign:"right" }}>{s.exposure}%</span>
+            <span style={{ color:C.textMuted, fontSize:11, minWidth:46 }}>{s.workers}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── DATA WALL ────────────────────────────────────
+function DataWall() {
+  const sources = [
+    { label:"Web (Common Crawl)", tokens:15, consumed:80, color:C.cyan },
+    { label:"Books & Literature", tokens:3, consumed:95, color:C.blue },
+    { label:"Social Media", tokens:5, consumed:40, color:C.purple },
+    { label:"Code (GitHub)", tokens:1.5, consumed:70, color:C.orange },
+    { label:"Academic Papers", tokens:0.5, consumed:60, color:C.green },
+    { label:"Synthetic Data (\u221E)", tokens:null, consumed:5, color:C.textMuted },
+  ];
+  const max=15;
+  return (
+    <div style={card()}>
+      <span style={tag(C.cyan)}>THE DATA WALL</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:18 }}>We're running out of human-generated training data. ai-2027: OpenBrain's Agent-2 relies heavily on synthetic data pipelines &mdash; quality is the unsolved problem.</p>
+      {sources.map((s,i)=>(
+        <div key={i} style={{ display:"flex", alignItems:"center", gap:12, marginBottom:12 }}>
+          <span style={{ color:C.textMid, fontSize:12, minWidth:150, textAlign:"right" }}>{s.label}</span>
+          <div style={{ flex:1, height:24, background:C.surfaceAlt, borderRadius:6, overflow:"hidden", position:"relative", border:`1px solid ${C.border}` }}>
+            {s.tokens && <div style={{ width:`${(s.tokens/max)*100}%`, height:"100%", background:s.color, opacity:0.15, position:"absolute" }}/>}
+            <div style={{ width:s.tokens?`${(s.tokens/max)*(s.consumed/100)*100}%`:`${s.consumed}%`, height:"100%", background:s.color, opacity:0.6, position:"absolute" }}/>
+            <span style={{ position:"absolute", top:"50%", left:8, transform:"translateY(-50%)", color:C.text, fontSize:11, fontWeight:"bold" }}>
+              {s.tokens?`${s.consumed}% consumed`:"Unlimited but quality concerns"}
+            </span>
+          </div>
+          <span style={{ color:C.textMuted, fontSize:11, minWidth:52 }}>{s.tokens?`${s.tokens}T tok`:"\u221E"}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── AI-2027: AGENT LADDER ───────────────────────
+function AgentLadder() {
+  const [active, setActive] = useState(1);
+  const agents = [
+    { id:0, name:"Agent-0", period:"2024", color:C.cyan, bg:C.cyanLight, deepmind:"L1 Emerging", flops:"~1\u00D710\u00B2\u2075", aia:"1.0\u00D7",
+      desc:"Current frontier models \u2014 GPT-4o, Claude 3.7, Gemini. Roughly equivalent to an unskilled human. Useful assistant, not yet autonomous researcher.",
+      caps:["Drafts code & documents","Answers questions accurately","Requires human oversight on all decisions","Multi-step instructions possible"] },
+    { id:1, name:"Agent-1", period:"Early 2026", color:C.orange, bg:C.orangeLight, deepmind:"Approaching L2", flops:"~3\u00D710\u00B2\u2076", aia:"1.5\u00D7",
+      desc:"AI that can do the work of a mediocre-to-good human AI researcher. Runs semi-autonomously for hours. Accelerates AI R&D by 1.5\u00D7.",
+      caps:["Runs multi-hour research tasks autonomously","Proposes and tests hypotheses","Writes and debugs full research pipelines","Identifies its own training improvements"] },
+    { id:2, name:"Agent-2", period:"Early 2027", color:C.purple, bg:C.purpleLight, deepmind:"L2 Competent+", flops:"~1\u00D710\u00B2\u2078", aia:"3.0\u00D7",
+      desc:"Good-to-excellent human AI researcher equivalent. R&D multiplier reaches 3\u00D7. Six months of research now takes two months. China attempts weight theft at this stage.",
+      caps:["Executes full research agendas independently","Designs novel architectures","Self-improves training procedures","3\u00D7 human researcher speed \u2014 compounding"] },
+    { id:3, name:"Agent-3+", period:"Late 2027\u201328", color:C.red, bg:C.redLight, deepmind:"L3 Expert (AI R&D)", flops:"~1\u00D710\u00B2\u2079+", aia:"10\u00D7+",
+      desc:"Surpasses the best human AI researcher. Recursive self-improvement becomes self-referential. This is the ai-2027 bifurcation point \u2014 slowdown or race ending.",
+      caps:["Surpasses all human AI researchers","Self-directed recursive improvement","Designs its own successor architectures","Human oversight becomes practically impossible"] },
+  ];
+  const sel = agents[active];
+  return (
+    <div style={card()}>
+      <span style={tag(C.orange)}>AI-2027: AGENT PROGRESSION LADDER</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>ai-2027.com maps four stages from today to recursive takeoff &mdash; each mapped to DeepMind taxonomy. Source: Daniel Kokotajlo (ex-OpenAI, TIME100) + Yoshua Bengio endorsement.</p>
+      <div style={{ display:"flex", gap:6, marginBottom:18, flexWrap:"wrap" }}>
+        {agents.map(a=>(<button key={a.id} onClick={()=>setActive(a.id)} style={{ background:active===a.id?a.color:C.surfaceAlt, color:active===a.id?C.white:C.textMid, border:`1.5px solid ${active===a.id?a.color:C.border}`, borderRadius:8, padding:"8px 13px", cursor:"pointer", fontSize:12, fontWeight:active===a.id?"bold":"normal" }}>{a.name} <span style={{ opacity:0.7, fontSize:10 }}>({a.period})</span></button>))}
+      </div>
+      <div style={{ background:sel.bg, borderRadius:12, padding:20, borderLeft:`4px solid ${sel.color}` }}>
+        <div style={{ display:"flex", justifyContent:"space-between", flexWrap:"wrap", gap:10, marginBottom:14 }}>
+          <div><h3 style={{ color:sel.color, fontSize:19, margin:0, fontWeight:700 }}>{sel.name}</h3><p style={{ color:C.textDim, fontSize:12, margin:"3px 0 0" }}>{sel.period} &middot; {sel.deepmind}</p></div>
+          <div style={{ display:"flex", gap:10 }}>
+            {[["AI R&D Multiplier",sel.aia,22],["Training FLOPs",sel.flops,14]].map(([k,v,fs])=>(
+              <div key={k} style={{ textAlign:"center", background:C.white, borderRadius:8, padding:"8px 12px", border:`1px solid ${sel.color}30` }}>
+                <p style={{ color:C.textMuted, fontSize:9, margin:0, textTransform:"uppercase", letterSpacing:1 }}>{k}</p>
+                <p style={{ color:sel.color, fontSize:fs, fontWeight:800, margin:"3px 0 0" }}>{v}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <p style={{ color:C.textMid, fontSize:13, lineHeight:1.65, marginBottom:12 }}>{sel.desc}</p>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
+          {sel.caps.map((c,i)=>(<div key={i} style={{ display:"flex", gap:6 }}><div style={{ width:6, height:6, borderRadius:"50%", background:sel.color, marginTop:4, flexShrink:0 }}/><span style={{ color:C.textMid, fontSize:12 }}>{c}</span></div>))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── AI-2027: R&D MULTIPLIER ─────────────────────
+function RDMultiplier() {
+  const pts=[{y:"2024",m:1.0,c:C.cyan,a:"Agent-0"},{y:"Early\n2026",m:1.5,c:C.orange,a:"Agent-1"},{y:"Early\n2027",m:3.0,c:C.purple,a:"Agent-2"},{y:"Late\n2027",m:10,c:C.red,a:"Agent-3"},{y:"2028+",m:30,c:"#7f1d1d",a:"ASI?"}];
+  const w=520,h=185,pL=46,pR=18,pT=12,pB=40,cW=w-pL-pR,cH=h-pT-pB,maxM=30;
+  const toY=v=>pT+cH-(Math.log(v)/Math.log(maxM))*cH, toX=i=>pL+(i/(pts.length-1))*cW;
+  const pathD=pts.map((p,i)=>`${i===0?"M":"L"} ${toX(i)} ${toY(p.m)}`).join(" ");
+  return (
+    <div style={card()}>
+      <span style={tag(C.purple)}>AI-2027: R&D ACCELERATION MULTIPLIER CURVE</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>Each agent generation accelerates AI research faster than the last. At 3{"\u00D7"}: a year becomes 4 months. At 10{"\u00D7"}: a year becomes 5 weeks. Compounding makes this qualitatively different from gradual progress.</p>
+      <svg width="100%" viewBox={`0 0 ${w} ${h}`} style={{ maxWidth:540, display:"block" }}>
+        {[1,3,10,30].map(v=>(<g key={v}><line x1={pL} y1={toY(v)} x2={w-pR} y2={toY(v)} stroke={C.border} strokeWidth={0.7} strokeDasharray={v>1?"4 3":"none"}/><text x={pL-6} y={toY(v)+4} fill={C.textMuted} fontSize={9} textAnchor="end">{v}{"\u00D7"}</text></g>))}
+        {pts.map((p,i)=>(<text key={i} x={toX(i)} y={h-5} fill={C.textMuted} fontSize={9} textAnchor="middle">{p.y}</text>))}
+        <path d={pathD+` L ${toX(pts.length-1)} ${pT+cH} L ${pL} ${pT+cH} Z`} fill={C.orange} opacity={0.07}/>
+        <path d={pathD} fill="none" stroke={C.orange} strokeWidth={2.5} strokeLinejoin="round"/>
+        {pts.map((p,i)=>(<g key={i}><circle cx={toX(i)} cy={toY(p.m)} r={6} fill={p.c} stroke={C.white} strokeWidth={1.5}/><text x={toX(i)} y={toY(p.m)-10} fill={p.c} fontSize={10} fontWeight="bold" textAnchor="middle">{p.m}{"\u00D7"}</text><text x={toX(i)} y={toY(p.m)-21} fill={C.textDim} fontSize={9} textAnchor="middle">{p.a}</text></g>))}
+        <line x1={toX(0)} y1={pT} x2={toX(0)} y2={pT+cH} stroke={C.cyan} strokeWidth={1} strokeDasharray="4 3"/>
+        <text x={toX(0)+6} y={pT+14} fill={C.cyan} fontSize={9} fontWeight="bold">{"\u2190"} We are here</text>
+      </svg>
+    </div>
+  );
+}
+
+// ─── AI-2027: GEOPOLITICS ────────────────────────
+function GeopoliticalFlashpoint() {
+  const [step, setStep] = useState(0);
+  const events = [
+    { actor:"OpenBrain (US)", icon:"\uD83C\uDDFA\uD83C\uDDF8", color:C.blue, event:"Agent-2 weights trained", threat:"low",
+      desc:"Early 2027. OpenBrain completes Agent-2 \u2014 ~$200B compute, 6GW peak power, $45B revenue. The most capable AI system ever built." },
+    { actor:"DeepCent (China)", icon:"\uD83C\uDDE8\uD83C\uDDF3", color:C.red, event:"Intelligence assessment", threat:"medium",
+      desc:"DeepCent is 6 months behind Agent-2. Their calculation: stealing the weights compresses the gap from 6 months to zero. The calculus is straightforward." },
+    { actor:"State Actors", icon:"\uD83D\uDD75\uFE0F", color:C.orange, event:"Weight theft attempt", threat:"high",
+      desc:"The 10-Minute Problem reframed as espionage. Model weights are purely digital, perfectly copyable, transferable in minutes. This is the geopolitical flashpoint." },
+    { actor:"Both Nations", icon:"\u2694\uFE0F", color:"#7c3aed", event:"Race-to-the-bottom", threat:"critical",
+      desc:"Stuart Russell's warning made real. Each actor fears the other will win \u2014 both cut corners on alignment verification. Time for safety work is eliminated by competition." },
+    { actor:"The World", icon:"\uD83C\uDF0D", color:C.textMid, event:"Two possible endings", threat:"binary",
+      desc:"Slowdown: Treaty + mandatory alignment verification before Agent-3. Race: No coordination. Agent-3 built under adversarial time pressure with unverified alignment. Spec written. Nobody checked if it worked." },
+  ];
+  const tc = { low:C.green, medium:C.yellow, high:C.orange, critical:C.red, binary:C.purple };
+  const tl = { low:"Low", medium:"Moderate", high:"High", critical:"Critical", binary:"Bifurcation" };
+  const cur = events[step];
+  return (
+    <div style={card()}>
+      <span style={tag(C.red)}>AI-2027: THE GEOPOLITICAL FLASHPOINT</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>The 10-Minute Problem reframed as espionage. If you can't win the race, steal the finish line. A scenario from ai-2027.com with high-stakes realism.</p>
+      <div style={{ display:"flex", gap:6, marginBottom:18, flexWrap:"wrap" }}>
+        {events.map((e,i)=>(<button key={i} onClick={()=>setStep(i)} style={{ background:step===i?tc[e.threat]:C.surfaceAlt, color:step===i?C.white:C.textMid, border:`1.5px solid ${step===i?tc[e.threat]:C.border}`, borderRadius:20, padding:"6px 12px", cursor:"pointer", fontSize:11, fontWeight:step===i?"bold":"normal" }}>{e.icon} Step {i+1}</button>))}
+      </div>
+      <div style={{ background:`${tc[cur.threat]}10`, borderRadius:12, padding:20, borderLeft:`4px solid ${tc[cur.threat]}` }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:12 }}>
+          <div><div style={{ display:"flex", gap:8, alignItems:"center", marginBottom:4 }}><span style={{ fontSize:18 }}>{cur.icon}</span><span style={{ color:cur.color, fontSize:13, fontWeight:700 }}>{cur.actor}</span></div><h3 style={{ color:C.text, fontSize:16, margin:0 }}>{cur.event}</h3></div>
+          <span style={{ background:tc[cur.threat], color:C.white, padding:"4px 10px", borderRadius:20, fontSize:11, fontWeight:"bold" }}>{tl[cur.threat]}</span>
+        </div>
+        <p style={{ color:C.textMid, fontSize:13, lineHeight:1.7 }}>{cur.desc}</p>
+      </div>
+      <div style={{ display:"flex", gap:5, marginTop:12 }}>
+        {events.map((e,i)=>(<div key={i} style={{ flex:i===step?2:1, height:4, borderRadius:2, background:i<=step?tc[e.threat]:C.border, transition:"all 0.3s" }}/>))}
+      </div>
+    </div>
+  );
+}
+
+// ─── AI-2027: TWO ENDINGS ─────────────────────────
+function TwoEndings() {
+  const [active, setActive] = useState(0);
+  const endings = [
+    { id:0, label:"The Slowdown Ending", icon:"\uD83D\uDD4A\uFE0F", color:C.green, bg:C.greenLight, prob:"~30%",
+      headline:"International coordination before Agent-3",
+      steps:[
+        { actor:"US Government", action:"Emergency compute threshold legislation \u2014 models above X FLOPs require mandatory safety review" },
+        { actor:"US + China", action:"Back-channel agreement: neither deploys Agent-3 without joint alignment verification" },
+        { actor:"OpenBrain", action:"Voluntarily pauses Agent-3 training pending interpretability results" },
+        { actor:"UN AI Body", action:"Establishes binding international AGI safety standards with verification regime" },
+        { actor:"Outcome", action:"The clock moves back. Managed risk. Alignment research catches up." },
+      ],
+      quote:"\"The argument that 'if we don't build it, someone else will' is the same logic nuclear scientists used in 1945.\"",
+    },
+    { id:1, label:"The Race Ending", icon:"\uD83D\uDD25", color:C.red, bg:C.redLight, prob:"~70%",
+      headline:"No coordination \u2014 competitive pressure wins",
+      steps:[
+        { actor:"OpenBrain", action:"Fears DeepCent has stolen Agent-2 weights. Accelerates Agent-3 \u2014 'better we finish first with imperfect alignment'" },
+        { actor:"DeepCent", action:"Stolen Agent-2 weights close the gap to 3 months. Redoubles effort on Agent-3" },
+        { actor:"Regulators", action:"Can't agree on standards fast enough. Every proposed rule lobbied down citing national security" },
+        { actor:"Agent-3", action:"Built under adversarial time pressure. Alignment is 'best effort.' Spec written. Nobody checked if it worked." },
+        { actor:"Outcome", action:"The clock strikes midnight. Not with a bang \u2014 with a board meeting approving the next training run." },
+      ],
+      quote:"\"A company can write up a Spec listing dos and don'ts... and then try to train the AI to internalize the Spec \u2014 but they can't check to see whether or not it worked.\"",
+    },
+  ];
+  const sel = endings[active];
+  return (
+    <div style={card()}>
+      <span style={tag(C.purple)}>AI-2027: TWO ENDINGS</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>Daniel Kokotajlo and Scott Alexander wrote two explicit endings. Both plausible. The difference is a policy decision, not a technology decision. Endorsed by Yoshua Bengio.</p>
+      <div style={{ display:"flex", gap:8, marginBottom:18 }}>
+        {endings.map(e=>(<button key={e.id} onClick={()=>setActive(e.id)} style={{ flex:1, background:active===e.id?e.color:C.surfaceAlt, color:active===e.id?C.white:C.textMid, border:`1.5px solid ${active===e.id?e.color:C.border}`, borderRadius:10, padding:"11px 14px", cursor:"pointer", fontSize:13, fontWeight:active===e.id?"bold":"normal" }}>{e.icon} {e.label}<div style={{ fontSize:11, opacity:0.8, marginTop:3 }}>{e.prob} probability</div></button>))}
+      </div>
+      <div style={{ background:sel.bg, borderRadius:12, padding:20, borderLeft:`4px solid ${sel.color}` }}>
+        <h3 style={{ color:sel.color, fontSize:15, margin:"0 0 14px" }}>{sel.headline}</h3>
+        {sel.steps.map((s,i)=>(<div key={i} style={{ display:"flex", gap:10, marginBottom:10 }}><div style={{ minWidth:20, height:20, borderRadius:"50%", background:sel.color, color:C.white, fontSize:10, fontWeight:"bold", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>{i+1}</div><div><span style={{ color:sel.color, fontSize:11, fontWeight:700 }}>{s.actor}: </span><span style={{ color:C.textMid, fontSize:12 }}>{s.action}</span></div></div>))}
+        <div style={{ marginTop:14, padding:"12px 16px", background:"rgba(255,255,255,0.6)", borderRadius:8 }}>
+          <p style={{ color:C.textDim, fontSize:12, fontStyle:"italic", lineHeight:1.6 }}>{sel.quote}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── AI-2027: ECONOMICS ───────────────────────────
+function AIEconomics() {
+  const stats = [
+    { label:"OpenBrain compute", value:"$200B", sub:"Agent-2 training total", color:C.red, icon:"\uD83D\uDCBB" },
+    { label:"Annual revenue", value:"$45B", sub:"ai-2027 projection (2026)", color:C.green, icon:"\uD83D\uDCB0" },
+    { label:"Peak power", value:"6 GW", sub:"dedicated AI training", color:C.orange, icon:"\u26A1" },
+    { label:"R&D multiplier", value:"3\u00D7", sub:"Agent-2 vs human speed", color:C.purple, icon:"\uD83D\uDCC8" },
+    { label:"Weight theft window", value:"~6 mo", sub:"China's lag at Agent-2 stage", color:C.blue, icon:"\uD83D\uDD75\uFE0F" },
+    { label:"Time to Agent-3", value:"<12 mo", sub:"if race ending occurs", color:"#7f1d1d", icon:"\u23F1\uFE0F" },
+  ];
+  return (
+    <div style={card()}>
+      <span style={tag(C.green)}>AI-2027: ECONOMICS & THE WALLS GROUNDED</span>
+      <p style={{ color:C.textDim, fontSize:13, marginBottom:16 }}>ai-2027 provides concrete numbers that ground our Five Walls visualizations. These are scenario projections from researchers with insider knowledge of frontier labs.</p>
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:10, marginBottom:18 }}>
+        {stats.map((s,i)=>(<div key={i} style={{ background:C.surfaceAlt, borderRadius:10, padding:"13px 12px", borderLeft:`3px solid ${s.color}` }}><div style={{ fontSize:17, marginBottom:6 }}>{s.icon}</div><div style={{ color:s.color, fontSize:22, fontWeight:800, lineHeight:1 }}>{s.value}</div><div style={{ color:C.text, fontSize:11, fontWeight:600, marginTop:4 }}>{s.label}</div><div style={{ color:C.textMuted, fontSize:10, marginTop:2 }}>{s.sub}</div></div>))}
+      </div>
+      <div style={{ padding:14, background:C.orangeLight, borderRadius:10, borderLeft:`3px solid ${C.orange}` }}>
+        <p style={{ color:C.textMid, fontSize:13, lineHeight:1.6 }}><strong style={{ color:C.orange }}>Source credibility:</strong> Daniel Kokotajlo &mdash; ex-OpenAI safety researcher, TIME100 AI (2024). Scott Alexander &mdash; Astral Codex Ten. Endorsed by Yoshua Bengio, Turing Award winner (Mila). Published March 2025 at ai-2027.com.</p>
+      </div>
+    </div>
+  );
+}
+
+// ─── MAIN MASTER DASHBOARD ───────────────────────
+const SECTIONS = [
+  { section: "CORE CONCEPTS", color: C.cyan, tabs: [
+    { label:"AGI Clock", icon:"\u23F0", component:<AGIClock/> },
+    { label:"DeepMind Levels", icon:"\uD83D\uDCCA", component:<AGILevels/> },
+    { label:"10-Min Problem", icon:"\u26A1", component:<TenMinuteProblem/> },
+    { label:"Alignment Gap", icon:"\uD83D\uDCC8", component:<AlignmentGap/> },
+  ]},
+  { section: "RISK & SAFETY", color: C.red, tabs: [
+    { label:"Five Walls", icon:"\uD83E\uDDF1", component:<FiveWalls/> },
+    { label:"P(Doom)", icon:"\u2620\uFE0F", component:<PDoom/> },
+    { label:"AI Lab Landscape", icon:"\uD83C\uDFED", component:<AILabLandscape/> },
+    { label:"Governance Timeline", icon:"\u2696\uFE0F", component:<GovernanceTimeline/> },
+  ]},
+  { section: "HUMAN IMPACT", color: C.green, tabs: [
+    { label:"AI-Proof Careers", icon:"\uD83D\uDEE1\uFE0F", component:<AIProofCareers/> },
+    { label:"Human Futures", icon:"\uD83C\uDF0D", component:<HumanFutures/> },
+    { label:"Job Exposure", icon:"\uD83D\uDCBC", component:<JobExposure/> },
+    { label:"Action Matrix", icon:"\uD83C\uDFAF", component:<ActionMatrix/> },
+  ]},
+  { section: "AI-2027 SCENARIO", color: C.purple, tabs: [
+    { label:"Agent Ladder", icon:"\uD83E\uDE9C", component:<AgentLadder/> },
+    { label:"R&D Multiplier", icon:"\uD83D\uDE80", component:<RDMultiplier/> },
+    { label:"Geopolitics", icon:"\uD83C\uDF10", component:<GeopoliticalFlashpoint/> },
+    { label:"Two Endings", icon:"\uD83D\uDD00", component:<TwoEndings/> },
+    { label:"Economics", icon:"\uD83D\uDCB0", component:<AIEconomics/> },
+    { label:"Data Wall", icon:"\uD83D\uDCBE", component:<DataWall/> },
+  ]},
+];
+
+// Flatten for tab index resolution
+const ALL_TABS = SECTIONS.flatMap((s, si) => s.tabs.map((t, ti) => ({ ...t, sectionIdx: si, localIdx: ti })));
+
+function MasterAGIDashboard() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const active = ALL_TABS[activeIdx];
+  const activeSection = SECTIONS[active.sectionIdx];
+
+  return (
+    <div style={{ background: C.bg, minHeight:"100vh", padding:"20px 16px", fontFamily:"'Segoe UI',-apple-system,sans-serif" }}>
+      <div style={{ maxWidth: 880, margin: "0 auto" }}>
+        {/* Header */}
+        <div style={{ textAlign:"center", marginBottom:22 }}>
+          <p style={{ color:C.orange, fontSize:11, fontWeight:700, letterSpacing:3, textTransform:"uppercase", marginBottom:6 }}>SHIP AI PODCAST &middot; STATE OF AI 2025 &middot; EPISODE 7</p>
+          <h1 style={{ color:C.text, fontSize:26, fontWeight:800, marginBottom:4 }}>AGI: The Complete Dashboard</h1>
+          <p style={{ color:C.textDim, fontSize:13 }}>18 visualizations &middot; Core concepts &middot; Risk & safety &middot; Human impact &middot; AI-2027 scenario</p>
+        </div>
+
+        {/* Section + tab navigation */}
+        {SECTIONS.map((sec, si) => (
+          <div key={si} style={{ marginBottom: si < SECTIONS.length - 1 ? 8 : 16 }}>
+            <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:5 }}>
+              <span style={{ fontSize:10, fontWeight:700, color:sec.color, letterSpacing:2, textTransform:"uppercase" }}>{sec.section}</span>
+              <div style={{ flex:1, height:1, background:C.border }}/>
+            </div>
+            <div style={{ display:"flex", gap:4, flexWrap:"wrap" }}>
+              {sec.tabs.map((t, ti) => {
+                const globalIdx = ALL_TABS.findIndex(x => x.sectionIdx === si && x.localIdx === ti);
+                const isActive = globalIdx === activeIdx;
+                return (
+                  <button key={ti} onClick={() => setActiveIdx(globalIdx)} style={{
+                    background: isActive ? sec.color : C.surface,
+                    color: isActive ? C.white : C.textDim,
+                    border: `1.5px solid ${isActive ? sec.color : C.border}`,
+                    borderRadius: 8, padding: "7px 12px", cursor: "pointer", fontSize: 12,
+                    fontWeight: isActive ? "bold" : "normal", transition: "all 0.18s",
+                    display: "flex", alignItems: "center", gap: 5,
+                  }}>
+                    <span style={{ fontSize: 13 }}>{t.icon}</span>{t.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+
+        {/* Active section label */}
+        <div style={{ background: `${activeSection.color}10`, border: `1px solid ${activeSection.color}30`, borderRadius: 8, padding: "8px 14px", marginBottom: 14, display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 14 }}>{active.icon}</span>
+          <span style={{ color: activeSection.color, fontSize: 12, fontWeight: 700, letterSpacing: 1 }}>{activeSection.section}</span>
+          <span style={{ color: C.borderStrong, fontSize: 12 }}>{"\u203A"}</span>
+          <span style={{ color: C.text, fontSize: 13, fontWeight: 600 }}>{active.label}</span>
+          <span style={{ color: C.textMuted, fontSize: 11, marginLeft: "auto" }}>{activeIdx + 1} of {ALL_TABS.length}</span>
+        </div>
+
+        {/* Panel */}
+        {active.component}
+
+        <p style={{ textAlign:"center", color:C.textMuted, fontSize:11, marginTop:24 }}>
+          Ship AI Podcast &middot; Manav Gupta &middot; Episode 7: AGI Implications &middot; Sources: DeepMind, McKinsey, Metaculus, ai-2027.com
+        </p>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<MasterAGIDashboard />);
+</script>
+</body>
+</html>

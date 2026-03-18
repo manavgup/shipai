@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script>(function(){var p=sessionStorage.getItem("spa-redirect");if(p){sessionStorage.removeItem("spa-redirect");history.replaceState(null,"",location.pathname+p);}})()</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP — USB-C for AI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f5f7fa;
+    color: #1a2340;
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .container {
+    width: 1200px;
+    height: 675px;
+    position: relative;
+    background: linear-gradient(135deg, #f8fafe 0%, #eef2f9 100%);
+    overflow: hidden;
+  }
+
+  h1 {
+    position: absolute;
+    top: 28px;
+    left: 60px;
+    font-size: 32px;
+    font-weight: 800;
+    color: #0d7377;
+    letter-spacing: -0.5px;
+  }
+
+  .analogy {
+    position: absolute;
+    top: 34px;
+    right: 60px;
+    font-size: 14px;
+    color: #6b7fa3;
+    font-style: italic;
+  }
+
+  /* Architecture diagram */
+  .arch {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  /* Nodes */
+  .node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .node.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .node-box {
+    width: 130px;
+    height: 130px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    position: relative;
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+  }
+
+  .node-box .icon {
+    font-size: 36px;
+  }
+
+  .node-box .label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .node-box .sublabel {
+    font-size: 10px;
+    opacity: 0.7;
+  }
+
+  /* Agent */
+  .agent-node .node-box {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, #0d7377, #0f8a8e);
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(13,115,119,0.3);
+    border-radius: 20px;
+  }
+  .agent-node .icon { font-size: 42px; }
+  .agent-node .label { font-size: 15px; }
+
+  /* MCP Server */
+  .mcp-node .node-box {
+    background: #fff;
+    border: 2px solid #0d7377;
+    color: #0d7377;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  }
+
+  /* Tool nodes */
+  .tool-node .node-box {
+    width: 110px;
+    height: 110px;
+    background: #fff;
+    border: 1px solid #dde3ee;
+    color: #3a4a6a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .tool-node .icon { font-size: 28px; }
+  .tool-node .label { font-size: 11px; }
+
+  /* Connection lines — SVG overlay */
+  .connections {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .conn-line {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    transition: stroke-dashoffset 0.8s ease;
+  }
+  .conn-line.drawn {
+    stroke-dashoffset: 0;
+  }
+
+  /* Data packet animation */
+  .packet {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #0d7377;
+    box-shadow: 0 0 8px rgba(13,115,119,0.5);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(13,115,119,0.4); }
+    100% { box-shadow: 0 0 0 12px rgba(13,115,119,0); }
+  }
+
+  .node.active .node-box {
+    animation: pulse-ring 1s ease infinite;
+  }
+
+  /* Step indicator */
+  .step-indicator {
+    position: absolute;
+    bottom: 16px;
+    left: 60px;
+    right: 60px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .step-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #cdd5e0;
+    transition: all 0.3s ease;
+  }
+  .step-dot.active {
+    background: #0d7377;
+    width: 28px;
+    border-radius: 4px;
+  }
+
+  .step-text {
+    font-size: 13px;
+    color: #6b7fa3;
+    margin-left: auto;
+    font-weight: 500;
+  }
+  .step-text strong {
+    color: #0d7377;
+  }
+
+  /* JSON popup */
+  .json-popup {
+    position: absolute;
+    background: #1a2340;
+    color: #a8e6cf;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+    white-space: pre;
+    line-height: 1.5;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .json-popup.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .json-popup .key { color: #7ec8e3; }
+  .json-popup .str { color: #a8e6cf; }
+  .json-popup .comment { color: #5a6a8a; }
+
+  .watermark {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-size: 10px;
+    color: rgba(0,0,0,0.08);
+    letter-spacing: 1px;
+  }
+
+  .replay-btn {
+    position: absolute;
+    top: 28px;
+    right: 250px;
+    background: #0d7377;
+    color: #fff;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+  .replay-btn:hover { background: #0f8a8e; }
+  .replay-btn.visible { opacity: 1; }
+
+  /* Layout positions for the flow: Agent → MCP → Tools (3 tools) */
+  .layout {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .tools-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Model Context Protocol (MCP)</h1>
+  <div class="analogy">The USB-C for AI</div>
+  <button class="replay-btn" id="replayBtn" onclick="replay()">&#x21bb; Replay</button>
+
+  <div class="arch">
+    <div class="layout">
+      <!-- Agent -->
+      <div class="node agent-node" id="agentNode">
+        <div class="node-box">
+          <div class="icon">🧠</div>
+          <div class="label">AI Agent</div>
+          <div class="sublabel">Claude / GPT / etc.</div>
+        </div>
+      </div>
+
+      <!-- Arrow zone 1 -->
+      <div style="width: 60px; position: relative; height: 150px;" id="arrow1Zone">
+        <svg width="60" height="150" style="position:absolute; top:0; left:0;">
+          <line class="conn-line" id="conn1a" x1="0" y1="75" x2="60" y2="75" stroke="#0d7377" stroke-width="2"/>
+          <polygon id="arrowHead1" points="52,70 60,75 52,80" fill="#0d7377" opacity="0"/>
+        </svg>
+      </div>
+
+      <!-- MCP Server -->
+      <div class="node mcp-node" id="mcpNode">
+        <div class="node-box">
+          <div class="icon">🔌</div>
+          <div class="label">MCP Server</div>
+          <div class="sublabel">Discover · Invoke · Return</div>
+        </div>
+      </div>
+
+      <!-- Arrow zone 2 -->
+      <div style="width: 60px; position: relative; height: 260px;" id="arrow2Zone">
+        <svg width="60" height="260" style="position:absolute; top:0; left:0;">
+          <line class="conn-line" id="conn2a" x1="0" y1="45" x2="60" y2="45" stroke="#0d7377" stroke-width="1.5" opacity="0.6"/>
+          <line class="conn-line" id="conn2b" x1="0" y1="130" x2="60" y2="130" stroke="#0d7377" stroke-width="1.5" opacity="0.6"/>
+          <line class="conn-line" id="conn2c" x1="0" y1="215" x2="60" y2="215" stroke="#0d7377" stroke-width="1.5" opacity="0.6"/>
+        </svg>
+      </div>
+
+      <!-- Tools -->
+      <div class="tools-col">
+        <div class="node tool-node" id="tool1">
+          <div class="node-box">
+            <div class="icon">💬</div>
+            <div class="label">Slack</div>
+          </div>
+        </div>
+        <div class="node tool-node" id="tool2">
+          <div class="node-box">
+            <div class="icon">🐙</div>
+            <div class="label">GitHub</div>
+          </div>
+        </div>
+        <div class="node tool-node" id="tool3">
+          <div class="node-box">
+            <div class="icon">💳</div>
+            <div class="label">Stripe</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSON popups -->
+  <div class="json-popup" id="discoverPopup" style="top: 160px; left: 320px;">
+<span class="comment">// Tool Discovery</span>
+{
+  <span class="key">"tools"</span>: [
+    { <span class="key">"name"</span>: <span class="str">"send_message"</span> },
+    { <span class="key">"name"</span>: <span class="str">"create_issue"</span> },
+    { <span class="key">"name"</span>: <span class="str">"create_charge"</span> }
+  ]
+}</div>
+
+  <div class="json-popup" id="invokePopup" style="top: 260px; left: 160px;">
+<span class="comment">// Tool Invocation</span>
+{
+  <span class="key">"tool"</span>: <span class="str">"create_issue"</span>,
+  <span class="key">"args"</span>: {
+    <span class="key">"repo"</span>: <span class="str">"acme/app"</span>,
+    <span class="key">"title"</span>: <span class="str">"Fix auth bug"</span>
+  }
+}</div>
+
+  <div class="json-popup" id="resultPopup" style="top: 120px; left: 500px;">
+<span class="comment">// Result</span>
+{
+  <span class="key">"status"</span>: <span class="str">"success"</span>,
+  <span class="key">"issue"</span>: <span class="str">"#1247"</span>,
+  <span class="key">"url"</span>: <span class="str">"github.com/acme/app/issues/1247"</span>
+}</div>
+
+  <!-- Step indicator -->
+  <div class="step-indicator">
+    <div class="step-dot active" id="dot0"></div>
+    <div class="step-dot" id="dot1"></div>
+    <div class="step-dot" id="dot2"></div>
+    <div class="step-dot" id="dot3"></div>
+    <div class="step-dot" id="dot4"></div>
+    <div class="step-text" id="stepText"><strong>Step 1:</strong> Agent connects to MCP server</div>
+  </div>
+
+  <div class="watermark">SHIP AI &middot; EPISODE 6</div>
+</div>
+
+<script>
+const steps = [
+  { text: '<strong>Step 1:</strong> Agent connects to MCP server', action: step1 },
+  { text: '<strong>Step 2:</strong> MCP server discovers available tools', action: step2 },
+  { text: '<strong>Step 3:</strong> Agent invokes a tool via standard schema', action: step3 },
+  { text: '<strong>Step 4:</strong> Tool executes and returns result', action: step4 },
+  { text: '<strong>Step 5:</strong> Agent uses result — same protocol, any tool', action: step5 },
+];
+
+let currentStep = -1;
+
+function resetAll() {
+  currentStep = -1;
+  ['agentNode', 'mcpNode', 'tool1', 'tool2', 'tool3'].forEach(id => {
+    document.getElementById(id).classList.remove('visible', 'active');
+  });
+  ['conn1a', 'conn2a', 'conn2b', 'conn2c'].forEach(id => {
+    document.getElementById(id).classList.remove('drawn');
+  });
+  document.getElementById('arrowHead1').setAttribute('opacity', '0');
+  ['discoverPopup', 'invokePopup', 'resultPopup'].forEach(id => {
+    document.getElementById(id).classList.remove('visible');
+  });
+  document.querySelectorAll('.step-dot').forEach(d => d.classList.remove('active'));
+  document.getElementById('replayBtn').classList.remove('visible');
+}
+
+function setStep(n) {
+  document.querySelectorAll('.step-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+  document.getElementById('stepText').innerHTML = steps[n].text;
+}
+
+function step1() {
+  setStep(0);
+  document.getElementById('agentNode').classList.add('visible');
+  setTimeout(() => {
+    document.getElementById('conn1a').classList.add('drawn');
+    document.getElementById('arrowHead1').setAttribute('opacity', '1');
+  }, 400);
+  setTimeout(() => {
+    document.getElementById('mcpNode').classList.add('visible');
+  }, 800);
+}
+
+function step2() {
+  setStep(1);
+  document.getElementById('conn2a').classList.add('drawn');
+  document.getElementById('conn2b').classList.add('drawn');
+  document.getElementById('conn2c').classList.add('drawn');
+  setTimeout(() => {
+    document.getElementById('tool1').classList.add('visible');
+    setTimeout(() => document.getElementById('tool2').classList.add('visible'), 200);
+    setTimeout(() => document.getElementById('tool3').classList.add('visible'), 400);
+  }, 300);
+  setTimeout(() => {
+    document.getElementById('mcpNode').classList.add('active');
+    document.getElementById('discoverPopup').classList.add('visible');
+  }, 900);
+}
+
+function step3() {
+  setStep(2);
+  document.getElementById('mcpNode').classList.remove('active');
+  document.getElementById('discoverPopup').classList.remove('visible');
+  document.getElementById('agentNode').classList.add('active');
+  setTimeout(() => {
+    document.getElementById('invokePopup').classList.add('visible');
+  }, 400);
+}
+
+function step4() {
+  setStep(3);
+  document.getElementById('agentNode').classList.remove('active');
+  document.getElementById('invokePopup').classList.remove('visible');
+  document.getElementById('tool2').classList.add('active');
+  setTimeout(() => {
+    document.getElementById('resultPopup').classList.add('visible');
+  }, 600);
+}
+
+function step5() {
+  setStep(4);
+  document.getElementById('tool2').classList.remove('active');
+  document.getElementById('resultPopup').classList.remove('visible');
+  // Highlight all as connected
+  ['agentNode', 'mcpNode', 'tool1', 'tool2', 'tool3'].forEach(id => {
+    document.getElementById(id).classList.add('active');
+  });
+  setTimeout(() => {
+    document.getElementById('replayBtn').classList.add('visible');
+  }, 1000);
+}
+
+function advanceStep() {
+  currentStep++;
+  if (currentStep < steps.length) {
+    steps[currentStep].action();
+  }
+}
+
+function replay() {
+  resetAll();
+  document.getElementById('replayBtn').classList.remove('visible');
+  setTimeout(runSequence, 300);
+}
+
+function runSequence() {
+  advanceStep(); // 1
+  setTimeout(advanceStep, 2200); // 2
+  setTimeout(advanceStep, 5000); // 3
+  setTimeout(advanceStep, 7500); // 4
+  setTimeout(advanceStep, 10000); // 5
+}
+
+setTimeout(runSequence, 600);
+</script>
+</body>
+</html>

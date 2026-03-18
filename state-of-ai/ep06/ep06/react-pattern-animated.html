@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en"><head><script>(function(){var p=sessionStorage.getItem("spa-redirect");if(p){sessionStorage.removeItem("spa-redirect");history.replaceState(null,"",location.pathname+p);}})()</script>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReAct Pattern — Animated</title>
+<link href="react-pattern-animated_files/css2.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFBFE;
+    --bg-warm: #F5F3EF;
+    --bg-surface: #FFFFFF;
+    --bg-elevated: #F0EDE8;
+    --bg-code: #F7F5F2;
+    --thought: #6366F1;
+    --thought-light: #EEF2FF;
+    --thought-glow: rgba(99,102,241,0.15);
+    --action: #E11D48;
+    --action-light: #FFF1F2;
+    --action-glow: rgba(225,29,72,0.12);
+    --observe: #059669;
+    --observe-light: #ECFDF5;
+    --observe-glow: rgba(5,150,105,0.12);
+    --answer: #D97706;
+    --answer-light: #FFFBEB;
+    --answer-glow: rgba(217,119,6,0.12);
+    --text: #1A1A2E;
+    --text-secondary: #4A4A68;
+    --text-muted: #8E8EA0;
+    --border: rgba(0,0,0,0.07);
+    --border-strong: rgba(0,0,0,0.12);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ═══ SUBTLE TEXTURE ═══ */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(99,102,241,0.03), transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(5,150,105,0.02), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .canvas {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 16px 20px 60px;
+  }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    text-align: center;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: heroIn 1s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 20px;
+    border: 1px solid var(--border-strong);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .hero-badge .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--thought);
+    box-shadow: 0 0 10px var(--thought-glow);
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(56px, 8vw, 100px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -3px;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 .char {
+    display: inline-block;
+    opacity: 0;
+    animation: charIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes charIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.8); filter: blur(3px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  }
+
+  .hero h1 .re { color: var(--thought); }
+  .hero h1 .act { color: var(--action); }
+
+  .hero .tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s ease forwards;
+  }
+
+  .hero .desc {
+    max-width: 520px;
+    margin: 0 auto;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--text-muted);
+    opacity: 0;
+    animation: fadeUp 0.8s 1.4s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ═══ CIRCULAR LOOP ═══ */
+  .loop-visual-section {
+    margin-bottom: 40px;
+    position: relative;
+    padding-top: 20px;
+  }
+
+  .loop-ring-container {
+    width: 480px;
+    height: 480px;
+    margin: 0 auto;
+    position: relative;
+    opacity: 0;
+  }
+
+  .loop-ring-container.visible {
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  /* Central SVG ring */
+  .ring-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ring-track {
+    fill: none;
+    stroke: var(--border);
+    stroke-width: 2;
+  }
+
+  .ring-flow {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 120 500;
+    animation: ringRotate 4s linear infinite;
+  }
+
+  .ring-flow.thought-arc { stroke: var(--thought); animation-delay: 0s; }
+  .ring-flow.action-arc { stroke: var(--action); animation-delay: -1.33s; }
+  .ring-flow.observe-arc { stroke: var(--observe); animation-delay: -2.66s; }
+
+  @keyframes ringRotate {
+    to { stroke-dashoffset: -620; }
+  }
+
+  /* Arrow particles on ring */
+  .ring-particle {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    animation: particleOrbit 4s linear infinite;
+  }
+
+  .ring-particle.p1 { background: var(--thought); box-shadow: 0 0 12px var(--thought-glow); animation-delay: 0s; }
+  .ring-particle.p2 { background: var(--action); box-shadow: 0 0 12px var(--action-glow); animation-delay: -1.33s; }
+  .ring-particle.p3 { background: var(--observe); box-shadow: 0 0 12px var(--observe-glow); animation-delay: -2.66s; }
+
+  @keyframes particleOrbit {
+    0% { transform: rotate(0deg) translateX(190px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(190px) rotate(-360deg); }
+  }
+
+  .ring-particle { top: 50%; left: 50%; margin: -5px 0 0 -5px; }
+
+  /* Center text */
+  .ring-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 200px;
+  }
+
+  .ring-center-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .ring-center-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .ring-center-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* Node cards on the ring */
+  .ring-node {
+    position: absolute;
+    width: 200px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 18px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ring-node.visible { animation: nodeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+  .ring-node:hover { transform: translateY(-4px) !important; }
+
+  @keyframes nodeIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Position nodes around the ring - top, bottom-right, bottom-left */
+  .ring-node.thought-node {
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 3px solid var(--thought);
+  }
+  .ring-node.thought-node.visible { animation: nodeInTop 0.6s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  @keyframes nodeInTop {
+    from { opacity: 0; transform: translateX(-50%) translateY(-12px) scale(0.9); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  }
+  .ring-node.thought-node:hover { transform: translateX(-50%) translateY(-4px) !important; box-shadow: var(--shadow-lg), 0 0 0 4px var(--thought-light); }
+
+  .ring-node.action-node {
+    bottom: -10px;
+    right: -50px;
+    border-top: 3px solid var(--action);
+  }
+  .ring-node.action-node.visible { animation: nodeInRight 0.6s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  @keyframes nodeInRight {
+    from { opacity: 0; transform: translateX(12px) scale(0.9); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+  }
+  .ring-node.action-node:hover { transform: translateY(-4px) !important; box-shadow: var(--shadow-lg), 0 0 0 4px var(--action-light); }
+
+  .ring-node.observe-node {
+    bottom: -10px;
+    left: -50px;
+    border-top: 3px solid var(--observe);
+  }
+  .ring-node.observe-node.visible { animation: nodeInLeft 0.6s 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  @keyframes nodeInLeft {
+    from { opacity: 0; transform: translateX(-12px) scale(0.9); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+  }
+  .ring-node.observe-node:hover { transform: translateY(-4px) !important; box-shadow: var(--shadow-lg), 0 0 0 4px var(--observe-light); }
+
+  .ring-node .node-emoji { font-size: 28px; margin-bottom: 10px; display: block; }
+  .ring-node h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ring-node.thought-node h3 { color: var(--thought); }
+  .ring-node.action-node h3 { color: var(--action); }
+  .ring-node.observe-node h3 { color: var(--observe); }
+  .ring-node p { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+
+  /* Directional arrows between nodes */
+  .arc-arrow {
+    position: absolute;
+    font-size: 18px;
+    opacity: 0;
+    z-index: 5;
+  }
+  .arc-arrow.visible { animation: arrowFade 0.5s 1.2s ease forwards; }
+  @keyframes arrowFade { to { opacity: 0.5; } }
+
+  .arc-arrow.a1 { top: 48%; right: 14%; color: var(--thought); transform: rotate(50deg); }
+  .arc-arrow.a2 { bottom: 10%; left: 50%; transform: translateX(-50%) rotate(180deg); color: var(--action); }
+  .arc-arrow.a3 { top: 48%; left: 14%; color: var(--observe); transform: rotate(-50deg); }
+
+  /* ═══ SECTION HEADERS ═══ */
+  .sec-head {
+    text-align: center;
+    margin-bottom: 24px;
+    opacity: 0;
+  }
+  .sec-head.visible { animation: fadeUp 0.8s ease forwards; }
+
+  .sec-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .sec-head p {
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+
+  /* ═══ CORE LOOP STEPS ═══ */
+  .steps-section { margin-bottom: 40px; }
+
+  .steps-timeline {
+    max-width: 660px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .steps-line {
+    position: absolute;
+    left: 32px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+    overflow: hidden;
+  }
+
+  .steps-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -60px;
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--thought), transparent);
+    animation: lineTravel 5s ease-in-out infinite;
+  }
+
+  @keyframes lineTravel {
+    0% { top: -60px; }
+    100% { top: calc(100% + 60px); }
+  }
+
+  .step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding-bottom: 20px;
+    position: relative;
+    opacity: 0;
+  }
+
+  .step-row.visible { animation: stepSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+  @keyframes stepSlide {
+    from { opacity: 0; transform: translateX(-16px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .step-dot {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .step-dot .dot-inner {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .step-dot .dot-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    animation: ringPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes ringPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.1); opacity: 0.2; }
+  }
+
+  .step-row.thought .dot-inner { background: var(--thought-light); color: var(--thought); }
+  .step-row.thought .dot-ring { border-color: var(--thought-glow); }
+  .step-row.action .dot-inner { background: var(--action-light); color: var(--action); }
+  .step-row.action .dot-ring { border-color: var(--action-glow); }
+  .step-row.observation .dot-inner { background: var(--observe-light); color: var(--observe); }
+  .step-row.observation .dot-ring { border-color: var(--observe-glow); }
+  .step-row.answer .dot-inner { background: var(--answer-light); color: var(--answer); }
+  .step-row.answer .dot-ring { border-color: var(--answer-glow); }
+
+  .step-body { flex: 1; padding-top: 8px; }
+
+  .step-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .step-row.thought .step-label { color: var(--thought); }
+  .step-row.action .step-label { color: var(--action); }
+  .step-row.observation .step-label { color: var(--observe); }
+  .step-row.answer .step-label { color: var(--answer); }
+
+  .step-text { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+  .step-code {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    padding: 5px 14px;
+    border-radius: 8px;
+    margin-top: 8px;
+  }
+
+  .step-connector {
+    display: flex;
+    padding: 0 0 12px 26px;
+    opacity: 0;
+  }
+  .step-connector.visible { animation: connIn 0.3s 0.1s ease forwards; }
+  @keyframes connIn { to { opacity: 0.25; } }
+
+  .step-connector svg {
+    width: 12px; height: 20px;
+    stroke: var(--text-muted);
+    stroke-width: 1.5;
+    fill: none;
+  }
+
+  /* ═══ ANIMATED EXAMPLE ═══ */
+  .example-section { margin-bottom: 40px; }
+
+  .example-box {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+  }
+
+  .example-box.visible { animation: fadeUp 0.8s ease forwards; }
+
+  .example-bar {
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-elevated);
+  }
+
+  .example-bar .dots { display: flex; gap: 6px; }
+  .example-bar .dots span { width: 10px; height: 10px; border-radius: 50%; }
+  .example-bar .dots span:nth-child(1) { background: #FF5F57; }
+  .example-bar .dots span:nth-child(2) { background: #FEBC2E; }
+  .example-bar .dots span:nth-child(3) { background: #28C840; }
+  .example-bar .title { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+
+  .example-body { padding: 20px 24px; }
+
+  .example-prompt {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .example-prompt .icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--answer);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .example-prompt p { font-size: 14px; line-height: 1.5; color: var(--text); }
+
+  .ex-step {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  .ex-step.show { animation: exStepIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+  @keyframes exStepIn { to { opacity: 1; transform: translateY(0); } }
+
+  .ex-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding-top: 1px;
+  }
+
+  .ex-tag.thought { color: var(--thought); }
+  .ex-tag.action { color: var(--action); }
+  .ex-tag.observation { color: var(--observe); }
+  .ex-tag.answer { color: var(--answer); }
+
+  .ex-val { font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+
+  .ex-val code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+    background: var(--bg-code);
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  .ex-val.final { color: var(--answer); font-weight: 600; }
+
+  /* ═══ COMPARISON ═══ */
+  .compare-section { margin-bottom: 40px; }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .compare-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    opacity: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .compare-card.visible { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .compare-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+  .compare-card.winner {
+    border-color: rgba(5,150,105,0.25);
+    background: linear-gradient(180deg, var(--bg-surface) 0%, var(--observe-light) 100%);
+  }
+
+  .compare-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+
+  .compare-card.winner h4 { color: var(--observe); }
+
+  .compare-number {
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .compare-number.wrong { color: var(--action); }
+  .compare-number.correct { color: var(--observe); }
+
+  .compare-verdict {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .compare-verdict.fail { color: var(--action); }
+  .compare-verdict.pass { color: var(--observe); }
+
+  .compare-desc { font-size: 13px; line-height: 1.6; color: var(--text-muted); }
+
+  /* ═══ BENEFITS ═══ */
+  .benefits-section { margin-bottom: 32px; }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .benefit {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 18px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    opacity: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .benefit.visible { animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .benefit:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+  .benefit-icon { font-size: 30px; margin-bottom: 14px; display: block; }
+
+  .benefit h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .benefit p { font-size: 13px; line-height: 1.55; color: var(--text-muted); }
+
+  /* ═══ TRANSFORMATION ═══ */
+  .transform-section { margin-bottom: 32px; }
+
+  .transform-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .transform-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    opacity: 0;
+  }
+
+  .transform-item.visible { animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+  .t-from {
+    font-size: 13px;
+    color: var(--action);
+    text-decoration: line-through;
+    opacity: 0.7;
+    flex: 1;
+  }
+
+  .t-arrow { color: var(--text-muted); font-size: 16px; flex-shrink: 0; }
+
+  .t-to {
+    font-size: 13px;
+    color: var(--observe);
+    font-weight: 600;
+    flex: 1;
+    text-align: right;
+  }
+
+  /* ═══ FOOTER ═══ */
+  .footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+  }
+
+  .footer.visible { animation: fadeUp 0.8s ease forwards; }
+
+  .footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+  }
+
+  .footer p span { color: var(--thought); }
+
+  /* ═══ TABS & NAVIGATION ═══ */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .tab-button {
+    padding: 4px 8px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .tab-button.active {
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-sm);
+  }
+  .tab-button:hover { box-shadow: var(--shadow-xs); }
+
+  .tab-content {
+    position: relative;
+    /* subtract space used by header + tabs; adjust if needed */
+    height: calc(100vh - 240px);
+    overflow: hidden;
+  }
+  .tab-content section {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    margin-bottom: 0 !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* hide scrollbar visuals */
+    scrollbar-width: none; /* firefox */
+    -ms-overflow-style: none; /* ie11 */
+  }
+  .tab-content section::-webkit-scrollbar { display: none; }
+  section { display: none; }
+  section.active { display: block; }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 768px) {
+    .canvas { padding: 40px 20px 60px; }
+    .loop-ring-container { width: 340px; height: 340px; }
+    .ring-node { width: 160px; padding: 16px 12px; }
+    .ring-node.thought-node { top: -40px; }
+    .ring-node.action-node { right: -30px; bottom: -20px; }
+    .ring-node.observe-node { left: -30px; bottom: -20px; }
+    @keyframes particleOrbit {
+      0% { transform: rotate(0deg) translateX(130px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
+    }
+    .compare-grid { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .transform-grid { grid-template-columns: 1fr; }
+    .arc-arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="canvas">
+  <!-- ═══ HERO ═══ -->
+  <header class="hero">
+    <h1 id="heroTitle"></h1>
+    <p class="tagline">Reasoning + Acting = Powerful Problem-Solving Agents</p>
+    <p class="desc">An iterative framework where LLMs interleave 
+reasoning traces with tool actions, solving complex multi-step problems 
+with transparency and reliability.</p>
+  </header>
+
+  <!-- ═══ TAB NAVIGATION ═══ -->
+  <div class="tabs">
+    <button class="tab-button active" data-target="tab-loop">Loop</button>
+    <button class="tab-button" data-target="tab-steps">How It Works</button>
+    <button class="tab-button" data-target="tab-example">Example</button>
+    <button class="tab-button" data-target="tab-compare">Why ReAct Wins</button>
+    <button class="tab-button" data-target="tab-benefits">Benefits</button>
+    <button class="tab-button" data-target="tab-transform">Transformation</button>
+  </div>
+
+  <!-- ═══ TAB CONTENT CONTAINER ═══ -->
+  <div class="tab-content">
+
+  <!-- ═══ CIRCULAR LOOP ═══ -->
+  <section id="tab-loop" class="loop-visual-section">
+    <div class="sec-head visible" data-anim="fade">
+      <h2>The ReAct Loop</h2>
+      <p>Three stages cycling continuously until the problem is solved</p>
+    </div>
+
+    <div class="loop-ring-container visible" data-anim="fade">
+      <!-- SVG ring -->
+      <svg class="ring-svg" viewBox="0 0 480 480">
+        <circle class="ring-track" cx="240" cy="240" r="190"></circle>
+        <circle class="ring-flow thought-arc" cx="240" cy="240" r="190"></circle>
+        <circle class="ring-flow action-arc" cx="240" cy="240" r="190"></circle>
+        <circle class="ring-flow observe-arc" cx="240" cy="240" r="190"></circle>
+      </svg>
+
+      <!-- Orbiting particles -->
+      <div class="ring-particle p1"></div>
+      <div class="ring-particle p2"></div>
+      <div class="ring-particle p3"></div>
+
+      <!-- Center label -->
+      <div class="ring-center">
+        <div class="ring-center-label">Iterative</div>
+        <div class="ring-center-title">Loop</div>
+        <div class="ring-center-sub">Until problem is solved</div>
+      </div>
+
+      <!-- Nodes around the ring -->
+      <div class="ring-node thought-node visible" data-anim="fade">
+        <span class="node-emoji">🧠</span>
+        <h3>Thought</h3>
+        <p>Reason about the state. Plan the next step.</p>
+      </div>
+
+      <div class="ring-node action-node" data-anim="fade">
+        <span class="node-emoji">⚡</span>
+        <h3>Action</h3>
+        <p>Call a tool with precise parameters.</p>
+      </div>
+
+      <div class="ring-node observe-node" data-anim="fade">
+        <span class="node-emoji">👁️</span>
+        <h3>Observe</h3>
+        <p>Process the result. Refine understanding.</p>
+      </div>
+
+      <!-- Direction arrows -->
+      <div class="arc-arrow a1 visible" data-anim="fade">›</div>
+      <div class="arc-arrow a2" data-anim="fade">›</div>
+      <div class="arc-arrow a3 visible" data-anim="fade">›</div>
+    </div>
+  </section>
+
+  <!-- ═══ STEP-BY-STEP FLOW ═══ -->
+  <section id="tab-steps" class="steps-section">
+    <div class="sec-head" data-anim="fade">
+      <h2>How It Works</h2>
+      <p>Each cycle brings the agent closer to the answer</p>
+    </div>
+
+    <div class="steps-timeline">
+      <div class="steps-line"></div>
+
+      <div class="step-row thought" data-anim="step">
+        <div class="step-dot"><div class="dot-ring"></div><div class="dot-inner">1</div></div>
+        <div class="step-body">
+          <div class="step-label">Thought</div>
+          <div class="step-text">The agent reasons about the current state and plans</div>
+          <div class="step-code">"I need to calculate 15 × 8 first."</div>
+        </div>
+      </div>
+      <div class="step-connector" data-anim="fade"><svg viewBox="0 0 12 20"><polyline points="2,2 6,10 2,18"></polyline></svg></div>
+
+      <div class="step-row action" data-anim="step">
+        <div class="step-dot"><div class="dot-ring"></div><div class="dot-inner">2</div></div>
+        <div class="step-body">
+          <div class="step-label">Action</div>
+          <div class="step-text">The agent executes a tool call</div>
+          <div class="step-code">multiply(15, 8)</div>
+        </div>
+      </div>
+      <div class="step-connector" data-anim="fade"><svg viewBox="0 0 12 20"><polyline points="2,2 6,10 2,18"></polyline></svg></div>
+
+      <div class="step-row observation" data-anim="step">
+        <div class="step-dot"><div class="dot-ring"></div><div class="dot-inner">3</div></div>
+        <div class="step-body">
+          <div class="step-label">Observation</div>
+          <div class="step-text">The agent receives and processes the result</div>
+          <div class="step-code">→ 120</div>
+        </div>
+      </div>
+      <div class="step-connector" data-anim="fade"><svg viewBox="0 0 12 20"><polyline points="2,2 6,10 2,18"></polyline></svg></div>
+
+      <div class="step-row answer" data-anim="step">
+        <div class="step-dot"><div class="dot-ring"></div><div class="dot-inner">✓</div></div>
+        <div class="step-body">
+          <div class="step-label">Loop or Answer</div>
+          <div class="step-text">More steps? → Loop back to Thought. Solved? → Return the final answer.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ANIMATED EXAMPLE ═══ -->
+  <section id="tab-example" class="example-section">
+    <div class="sec-head" data-anim="fade">
+      <h2>Working Example</h2>
+      <p>Watch the agent solve a revenue calculation step-by-step</p>
+    </div>
+
+    <div class="example-box" data-anim="fade">
+      <div class="example-bar">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span class="title">react_agent.py</span>
+      </div>
+      <div class="example-body">
+        <div class="example-prompt">
+          <span class="icon">▸</span>
+          <p>"If 15 items cost $8 each and 20 items cost $8 each, what's the total revenue?"</p>
+        </div>
+        <div id="exSteps"><div class="ex-step"><div class="ex-tag thought">Thought 1</div><div class="ex-val">First I need revenue from 15 items at $8 each</div></div><div class="ex-step"><div class="ex-tag action">Action 1</div><div class="ex-val"><code>multiply(15, 8)</code></div></div><div class="ex-step"><div class="ex-tag observation">Observe 1</div><div class="ex-val"><code>120</code></div></div><div class="ex-step"><div class="ex-tag thought">Thought 2</div><div class="ex-val">Now I need revenue from 20 items at $8 each</div></div><div class="ex-step"><div class="ex-tag action">Action 2</div><div class="ex-val"><code>multiply(20, 8)</code></div></div><div class="ex-step"><div class="ex-tag observation">Observe 2</div><div class="ex-val"><code>160</code></div></div><div class="ex-step"><div class="ex-tag thought">Thought 3</div><div class="ex-val">Now I add both revenues together</div></div><div class="ex-step"><div class="ex-tag action">Action 3</div><div class="ex-val"><code>add(120, 160)</code></div></div><div class="ex-step"><div class="ex-tag observation">Observe 3</div><div class="ex-val"><code>280</code></div></div><div class="ex-step"><div class="ex-tag answer">Answer</div><div class="ex-val final">The total revenue is $280 ✓</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPARISON ═══ -->
+  <section id="tab-compare" class="compare-section">
+    <div class="sec-head" data-anim="fade">
+      <h2>Why ReAct Wins</h2>
+      <p>Comparing approaches to multi-step calculation</p>
+    </div>
+
+    <div class="compare-grid" data-anim="stagger" data-delay="200">
+      <div class="compare-card">
+        <h4>Zero-Shot</h4>
+        <div class="compare-number wrong"><span class="count-up" data-target="279">0</span></div>
+        <div class="compare-verdict fail">✗ INCORRECT</div>
+        <p class="compare-desc">LLM calculates in its head — no tools, no verification.</p>
+      </div>
+      <div class="compare-card">
+        <h4>Chain-of-Thought</h4>
+        <div class="compare-number wrong"><span class="count-up" data-target="279">0</span></div>
+        <div class="compare-verdict fail">✗ INCORRECT</div>
+        <p class="compare-desc">Shows reasoning but still relies on internal computation.</p>
+      </div>
+      <div class="compare-card winner">
+        <h4>ReAct</h4>
+        <div class="compare-number correct"><span class="count-up" data-target="280">0</span></div>
+        <div class="compare-verdict pass">✓ CORRECT</div>
+        <p class="compare-desc">Delegates each operation to a tool. Always accurate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BENEFITS ═══ -->
+  <section id="tab-benefits" class="benefits-section">
+    <div class="sec-head" data-anim="fade">
+      <h2>Key Benefits</h2>
+      <p>Why ReAct is the foundation of modern agent frameworks</p>
+    </div>
+
+    <div class="benefits-grid" data-anim="stagger" data-delay="150">
+      <div class="benefit">
+        <span class="benefit-icon">🎯</span>
+        <h4>Reliable</h4>
+        <p>Tools provide accurate results. No arithmetic mistakes.</p>
+      </div>
+      <div class="benefit">
+        <span class="benefit-icon">🔍</span>
+        <h4>Transparent</h4>
+        <p>Every reasoning step visible. Easy to debug and audit.</p>
+      </div>
+      <div class="benefit">
+        <span class="benefit-icon">📈</span>
+        <h4>Scalable</h4>
+        <p>Break complex problems into steps. Add tools as needed.</p>
+      </div>
+      <div class="benefit">
+        <span class="benefit-icon">🔄</span>
+        <h4>Flexible</h4>
+        <p>Works with any tools. Self-corrects. Adapts on the fly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRANSFORMATION ═══ -->
+  <section id="tab-transform" class="transform-section">
+    <div class="sec-head" data-anim="fade">
+      <h2>The Transformation</h2>
+      <p>ReAct turns LLMs from limited tools into capable agents</p>
+    </div>
+
+    <div class="transform-grid" data-anim="stagger" data-delay="150">
+      <div class="transform-item">
+        <span class="t-from">Brittle calculators</span>
+        <span class="t-arrow">→</span>
+        <span class="t-to">Reliable solvers</span>
+      </div>
+      <div class="transform-item">
+        <span class="t-from">Black boxes</span>
+        <span class="t-arrow">→</span>
+        <span class="t-to">Transparent reasoners</span>
+      </div>
+      <div class="transform-item">
+        <span class="t-from">Single-shot answers</span>
+        <span class="t-arrow">→</span>
+        <span class="t-to">Iterative thinkers</span>
+      </div>
+      <div class="transform-item">
+        <span class="t-from">Isolated models</span>
+        <span class="t-arrow">→</span>
+        <span class="t-to">Tool-using agents</span>
+      </div>
+    </div>
+  </section>
+
+  </div> <!-- end .tab-content -->
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ═══ HERO TITLE ═══
+  const titleEl = document.getElementById('heroTitle');
+  const parts = [
+    { text: 'Re', cls: 're' },
+    { text: 'Act', cls: 'act' }
+  ];
+  let ci = 0;
+  parts.forEach(part => {
+    const span = document.createElement('span');
+    span.className = part.cls;
+    [...part.text].forEach(char => {
+      const c = document.createElement('span');
+      c.className = 'char';
+      c.textContent = char;
+      c.style.animationDelay = `${0.5 + ci * 0.1}s`;
+      span.appendChild(c);
+      ci++;
+    });
+    titleEl.appendChild(span);
+  });
+
+  // ═══ INTERSECTION OBSERVER ═══
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const type = el.dataset.anim;
+
+      if (type === 'stagger') {
+        const delay = parseInt(el.dataset.delay || 150);
+        [...el.children].forEach((child, i) => {
+          setTimeout(() => child.classList.add('visible'), i * delay);
+        });
+      } else if (type === 'step') {
+        el.classList.add('visible');
+      } else {
+        el.classList.add('visible');
+      }
+
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('[data-anim]').forEach(el => obs.observe(el));
+
+  // ═══ EXAMPLE STEPS ═══
+  const stepsData = [
+    { tag: 'Thought 1', cls: 'thought', val: 'First I need revenue from 15 items at $8 each' },
+    { tag: 'Action 1', cls: 'action', val: '<code>multiply(15, 8)</code>' },
+    { tag: 'Observe 1', cls: 'observation', val: '<code>120</code>' },
+    { tag: 'Thought 2', cls: 'thought', val: 'Now I need revenue from 20 items at $8 each' },
+    { tag: 'Action 2', cls: 'action', val: '<code>multiply(20, 8)</code>' },
+    { tag: 'Observe 2', cls: 'observation', val: '<code>160</code>' },
+    { tag: 'Thought 3', cls: 'thought', val: 'Now I add both revenues together' },
+    { tag: 'Action 3', cls: 'action', val: '<code>add(120, 160)</code>' },
+    { tag: 'Observe 3', cls: 'observation', val: '<code>280</code>' },
+    { tag: 'Answer', cls: 'answer', val: 'The total revenue is $280 ✓', final: true },
+  ];
+
+  const exContainer = document.getElementById('exSteps');
+  stepsData.forEach(s => {
+    const row = document.createElement('div');
+    row.className = 'ex-step';
+    row.innerHTML = `<div class="ex-tag ${s.cls}">${s.tag}</div><div class="ex-val${s.final ? ' final' : ''}">${s.val}</div>`;
+    exContainer.appendChild(row);
+  });
+
+  const exBox = document.querySelector('.example-box');
+  const exObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      exContainer.querySelectorAll('.ex-step').forEach((step, i) => {
+        setTimeout(() => step.classList.add('show'), i * 380);
+      });
+      exObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.2 });
+  exObs.observe(exBox);
+
+  // ═══ COUNT-UP ═══
+  const countObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const duration = 1200;
+      const start = performance.now();
+      const startVal = 200;
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(startVal + (target - startVal) * eased);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      countObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
+
+  // ═══ TAB FUNCTIONALITY ═══
+  const tabs = document.querySelectorAll('.tab-button');
+  // select every section with a tab-related ID
+  const allSections = document.querySelectorAll('section[id^="tab-"]');
+  function activateTab(id) {
+    allSections.forEach(sec => {
+      if (sec.id === id) {
+        sec.classList.add('active');
+        sec.scrollTop = 0; // start at top of panel
+        // make any animated elements visible immediately
+        sec.querySelectorAll('[data-anim]').forEach(el => {
+          el.classList.add('visible');
+          // also re-observe in case animations depend on intersection
+          obs.observe(el);
+        });
+      } else {
+        sec.classList.remove('active');
+      }
+    });
+    // scroll the activated section into view under the tabs
+    const targetEl = document.getElementById(id);
+    // no page scrolling; content is shown inside fixed container
+    // if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activateTab(btn.dataset.target);
+    });
+  });
+  // show first tab by default
+  activateTab('tab-loop');
+
+});
+</script>
+
+
+</body></html>
