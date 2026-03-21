@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-03-21T21:44:47+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">AI Governance in the Age of Agents</title><link href="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/" rel="alternate" type="text/html" title="AI Governance in the Age of Agents" /><published>2026-03-17T00:00:00+00:00</published><updated>2026-03-17T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/"><![CDATA[<p>We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility to govern them. This article explores what it really means to direct, monitor, and manage AI in a world of agents: the frameworks, the risks, the lifecycle models, and the tooling capabilities every enterprise needs to think about.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-03-21T22:19:59+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">AI Governance in the Age of Agents</title><link href="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/" rel="alternate" type="text/html" title="AI Governance in the Age of Agents" /><published>2026-03-17T00:00:00+00:00</published><updated>2026-03-17T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/"><![CDATA[<p>We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility to govern them. This article explores what it really means to direct, monitor, and manage AI in a world of agents: the frameworks, the risks, the lifecycle models, and the tooling capabilities every enterprise needs to think about.</p>
 
 <h2 id="what-is-ai-governance">What Is AI Governance?</h2>
 
@@ -15,7 +15,7 @@
 <p>One of the most useful frameworks for operationalizing AI governance is the distinction between macro-level and micro-level governance — and understanding that organizations need both running simultaneously.</p>
 
 <figure>
-  <img src="/shipai/assets/images/posts/ai-governance-age-of-agents/macro-micro-governance.png" alt="AI governance operates at two levels: macro and micro" />
+  <img loading="lazy" decoding="async" src="/shipai/assets/images/posts/ai-governance-age-of-agents/macro-micro-governance.png" alt="AI governance operates at two levels: macro and micro" />
   <figcaption>AI governance operates at two levels: macro (policy, legal obligations, risk frameworks, organizational roles) and micro (specific requirements at each phase of the AI system lifecycle).</figcaption>
 </figure>
 
@@ -28,7 +28,7 @@
 <p>AI’s benefits — productivity gains, shorter time-to-value, the ability to process diverse data modalities, amortized operational costs — are compelling. But they come alongside a significant and growing risk surface that organizations must actively manage.</p>
 
 <figure>
-  <img src="/shipai/assets/images/posts/ai-governance-age-of-agents/risk-landscape.png" alt="AI risk categories" />
+  <img loading="lazy" decoding="async" src="/shipai/assets/images/posts/ai-governance-age-of-agents/risk-landscape.png" alt="AI risk categories" />
   <figcaption>AI carries three categories of risk: traditional risks inherited from classical AI, known risks amplified by generative AI, and entirely new risks intrinsic to generative models.</figcaption>
 </figure>
 
@@ -64,7 +64,7 @@
 <p>If generative AI expanded the risk surface, agentic AI is expanding it further — and in qualitatively different ways. Agents don’t just respond; they act. They call tools, take sequences of decisions, interact with external systems, and can cascade errors in ways that are difficult to trace or reverse.</p>
 
 <figure>
-  <img src="/shipai/assets/images/posts/ai-governance-age-of-agents/agent-risks.png" alt="Agent-specific risks" />
+  <img loading="lazy" decoding="async" src="/shipai/assets/images/posts/ai-governance-age-of-agents/agent-risks.png" alt="Agent-specific risks" />
   <figcaption>AI agents introduce entirely new risks (function-calling hallucination, redundant actions, attacks on external resources) while amplifying known ones (misaligned actions, lack of transparency, unauthorized use).</figcaption>
 </figure>
 
@@ -87,14 +87,14 @@
 <p>Before you can govern AI, you need to know what it is — and the EU AI Act has introduced the most comprehensive legal definition to date. Not every algorithm is an AI system under the Act, and the distinction matters enormously for compliance obligations.</p>
 
 <figure>
-  <img src="/shipai/assets/images/posts/ai-governance-age-of-agents/eu-ai-act-taxonomy.png" alt="EU AI Act taxonomy" />
+  <img loading="lazy" decoding="async" src="/shipai/assets/images/posts/ai-governance-age-of-agents/eu-ai-act-taxonomy.png" alt="EU AI Act taxonomy" />
   <figcaption>The EU AI Act's taxonomy distinguishes classical methods (regression, decision trees) from ML, Deep Learning, and Generative AI — each with increasing interpretability challenges and governance implications.</figcaption>
 </figure>
 
 <p>Classical statistical methods — regression, decision trees — sit outside the AI definition when they merely approximate functions or parameters in optimization problems. Machine learning, deep learning, and generative AI fall inside it. The key criterion is whether the system includes a learning component and is generally difficult to interpret. This matters because the vast majority of AI Act obligations apply specifically to high-risk AI systems — and most deployed systems won’t meet that threshold.</p>
 
 <figure>
-  <img src="/shipai/assets/images/posts/ai-governance-age-of-agents/eu-ai-act-risk-pyramid.png" alt="EU AI Act risk pyramid" />
+  <img loading="lazy" decoding="async" src="/shipai/assets/images/posts/ai-governance-age-of-agents/eu-ai-act-risk-pyramid.png" alt="EU AI Act risk pyramid" />
   <figcaption>The EU AI Act establishes a risk pyramid: prohibited practices at the top, high-risk systems subject to compliance requirements in the middle, and low/medium risk systems with no special requirements at the base.</figcaption>
 </figure>
 
@@ -103,7 +103,7 @@
 <p>A recurring theme in mature AI governance programs is that traditional ML models and generative AI models require fundamentally different governance approaches — even as they sit within the same organizational inventory.</p>
 
 <figure>
-  <img src="/shipai/assets/images/posts/ai-governance-age-of-agents/ml-vs-genai-governance.png" alt="ML vs GenAI governance" />
+  <img loading="lazy" decoding="async" src="/shipai/assets/images/posts/ai-governance-age-of-agents/ml-vs-genai-governance.png" alt="ML vs GenAI governance" />
   <figcaption>Traditional ML models (like credit risk scoring) and GenAI agents have different lifecycle shapes, risk profiles, and monitoring requirements — necessitating unified but differentiated governance approaches.</figcaption>
 </figure>
 
@@ -114,7 +114,7 @@
 <h2 id="the-classic-ml-lifecycle">The Classic ML Lifecycle</h2>
 
 <figure>
-  <img src="/shipai/assets/images/posts/ai-governance-age-of-agents/classic-ml-lifecycle.png" alt="Classic ML lifecycle" />
+  <img loading="lazy" decoding="async" src="/shipai/assets/images/posts/ai-governance-age-of-agents/classic-ml-lifecycle.png" alt="Classic ML lifecycle" />
   <figcaption>The classic ML model lifecycle runs from business problem through use case approval, model training, review, deployment, monitoring, issue management, change requests, and eventual decommission — each stage a governance checkpoint.</figcaption>
 </figure>
 
@@ -123,7 +123,7 @@
 <h2 id="the-genai-lifecycle">The GenAI Lifecycle</h2>
 
 <figure>
-  <img src="/shipai/assets/images/posts/ai-governance-age-of-agents/genai-lifecycle.png" alt="GenAI lifecycle" />
+  <img loading="lazy" decoding="async" src="/shipai/assets/images/posts/ai-governance-age-of-agents/genai-lifecycle.png" alt="GenAI lifecycle" />
   <figcaption>The GenAI lifecycle adds significant complexity: foundation model review precedes use case selection, prompt development becomes a governed activity, and evaluation criteria (faithfulness, groundedness, precision) are entirely new.</figcaption>
 </figure>
 
