@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -159,13 +159,8 @@
 
   <div class="flex flex-wrap gap-3">
     
-      <a href="" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
-        <svg class="w-4 h-4 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-        Spotify
-      </a>
     
-    
-      <a href="" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+      <a href="https://podcasts.apple.com/us/podcast/mihai-criveti-context-forge/id1832355436?i=1000754479816" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
         <svg class="w-4 h-4 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
         Apple Podcasts
       </a>
@@ -260,6 +255,624 @@
 
     <!-- Transcript -->
     
+    <div class="mb-12" id="transcript">
+      <details class="group">
+        <summary class="flex items-center justify-between p-5 bg-white rounded-card border border-black/[0.06] hover:border-black/10 transition-colors cursor-pointer list-none">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="font-semibold">Full Transcript</span>
+          </div>
+          <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><span class="ts">[00:01]</span></p>
+
+<p>All righty. Welcome to Ship AI, the podcast where enterprise AI gets real. I’m Manav Gupta, Vice President and CTO at IBM Canada. Every episode, I talk to builders, architects, and true leaders that are actually shipping AI to production. Not the hype, the real work. Today’s guest is Mihai Criveti Distinguished Engineer for Agentec AI at IBM.</p>
+
+<p><span class="ts">[00:21]</span></p>
+
+<p>uh colleague and a good friend of mine. And more importantly, rather I should say most importantly, the creator of Context Forge, IBM’s open source gateway for agents. Let’s get into it. Welcome, Mihai. Thank you, Manav All right. Okay, listen, let’s jump right in.</p>
+
+<p><span class="ts">[00:46]</span></p>
+
+<p>And I just came from a presentation slash at a conference this morning. I was invited to talk to some students. So we’ll get into your background and details and you know, the state of AI, et cetera. But I’m going to do this slightly differently compared to how I do most of the other podcasts. So if you’re a student starting in the world today, whether in business or in tech. What do you recommend to them?</p>
+
+<p><span class="ts">[01:15]</span></p>
+
+<p>your life is gonna be hard. So you need to get used to using AI and automation in your favor. Because here’s the unfortunate reality. Today AI works for people that already know how to do things without AI. So that’s a problem. And the second problem you’re going to face is that you need experience.</p>
+
+<p><span class="ts">[01:35]</span></p>
+
+<p>And the only way to get experience is to lack experience. um Experience failure, experience fixing those failures. by hand and then leveraging that experience with AI to solve problems. You’ve probably used AI today and you know that it stumbles. It has the tendency to build, for example, code that is incorrect or incomplete or will fail in spectacular ways. And when it fails, you need to debug it, you need to fix it, and you need to understand what the issue is.</p>
+
+<p><span class="ts">[02:07]</span></p>
+
+<p>And without having the experience, you’re going to struggle. So guess the first piece of advice is don’t let your traditional skills become obsolete. Make sure you know how to do things without AI before using AI to do anything. Okay, good point. um What about skills? So it’s no secret that academia is still struggling to understand and come to grasp with what to do with AI.</p>
+
+<p><span class="ts">[02:36]</span></p>
+
+<p>What is your take for undergrad level students or even master students that are first, second year, right, two years away from graduating? What skills are gonna be handy by the time they graduate? I don’t think AI really changes anything, it just accelerates the course. The same skills that you needed before, communication skills, collaboration skills, troubleshooting skills, debugging, reasoning, thinking, they all apply when you’re using AI. It’s just that AI gives you a way to accelerate whatever you were doing before. And sometimes that’s not a good thing because it can accelerate the process, but it skips the learning.</p>
+
+<p><span class="ts">[03:25]</span></p>
+
+<p>you’re not learning from that experience. So if you’re heading towards a brick wall, you’re just gonna head faster towards the brick wall and it’s gonna hurt. So I think in terms of skills, you still need to have the traditional skill set. You need to now know how to apply that traditional skill set at a scale that was never seen or possible before. If you’re troubleshooting one, if you think you had problems before, well, wait until you apply AI. Before you had one problem and you had to fix it, now you have a hundred concurrent problems in open terminals that you need to address concurrently.</p>
+
+<p><span class="ts">[04:04]</span></p>
+
+<p>But you said something really interesting there. So even for tech or com sci students, the skills you talked about communication, collaboration, debugging, problem decomposition, these are not easy skills to have. they’re not because they’re not one is not something that’s really taught in universities and is something obtained through experience. So we’re in a unique position now where we have to train a new generation of thinkers through a rapidly evolving process to the use of AI, helping them get the experience they need where they don’t have the time to absorb what it means because they can move very, very fast. I can, go off and open 20 terminals with cloud code and codecs and start working on 20 different features and then I merge them and I have a complete unmaintainable mess. And I wouldn’t know where to start to troubleshoot and debug it.</p>
+
+<p><span class="ts">[05:08]</span></p>
+
+<p>So you need to take a step back, you need to go through the same process and experience software developer would take. Make sure you have a development environment, a test environment, a stage environment, unit test, test coverage. Make sure you’re doing your integration tests, your UI tests, your performance tests, your penetration tests, your security testing along the way and apply that experience to basically build software scale using AI and agents. Now I’m singling out on the use case of software development, but this is no different for any other use case where you would apply AI. AI just gives you convenient and cheap, unexperienced labor. you now have to manage it.</p>
+
+<p><span class="ts">[05:53]</span></p>
+
+<p>So if previously you an individual contributor, now you’re managing armies of agents to support you, but those agents are untrained and don’t understand your needs. So that’s a great segue into, I’m gonna say, the real meat of the conversation that I wanted to have with you. So you built Context Forge, IBM’s gateway for agent-tik.ai, which supports a whole host of protocols, including MCP and A2A and a bunch of other things. So let’s go to the very beginning. what problem were you trying to actually solve that off-the-shelf tooling couldn’t solve?</p>
+
+<p><span class="ts">[06:33]</span></p>
+
+<p>Well, I’ll start with the problem I was trying to solve. um being forced to take vacation. That was in November of 2024 by my wife and I was at my in-laws and getting a lot of house chores. So, you know, help us with the artwork. So the problem I was immediately trying to solve is to look busy, which I did. I found a paper by Entropic and I was, you know, keen on implementing it and quickly wrote like the first version of what context forge eventually.</p>
+
+<p><span class="ts">[06:57]</span></p>
+
+<p>um evolved into like, you know, the vision was there. Obviously the code evolved tremendously since then. It’s something I’ve already built before without MCP. It’s something that, you know, internally we’ve had our own standards and we’re building agents and agents were talking to tools and they were talking to tools over a rest, not JSON or RPC, but similar kind of protocol. And learned a lot from that experience in terms of agents and tools need to have, you know, observability monitoring. need to have reliability in place with you know, routing and if tool is no longer available, then it needs to have a way to decouple itself from the agent, all these other kinds of things, right?</p>
+
+<p><span class="ts">[07:38]</span></p>
+
+<p>So I’ve implemented that for MCP and quickly understood that MCP as a protocol was insufficient, incomplete, and the implementation itself lacked a lot of enterprise features like, you know, security and authentication, authorization, observability, monitoring, reliability, high availability, routing. self-healing, remediation, the ability for the protocol itself to identify when a tool call has failed and then try something else or even the ability to have conversations beyond your traditional limit of tools, 10, 20, 128 being a hard limit, realistic being 10. So these are all the problems that I was trying to solve. Google release date to a other protocols like tune and code mode starting to emerge. So I took some steps back and realized that this is not just an MCP gateway problem. This is an ecosystem problem where regardless of protocol, you need to have a centralized point of control where you are in control of your agents, of your tools, of your LLMs, of your prompts, of your guardrails.</p>
+
+<p><span class="ts">[09:00]</span></p>
+
+<p>of availability, authentication and authorization through what is basically can only be called agentic middleware. I like that a lot. So, so let’s dive a little bit deeper. Maybe two questions. So, companies like Anthropic that’s building, writing this MCP protocol, they clearly have access to arguably the strongest model that there is in the world. And you said that the protocol is lacking all these things, observability and logging and telemetry and RBAC and so on.</p>
+
+<p><span class="ts">[09:33]</span></p>
+
+<p>Couldn’t they just use AI to add all of those very quickly into the protocol? Yes and no. here’s the problem, the genie is out of the bag and it’s already a project with the AI foundation within the Linux foundation, AI Alliance. And you know, there’s more than one party at the table dictating how protocols evolve. Once you’ve launched something in the world, you have to maintain it. You have to evolve it.</p>
+
+<p><span class="ts">[10:03]</span></p>
+
+<p>It’s hard to deprecate specifications. It’s hard to change the implementation. You also need to know what to ask and lacking enterprise experience, lacking experience with. customers directly or lacking experience in terms of integration needs, you’re not going to know what to ask it. And I think we’re overstating the capabilities of what AI can do, even with models that we might not even have access to, even with unlimited tokens, even with, you know, maybe they have a turbo mode where, you know, when they use their models, they’re a hundred times faster. It doesn’t really matter.</p>
+
+<p><span class="ts">[10:40]</span></p>
+
+<p>I think models themselves have severe limitations in terms of what they can accomplish. They’ve been trained on public data that is external, usually data from last year. They don’t have access to a lot of enterprise requirements. They don’t have access and they might treat all data the same way in terms of the bias, but what’s really their priority? So if you’re a bank, if you’re a financial institution, if you’re in any one of those organizations, your requirements, are going to differ than the rest of the world, than even the open source community. So I think there is no perfect answer here.</p>
+
+<p><span class="ts">[11:17]</span></p>
+
+<p>It’s a question of how the protocol evolves over time with a community to meet both community needs and enterprise needs at scale. So this is really innovators dilemma, within innovators dilemma, right? So you have on the one hand, ah wildly successful startup by all measures such as Anthropic building, one of the best models on the planet, but they too are faced with the same challenge that every enterprise faces, which is once you build a service, once you build a protocol, once you build a capability, you got to update it. with the community and bring the community along with us. It’s not just a matter of sending a prompt and spitting out some more tokens by the LLM. And look, in all fairness, once MCP was out, we got the community feedback, the next version and the next version and the next version and the next version of the MCP specification started to address many of those issues.</p>
+
+<p><span class="ts">[12:20]</span></p>
+
+<p>But that in itself introduced another issue because now there’s 20,000 MCP servers that I know of, you know, that have been documented on MCP.so and all these other kinds of sites because there is no centralized repository that all implement Other versions of the specifications incomplete versions of the specifications only implement transports like STDIO don’t fully or correctly implement, you know, things like co-auth and dynamic line registration. um So even if the specification has evolved to the point where now, you know, obviously it’s a lot more mature, more complete, it tackles many of these um requirements. The community itself hasn’t evolved and it becomes a problem because now it’s not just the servers. is the MCP clients, is the platforms that provide the middleware that all have different versions of the specification implemented and it is something to translate between those different versions. So the more you try to fix the problem, the worse it can become.</p>
+
+<p><span class="ts">[13:21]</span></p>
+
+<p>worse it gets, yeah. Okay, so talk to me about, and you and I were on a client call talking about context forge to some of the clients. And you sort of alluded to this, that clients are now beginning to LLM middleware, agentic AI middleware, which I firmly believe context forge really is the de facto. a a fast becoming a defective standard, judging by the number of stars it has on GitHub. So maybe for those who don’t are early in their adoption of AI agents, just tell us a little bit more about what Context Forge truly does. Sure.</p>
+
+<p><span class="ts">[14:11]</span></p>
+
+<p>So think of it as a piece of agentic middleware. It sits between your AI applications, whether those are just an application talking to an LLM or an agentic framework talking to its tools or an agent talking to another agent. Hence the support for different protocols you might see within context forage like MCP for addressing the tools aspect, protocols like A2A for addressing agent to agent communication, but also traditional protocols like REST, GRPC, that allow you to convert existing APIs into something that supports your agentic solutions. And from there, it has the ability to transform that communication. So for example, it can change the authentication, it can change the authorization, it can change the protocol specification, it can convert A2A to MCP, MCP to A2A, REST to MCP, it can act as a proxy, it can act as a gateway, it can do routing. So if one server is down, it can connect to another and It does a lot of this through our plugins framework.</p>
+
+<p><span class="ts">[15:09]</span></p>
+
+<p>So everything that goes into context forge, every API that we call, whether it tells tools, resources, prompts, A2A, agents, LLM, doesn’t really matter. Authentication authorization goes first into the plugins framework. From there, you can call what is basically known as a prehook, or before anything else executes, before even a log line is written in the logs, before it hits the backend API, it calls one or more of those prehooks. After the execution, can call a post hook. So on its way back, again, you can transform the output. You also have create, read, update and delete hooks and jobs just to complete the picture.</p>
+
+<p><span class="ts">[15:47]</span></p>
+
+<p>And through these plugins, we can change the behavior. So for example, we can use a guardrail like a PIA filter so that if you submit your social security number or personal identifiable information before it hits the log file, before it hits the LLM, before it hits your agent, before it hits your tool, that gets stripped out or even blocked or just audited or we trigger an observability platform where we send your data to an external observability platform. On its way back, and you can chain many of these plugins together, right? For example, on its way back, we’ve identified that your MCP tool or maybe a tune-based tool, because we support other protocols, has retrieved 1 million tokens. You you’ve requested a file, it retrieved 1 million tokens. You put that in your agenti breaks, or it’s going to be very expensive or very slow.</p>
+
+<p><span class="ts">[16:42]</span></p>
+
+<p>So what we can do is we can compress that output or we can just truncate it. So you have that flexibility. You can build your own plugins. Plugins are written using the same MCP specification. So if you know how to write an MCP server, STDIO, gRPC, StreamVal HTTP or Unix domain socket, you can create one of these plugins. You can write them in Python, can write them in Rust or in your own language of choices, say, know, gRPC or Sturmblat HTTP protocol, attach them to the gateway.</p>
+
+<p><span class="ts">[17:07]</span></p>
+
+<p>You now have control over your inputs and your outputs. And it’s not just security, right? Some of it is observability. Some of it can be improving resilience. It can also be, for example, evaluating the output of a tool call, identifying you’ve called the wrong tool. calling the right tool or converting to calls.</p>
+
+<p><span class="ts">[17:35]</span></p>
+
+<p>So one of the features that still experimental at this stage is code mode where we have a sandbox where we prototype the headers of MCP tools as either TypeScript and Python within a secure environment. So your agent can actually get access to an interpreter and then it can use a virtual file system and that can considerably improve the output of the agents and also reduces the token consumption. And all this is transparent. for an enterprise, you’ve got already, know, MCP servers, A2A, REST APIs, you want to go and mix them together. That’s what you can do. And you can even create what are known as virtual servers.</p>
+
+<p><span class="ts">[18:19]</span></p>
+
+<p>So when you say, I want three tools from the server, 10 tools from that other server, maybe an A2A agent, maybe a REST API. I compose a virtual MCP server with its own protocol specification, its own authentication. its own OAuth role-based access control, team management, can make it private, team and public and that’s what I can provide to my agents. So it’s basically that layer of routing and control that you get for your agents, your LLMs and your tools. Yeah. So to me, this is a fantastic and a near complete control plane for AI agents and honestly becomes a way for enterprises to not just build agents, but truly scale the adoption of agents, right?</p>
+
+<p><span class="ts">[19:08]</span></p>
+
+<p>Get the agents to talk to each other in a trusted, secure way that is reliable, that carries the authentication, as you said, that provides the telemetry and observability. so they can plug it into their existing monitor systems and provide assurance to the regulators that, you know, here is a full audit trail of the agents that participated or took an action on behalf of a user. So that is extremely cool. to think of context for just a point of enforcement. It’s not necessarily about defining the policy. It’s about enforcing the policy.</p>
+
+<p><span class="ts">[19:45]</span></p>
+
+<p>So for example, we’ve got plugins for Cedar and OPA, Open Policy Agent, where you can write your rego rule, where you can say, here’s the policy. I want to prevent Mana from accessing the GitHub tool on a Tuesday afternoon without prior approval from X, Y, and Z. ah only when the output contains A, B, and C. So it’s having that ability to define a policy and then by having this piece of middleware, you can control the policy. Cause this is one of the biggest challenges in AI that it’s hard to control or to enforce any kind of policy we have in an organization. If you don’t have a centralized point, right?</p>
+
+<p><span class="ts">[20:25]</span></p>
+
+<p>If network traffic doesn’t go to your firewall, you don’t have the ability to enforce the rules. So it’s that centralized as opposed to having a distributed model for agents and tools within your organization. Yeah, makes sense. Now you raised the question around evaluation. So do you trust another agent to then evaluate your agent? Does an LLM evaluating itself have bias?</p>
+
+<p><span class="ts">[20:52]</span></p>
+
+<p>So where does agent evaluation go from here? It’s very tricky. think at the end of the day, it’s the responsibility of the human who is one building the agent, second calling the agent and third governing the agent to provide a complete picture. I think if you look at the way most evaluation frameworks work, it’s basically LLME file. You are an agent that evaluates the output of other agents. Here is your input.</p>
+
+<p><span class="ts">[21:25]</span></p>
+
+<p>Here is your output score, how this agent did on a scale of one to 10. And you’re probably using a worse model. the model was that the agent itself uses for reasons of cost. Now you can build an amazing evaluator by using free models. I’m going to use the latest Opus 4.6 with the latest GPT 5.2, 5.3 codecs, whatever.</p>
+
+<p><span class="ts">[21:40]</span></p>
+
+<p>um With the latest Gemini model, I’m going to ask them independently to evaluate and then I’m going to blend the results together. I’m going to do this 20 times in a row. I’m going to spend all the tokens in the world and I’m going to have a good evaluation and maybe even connect it to a rag which has more context and I’m going to come back with an amazing evaluation and I’m going to blend it with human feedback and then I will know for sure if the agent has executed that successfully and that’s going to cost you a hundred times more than the prompt itself. So the question is what sort of accuracy do you need? um What performance implications? are expected from your evaluations.</p>
+
+<p><span class="ts">[22:23]</span></p>
+
+<p>For example, is this an inline eval? Like, you know, the agent is doing the work, then it asks, have I finished the work? And yeah, you have, good, return the result. You can’t spend too much time on the evaluation. I think many of these problems are going to get easier over time as models are becoming cheaper, faster, um more accessible, can run things in parallel. um But at present, much of this domain relies on, I would say, spending a lot of tokens to get to the right evaluation.</p>
+
+<p><span class="ts">[22:52]</span></p>
+
+<p>And it’s never sufficient to rely on just the model to evaluate. So let me give you another example. um You know when Entropic used all those tokens, 10,000 tokens, however, to write the C compiler and it passed the test suite, but it couldn’t compile Hello World. So. In a same way, I’m asking my evaluator, my evaluation agent, if I’ve generated correct code. But if your evaluation tool doesn’t have the ability to run the code, then it’s just making it up, right?</p>
+
+<p><span class="ts">[23:29]</span></p>
+
+<p>It’s like me giving you a piece of paper with my code and saying, what else does this code look like? I say, what the hell am I? I’m compiler, like go compile it. It’s like, okay, then go unit test it, then go test it, then go run a functional test. So. You also have to consider what you’re evaluating and how you can include non-LLM based evaluation metrics.</p>
+
+<p><span class="ts">[23:49]</span></p>
+
+<p>know, if you’re writing code, does the code compile? Does it the linter? ah Does it pass unit testing? Does your container image build? Does your container image get deployed? Does it deploy into your environment?</p>
+
+<p><span class="ts">[24:06]</span></p>
+
+<p>Does load testing pass for 10 hours? So the question of evaluation can go from here’s a problem that evaluates it with a low cheap model to I’m going to deploy the whole end to end stack and come back with the results and then ask a human and then say that this has been cleared. And unfortunately, the more I used AI, the more I realized that you need to have extremely tough criteria before you trust it because you’re not verifying it line by line by line. If you’re generating code or if you’re trusting an answer that, you know, You’re trusting deep research. It went off, it studied a hundred websites. It came back with a summary.</p>
+
+<p><span class="ts">[24:48]</span></p>
+
+<p>It’s like, that accurate? I’m not going to go read all those websites. So I’d better have a good evaluation suite. Yeah, yeah. So it’s a multifaceted, multilayered problem. Okay, so switching topics to, or switching gears rather, so let’s talk about scaling and enterprise reality.</p>
+
+<p><span class="ts">[25:01]</span></p>
+
+<p>So you’ve said in the past that real progress is not on the models themselves any longer. It’s on the tooling, on the prompts, on the agents, and on the MCP servers. So, saying. And on the people as well. And on the people as well. So what does that mean practically for an enterprise CTO, head of AI, et cetera, trying to figure out where to place their bets.</p>
+
+<p><span class="ts">[25:27]</span></p>
+
+<p>What should they do? Well, here’s the unfortunate reality. um After what, four years of working with both customers and applying AI internally, I’ve realized that large language models are insufficient and don’t give you very limited productivity for enterprise use cases. Very limited. And the reason for that is that large language models have been trained on public data from last year. Your data, unless something went seriously wrong, ah is not public and you probably want to take business decisions.</p>
+
+<p><span class="ts">[26:08]</span></p>
+
+<p>It better not be public, right? And you probably want to take decisions based on data from now that is current and relevant. So virtually every single implementation I’ve seen of AI within our organization relies on agent API. The difference being that it has the right tools to inform itself on your enterprise data, on your internal systems. on current relevant up-to-date data and even the code that you’re writing, for example, unless it’s an open source project that has been ingested into, you know, the LLM corpus itself, you’re going to have specific libraries, you’re going to have specific tools, you’re going to have internal rules and regulations and coding standards, making it very complex to actually use AI for real world enterprise applications that go beyond. a simple POC.</p>
+
+<p><span class="ts">[27:06]</span></p>
+
+<p>once you’re in Brownfield, you’re maintaining an existing legacy application that depends on internal knowledge and processes and documentation and all your requirements are in your JIRA and all of your code is in your internal GitLab and all this kind of things come to pass, you realize that for an enterprise to be successful in adopting AI, they need to have a clear strategy for agentic AI, a well governed and managed strategy for AI to access its enterprise tools with the right identity and access management. And I’ve seen very few organizations actually have a clear solution because they’re CISO and their CIO office say, no, you cannot connect Gemini or Opus or whatever to SAP. cannot do this. And honestly, I respect that. It makes sense. wouldn’t give…</p>
+
+<p><span class="ts">[28:00]</span></p>
+
+<p>direct access to these sources of data without some layer of governance and observability and management and everything else in between. So if an enterprise wants to be successful in adopting AI, they need to have a clear strategy for agents, tools, and getting their data plus the model to give them business value and preferably a way to evaluate that has been done correctly. Makes sense. Okay. Now let’s talk about in the past, you have compared visual agent programming. So I know N8n and Langflow were all flavored Azure, but you’ve compared the visual no code, low code to the old UML promise, right?</p>
+
+<p><span class="ts">[28:40]</span></p>
+
+<p>They are attractive, but they don’t scale. So in all the three, four years that you’ve been working on this, what does production grade enterprise or what does production grade agent architecture actually look like? speeds. You need to have one speed for rapid prototyping where think visual tools help and they help the general population go and quickly build an agent and play and understand the concepts and visualize it. But once you need to build it at scale, it all goes back to code. Now here’s the good news.</p>
+
+<p><span class="ts">[29:21]</span></p>
+
+<p>ah Previously we relied on visual aids because they made the process easier to understand and easier to build for the human. Turns out it’s more difficult for the LLM. Because now whatever is a visual representation is probably some horrifying JSON or XML or something behind the scenes to represent those boxes. agents actually, know, LLMs natively deal better with language and code. So if you’re using agents to write your agents, turns out that the programmatic approach tends to scale more. Now that’s not to say you should build every single one of your agents as a one-off.</p>
+
+<p><span class="ts">[29:59]</span></p>
+
+<p>you need to have a runtime, which is reusable, which is reproducible. So I strongly believe that enterprises need to have a solution for both rapid prototyping and for coded agents, preferably with some kind of a reproducible runtime where I give it a configuration and it applies that configuration and you can extend it and so on and so forth with a standardization mechanism. So I think Antropicus has done something amazing, which is they’ve managed to enforce MCPS as standard. across the vast majority of, I would say, agentic platforms and solutions. And, you know, even their biggest competitors have adopted MCP as the standard. Now, it’s not sufficient, but it’s a start.</p>
+
+<p><span class="ts">[30:44]</span></p>
+
+<p>So enterprises can start to say, hey, we’re standardizing on A, B, We’re going to give our developers the two options, the visual no code, low code, and the coded agent approach. going to do it in a way which is governed, but behind the scenes they all go back to the same agent library, the same tools library, the same protocols, the same observability, the same monitoring, regardless of how the development experience looks like. So you mentioned a couple of times some of the things that are missing from the MCP protocol, despite it’s let’s call it reasonable adoption, if not quite mass adoption, just yeah. Does MCP as a protocol survive you think? So if you think about, if you think about just to expand on the question, if you think about any reasonable number of agents or MCP servers that anybody writes and then you’re plugging those into your end application. the way the spec is written, the LLM is going to pull all the tools that the server or server support eating into the context window.</p>
+
+<p><span class="ts">[31:47]</span></p>
+
+<p>So, and then there is this whole narrative around skills versus tools. So what’s your take on that? So here’s my thinking. An imperfect standard is better than no standard. And MCP itself can actually work very well with approaches like using Toon, for example, to reduce the tokens or using code mode. And you’ve seen some papers from Entropic, you’ve seen some papers from CloudFair.</p>
+
+<p><span class="ts">[32:22]</span></p>
+
+<p>ContextForge itself has implemented code mode as well. Right, we have a sandbox and we did that sandbox. Yes, it’s still experimental and we’re using the GeoVisor and you know. firecracker and jails and we can expose code as Python or TypeScript or Python and there’s a virtual file system and so on and so forth, reducing the number of tokens and you can call hundreds of tools. So that stuff we’ve done. What we’ve realized is that you still need MCP.</p>
+
+<p><span class="ts">[32:48]</span></p>
+
+<p>Because you need to build on a standard and there’s no point to rewrite that standard. You can expose what is MCP in a different interface to the agent. So I would say I’m not as worried about, you know, many tokens are consumed by JSONRPC and how it’s exposed and so on and so forth, I do think you can evolve things like comode on top of MCP itself. ah There’s already such momentum in the community. If you look at Docker when it came out, it wasn’t necessarily innovative, it built on the same Cgroups and namespaces and Linux kernel technology, just provided a nice developer experience. It provided that free Docker hub and everybody started to build the containers and he provided the ecosystem and again, massive adoption.</p>
+
+<p><span class="ts">[33:30]</span></p>
+
+<p>And then he became the de facto standard. And while the initial implementation wasn’t perfect, I think over time it evolved. He got great community traction. became a standard and now it’s amazing. So I think, well, there’s some debate on that, but ah I see MCP the same way. uh extent.</p>
+
+<p><span class="ts">[33:59]</span></p>
+
+<p>Well, no, but you know, open container, you know, interface and specifications and you know, maybe you’re using Docker, Podman and Kubernetes or, you know, Lima and doesn’t matter as much, but it’s more of a question of there’s 20,000 servers that were developed using the MCP specification. You’re going to get more value by turning those servers into code mode or something else and leveraging the existing investment. Yeah. Then waiting another two years for somebody to go off and implement a new version. So I think MCP is here to stay. think gateway is here to stay.</p>
+
+<p><span class="ts">[34:31]</span></p>
+
+<p>I think both are going to evolve in, know, seemingly similar directions. I think the concept of middleware that can do the translation is going to become a lot more important. So, know, AI gateways, agent gateways, MCP gateway, tool gateway, gateway, gateway, whatever gateway that can do the translation is going to become increasingly more important as these protocols continue to evolve over time. What do you think happens when co-work and real agents that can impersonate a human, when those things come in? So, cloud co-work, codecs, whatever, Quen coder, I’m sure there are others, I’m sure there is a co-pilot, co-work mode of some kind. What’s your take on what happens to knowledge workers when…</p>
+
+<p><span class="ts">[35:18]</span></p>
+
+<p>as inefficient and as imperfect or insufficient the LLMs might be, but especially with multimodal LLMs that can execute a task on a user, on a knowledge worker’s behalf. They can open up tools and browsers and navigate websites and make sense of data. What happens to the workforce? I first I’m more worried about your data or my data to begin with. ah somebody, you know, that old joke that, you know, I work in IT, I don’t have any smart devices in my home. You know, I don’t trust the bloody things.</p>
+
+<p><span class="ts">[36:03]</span></p>
+
+<p>Bluetooth, no, no, no, give me a traditional cable that I can see and touch and give me a big power switch. ah I feel the same way about all these agents where… without the right level of security and governance and so on. I will never trust it with my data.</p>
+
+<p><span class="ts">[36:18]</span></p>
+
+<p>It’s like, here’s my inbox. Here’s my bank account number. Go and manage this and buy this from me and go do this for me. It’s like, whoa, whoa, whoa, whoa, hold on. This stuff is probabilistic. It might find the best way to optimize your email account is by deleting all of your emails or it might start with the right intention and then run out of tokens and then compact the context, forget the instruction that says don’t delete my bloody emails and then delete all of your emails.</p>
+
+<p><span class="ts">[36:39]</span></p>
+
+<p>That’s one way to get to inbox zero. So I would be a bit skeptical in terms of trusting these tools for real work as of today without governance, compliance, security, strong sandboxing and so on. You can get value, can get a lot of value for specific use cases, but you have to have the right levels of isolation and governance and so on. So I would say for specific use cases, it’s easier. enforce the right governance and to enforce the right guardrails the moment he starts you know you have access to everything yeah but how are you managing your context and how good is the output and does it do anything that you shouldn’t do and can you explain the output so that’s one way to look at it um i think over time we’re gonna get there just because models are gonna be you know cheaper more powerful and so on and so forth it’s still important to know that many processes cannot be accelerated through the use of AI. So even AI software development, I found is at times just as slow as traditional software development.</p>
+
+<p><span class="ts">[37:48]</span></p>
+
+<p>behind, must be crazy. What are you talking about? I just built a website in minutes. no, talk enterprise software, millions of lines of code. Do you need to compile your code? It’s like, yes, I need to, all right.</p>
+
+<p><span class="ts">[38:09]</span></p>
+
+<p>Add half an hour compilation time. Do you need to run Sonar, Cuban, linters and static analysis? Well, yes. All right. Add that to the time. Do you need to build a container?</p>
+
+<p><span class="ts">[38:20]</span></p>
+
+<p>It’s like add that to the time. Do you need to deploy the container? Add that to your time. Cause otherwise you’re talking to your AI model and say, please write me this feature, make no mistakes. And you only have access to a text file. You cannot run any tools.</p>
+
+<p><span class="ts">[38:33]</span></p>
+
+<p>You can’t build your code. You can’t test your code. You can’t run playwright to test the UI. You have to give it access to all these tools. But that’s the part that takes actually time. So if previously you have a GitHub repo, you have a hundred developers, how many people are doing the co-merges?</p>
+
+<p><span class="ts">[38:47]</span></p>
+
+<p>Well, probably very few. Like even in the Linux kernel, right? It’s Linux store walls who think, hey, this goes in, this doesn’t go out. You still have those bottlenecks. And if you say, I don’t need any guardrails, I’m going to…</p>
+
+<p><span class="ts">[39:06]</span></p>
+
+<p>you know, eliminate humans, then just try and see what happens. I’ll stand far, far away and enjoy the process. So AI doesn’t necessarily make things faster. There’s still the same bottlenecks that were there before. It makes it more efficient. So if previously you needed, you know, 10 people, now you need four, you still need the same people to provide the governance and so on.</p>
+
+<p><span class="ts">[39:28]</span></p>
+
+<p>The problem is you need the experts. That’s the challenge for a lot of new folks joining the field, which is you still need the experts, the Linux store walls, the person doing the merges, the seniors who have the experience in troubleshooting and debugging and security and all the other kind of things. Folks who are doing basic manual testing or folks who are previously just executing a feature somebody has written with users to rig substance criteria, put it in GitHub. and somebody else is doing their testing and they’re just given a task. Well, I can give that as a prompt to the agent and get similar results. So folks need to become more end to end in terms of their skillset instead of being overly specialized and you need to get expertise fast.</p>
+
+<p><span class="ts">[40:16]</span></p>
+
+<p>I don’t know what this is going to do to the workforce in the next five years. Yeah, I think that’s the big challenge. So let’s take a step back then. So you went from being a OpenShift cloud native architect and architecture to our distinguished engineer from IBM for AI agents. What’s the thread connecting these? What did cloud native teach you that directly applies to AI agents?</p>
+
+<p><span class="ts">[40:47]</span></p>
+
+<p>Well, think part of it is just the importance of good quality software crossmanship and architecture in terms of anything. So I was using a lot of Python and Go and all these programming languages in my previous uh role to build enterprise applications, to automate. I was writing a lot of Terraform, a lot of Ansible, a lot of CACD and pipelines and all the other things. I had that experience of understanding that, you know, you need to have, you know, stronger cube and you need to have pilot and buy hint and flick and eat and all that. Everything in the process. So whenever you have to do, you know, deploy a new version of your application, it goes through the pipeline.</p>
+
+<p><span class="ts">[41:32]</span></p>
+
+<p>Everything is automated. Everything is end to end. as I started to adopt AI and you know, chat GPT came out in November of 2022 and all these other kinds of things. I realized that first the quality of anything that was generated by AI was horrifying. And if I were to take it through the same pipeline, through the same infrastructure, it wouldn’t pass. And over time, I’ve learned that to get any kind of meaningful result from using AI at scale beyond some basic vibe coding, you need to have the most stringent process for software development, deployment, architecture, testing, put in place to make sure that you’re successful.</p>
+
+<p><span class="ts">[42:20]</span></p>
+
+<p>So for example, you see in ContextForge, we have make commands that can spin up a Docker Compose environment, a Docker environment, a Podman environment, a Minikube environment, install and upgrade using Helm, install across different versions using Helm. There’s more than 1,000 make commands just to help with static analysis, linting, deployment testing automation. There’s a GitHub actions pipeline with more than 60 checkers that everything gets taken true. So all those lessons from building and deploying enterprise software scale where you have, you know, development tests, staging, production environments, and you apply the same best practices is going into my experience with using generative AI. I’m applying the same criteria I would for a, you know, enterprise banking or financial services environment with the most stringent set of requirements. And I found that even with all of that in place, the models will struggle and they will make a lot of mistakes.</p>
+
+<p><span class="ts">[43:24]</span></p>
+
+<p>You don’t see those mistakes until you’re in production and you realize, Hey, why is my application only doing two transactions per second when I was expecting 20,000? Well, because every time it talks to your database, goes select star from this, select star from this, select star from this for every one of the users. And you’re like, that’s horrifying. Right. Well, do you have any kind of load testing in your CI CD pipeline? Well, no.</p>
+
+<p><span class="ts">[43:56]</span></p>
+
+<p>It’s like, okay. um Are you doing any kind of code review with maybe another agent to look at things from the performance domain? It’s like, well, no. What do you expect? Are you doing any kind of debugging where you might use, know, PySpy for example, SQL Alchemy has echo mode and you’re using explain in Postgres SQL and you’re giving those tools to the agent, right? Well, no, because I’m saying, please write code, make no mistakes.</p>
+
+<p><span class="ts">[44:21]</span></p>
+
+<p>Well, how would you debug this as a human? Well, if it’s SQL performance in Postgres SQL, I use explain statements and so on and so forth. Well, give those tools to your agents, make sure they have nice make commands. to automate that process, make sure there’s an LLMS.txt for all these kinds of things. And then for every single request that goes into your pipeline, you do these hundreds of different checks.</p>
+
+<p><span class="ts">[44:41]</span></p>
+
+<p>So what previously was a VibeCode deprompt now turns into a hundred different prompts with a thousand different tools, with a pipeline in place and the human review at the end. If you apply that process, you’re gonna be successful, but you have to treat AI as an army of interns. basically what you just described is the process to turn slop into usable code. Right? Okay. And it’s sometimes slower than handwritten code.</p>
+
+<p><span class="ts">[45:18]</span></p>
+
+<p>That’s the interesting part of it, that it’s not necessarily cost effective because you’re spending a lot of tokens. ah It’s not necessarily going to be faster. What you can do is basically do, you get flexibility in terms of resources. One developer, hundred developers, more than one tab in my TMAX. How many developers do I need for this program? Right?</p>
+
+<p><span class="ts">[45:46]</span></p>
+
+<p>the to work around the clock and shifts. um You get a lot of flexibility out of it. um But what you don’t get is the expertise. You still need somebody that understands how all this stuff ties together and you can’t cheat. You can’t just say, I’m gonna vibe code this. You need to software engineer it, take it through the same process and pipeline and do the work.</p>
+
+<p><span class="ts">[46:04]</span></p>
+
+<p>So the sound engineering principles that a student may learn in ComSci and other programs, engineering programs, they’re still as important, if not even more important, especially to manage and control this army of agents and the AI generated code. I would say if you’re a student, do no AI Tuesdays. Just pick a day during which you go and build something where you use zero AI, no chat GPT, no Google AI, summary, nothing. Just learn the traditional hardcore way, understand how stuff works because you will need it. And even if it’s just to prompt the AI, please use PySpy to investigate the performance issues in my Python code. How do you know to prompt to that if you’ve never done that before?</p>
+
+<p><span class="ts">[47:01]</span></p>
+
+<p>you wouldn’t even know what to prom. Yeah, that’s a good point. Okay. So we covered a lot around code develop around agent development, writing code, controlling AI, monitoring. Where do you see, where do you see the embodiment of AI and physical AI happening? When do you see it?</p>
+
+<p><span class="ts">[47:24]</span></p>
+
+<p>Did you see it happening anytime soon? mean, clearly you have Elon Musk’s. Tesla with their optimus humanoids. And then there is a whole army of startups in China from Unitary and a bunch of others. Where do you see that inflection point happening? I don’t think we’re anywhere near that in reality.</p>
+
+<p><span class="ts">[47:45]</span></p>
+
+<p>If you look at what so-called AI is today, it’s a token prediction mechanism. It’s an amazing one. And with agents and tools, it can do some amazing things. You’re prompting it. It does something with that information. It returns text and then nothing happens.</p>
+
+<p><span class="ts">[48:01]</span></p>
+
+<p>It has no ability to think, to reason, to act on its own, to prompt itself, or even to integrate information from different sources, vision, audio, senses. context, memory, integrating all of those into one cohesive response and action is elusive. And I know you can build an agent with tools and you give it vision and so on. It all boils down to text. Not very efficient, doesn’t really work, is not really thinking. And if you look at how AI works, what happens if I don’t prompt it?</p>
+
+<p><span class="ts">[48:31]</span></p>
+
+<p>Does it do anything? It’s like, no, I’m always thinking sometimes stupid things, but I’m always thinking there’s always something happening there, right? There’s always input. There’s always output. Maybe the output is do nothing, but that’s output. And I don’t think we’re nowhere near that even in terms of compute, even in terms of capability.</p>
+
+<p><span class="ts">[48:55]</span></p>
+
+<p>Now, that’s not to say we’re not going to have some automatons running around and, know, moving boxes in a factory. for Amazon or whatever else, third point things. But I think right now AI is nowhere near the point where I say, you have real AGI with autonomy, with the ability to think and reason. it’s still just executing an input, generating an output, and then nothing happens. You could continuously feed one to the other, but what you get after a couple of iterations is just noise. possible to manage.</p>
+
+<p><span class="ts">[49:38]</span></p>
+
+<p>Yep. man. Listen, this is this has been an amazing conversation. Final question for you before I let you go. So three GPTs and pregen AI and now are you spending less time working or more? I have become an AI vampire, so I think I haven’t left the house in like a year outside of, know, basic, you know, I haven’t taken a vacation since 2024.</p>
+
+<p><span class="ts">[49:56]</span></p>
+
+<p>I’m working 18 hours a day. I’ve got 20 terminals open and during dinner, go, oh, one more prompt. I always carry a device with me to give it. Cause it’s so convenient. Well, yeah, I leave this prompt and I’ll get it back when I, so I think I’m seeing this two camps, right? The so-called AFM power camp for you’re so sucked into the ecosystem and you’re being prompted back all the time.</p>
+
+<p><span class="ts">[50:30]</span></p>
+
+<p>You’re, you’re prompting the AI, the AI prompts you back. Like it’s like, here’s my reply. like, no, that’s wrong. Let me give you another thing. So I think. AI has made work a lot more complex.</p>
+
+<p><span class="ts">[50:51]</span></p>
+
+<p>um It’s causing people to work a lot more than before. Part of it is that gamification aspect. One more prompt, one more thing. It becomes even addictive. I’m…</p>
+
+<p><span class="ts">[51:08]</span></p>
+
+<p>getting a lot of value from it. So I can’t question a productivity and I’m seeing massive productivity gains. um that real productivity that is measurable versus productivity that we. it’s real productivity. It’s measurable. If I look at the impact and function points and unit points and story points and deliver them value and all the other things.</p>
+
+<p><span class="ts">[51:29]</span></p>
+
+<p>Yeah. You know, a hundred times more productive than I was before. Right. But I’m working three times more than I was before. So from a personal level, it’s difficult to keep up and the technology keeps changing all the time and it’s nowhere good enough. to point where you can leave it unsupervised.</p>
+
+<p><span class="ts">[51:52]</span></p>
+
+<p>Yes, there’s things like raw loops and all the other kinds of things, but if you actually use them at scale, they break and they break in ways that need human input. So I kind of looking forward to see the next two or three years of this technology evolving to the point of where things either stabilize or we can trust the AI more to verify itself. So it needs less. human input to get the good results. So listen, I lied. You know, one more question in the same vein or one more prompt.</p>
+
+<p><span class="ts">[52:26]</span></p>
+
+<p>So somebody who’s as seasoned as you, with the long rich history that you have, who’s now working three times as many hours as before, and I know you don’t have kids, but those that are undergrad kids or worse, those who have kids and the kids are still in school, what do you recommend they do? stuff. mean, there’s always the fear of missing out. Right. And in this field, maybe if you do nothing for one year, you’re not missing out on anything. You just pick it up as everybody else and anybody else.</p>
+
+<p><span class="ts">[53:05]</span></p>
+
+<p>Um, so I guess it all depends on your internal motivation. I think the biggest cause of concern is the hype around the technology. Yes, you can get really good value out of AI, but one you need to put in twice or three times to work in the focus. As I’ve mentioned, it’s not just the hours. I’ve got terminals on every computer and I’m prompting this and this and this and continuous attention span. It’s a considerable investment.</p>
+
+<p><span class="ts">[53:39]</span></p>
+
+<p>So I think long-term… there’s too much hype saying that we can do all this with the technology, but only a few people can actually employ it to get those results, which are good. And you need a combination of folks who already have the experience to be able to do it without the use of AI to get genuinely good results. There’s always this assumption that you’re gonna get a junior with no experience.</p>
+
+<p><span class="ts">[54:09]</span></p>
+
+<p>You’re gonna get them AI model they’re gonna prompt their way towards a vibe coded app or a solution and you’re going to get a meaningful result and I haven’t seen any evidence of that so That’s an interesting perspective. Listen, Mihai, thank you so much. Thanks to everybody for listening to Ship AI. If you enjoyed today’s conversation with Mihai, subscribe wherever you get your podcasts. Follow me on LinkedIn for more on enterprise AI, agentic systems, and what it takes to really go from prototype to production. Until next time, keep shipping.</p>
+
+<p><span class="ts">[54:47]</span></p>
+
+<p>We’re done.</p>
+
+          </div>
+        </div>
+      </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+    
+    
+    <div class="mb-12">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="font-serif text-2xl font-bold">Clips & Highlights</h2>
+          <p class="text-sm text-muted mt-1">22 clips from this episode</p>
+        </div>
+        <a href="/shipai/clips/" class="text-xs font-medium text-accent hover:underline">View all clips</a>
+      </div>
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Shorts</h3>
+      <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide mb-6">
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI: Accelerating Skills, Not Replacin...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:58</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI: Accelerating Skills, Not Replacing Them</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI in Enterprise: Beyond Public Data</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:46</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI in Enterprise: Beyond Public Data</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI: Not Faster, Just More Efficient</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:59</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI: Not Faster, Just More Efficient</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's Limitations: Beyond Public Data</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:41</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's Limitations: Beyond Public Data</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's Limitations: Just Token Prediction</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:50</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's Limitations: Just Token Prediction</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's Role in Software Development</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">1:00</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's Role in Software Development</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Software Development: Not Faster, ...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:52</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Software Development: Not Faster, Just More Efficient</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Vampire: Working 18 Hours a Day</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:50</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Vampire: Working 18 Hours a Day</p>
+          </a>
+        
+      </div>
+      
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Deep Dives</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI in Enterprise: Beyond Large L...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">3:05</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI in Enterprise: Beyond Large Language Models</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI's Impact on Knowledge Workers</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">5:41</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI's Impact on Knowledge Workers</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI's Limitations in Protocol Evo...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:18</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI's Limitations in Protocol Evolution</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">Context Forge: Agentic Middlewar...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:58</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">Context Forge: Agentic Middleware Explained</h4>
+            </div>
+          </a>
+        
+      </div>
+      
+    </div>
+    
 
     <!-- More from This Series -->
     
@@ -278,7 +891,7 @@
   
     <a href="/shipai/episodes/ozge-yeloglu-vp-ai-analytics-cibc/" class="block relative group">
       <div class="aspect-video overflow-hidden">
-        <img src="/shipai/assets/images/og/default.png"
+        <img src="https://img.youtube.com/vi/gdkgnO8XVJo/mqdefault.jpg"
              alt="Ozge Yeloglu, VP AI & Analytics, CIBC"
              loading="lazy"
              width="320" height="180"
@@ -320,17 +933,17 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/ozge-yeloglu-vp-ai-analytics-cibc/id1832355436?i=1000751195157" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://www.youtube.com/watch?v=gdkgnO8XVJo" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     
@@ -516,11 +1129,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -531,6 +1140,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           

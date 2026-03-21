@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -137,6 +137,19 @@
 
     <!-- Video embed -->
     
+      
+      <div class="mb-8 rounded-2xl overflow-hidden shadow-lg">
+        <div class="aspect-video">
+          <iframe src="https://www.youtube.com/embed/gdkgnO8XVJo"
+                  title="Ozge Yeloglu, VP AI & Analytics, CIBC"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                  class="w-full h-full"></iframe>
+        </div>
+      </div>
+    
 
     <!-- Platform buttons + slides -->
     <div class="flex flex-wrap gap-3 mb-10">
@@ -146,19 +159,19 @@
 
   <div class="flex flex-wrap gap-3">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
         <svg class="w-4 h-4 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
         Spotify
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+      <a href="https://podcasts.apple.com/us/podcast/ozge-yeloglu-vp-ai-analytics-cibc/id1832355436?i=1000751195157" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
         <svg class="w-4 h-4 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
         Apple Podcasts
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+      <a href="https://www.youtube.com/watch?v=gdkgnO8XVJo" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
         <svg class="w-4 h-4 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         YouTube
       </a>
@@ -183,6 +196,644 @@
     
 
     <!-- Transcript -->
+    
+    <div class="mb-12" id="transcript">
+      <details class="group">
+        <summary class="flex items-center justify-between p-5 bg-white rounded-card border border-black/[0.06] hover:border-black/10 transition-colors cursor-pointer list-none">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="font-semibold">Full Transcript</span>
+          </div>
+          <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><span class="ts">[00:01]</span></p>
+
+<p>Alrighty, okay. All right. Let’s get started. Hello. Hello. Good morning.</p>
+
+<p><span class="ts">[00:04]</span></p>
+
+<p>Good afternoon, everyone. Thanks for dialing in. So this week, I have yet another Canadian leader joining me. This time somebody who I admire and and I’ve had the pleasure of working with a fair bit on and off. So today’s guest is Ozge Yalulu. She is the Vice President for Advanced Analytics and AI or CAI at CIBC Canadian Imperial Bank of Commerce.</p>
+
+<p><span class="ts">[00:23]</span></p>
+
+<p>And I was snooping, Ozge, before you came over, was snooping on your LinkedIn looking at your background. So prior to CIBC, Ozge was the national AI lead at Microsoft for their customer success unit division from 2016 to 2019. And here’s something that I learned about you that I didn’t know, that you actually are a startup person like me. So you had a startup called TopLog from 2013 onwards, apparently. So we’ll talk about that and a lot more things. So with all of that, welcome.</p>
+
+<p><span class="ts">[01:01]</span></p>
+
+<p>Well, thank you. Thanks for having me, Mona. And always a pleasure having a chat with you. thank you. You’re too kind. Okay.</p>
+
+<p><span class="ts">[01:11]</span></p>
+
+<p>So listen, let’s dive right in. So the first question that I generally ask anybody that comes on is by the time we get to any of these titles, know, CTOs and chief architects and VPs, just tell me, walk me through your career journey. Like what, what does it take to run the advanced analytics and AI division for a large Canadian enterprise? you know, and that to an enterprise that’s weaved into quite candidly, everybody’s life and fabric? right? We may not bank with CIBC or somebody may not bank with CIBC, but that doesn’t mean that it’s not deeply integrated into the Canadian fabric.</p>
+
+<p><span class="ts">[01:43]</span></p>
+
+<p>So just, just tell me a little bit about the path that led to your role and what does a VP of advanced analytics and AI at CIBC do? Well, the path, my path is interesting, but I find when you get to the woman, get to talk to each other, all of our paths are interesting, right? It’s rarely a straight line taking you to where you are. Most of us are just zigzagging around and finding our paths. uh So mine is very much like that, right? Like the funny enough, the first job coming job offer.</p>
+
+<p><span class="ts">[02:23]</span></p>
+
+<p>that I got out of undergrad. did my computer engineering in Turkey. And before moving to Canada for my grad degree, I was debating, do I get a job? Do I go for a grad degree? I did get a job as an offer from a Turkish bank at the time. But I never thought I would ever work at a bank.</p>
+
+<p><span class="ts">[02:47]</span></p>
+
+<p>I was like, whoa, what would I do at a bank, right? uh But no, my story is I have very much followed the tech. technical path, right? I’ve been in AI my whole life, basically. I did computer engineering and the last year of my engineering degree, I got introduced to machine learning that 1970s good old neural networks Bible, let’s put it that way. When I started reading that book, I was like, wow, this makes so much sense.</p>
+
+<p><span class="ts">[03:17]</span></p>
+
+<p>And it was just, it just makes sense, right? uh And that’s why I wanted to continue. a graduate degree and that’s how I moved to Canada. I got my master’s degree in computer science focusing on machine learning. I continued a PhD degree, but then I realized I got too deep into it. And it’s those moments like nobody cares about what you do other than yourself and your supervisor.</p>
+
+<p><span class="ts">[03:42]</span></p>
+
+<p>And even after a few years, you lose your supervisor too because you got too deep. So I was like this is not working out for me like I can’t I can’t do this But that’s when basically that startup that you realized all my LinkedIn came up uh I was still a grad student and one of my uh lab mates from the same lab that I was part of he was graduating and he had a great thesis project that he had and I was like You got to take this out to market, man. I was like, you have to do this. And I was like, it’s not a one man’s job. I was like, I’ll help you. How hard can it be?</p>
+
+<p><span class="ts">[04:30]</span></p>
+
+<p>think part of my journey is very much. Yeah. say how hard can it be? We don’t realize but we’re signing up for a a know, basically live submission, right? yep, yep. But you know what, I think I just all many of my life decisions, especially in professional life, it’s like, I’ll figure it out.</p>
+
+<p><span class="ts">[04:46]</span></p>
+
+<p>You know, it’s, uh I’ll figure it out. That’s usually my attitude. I’ll figure it out. And like that was that was an amazing experience. We did that close to four years. And, uh and I never went back to my PhD degree.</p>
+
+<p><span class="ts">[05:07]</span></p>
+
+<p>um to get my diploma. So I never got that, but I’m no regrets. I’ll say no regrets because I have got the experience of how to do research, right? So I would like to say I know how to do research. um I’m just never certified for it. And the startup experience is amazing because I was in that case, was the CEO of the company.</p>
+
+<p><span class="ts">[05:33]</span></p>
+
+<p>So I’ve done a lot of things, a lot of things. Like I’ve built the UI. What do I know about building UIs? Like I got to raise money from VCs and angels. I got to do marketing, like all kinds of things that I would never do as a PhD in computer science. So that was a great experience.</p>
+
+<p><span class="ts">[05:59]</span></p>
+
+<p>Obviously we didn’t become a billion dollar unicorn, but that’s okay. I was one of the 90. percent of the population in that case. um But that gave me great um opportunities from a network perspective too, right? Like that’s how I got introduced to Microsoft and then got in the Microsoft as their first data scientist in Canada. And it was right timing, right moment, working with very big clients within Canada and, um, again, right time and right moment.</p>
+
+<p><span class="ts">[06:35]</span></p>
+
+<p>was able to become their nationally I leader for Canada in three and a half years. Right. So it was a great accelerated journey. and see, obviously it was one of my clients, right. And we had a great relationship. we were just looking into, and this was good.</p>
+
+<p><span class="ts">[06:55]</span></p>
+
+<p>Seven years ago, I would say we’re just looking for the first data bricks cluster. uh, on, uh, on Azure at the time, uh, I was on the other side and anyway, it was very innovative again at the time. Um, yeah. And they were looking for a VP and they approached and, and I said, yes, because it was one of those moments. was pre COVID. Um, I did not want to leave Canada and let’s put it that way and growing in a technology company.</p>
+
+<p><span class="ts">[07:25]</span></p>
+
+<p>being a subsidy in Canada, you just have to become a sales leader if you want to stay in Canada. And I didn’t want to do that. So that was a great opportunity. banking, I mean, I thought I knew banking because they were my clients, but once you get inside, it’s a much different environment. ballgame altogether. Which gives you a whole another level of appreciation, right?</p>
+
+<p><span class="ts">[08:00]</span></p>
+
+<p>The business that run like I, my, guess my first learning in shock was this is not one business. This is like 10 different businesses under one business. Um, and you have to learn it all to understand it all. What does retail client mean? Commercial, corporate, business, banking, capital markets. They’re very much different, um, businesses.</p>
+
+<p><span class="ts">[08:26]</span></p>
+
+<p>and to be able to serve to those businesses, you have to get to know and understand the businesses. So yeah, I mean, I’ve started, say I would say about six years ago, and what I have been doing also has shifted and changed a lot, which we can also dig into it as well. But yeah, it was not a linear journey, I guess. Let’s put it that way. So you didn’t plan for, one day I’m going to run the AI division at a large corporation somewhere. I kind of avoided it like 20 years ago.</p>
+
+<p><span class="ts">[09:03]</span></p>
+
+<p>I was like, no, what am I going to do in the bank? Yeah, life’s a full circle and here you are. All right. Yeah. Okay. All right.</p>
+
+<p><span class="ts">[09:16]</span></p>
+
+<p>So I think that hopefully, mean, listen, I got a lot of lot out of that and you know, I know those listening watching they’ll they’ll begin to appreciate how these journeys are never linear as you said. So let’s talk about your current role. So you are running, you are the VP for Advanced Analytics and AI at CIBC. So just tell us a little bit more about. And, know, without giving any, anything confidential, but for a regulated industry. And again, as I said, an organization that’s weaved into the fabric of the nation.</p>
+
+<p><span class="ts">[09:44]</span></p>
+
+<p>It’s a big responsibility, right? For, for any organization, but certainly for such a large organization to run AI and not to put words in your mouth. What is your approach? What is the, how, how does a large organization approach deployment of AI at scale? with the sheer size and volume of clients, customers that you serve. Just walk us through how you approach it, how the bank approaches it.</p>
+
+<p><span class="ts">[10:12]</span></p>
+
+<p>Yeah, no, for sure. I mean, look, there is always the, oh, we are a highly regulated industry uh perspective, right? But my approach is always, we started thinking about AI governance maybe four years ago, I’ll say, and we didn’t have that terminology. I did not call it AI governance because governance has been interpreted um or has a bad head, a bad reaction, let’s put it that way, because of that concept of, we’re a highly regulated industry. So it’s being used as a stick most of the times. And it’s hard to get engagement through that, right?</p>
+
+<p><span class="ts">[10:59]</span></p>
+
+<p>But how we started thinking through that is very much trusted AI and trustworthy AI approach, right? And my point was like, yes, we are a highly regulated industry, but to your point, what you’re saying is we have clients that trust us with their data, information, money, in many words, with their lives in some cases, right? what do you call it? Anyway, but so to me, that is really a big responsibility, right? So put aside the regulations, we really, I really believe doing the right thing when we’re building AI and building it the right way and what, and the right way means yes, the right way for our business, but right way is for our clients and stakeholders and shareholders and everyone that we serve to as well. Right.</p>
+
+<p><span class="ts">[12:06]</span></p>
+
+<p>And that’s why we started thinking about, okay, what that might look like and how do we. make sure that governance is integrated into how we build AI and it’s not an afterthought. Because most of the times governance is very much an afterthought than designed by approach. Right? So we’ve heard these concepts, privacy by design, security by design, like governance by design. That’s what we also started to coin with in CIBC saying that governance governed AI by design.</p>
+
+<p><span class="ts">[12:34]</span></p>
+
+<p>Right. And how do we do that? Like, and there are multiple aspects to it. One, we have to start with this framework, right. And framework being as, um, we, we had to discuss a few months on definition of AI, right. Because if we can’t even define something that you can’t put a framework around it.</p>
+
+<p><span class="ts">[13:03]</span></p>
+
+<p>Right. you we really took our time. And we say we started thinking about this four years ago. Those are the type of the things that we started actually putting through. What is AI for CIBC? How are we going to define it?</p>
+
+<p><span class="ts">[13:22]</span></p>
+
+<p>And then after that, what are the key pillars for us? When we say trustworthy AI, what does it mean? And we had to, again, align on the six. pillars that we have from the TrustWord AI perspective. And then we said, okay, this is it. And then putting around the target operating model, who is doing what, who is responsible of doing what and who is capable of doing what, who is skilled enough to do what, right?</p>
+
+<p><span class="ts">[13:43]</span></p>
+
+<p>And I do like to believe by putting all of those like foundational items together, it helped us a lot to accelerate faster because I know in many cases, especially the explosion of LLMs, right? A couple of years ago, it’s part of our lives now. I think we all forgot about that chat GPT moment. um But that explosion also created so much nervousness from the risks perspective, because if everyone is capable of building AI solutions, who’s going to control that? Who’s going to figure out how to build this? responsibly, trustworthy way, and people actually know what they’re doing with this tool, right?</p>
+
+<p><span class="ts">[14:35]</span></p>
+
+<p>Like, um it’s such a strong and powerful tool that we give into our employees hands. So all of these things helps. And obviously there’s tools around it, right? To be able to do that, you have to enable the right tooling for the end users in a way. Um, so they can actually put this, so we can put this in production in a very nice way. And then there’s also the risk management processes.</p>
+
+<p><span class="ts">[15:09]</span></p>
+
+<p>They write, uh, the, at the higher level, more of a council, but that council doesn’t do use case by use case, approvals in our case. It’s a much more strategic level AI council that we have. So being able to put all of these pieces together, takes a long time and it takes a really. uh Um, I guess a lot of strategic thinking and, and funny enough, I do run AI governance for, um, CIBC. Um, we, it’s a very different approach actually that we’ve been taking governance and AI risk management and compliance and oversight is within the first line within our bank. Um, and sits with me and I find that’s a very, very interesting balance to have because I also have AI delivery.</p>
+
+<p><span class="ts">[15:54]</span></p>
+
+<p>And I think that’s also why it’s working really well in our case, because everything that I do with the governance team, I can check it very fast and test and experiment really fast with the delivery team. The moment delivery team is like yelling and screaming and saying, this is not working. Then we keep tuning the processes really fast. So it’s almost that little startup environment that, that, that we have within our own team. that we can leverage. is almost like an enabler than a stopper, I would say.</p>
+
+<p><span class="ts">[16:35]</span></p>
+
+<p>I absolutely love it and I think you said. You said a couple of really interesting things there, so one I didn’t know you had both governance and delivery and I think that’s a unique model to your point that’s allowing you one to validate well one to establish the governance of how you’re going to. control it, how you’re going to be responsible about it and safe and truthful. And I like that you also have delivery. So to your point, can very quickly go and validate, okay, indeed everything that’s being said on the risk framework and governance framework is not there, is there. um And I think the other thing that I learned from this is, so you started on this governed AI by design four years ago.</p>
+
+<p><span class="ts">[17:12]</span></p>
+
+<p>And the essence I’ve got from this is this actually helped you go faster in scale. I think that’s also very unique. So maybe just touch on that a little bit more on how you went about building that framework and how it impacted how your target operating model was and how you enabled all the stakeholders. Because in large organizations, there is this struggle of you might have a corporate vision that, we want to adopt AI. When it comes like level lower or a couple of levels lower, we have competing priorities sometimes. So how did you go about designing that model for success?</p>
+
+<p><span class="ts">[18:00]</span></p>
+
+<p>Yeah, no, absolutely. Good question. So like one of the reasons I actually um joined CIBC was the size of CIBC and mainly thinking that there wouldn’t be tens of me, right? So there could be a lot more strategic thinking and actions and guidance that I can put the company through. And that’s, that’s what I love to do. And that is part of our strength.</p>
+
+<p><span class="ts">[18:32]</span></p>
+
+<p>I find that we are a smaller organization um from the human capital perspective. And that gives us some advantages as well from that stakeholder management perspective. And also, so I do maybe I’ll just also say in my current role, so I do have I mentioned AI delivery, AI governance. I have a small applied AI research team. And the most recent one is I have an AI PCM, People Change Management Team. And that’s my newest adventure, let’s put it that way, because what do I know about PCM?</p>
+
+<p><span class="ts">[19:11]</span></p>
+
+<p>I have learned a lot in the last six months, I can tell you. But that was one of the gaps that we have identified, I think, very early in the game, is that if we don’t have this type of um dedicated change management function within our team that it’s adoption is going to be hard in many different ways. Adoption is going to be hard adoption to tools, right? And adoption of AI. That’s one thing, but also adoption of governance and that stakeholder management and all of that is a much different perspective. The moment you have the PCM expertise within the team and the way that they would Even I love it when they sit down with my stakeholders in an interview or conversation and they can even message me on the side, oh, this person is sitting this way or the body language is telling me that you might want to lean into that one point that you made, right?</p>
+
+<p><span class="ts">[20:11]</span></p>
+
+<p>So I’m like, all right, let’s act. So which is, which is really good, right? Like I love it. so, and, being able to. even personalize in a way the communications that we would send to a certain group of people or certain type of roles in asks that we have from them. And how do we even ask, how do we even get their buy-in?</p>
+
+<p><span class="ts">[20:38]</span></p>
+
+<p>Right. Because the stakeholder management is always, I find, and this is something that I learned from uh my Microsoft days with my sales partners there is what’s in it for them. Right. I know what’s in it for me. I do know it. But why would they care about it?</p>
+
+<p><span class="ts">[20:58]</span></p>
+
+<p>That’s not their problem, right? So being able to figure out what’s in it for them and how is this thing going to enable them faster, better, and so on and so forth is really, really important that we’re able to do that, right? And how it’s pretty much, and look, I think it’s a little bit of the team composition as well, right? So if you look at the AI governance team that we put together, they are all ex data scientists on the risk management side. So they have built AI solutions hands-on before, but somehow they’re either interested in the risk side or had some education separately or had that mindset. Like the kind of joke that I have for our lead.</p>
+
+<p><span class="ts">[21:53]</span></p>
+
+<p>for AI governance is previous to CIBC, he was a data scientist within my team. He grew up to be the governance lead, but previous to CIBC, he was in the Air Force um as an engineer. And he was in the risk and audit department in the Air Force. So my joke is like, if we trusted this guy to put Canadian jets on the air. I think I can trust him to build a system for us, for AI governance. That’s a joke, but it’s also the reality because we built a team who know AI, who built it, but they have the risk mindset.</p>
+
+<p><span class="ts">[22:26]</span></p>
+
+<p>They’ve done this in their lives in different ways. They are engineering um graduates. They have that like process. thinking, right, which I find very, important and key in a governance structure. um And m all they want to do is, they’re more of an advisors um than anything else at this point, right? Like the risk team, especially, because with the process that we have built, I can tell you we’ve never stopped a project because we always tell people what are some of the mitigation approaches that they can take.</p>
+
+<p><span class="ts">[23:14]</span></p>
+
+<p>Okay, this is a medium risk project, but if you do this, this, this, then you can lower it to low and then you’re good to go and so on and so forth, right? So we’re much of an advisory organization in my opinion than a blocker, which when, and when people start seeing that they want to pull us into the conversations with our 13 different risk parts. because the most important thing and the most challenging thing with for many financial institutions as far as I know is AI is a transverse risk. And that’s what our regulator OSPI says too. It’s not a risk by itself. So we have to work with 13 different risk partners within our bank and AI owners, solution owners actually love coming to us.</p>
+
+<p><span class="ts">[23:55]</span></p>
+
+<p>And then we figure out the 13 different situations behind the curtains so they don’t have to go and deal with 13 different people and risk group and get the same question over and over and over and asked in different ways. Right. So I find that approach also really works well. Then what happens is. Yeah, I mean, product we’ve done products in our lives before stickiness, right? How do you create stickiness?</p>
+
+<p><span class="ts">[24:33]</span></p>
+
+<p>100 % yeah. this by making people happy and what they need, give them what they need, right? And that’s a little bit of the approach that we’re thinking. Sorry, it might be a little bit all over the place on how I got to your question, but I hope it was helpful. think, I think you’re dead. So again, what I took away from this is you basically designed an operating model where if I’m an application developer that’s using AI or implementing AI into my app, A, I’m not being blocked.</p>
+
+<p><span class="ts">[25:06]</span></p>
+
+<p>Right. But I think the other unique thing that you have established is you are the face of the various risk bodies, risk owners. and you are taking that action on behalf of every use case that’s coming in rather than teams having to play whack-a-mole. And I think hence the assertion that you are, I think to me, this is one of those few examples of how governance by design is actually leading to scaling and acceleration of AI. So I think that’s pretty amazing. diving deeper into just…</p>
+
+<p><span class="ts">[25:41]</span></p>
+
+<p>just the AI modeling and the research piece that you talked about that you do as well. And I know you briefly alluded to this Cambrian explosion of LLMs. So in your, especially with your background and the affinity that you might have as a researcher to go build your own, how do you determine? Are you going to build a model? Are you going to use something that already exists? Or are you going to just use some other techniques such as rag or something else?</p>
+
+<p><span class="ts">[26:15]</span></p>
+
+<p>So just walk us through what’s your thinking around that. oh Yeah, look, I believe in leveraging every tool that is available to us, everything, right? And I think my startup background probably balanced my research background from that perspective because they’re pretty much the opposite. One is like, just go break fix, do it fast versus take your time and then figure out the most. accurate uh answer that you need to get. oh So it’s, look, in the end, we’re running a business, right?</p>
+
+<p><span class="ts">[26:56]</span></p>
+
+<p>And whatever is going to give me the results the fastest in a way that is again, like governed by design, secure by design, all of those things that is compliant to what we need to do, it’s in CIBC. We have to go do it, right? And, And I think it’s a really good balance that we have to have. And I also really liked the variety these days, right? Like we have so many options, like, especially in the LLM’s world, right? I mean, with the traditional AI, it was still the very much, have all kinds of options, but it’s more of a library approach and then you go build your own thing.</p>
+
+<p><span class="ts">[27:34]</span></p>
+
+<p>And I don’t think much has changed from that perspective. Well, I shouldn’t say much has changed. I think two years ago, there was only one, two players, maybe that we didn’t have that many options, but when you look at the market today and the options that we have, it’s incredible. And being able to like tools and services that you can just like pick and choose. I don’t have to tie. I don’t have to be tied to one vendor, one solution, one NLM.</p>
+
+<p><span class="ts">[28:07]</span></p>
+
+<p>I think, I think it’s almost like beautiful for. data scientists, because I do remind, I do remind our business partners and tech partners at times that my team are full of AI scientists and keep in mind, even in the title, what is the second word? It’s science. So there is still science to what we do, right? Yes, there are some use cases that are so that so much easy that you make an API call to an LLM provider and then you put an application front-end in front of it and you’re done. It’s very low risk.</p>
+
+<p><span class="ts">[28:50]</span></p>
+
+<p>Nobody really cares. You can do it with the default parameters and everything else, sure. But we’re not going to get the maximum value that way. So even when we are leveraging vendors or other LLM solutions, you’re still doing a lot of tuning the size. The science is getting smaller and squeezed in these cases, but there’s still a lot of science to it. And is there value to building our own?</p>
+
+<p><span class="ts">[29:18]</span></p>
+
+<p>um Keeping traditional AI, because obviously that’s moving as it was the more of the machine learning part, but if we’re thinking from the LLM’s perspective, um or um maybe let’s call it deep neural nets overall, not just large language models. Not just language models, let’s put it that way. Um, but are we looking at building our own? Yeah, absolutely. But then again, why and what, like, what is that unique proposition that we’re going to get or the value that we’re going to get out of it? It’s going to be very much around, Hey, do I need something unique?</p>
+
+<p><span class="ts">[29:59]</span></p>
+
+<p>That’s going to work on my own data. Sometimes. Sometimes having something that was built on world’s data might create the noise that I don’t need. Right. In a way. So is that one of those situations or is this a core investment that I can actually spend a couple of years on it, spend millions of dollars on it.</p>
+
+<p><span class="ts">[30:17]</span></p>
+
+<p>And I have enough confidence that it will actually get me something you need and potentially a competitive edge against my competitors. Then yes. Absolutely. And do we have those cases too? Yes. That’s why we do have an applied AI research team, but also I don’t have a huge team, right?</p>
+
+<p><span class="ts">[30:42]</span></p>
+
+<p>So we’re very much focused. Again, one of the things that I love about CIBC is because we’re small, I really have to be very, very smart about where I put my money and time into. So prioritization becomes very, very important. um So yes, being able to prioritize it. So this is very much the startup culture. So I can see why you’re enjoying it, right?</p>
+
+<p><span class="ts">[31:15]</span></p>
+
+<p>Harking back to your startup days. So this seems like a really good blend of that. Okay, so let’s dive. I know you mentioned PCM or People Change Management, and I think it’s getting so critical now, especially with…</p>
+
+<p><span class="ts">[31:25]</span></p>
+
+<p>everything that’s going on with agentic AI or to your point, even just with the models, right? I mean, last I was, I looked at hugging face, there was 2.5 million models available. Right? So it’s abundance of options. Now, I think the other thing that happens is when you walk into a grocery aisle and there is an abundance of options, it overwhelms us.</p>
+
+<p><span class="ts">[31:51]</span></p>
+
+<p>Yeah. Yeah. So you mentioned people change management and I think you’re one of the few AI scientists, data scientists who has mentioned that. So let’s dive into that a little bit. So both from the startup culture within your org, the governance of AI or governing AI for scaling. And then I think just the evolution and AI future.</p>
+
+<p><span class="ts">[32:19]</span></p>
+
+<p>So how are you approaching and what are the, walk me through what some of the challenges you’re seeing in terms of impact of AI to people and how are you approaching change management there? Yeah. so this was, I, I, it’s interesting. I can’t recall how we come to that almost aha moment, but it was less than 12. No, it was about 12 months ago or so when we did say, Hey, you know what? We actually need a PCM resource dedicated to, or AI.</p>
+
+<p><span class="ts">[32:56]</span></p>
+
+<p>And it was a very deliberate conversation between the HR partners as well, because typically at least at CIBC, we do have an enterprise PCM function. That’s it with our HR partners. But it was very much like, you know what, this is very unique and we really need these people, the PCM experts to sit with very close to the AI hub within the bank. So. They really understand what we do, how we do it, what are our needs and how do we communicate with our stakeholders. And then we also rely a lot on their PCM expertise and knowledge on when we’re trying to increase the adoption of these tools and so on and so forth.</p>
+
+<p><span class="ts">[33:36]</span></p>
+
+<p>Right. So there, I would say two components to how we’re looking at PCM at the moment. So one is tool adoption, right. And this very start is as simple as CHI. So we have our CIBC AI tool. It’s a chatbot that every employee can engage with.</p>
+
+<p><span class="ts">[34:02]</span></p>
+
+<p>You can create your own um recipes on it. And it’s almost like a working buddy in a way, right? And the point was like, how do we increase the adoption of this tool? Because it’s very valuable, helpful, saving a lot of time, increasing productivity. m So how do we um go through that? And so that was the first focus with them.</p>
+
+<p><span class="ts">[34:29]</span></p>
+
+<p>um the interesting things are when these tools are built by technology, then it’s almost like they’re by default, you’re building it for technology people or the way they are explaining is how you would use it and so on and so forth. But the variety of users that we would have written our bank. is so different, right? Like we’re gonna have front line, we have advisors, we will have back office operations folks, like executives, like so many different levels, technology partners and so on and so forth. So being able to one, first understand what’s working and what’s not working, right? It’s a little bit like a customer, more than I guess after the customer discovery phase, but.</p>
+
+<p><span class="ts">[35:15]</span></p>
+
+<p>Um, it’s, it’s a lot more like being able to get that feedback was working, was not working. And then once you figure out what’s not working, then being able to create the right technique, let’s put for the right persona in a way, right? Because not every technique is going to be sticky for every user because their needs are different and they work with the tool in a different way and their expectations are different. So one mistake that I’ve seen many others do is a lot of people think PCM equals communications, but it is absolutely much more than that. And if it’s only one way communication that you’re doing, that is not going to work out. um You will just be sending things one way and you will never know where it’s going.</p>
+
+<p><span class="ts">[36:06]</span></p>
+
+<p>It’s going to the void and you don’t really know what’s doing there. The second piece of the PCM that we found very, helpful was from the target of creating model and governance perspective. How are we doing? Like, because when you sit in the center, like we do, and when we’re working with the stakeholders to me, maybe everything is looking fine. Right? Because sometimes we’re just too nice to each other and we don’t really tell our true feelings, but being able to have this kind of.</p>
+
+<p><span class="ts">[36:36]</span></p>
+
+<p>a support team and leadership within the team saying like, okay, maybe let’s go out again. Let’s go out and figure out what’s working, what’s not working. Even being able to ask the right questions the right way so we can get the proper answers back has been so much valuable. And then being able to tweak it, right? Realizing, okay, this didn’t stick with this particular group. Why did it not stick?</p>
+
+<p><span class="ts">[37:10]</span></p>
+
+<p>What do they need? Okay, their needs are different. Let’s work with them and let’s figure it out. So I think having a PCM like function very much works for us because we, my whole team is technical team, except the PCM team. Um, and it’s a very small team. We’re talking about two people here.</p>
+
+<p><span class="ts">[37:32]</span></p>
+
+<p>Okay. small and mighty, call them. Um, but. They almost teach us how how to share the love in many ways in what we do as technical folks. Yeah. And I mean, the sense I’m getting is there is a lot of product thinking into this as well.</p>
+
+<p><span class="ts">[37:52]</span></p>
+
+<p>Right. So when you talk about user adoption and assessments of how the impact, this is very much product centric thinking around the capabilities that you’re building. Would you agree with that? Yes, I love to hear that actually. Thanks for bringing that up. I don’t know if we did it purposefully, but probably yes.</p>
+
+<p><span class="ts">[38:18]</span></p>
+
+<p>Now you say that, it makes sense. the purposeful piece, I mean, I never thought from the PCM perspective, but since I joined CIBC, that’s one goal that, one of the goals that I had is how do we get into um I even had this umbrella uh two years ago called projects to products, P2P, we called it within my team, saying that how do we stop churning use cases constantly and then figure out some patterns and then say, okay, this is actually a product and then it will become, it will serve to multiple uh stakeholders. So there is definitely that part, but. Interestingly, you caught that from the PCM perspective. don’t think I even connected it. Well, more to dig on that.</p>
+
+<p><span class="ts">[39:15]</span></p>
+
+<p>Okay. Let’s, let’s talk about the teams that you have. So you have four different teams, you know, the governance and delivery, the apply applied AI research, the small and mighty PCM team. So how do you build and retain the top AI talent in such a competitive industry? And sometimes we tend to forget that Canada is No disrespect, pretty small market, right? So we are all competing for a pretty small resource pool.</p>
+
+<p><span class="ts">[39:46]</span></p>
+
+<p>So how are you attracting, retaining, and keeping all of these people interested and motivated to work? Yes. I’ll tell you what comes easy to us. And we’re very conscious about it. We never get comfortable. Is it retaining?</p>
+
+<p><span class="ts">[40:07]</span></p>
+
+<p>I’ll tell you more about that, but attracting has been tough. And the reason for that being tough is, I honestly think there’s a lot of noise in the market because right now anyone can declare themselves to be an AI person. Right? Being able to weep through that, um I guess, flood of resumes um for one job application, think the most, I was really shocked. think we got close to 4,000 resume applications in two weeks. Right?</p>
+
+<p><span class="ts">[40:49]</span></p>
+
+<p>And do you really think they’re all valid and qualified and skilled? No, absolutely not. Right. So frankly, my bigger challenge is attracting the talents and being able to find the good talent. And, and, our trick is very much like we try to get them when they’re early in the career. And then they fell in love with our culture.</p>
+
+<p><span class="ts">[41:11]</span></p>
+
+<p>Let’s put it that way. So that’s my, how to retain a good team approach is I do, I absolutely believe. people work for and with people. um And I am one of those people, right? Because to me, I have a family, I have two little kids in my family, and I spend more time at work than I spend time with my kids. So it better be fun, right?</p>
+
+<p><span class="ts">[41:42]</span></p>
+
+<p>I better enjoy what I do because if I don’t, then why am I doing it, right? So… I think partly because I’m in that mindset. um Work is not a nine to five in and out kind of job for me.</p>
+
+<p><span class="ts">[41:56]</span></p>
+
+<p>Work is just has to be part of what I do and how I feel and so on and so forth. So the moment we actually, I guess, spread that energy and thinking and so on and so forth, then retaining is, I find a lot more easier and we have been very, very successful, knock on wood. We have been very, very successful retaining our… But one of the tricks that we do is get them early, em sometimes right out of school, whether it’s a grad degree and working with universities, partnering, getting into partnerships with them and get going through some of their programs so we can actually find the best talent before when they get out.</p>
+
+<p><span class="ts">[42:35]</span></p>
+
+<p>Co-op programs, right? Like I love the co-op programs because if we love what we have and we typically do eight months of co-ops. And they’ve already learned what we do in during those eight months, then, Hey, why don’t you come join us when you graduate? Right. So those are type of the tricks that we’re trying to figure out to go through that very noisy and crowded market right now. And the opportunities.</p>
+
+<p><span class="ts">[43:09]</span></p>
+
+<p>And I think it’s been working, especially the last three years is because AI is not just building machine learning models anymore. Right. Um, there is a big variety of it. There is like, do believe AI is becoming or merging very much with software engineering. So the mindset needs to change or shift or even the type of people that were hiring. So being able to move even around, around teams, like, as I said, half of my AI governance team have been on the delivery side before.</p>
+
+<p><span class="ts">[43:38]</span></p>
+
+<p>And they’re just like, well, hey, look. this looks interesting and I’m going to gain new skills, right? And being able to create that kind of fluid environment that they can actually move from one role to another one, grow and create opportunities. um I think retaining hasn’t been too bad. Okay, so spot them early load them in with culture interesting projects right I mean really when it comes to like, know I like as you said it really boils down to people working with people I’m a big believer that we can have we can hire the best researchers the best data scientists, but if the culture is not suitable we’ll end up losing them. So I want to end on Futures are looking forward and you sort of alluded to that in your previous answer about how AI is now uh evolving more towards software engineering.</p>
+
+<p><span class="ts">[44:40]</span></p>
+
+<p>One can interpret that, hey, this is part of what we are the agents are going amongst other things that tool calling function calling capabilities that are being built into the AI models as well. So, you know, if you peer into your crystal ball, where are we? actually with AI capabilities in your estimation versus the hype cycle. And how are you preparing your org, especially with or without the PCM team, on when this agentic wave truly hits? Because I feel like the noise, as you called it, with the plurality, optionality of the models, the governance guardrails, I think you have very good arms around that. But this next wave, I’m very interested to hear your thoughts on how much of that is real.</p>
+
+<p><span class="ts">[45:37]</span></p>
+
+<p>Are we in the middle of it? Is the worst or the best yet to come? Where do you see this going? Yeah, so like I am not the optimist type when it comes to this is the best to come. Look, from the technology perspective, I am mesmerized with where we are today. I’ll be frank with that.</p>
+
+<p><span class="ts">[46:07]</span></p>
+
+<p>And I love it as the scientist, right? I think it’s amazing. Um, I do have many, um, philosophical and social challenges personally with where we are going as humanity leveraging these tools. That’s, that’s my doomsday personality. We’ll put that aside. But look where we’re going to go.</p>
+
+<p><span class="ts">[46:35]</span></p>
+
+<p>think, look from AI perspective, um, it’s not a harpsichord at all. It is, it is really a tool in the tool. kits right now, in my opinion. um It’s no different than any toolkit that we have with our technology partners, say within CIBC and AI is just becoming one of those tools in the toolkit. Agentic AI is oh definitely hype, in my opinion. We’re still in the hype phase, if you ask me, um because we all talk about it and how much value are we truly generating out of it yet?</p>
+
+<p><span class="ts">[47:02]</span></p>
+
+<p>is to be seen soon. It’s not going to be 10 years, it’s not going to be five years, most likely in the next couple of years. um It will probably pass over that hype phase. So everything is in a very accelerated timeline, I would say, from those perspectives. And what are our roles going to look like? I don’t know, sometimes I even, I think two years ago I had to pause and even ask myself, am I going to be irrelevant in the next five years?</p>
+
+<p><span class="ts">[47:43]</span></p>
+
+<p>Like what do I need to do to be relevant? it’s such an interesting feeling for AI folks who’ve done this their whole lives because we’ve never had to ask that question, right? It was always so clear to us what we were doing, where we were going, how we were going to do this. So it’s very interesting actually to be able to pause and say that. And the moment I say it to myself, then the next thing coming to my mind, oh, wait, then what does it mean for my team? Right?</p>
+
+<p><span class="ts">[48:20]</span></p>
+
+<p>How do I prepare them for this change and what that change is even going to look like? Because the biggest challenge I think we’re all having right now, the speed of this change coming. And by the time that you think you’re ready, I feel like everything’s going to change again. So it’s, it’s a little bit of that challenge. So I would like to think that the more perseverance type of folks are going to figure it out and what that means in my opinion, it’s very much going to be amalgamation of software engineering and AI scientists personas. Um, where do you really originate?</p>
+
+<p><span class="ts">[49:02]</span></p>
+
+<p>to get there is really going to change or depend on what type of solutions that you’re building. Because there are still solutions that, at least with the bank, I know we do this and I really hope many large enterprises think through that. But accuracy is still so important. Like in the LLMs, where consistency, confidence, and all of those metrics that we need to think through before we put anything in production. And you can only think through those metrics. If you have this science background, if you’re a software engineer and you’ve never seen it in your life before, you’re not going to think through it.</p>
+
+<p><span class="ts">[49:35]</span></p>
+
+<p>I mean, it’s not like you don’t know what you’re doing, but you kind of don’t, right? So how those two roles kind of combine together, I think it’s going to be interesting and where they’re going to be leveraged for and what purposes. I think there is still going to be a need for more of the scientists’ knowledge. Are we going to…</p>
+
+<p><span class="ts">[50:04]</span></p>
+
+<p>need as many of us in near future? Probably not. I think we’re going to turn more into engineers and less scientists, but who knows? Who knows? We’ll have another conversation in two years, Manawa, and let’s see where we end up. That’s what I’m worried about.</p>
+
+<p><span class="ts">[50:21]</span></p>
+
+<p>Like two years from now, the conversation is going to be so radically different about how wrong we were. know, some, some days it feels with, with all these, you know, new bots and agentic systems and cloud bot and mold bot, the change of, or the pace of change is so rapid. It is frightening. Okay. I was gay. Last question for you.</p>
+
+<p><span class="ts">[50:45]</span></p>
+
+<p>Um, for people that are starting out, know, engineers fresh. either considering engineering, comm sci, or how you and I started our careers trying to get our engineering degrees. What would be your advice to them? Tough. In a way, I’m kind of glad that my kids are not that old because these days it’s a tough situation. Look, I’m a little bit old school from that perspective, right?</p>
+
+<p><span class="ts">[51:14]</span></p>
+
+<p>I still believe in the foundational knowledge of whatever you want to do. And if AI is intriguing to someone, then… I still believe in the foundational knowledge of that, right? Like whether all you do is tool calling and putting things together and more of that engineering mindset.</p>
+
+<p><span class="ts">[51:35]</span></p>
+
+<p>Engineering and science, I still think I would like to believe that they’re gonna be relevant, but how they will do their jobs getting out of these degrees probably are gonna look way more different what it looked like for us. Even like to five to 10 years ago, let’s say don’t go that far for you and I, but in five, five to 10 years ago, how would that look like? that, what that job and work environment would look like versus now is going to look different. But I, I really believe in the foundational knowledge. If you do something, you better know. Like it would, it would like the silly example that I always have that when I was doing computer engineering, I had to take an assembly course.</p>
+
+<p><span class="ts">[52:22]</span></p>
+
+<p>And that gives you so much appreciation for every piece of line of code that you write and what that is in that machine, right? Do I ever need it? No. I mean, it’s not like I use it, but it’s just that appreciation and understanding. And if I ever need it, I could kind of approach. I still believe in that.</p>
+
+<p><span class="ts">[52:55]</span></p>
+
+<p>Yeah, I think I’m on the same side as you. think the whole essence of engineering and science degree is they teach us critical thinking, problem decomposition, debugging. I think those are foundational skills that I think every graduate, every human is going to require in this new world. Yeah, absolutely. Okay, I want to thank you sincerely for being so generous with your time and sharing everything that you did. I think I thought it was fascinating.</p>
+
+<p><span class="ts">[53:28]</span></p>
+
+<p>Just the operating model, how you put together. I really love that how you’re bringing the product thinking around change management. And I don’t think that I would have ever envisioned having you having heard you say it, it makes so much sense. But how CIBC being from the outside such a large organization, but still operating uh in that startup mentality. I think that’s fascinating. So I thank you so much and um I hope you enjoy the day.</p>
+
+<p><span class="ts">[53:57]</span></p>
+
+<p>Thank you. thank you. Thanks for having me, Manav. As I said, always a pleasure having a chat with you. All right. I’m going to stop recording.</p>
+
+          </div>
+        </div>
+      </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+    
+    
+    <div class="mb-12">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="font-serif text-2xl font-bold">Clips & Highlights</h2>
+          <p class="text-sm text-muted mt-1">20 clips from this episode</p>
+        </div>
+        <a href="/shipai/clips/" class="text-xs font-medium text-accent hover:underline">View all clips</a>
+      </div>
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Shorts</h3>
+      <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide mb-6">
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">A Little Bit of That Challenge</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:22</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">A Little Bit of That Challenge</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI as a Tool: Ozge's Perspective</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:50</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI as a Tool: Ozge's Perspective</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Explosion Creating Unprecedented D...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:25</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Explosion Creating Unprecedented Demand</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Governance: From Data Scientist to...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:51</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Governance: From Data Scientist to Risk Lead</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Clients Trust Us With Their Data</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:20</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Clients Trust Us With Their Data</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Defining AI for CIBC</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:47</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Defining AI for CIBC</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Leveraging Tools for Business Success</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:49</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Leveraging Tools for Business Success</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">The Biggest Challenge in AI Adoption</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:30</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">The Biggest Challenge in AI Adoption</p>
+          </a>
+        
+      </div>
+      
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Deep Dives</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI Governance: A Startup Within ...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">3:31</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI Governance: A Startup Within a Bank</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI Governance: From Data Scienti...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:08</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI Governance: From Data Scientists to Risk Advisory</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI's Future: Hype or Reality?</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:24</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI's Future: Hype or Reality?</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">Attracting & Retaining Top AI Ta...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:37</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">Attracting & Retaining Top AI Talent in Canada</h4>
+            </div>
+          </a>
+        
+      </div>
+      
+    </div>
     
 
     <!-- More from This Series -->
@@ -246,12 +897,8 @@
 
   <div class="flex gap-1">
     
-      <a href="" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
-        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      </a>
     
-    
-      <a href="" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/mihai-criveti-context-forge/id1832355436?i=1000754479816" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -440,11 +1087,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -455,6 +1098,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           

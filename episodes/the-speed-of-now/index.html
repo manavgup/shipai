@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -282,16 +282,577 @@
           <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
         </summary>
         <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
-          <div class="prose-shipai text-sm">
-            
-            
-            <p><strong>Manav Gupta</strong> <span class="ts">[00:00]</span></p>
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><strong>Manav Gupta</strong> <span class="ts">[00:01]</span></p>
 
-<p>Welcome to Ship AI. Today we’re exploring the speed of AI adoption and why this technology wave is different from anything we’ve seen before. Let me start with a number that blew my mind. ChatGPT reached 365 billion searches in just two years. It took Google eleven years to hit that milestone. So the first thing I want to talk about is the pace of model improvement. We’re seeing capabilities double every six to nine months. That’s far faster than Moore’s Law ever was. And compute costs have dropped roughly ninety percent over the past two years. When you combine faster models with cheaper compute, you get an explosion of adoption. Unlike the internet or mobile, AI adoption is global and simultaneous. It’s not starting in one region and spreading. It’s everywhere at once. And that changes the game for enterprise leaders trying to plan their strategy.</p>
+<p>Hi there and welcome to Ship AI, the podcast that definitely goes deeper. In today’s episode, we’re going to be discussing the speed of now. Now I’m sure like me, many of you are overwhelmed with the rate and pace of innovation within AI and it almost feels like everything is happening all at once. So in this episode, I’m going to try and break down what really is going on. Let’s take a step back to truly understand the trends in the last couple of years. And then we’ll really go deeper into the real forces that are shaping AI in 2026.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:29]</span></p>
+
+<p>All right, so if you take a step back, in the last two years, something unusual has happened. Not a breakthrough necessarily by itself, not just a new product, but really what’s transpired is a change in speed. Now, technological change has always been fast, but what we’re seeing now is different. It just feels different. Even the progress itself is not linear. It’s not even exponential in the way that we’re used to thinking about it.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:02]</span></p>
+
+<p>It’s not compressed. Things that used to mature in decades or years are now happening in months or weeks. Entire categories of work, whether it’s from writing to coding to analysis to design, they’ve gone from human only to human augmented almost overnight. And here’s the important part. This didn’t happen because AI suddenly became intelligent. It happened because three curves collided at the same time.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:32]</span></p>
+
+<p>Number one, compute became ubiquitous, became abundant. Number two, algorithms became more efficient. And third, and probably the most important, data reached critical mass. When these three curves crossed, progress stopped being gradual. and it now feels abrupt. This is why AI feels like it has arrived all at once.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:00]</span></p>
+
+<p>But the real story of this moment is not about chat bots, it’s not about AI agents, it’s not about demos or viral screenshots. It’s about what happens next. Because once our technology reaches this level of capability, this level of maturity, the limiting factor is not what it can do. It is how fast institutions companies, organizations, governments, and people can adapt to it. That’s what this series is about. Not hype, not predictions of sentient machines, but real forces shaping AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:32]</span></p>
+
+<p>Again, as I said, capital, infrastructure, economics, geopolitics, and of course, human systems under stress. In this first episode, we’ll start with the most important question of them all, which is, how did AI models get so fast, so good? And why does it matter more than anything else? Without further ado, let’s begin. Okay, so just to put it in context, took ChatGPT, ChatGPT hit 365 billion searches in under two years. To put it in perspective, Google took 11 years to get there.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:16]</span></p>
+
+<p>This is not an evolution. This is a different species altogether. And if you really think about it, this represents a growth rate that is 5. 5.5 times, 5.5 times faster than Google’s early search volume expansion.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:31]</span></p>
+
+<p>And again, to put it in perspective, chat GPT today handles about a billion searches per day, which actually highlights another important element. It is the amalgamation, the fuzzing of the boundaries between what is search versus generative AI, search versus AI in general. And that’s what we’re dealing with in today’s world. Let me show you a couple of other interesting stats as we get started here. So it’s not just about a one-time volume, so to speak. Let’s just look at time to 1 million users.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[04:08]</span></p>
+
+<p>So if you hark back to Model T, the car, the product that really laid down assembly lines and production lines, as we know today, it took Ford Model T 2,500 days to get to 1 million users. Anybody remember TO? 1,680 days. Heck, the iPhone that spawned the entire industry and app store in the world we know today, that took 74 days. With little to really no marketing, Chad GPT took five days. 500 times faster.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[04:45]</span></p>
+
+<p>The infrastructure and distribution channels that exist today made this possible. And it’s not that it’s a flash in the pan that it got to a million users. Let’s take a step back even further. time to 100 million users. Really the first apocryphal technology of mankind that really transformed how humans connect, the telephone, took 75 years. Compared to that, Chad GPT did it in two months, 450 times faster than the telephone.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:14]</span></p>
+
+<p>Now one can imagine that if there is a technology such as this that exploded so quickly, perhaps it’s flash in the pan, perhaps… It gained that many users and then it petered off. Oh no. Let’s look at weekly active users for ChartGPT.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:33]</span></p>
+
+<p>From its launch, it currently now has 800 million weekly active users. That’s an increase of eight times in 17 months. And you know what’s even freaker? What’s really crazy is the retention rate, 80 % compared to 58 % for Google searches, which means people who try it keep trying it, keep using it. So with all of that backdrop, what’s truly going on? Let’s really dive deeper into the fastest technological evolution in human history.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[06:03]</span></p>
+
+<p>Let’s take a broad bird’s eye view. So what you have in front of you is the very famous Moore’s law of the last 125 years picture from Ray Kurzweil from Future Ventures. So the way to read this chart is that on the x-axis, is time y-axis is compute per dollar on a log scale each vertical jump it’s an order of magnitude gain it’s not a small improvement it’s an order of magnitude if you look at the early era of the analytical engines those of you who might remember the hollert tabulator the ibm tabulator these were slow they were expensive they were limited they were the the applications were limited predominantly for the military And then the transition to relays and vacuum tubes happened, which was faster, but again, inefficient. Really, the first major inflection point that you see in this is the invention of the transistor. Then came the integrated circuits, which allowed sustained exponential improvement. And that’s when the Moore’s law truly became visible as a compounding, not incremental, but a compounding progress.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[07:15]</span></p>
+
+<p>The steepest rise came from specialization, right? Specialization, not just smaller chips. So then as the Moore’s law at one point was under threat because of how many transistors were being packed into chips, the focus shifted from specialized hardware such as GPUs, ASIC chips, and accelerators that started outperforming the general purpose CPUs. So the point here is that AI didn’t certainly become intelligent. compute cost and economic threshold. And this is why AI feels this is one part of many on why AI fields, it certainly arrived all at once.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[07:55]</span></p>
+
+<p>So the point I’m trying to convey with this slide is that compute abundance, as you see now, is the foundation for modern AI capabilities. And Moore’s law is not about just chips. It’s about when ideas become viable. So what you see in the top right, the little green dots that you see, that’s the specialized hardware, the GPUs, the H100 from NVIDIA, TPUs from Google, Tesla, Dojo, et cetera. Let’s take a step back even further. What you have in front of you is a bar chart, a graph showing you how technology is eating the world.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[08:35]</span></p>
+
+<p>In fact, I’ll submit to you, technology is not just a sector. It is the market center of gravity. The top seven companies or the magnificent seven as Morgan Stanley calls them, that’s Apple, Amazon, Facebook, Google, Microsoft, Tesla, and Nvidia. They represent 40 % of the U.S. market capitalization.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:05]</span></p>
+
+<p>In fact, they account for 25 % of the entire market. And you can see that they have had a constant meteoric rise despite the crash in 2008. There’s a little bit of a dip in 2022, but it’s gone back up again. And what’s really interesting is that the market is evolving to winner takes almost all or most. Again, the key takeaway from this chart is that if you’re not exposed to tech, if technology is not the centerpiece of your business strategy, you are structurally underweighing the economy. All right.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:40]</span></p>
+
+<p>Now let’s look at how technology and compute platforms have been building themselves over the last 50 years. The point behind this graph is how AI is not a cycle. It is the next compounding layer of compute. So what you see on this picture again, similar to the previous picture is on the X axis is the years or the decades rather. On the Y axis is a log scale in which computing is increasing and we’re going from the millions to billions and tens of billions of devices that are being adopted for each computer. So the Y axis is logarithmic.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[10:15]</span></p>
+
+<p>So therefore the growth is appearing to be bigger and larger than it is. This era, the era of data, this feels different because it’s the combination of data scale, the compute scale, and the connectivity skill that came before that. So what I want you to take away from this is how these platforms are colliding and building on top of each other to give this unprecedented growth, this unprecedented access and connectivity that is now changing how technology is being adopted. Now, by the way, there is a historical precedent as well, because sometimes when we talk about AI’s impact, is some sort of, know, is naysayers that come in and talk about, perhaps we’re not getting the productivity that we think that AI is going to provide us. But history tells us that first comes adoption and then comes productivity. So on this page here, you see two charts here.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:12]</span></p>
+
+<p>The chart on the left is about electricity. The one on the right is around the about internet. In both cases, you see is adoption comes first, productivity follows later with a delay. In fact, in the case of electricity, it took decades to translate into GDP gains. In the case of internet, it still took about a decade and a half. It’s not quite as slow as electricity, but it came.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:38]</span></p>
+
+<p>It sure enough came. Now, by the way, the productivity gains come from… complementary investments, not just on the underlying technology, right? So the productivity gains come from new processes, from new business models, and new organizational structures.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:52]</span></p>
+
+<p>So the point I’m trying to make is that what history is telling us is as we see hundreds of millions of users globally or billions of users of AI globally, the biggest gains of AI are ahead of us, not behind us. And by the way, The investment is not slowing down. This is just a snapshot of the last decade of corporate investment in AI through a combination of merchants and acquisitions, minority stakes, and so on and so forth. A rough read of this chart will tell you that about a trillion dollars has been invested in the last five years in the forms of public offerings, in the forms of merger or acquisitions, minority stakes. So that should tell you that certainly the industry is bullish and there is no shortage of investments that has been made into the AI technology. Okay, so let’s take a step back.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:54]</span></p>
+
+<p>So we covered how the adoption is happening, how this is a seismic shift, how there is investments being made. Now, on the other end of the spectrum, the technology itself is not new. In fact, AI is a tech. It’s 70 years in the making for this particular moment to hit us all. So what you have here in front of you is the 70 year record since artificial intelligence as a term itself was coined in 1956. And you can see there are some significant milestones for 1952.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[13:25]</span></p>
+
+<p>We had the checkers playing program that could that was self-learning. We then went through a couple of troughs of AI, famously called AI Winters. in 1974 and 84, where it was felt that the technology could not deliver what it was promising. There was work being done by researchers on convolutional neural networks for which Jeffrey Hinton won a Nobel Prize last year, all the way to IBM Deep Blue defeating Gary Kasparov at chess in 1997, the IBM Watson winning Jeopardy in 2011. And then you begin to see Google’s DeepMind neural network project starting in 2012, all the way to AlphaGo winning at Go in 2016 and the arrival of ChatGPT in 2022. Maybe I’ll highlight one other element.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:17]</span></p>
+
+<p>That’s truly the moment that explained why suddenly deep learning exploded and it somewhat sheds light onto NVIDIA’s rise. So this was a moment in 2012 for a project called AlexNet. This is when deep learning truly proved itself. So the idea behind deep learning was, it be used, could computer vision be used with some handcrafted features for image recognition? And before AlexNet, the error rate used to be 25 to 28%. AlexNet as a product in 2012 used a combination of GPUs from NVIDIA.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:57]</span></p>
+
+<p>as well as deep neural networks. And the error rate went down in image recognition from approximately 28 % down to 16.4%. So that 10 % gap, that truly proved that both the technology and this new form of compute matter. And by the way, by 2015, it’s actually better than humans, about approximately 5%. Why this matters is that the progress was eight layers deep.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:32]</span></p>
+
+<p>The previous neural networks, the previous algorithm that were developed, they were one to two layers. In this scenario, it was a combination of this eight-layer deep neural network. So the combination of the depth plus the compute, that’s provided the breakthrough. And I’ll argue that this is where the Nvidia origin story started, beyond, of course, the work that they’ve done in gaming and cryptocurrency. And of course, now with training GPUs, or GPUs for AR training. Alright, let’s just write the NVIDIA story.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:05]</span></p>
+
+<p>Let’s look at NVIDIA’s road to the top. So if you look at the historic context from JP Morgan, it took 17 quarters for IBM to become the largest stock in the industry. In the case of GM, it took 20 quarters. NVIDIA has obliterated. It has shown unprecedented rise and it became since the Second World War the fastest company to become the number one stock, the largest stock in the market, taking only five quarters. So you would argue, how is this possible?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:43]</span></p>
+
+<p>And really what’s going on here, I’ll submit to you, is the end of the geographic lag. There used to be a point in time where these technologies, even with internet as an example, We would have these things created for one market. We would have these things created for one geography. But there is something subtle that’s changed, something dramatic actually that’s changed. So there are four enablers that are truly influencing this meteoric rise of AI as well as these magnificent seven in the field of AI. And those four enablers are the elastic cloud infrastructure, the API economy, or just API-based access.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:18]</span></p>
+
+<p>Of course, there’s zero friction access. We’ll talk about that as well and a natural language interface. So let’s just talk about the cloud infrastructure. So 2006, Amazon creates EC2 and then rebrand themselves as AWS in 2008. So two guys in a Starbucks, two guys in a cafe, they can have access to the same compute power that anybody else can have, that the biggest companies can have. What does that do?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:55]</span></p>
+
+<p>Well, we can now scale on demand without any bottlenecks. As an example, Microsoft Azure, GCP with the TPUs, they are akin to the largest supercomputers with thousands of H100 GPUs from Nvidia. You add to it the growth by proxy, so the API availability, mean, every LLM call is just one API call away to be ported into any application. And then you can integrate those into Bing, into Notion, into Canva, and thousands of applications can be created in weeks and have been created in weeks. The other thing that chat GPT revolutionized is zero-friction access. So even unlike an iPhone as an example where one has to install an application on the phone, whether it’s the iPhone or the Google Android devices as an example, the ubiquitous, the simplicity of access that you can access, you can get access to this amazing fountain of knowledge, this amazing AI, just web first, all you need is a browser, no download, no setup, just a text box.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[18:52]</span></p>
+
+<p>In other words, time to value is zero. And last but not the least, the last factor there is a natural language interface. There is no syntax to learn. There is no arcane way of having to learn to use this. You just talk to it like a human, and that has eliminated the learning curve entirely. And what’s really interesting is when you talk to people about how are they using chart GPT, you’ll get so many different answers, right?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:18]</span></p>
+
+<p>If you talk to somebody like my wife, she’ll have a very verbose detailed conversation with it. Whereas somebody like me would have a very pointed short conversation. So the point here being that those four enablers truly eliminated the time for global reach and the time for global reach, whereas unlike the internet took 23 years. To get to about 90 % of the users outside of North America, chat GPT took three years. In fact, not just that, here’s another interesting stat that I’m going to show you. So let me just show you a breakdown of where the chat GPT usage comes from.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:56]</span></p>
+
+<p>So have a look at the user distribution by region. So Asia alone is now the largest consumer of chat GPT. And in fact, if you look at the split between urban and rural, it’s a pretty healthy split. In terms of daily usage rate, can see Southeast Asia is still leading compared to Europe. And then there is widespread adoption of the platform, whether it’s in the US, in Brazil, Germany, France, Australia, Nigeria, South Africa. This is ubiquitous.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:31]</span></p>
+
+<p>So it’s worldwide adoption of this AI platform. So what’s really interesting in this scenario is if you ask yourself, okay, what does this simultaneous adoption globally mean? What simultaneous adoption globally means is that the old playbook of local arbitrage no longer exists. Think about how Amazon entered different markets where they had to create Amazon for India or Google of Russia. They had to create local entities there. They had to get the local data in the local language.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[21:08]</span></p>
+
+<p>They had to figure out how local users are going to consume that application. None of that is applicable to this web-driven browser-first availability. So that local arbitrage no longer exists. In fact, the new reality is that it’s a new mode. It’s a mode of agility. In other words, everybody gets the same AI on day one.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[21:36]</span></p>
+
+<p>The underlying technology, however arcane, however beautiful, however complex it may be, just becomes a utility. What matters in this world is Scale matters less than speed. The only way to win is to iterate faster. Whoever can come up with the newer features better, faster, that’s the one who wins. Now, what I’m going to show you is how this, along with the meteoric rise of AI, how this Cambrian explosion of AI models has has happened in the last few years as well. All right, I’m gonna play this graphic for you.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:23]</span></p>
+
+<p>So what this animation is gonna show on the X axis is the years and on the Y axis uh is one of the benchmarks used in the AI industry called MMLU, which is the multi-modal language understanding. Widely. accepted fact remains for MMLU that the human experts scored about 89%. This was the golden benchmark for a number of years for the various AI companies. And the idea was that if somebody was to build a model that could score better than humans or comparatively to humans, then therefore you won. So I’m going to play this animation.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:05]</span></p>
+
+<p>As you can see, starts in 2017 when Google released that eponymous paper, Attention is All You Need. At that point, there is only one model. We can see some more models being released. We are now into 2018. Google then releases BERT, and the pre-training revolutionizes natural language processing. Some of you might recall, we had things such as autocomplete embedded into Gmail at the time, BERT powered that.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:29]</span></p>
+
+<p>Now, 2017 to 2020 is what I would call a research era where the foundations were being laid and OpenAI developed GPT-3, a 175 billion parameter model, proving to themselves that the scaling laws of AI, that the AI can scale or these transformer architecture models could scale linearly, at least until a certain portion of time could work. Let’s fast forward. Let’s see what happens next. Now, 21 onwards. 2021 onwards is when we start getting into the scaling era. This is where the world was besotted with the largest model that anybody could build.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[24:10]</span></p>
+
+<p>This whole notion that bigger is better. Chat GPT gets launched in November of 2022. AI goes mainstream, the world loses their minds, and we have 100 million users in the first two months of Chat GPT. And look at what’s going on at the very top here. We had 80 different models at that time of a pretty comparative size. The best MML you score at the point was 74.1.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[24:36]</span></p>
+
+<p>So we are now inching near human performance. Let’s fast forward and see what happens. We are beginning to see some new models appear and then truly now the Cambrian explosion happens post 2023 onwards. And by the way, this is not even the entirety of the models that are available in this space. I’m going to show you another graphic to demonstrate that. But post 2023 onwards, For the first time, we had a model that was better than humans.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:07]</span></p>
+
+<p>That was GPT-4. And multimodal AI arrived. Now I could ask the AI to generate an image or a video or paste an image and ask the AI to interpret that image for me. And then you see the Cambrian explosion happening. The other big thing that happened is Lama 2 from Mera was open-sourced, and open-source truly began to catch up. And now we’re beginning to see models being released on a quarterly basis.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:36]</span></p>
+
+<p>Anthropic comes out with Cloud 3, which is the first to beat, called Meet and Beat GPT-4 on a multitude of benchmarks. And now we see a real explosion that’s happening in the market. This graphic is just to show you how the speed of AI, the post-GPT flood. And now from 2025 onwards, we are now on to what I’m going to call a weekly release era. Of course, DeepSeq R1 comes out where reasoning, which was one of the first at scale reasoning models where it had an aha moment that the model could take a step back and figure out that it made an error when it was validating itself, which researchers call the aha moment, and then take a step back and retrace the steps and look at what’s happening now. Now we’re beginning to see a new model every few days.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:29]</span></p>
+
+<p>So I hope that this gives you an idea. of the real Cambrian explosion, the full picture, the nine years of exponential growth that we’re seeing in AI. As if that was not enough, let’s now have a look at what’s happening within Hugging Face, which has now become the de facto place for researchers alike to submit their AI models. At the time of recording this podcast, Hugging Face has over two million models. just under 700,000 data sets that developers have created globally. And then you can see the monthly additions at some point have hit almost 100K.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[27:10]</span></p>
+
+<p>Somewhere around October or November of 2025, Hugging Face was getting 100,000 new models on a monthly basis. That’s real volume. That’s real exponential adoption. and information diffusion. OK, so we talked about how the models have improved and how we’re beginning to see this this veritable explosion of the models. I want us to now have a look at how the models are performing versus humans.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[27:44]</span></p>
+
+<p>So this is a graph from contextual dot AI. Where we are plotting human versus AI performance. So on the X axis is time. And on the Y axis is. the score right anything below zero ai is worse than humans anything above zero ai is exceeding human performance so let’s imagine that human benchmark is zero Now, early AI struggled badly across most tasks, whether it was handwriting recognition, speech recognition, reading comprehension, and so on and so forth. But look at what begins to happen as these algorithmic improvements begin to happen.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:29]</span></p>
+
+<p>Speech recognition lagged for years and years. So actually, let me take a step back. Handwriting recognition was one of the first to demonstrate steady improvements, not better. but steady improvements. Speech recognition on the other hand lagged for years. It then improved rapidly after 2010.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:51]</span></p>
+
+<p>Language understanding. showed the steepest and the most recent gains. And if you notice here, on all tasks, the AI performance is getting now better, is meeting or surpassing human capability. And the progress is non-linear. There are long plateaus followed by sharp increases in performance. So the key takeaway here is that once AI hits parity, once it reaches a certain point, it improves faster than humans ever could.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:27]</span></p>
+
+<p>Think about that. It takes a long time for it to reach a certain benchmark that humans are at. Once it reaches there, through a combination of figuring out improvements either in the data collection, data curation, or algorithmic improvements, they then surpass humans and they learn faster than humans ever can. uh If that alone is not enough, let’s now take a step back at the size of the data set growth that are off the off notable AI models. Remember I said that there are three trends that were happening, right? There is the availability of compute, availability of data, right?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:02]</span></p>
+
+<p>And availability of uh GPUs. So this is a graph from epoch.ai. This is what this is showing you is the growth in the in data set size of what is known as a frontier model. So frontier models are generally closed source models, generally from these new companies like OpenAI, Anthropic, etc. that are so far ahead of all other models in the world.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:35]</span></p>
+
+<p>So what this graph is showing you is that on the x-axis is the publication of the AI model. On the y-axis is the size of the training data set. Okay. And again, it’s in the log scale. And what this log scale on the y-axis is showing is a approximation of the number of tokens or images that are there into the data set. So the big picture here, before we even try to interpret any single element here is that the progress of AI, if you notice here that the bigger the data set are, the better the models are performing.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[31:18]</span></p>
+
+<p>All right, so the AI performance is tightly coupled to the size of the data. And the data set growth becomes exponential in the deep learning era. So look at what’s going on 2010 onwards. Data becomes the primary driver for modern AI capability. So up until from the more early systems from 1950 all the way through to 2000, I’ll say. The data sets are small, very tiny by modern standards, know, hundreds.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[31:45]</span></p>
+
+<p>in some cases thousands, maybe at the most millions of examples, couple of millions of examples. Heavy reliability on heavy reliance on handcrafted, hand curated rules and heuristics, right? Capabilities were really narrow, tasks were very narrow and very task specific. 2012 onwards, when we get into the deep learning era, that’s when the training data size begins to grow exponentially, right? So what are the key implications that you can draw from that? Well, number one, the frontier AI models, as much as we think that they are compute hungry, training hungry, they absolutely are, but they are fundamentally data driven.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[32:21]</span></p>
+
+<p>The capabilities of these models emerge from exposures to vast human knowledge. mean, one can argue that almost entirety of human knowledge is now encoded into these models. Number two. We are fast approaching planet scale data consumption. Many of the models have consumed almost all of the data that’s available on the public internet. Data quality now begins to matter more than raw volume, which is why you see, I don’t want to call it quite fights, but you’ll see competition now for whoever has access to the most data.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:08]</span></p>
+
+<p>That’s why you see these lawsuits happening around whether or not books are in public domain, whether artists… are being paid for the work that’s been created by these companies that are data hungry to build the next big model in the world that there is. And number three, the scaling is still continuing, even though, yes, there are papers out there around that how the scaling walls are being hit. And then there is other strategies being developed around, uh if not bypassing, but circumventing those walls.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:35]</span></p>
+
+<p>So scaling is still continuing, but new constraints are emerging. So what I mean by that is as the finite supply of data of high quality human data ah is happening, we are now getting into a territory where discussions are happening around legal and copyright issues. There is certainly the rising costs of training and infrastructure to host the models. There is much more increased focus on model alignment, model safety and governance of the models. And then the industry focus has started to shift on generating synthetic data, as well as reinforcement learning and really feedback driven training. Okay.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:22]</span></p>
+
+<p>Let’s look at another view. This is the view of the amount of training that has been computed. So we looked at the amount of data on the frontier models. Let’s now look at the compute investments for these frontier models. Okay. Same format as before, x-axis is the publication date, y-axis is a log scale of training compute, now measured in flops or floating point operations.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:42]</span></p>
+
+<p>Think of the flops as how much raw computation was used to train the model, right? Each dot is a notable AI model, and then the dashed line shows you the trend. Again, you can see that there is a massive inflection that happens in the deep learning model. So before deep learning, the progress was around 1.5x per year. Soon as the oh deep learning era started, the growth improved to as much as 4.5, 4.6 times per year.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:13]</span></p>
+
+<p>That shaded area, that is the modern frontier model era, right? Where the compute estimates are partly speculative, I’m gonna say, because most companies are not willing to share tremendous amount of details about the compute that’s being thrown into these models. So previous slide, we talked about how these models are now hitting data walls. On this page, I’m going to submit to you the frontier model AI is compute limited. Capability now depends heavily on whoever has the deepest pockets, the biggest GPU clusters to train these models. In fact, if you truly look at this growth is no longer linear, it is now exponential because we’re now hitting Moore’s law.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[36:00]</span></p>
+
+<p>There’s improvements that are happening in GPUs and CPUs or TPUs. Progress is now coming in from horizontal scaling and compute systems. So this is now creating new real implications about only those that have the deepest pockets are going to be able to train the next generation of these models. right. So if I take a step back, compute investments into these AI models, it determines how large a model can be. It determines how much data a model can process.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[36:35]</span></p>
+
+<p>How deeply it can learn. And think of the data and compute, not just the data itself, but think of the computer itself as the fuel as well. And that’s what aligns with the AI scaling laws. So performance improvements were linear for some period of time when more more data and more and more computers was thrown as these models. But now we have compute data and the scale, they’re all uh increasing together. Therefore, the modern AI is progress is driven by number one, massive cloud clusters.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[37:14]</span></p>
+
+<p>Number two, specialized chips. So you’ll begin to see, mean, that’s why that explains the rise of Nvidia and you’re now beginning to see new specialized chips coming in from Google, from a company called Grog that Nvidia just had a partnership with, quote unquote, partnership with. Parallelization breakthroughs, how quickly you can parallelize your workload over this massive compute cluster. how energy efficient your architecture is, right? So if I summarize it all, and let’s now try to answer the question that we posed at the start, which is why has AI become so good so fast? Really, it’s these three things.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[37:57]</span></p>
+
+<p>So compute, the algorithms, and the data. Compute gives us the infrastructure. So compute alone does not explain the AI progress, but it gives us the infrastructure. Algorithms made the compute more efficient and data provides the diversity and the capability for these models to learn. And the three things combined give improvements to the capability, giving us as much as 200 % improvements in the capabilities. If you don’t believe me, have a look at this page now.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[38:32]</span></p>
+
+<p>So what this graph is showing you is, That this is why this explains why AI has accelerated so dramatically over the course of last decade. Right. So this visualization from APOC AI, once again, it breaks down effective compute growth. So we looked at previously raw compute growth. This is effective compute growth since 2014. And we’re breaking this down into two, two components.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[38:59]</span></p>
+
+<p>One is the algorithmic progress that’s in the dark blue and then you have the compute scaling that’s better or you know that’s basically more GPUs bigger clusters and so on and so forth. If you look at the vertical axis it’s again logarithmic which means that each step is not incremental right it’s exponential so again we’re talking about we’re talking about orders of magnitude scaling. So what’s going on here? the big takeaway here is that that you know by 2020 algorithmic progress. It accounted for 22,000 times improvement into the model. While compute contributed to about 17 million times.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[39:51]</span></p>
+
+<p>So algorithmic. progress might seem it’s only small, that it’s only, you know, 2.2 times 10 to the power of four, that’s 22,000. So it seems that, you know, algorithmic progress is only, is much smaller. But it’s misleading. If you really step back and think about it, what this chart is telling you is that without the algorithmic progress, you would need orders of magnitude of more compute, more hardware to achieve the same results.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[40:24]</span></p>
+
+<p>So the point I want you to take away is that since the transformer architecture came out and all these new mechanisms came about around retention, around optimization of KV cache, et cetera, algorithms are acting as a force multiplier. on compute. Okay. So the real story about AI progress is not just about compute. The real story about AI is how the better algorithms, better training and better use of resources. Which is why the next wave in AI, the next wave of breakthrough in AI is going to come not just who has the biggest GPUs, but who’s able to make use of the infrastructure more cleverly, more smartly.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[41:07]</span></p>
+
+<p>All right, okay, so summarizing all of that together, what I’m going to show you next is how every major benchmark category, it moves towards or above human performance over time. So let’s have a look at this. So this is a chart from Stanford HAL report on AI index, the dotted line that you see is the human baseline. This is similar to the chart that I showed you previously. And what this is showing you is performance of these AI models on a variety of tasks, whether it is image classification, reading comprehension, math, multimodal, understanding and reasoning. Now, recently, we have started using a new benchmark called GPQA Diamond.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[41:55]</span></p>
+
+<p>Without fail, the AI model accuracy on these benchmarks. is nearing or bettering human performance over a period of time. In fact, this chart alone may not be sufficient, but I want you to have look at this. So 75 years ago, basically one of the original godfathers of AI, Alan Turing, in 1950, he proposed the imitation game as a method to determine if machines could be said to be intelligent. So the idea here was that we’ll play a game now widely famously known as the Turing test. So the idea is that the human interrogator is speak simultaneously to two witnesses.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[42:38]</span></p>
+
+<p>One is human and the other is a machine via our text only interface. So strip away all of the other mechanics. Both witnesses are going to persuade the interrogator that they are human. If the interrogator cannot reliably identify the human, the machine will have passed the Turing test, right? Of course, then I cannot distinguish whether, you know, who’s human or which one is the machine. This is an indication, however imperfect it may be, because there is a lot other debate that has happened around Turing test, as you can imagine, in the last 70 years.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[43:10]</span></p>
+
+<p>But the original Turing test was, the interrogator cannot distinguish between the two witnesses, therefore, one can argue, one can submit that the machine exhibits human-like intelligence. So this four quadrant chart that you see here from that paper on archive, this evaluated four systems, the original Eliza, GPT-4-0, Lama 3.145 billion and GPT-5. And the punchline here is that…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[43:48]</span></p>
+
+<p>that the humans could no longer distinguish whether they were talking to a human or to a machine in the case of GPT as much as 73 % of the time, in the case of Lama 405 billion, Lama 3.1 model about 56 % of the times. So one can argue that LLMs have now reached a stage where humans cannot distinguish whether they’re talking to a machine or an AI. So what does this mean in practical terms for humans? A.K.A.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[44:28]</span></p>
+
+<p>to the wise. Number one, I’m going to say that benchmark or performance of LLMs on benchmarks does not mean real world intelligence. In fact, what ends up happening is all AI researchers and companies when they release the AI models, they actually engineer the models to perform well on the benchmark. Because of course, that’s the metric that’s being used to determine how good the model is. Because of course the tests are structured, right? So this does not mean that the AI thinks like humans.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[44:56]</span></p>
+
+<p>Number two, the generalization of the AI itself varies. Just because the AI excelled on a benchmark doesn’t mean that it’s going to have a human-like performance because of course what’s going to happen is that the AI is going to hallucinate. And as you see that it hallucinates in practical terms. And then the other thing that happens is that All benchmarks tend to age over a period of time because the models get better and better at performing at the benchmarks. So researchers keep introducing new benchmarks. Let me show you what I mean.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[45:31]</span></p>
+
+<p>Here is a new benchmark that was introduced. This is called Humanities Last Benchmark. So the idea behind this is that, you know, it’s a rigorous uh academic test where the top system scores only 8%, right? ah it’s a bench, you know, on something called, you know, Frontier Math, on big code bench, uh a coding benchmark where AI achieves as much as 35%, well below the human score of 97%. So the point here being that there is going to be a tug and a pull, and as the AI systems get better and better, how we measure humanity’s performance is going to evolve as well. Therefore our assessment of how good these models are is also going to change over a period of Okay, let’s take a deep breath.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[46:24]</span></p>
+
+<p>So we talked about how the scaling laws are factoring into improvement of these models. We talked about how these models are data hungry systems, how the investments in compute, the 125 years of Moore’s law, how these models are getting better and better and near human-like performance. Well, what does this mean in the enterprise context? Just because these models are so good, does it really mean that these models are now going to involved and be accepted into the business? Can we just adopt into the business? So I think the assertion one that I’m going to make is what’s really interesting with these LLMs, with these foundation models is that however imperfect it may be, let’s call it the reasoning engine that these large language models.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[47:14]</span></p>
+
+<p>Well, they are opening up a new relationship, a new dynamic between content generation, because clearly they are GPTs, they are pre-trained transformers to generate new tokens. So they can create contextually appropriate, well, with some guardrails, new content, whether it’s new email, a summary, a marketing message, et cetera, and so on and so forth. We can certainly get them to do through a combination of high dimensional vector stores, get them to do semantic search. So they’re able to search on data and make sense of that data. And number three, what they’re doing is they’re opening up a new user interface. It’s those three core functions within enterprise software that is unlocking all enterprise middleware that was written in the last 70 years.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[47:59]</span></p>
+
+<p>which means all middleware, all SaaS applications, all bespoke applications, all um COTS applications that have been developed by any vendor under the sun, they’re all now up for grams. Hence the assertions from, well, as much as from even Satya Nadella that SaaS is dead. And the reason why he said that is because now there’s going to be the great unpacking of the business logic that was embedded into those applications. So what do we actually mean by that? So have a look at this equation. This is the expansionary cycle within enterprise software.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[48:46]</span></p>
+
+<p>So the cost of generating data and the cost of storing the data within the enterprise, not in the public domain. If you’re a company, the cost of collecting the data, the cost of governing that data, that is declining. The compute costs are declining. They follow the Moore’s law. Again, I’m talking about within the enterprise. Most enterprises, if you are buying infrastructure, If you’re buying storage for on-premise, you’re going to keep that asset for at least five years.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[49:12]</span></p>
+
+<p>So some of them keep it for as long as seven. Compute costs and continue to decline. The development costs are certainly declining. Well, thanks to AI. So there used to be a point in time where developers were prized and paid handsomely for their arcane knowledge of syntax and so on. But now with the advent of these generative AI models, you now have a Well, if not an Oracle, you at least have a companion to our developer that can generate tasks based upon context and prompt.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[49:42]</span></p>
+
+<p>So those inputs are declining. So the input costs are declining. And as the reasoning capabilities of these models increase, you now have whole new classes of work that can now be automated with software. And I think that’s going to rise to a recursive formula that, if my costs are declining and I can have a new reasoning to be done through a simplest simplified interface, how can I build newer capabilities faster and faster? That’s the game that you’ll see. Hence the assertion from some of the analysts that we are going to see as many as a billion applications to be created in the next 10 years.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[50:28]</span></p>
+
+<p>Now, have a look at the enterprise adoption. So within the enterprises globally, there are approximately 72 % of the RAC deployments, which is Retrieval Augmented Generation, which is the most famous use case, which basically means that you’ve taken a large language model. It doesn’t matter which model it is. You have given it some context, which is your enterprise data, your policy data, et cetera, and you created high dimensional representation of that data. And now you’re using LLM to give a human-like answer. So the expectation here is that the RAC deployments are going to continue by as much as 50 % year on year.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[51:12]</span></p>
+
+<p>Almost 70%, two-thirds of the enterprises are very early into their enterprise journey, and they’re going to be pursuing a multi-agent and a multi-model strategy. More than 60 % of the enterprises are using open source models. And really what’s interesting is that the number one barrier to adoption in AI is a C-level leadership. And really what it boils down to is, can we govern these models? Can we secure these models? Can we trust these models?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[51:49]</span></p>
+
+<p>So the point I’m trying to make here is that even despite with all of the advancements that have happened into AI, the enterprise adoption is still in its infancy. It’s early days. Now, the other macro trend to note within the enterprises is how in three years itself, there is a fundamental shift that’s happened in AI. And this is really important to understand because if you’re a bank, if you’re a telco, if you’re a retailer, they’re used to building applications that run for 10, 20, 30, 50 years in some cases. But they also have had to pivot from models that generate text to models that were assistance in a chatbot type of a thing to now agents that can do work for them. This is disambiguation.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[52:33]</span></p>
+
+<p>This is adoption of new technology at a scale that enterprises are not used to. And that’s what’s causing a lot of turn. So then you’re beginning to see tremendous amount of explosion of new startups. And if those of you who might be familiar with something called the Cloud Native Compute Foundation, which resulted into hundreds of open source projects to be started when developers started disintermediating. legacy middleware companies like IBM, VMware, etc. and started building cloud native stacks, we are beginning to see a similar explosion in AI stacks.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[53:05]</span></p>
+
+<p>So here is an example of the open source LLM landscape. Now this comes from Inclusion AI and an open source company called Ant. But look at what’s going on, both on the infrastructure side and on the application side. Everything to do from transformation of the data to model training and serving. evaluation platforms, the MLOps flows, vector storage search, agent coding frameworks, general assistance, client interfaces. There is great bifurcation that’s happening and an explosion of new companies that is happening.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[53:41]</span></p>
+
+<p>And it is left to the chief architects, platform developers, head of AIs, oh et cetera, in all organizations to stitch it all together. The reason why I share this is that that this is the work that’s happening within the enterprises and enterprises as much as the promise of AI that I talked about couple of slides ago around this new reasoning engine that is going to allow new forms of data and new experiences to be bordered on to existing corporate corpuses. Well, I think that’s the promised land, but how they’re going to go about is they’re going to be having to stitch all these components together by themselves into something cohesive that makes sense to the enterprises. Okay, I’m going to now share with you what I have learned in my role at IBM from thousands of engagements across the globe. And I tried to break it into what are the five major things that we learned. Well, number one, I’ve already covered.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[54:44]</span></p>
+
+<p>So that’s easy, which is what matters the most is governance and security of these AI models, right? It’s the number one reason why projects have not been deployed, projects get slowed down. um because what most organizations are finding is that biases exist and then they want to control the drift and they want to make sure that those models are performant and secure. Let me give you another example. We have a bank in Canada. Well, actually, let me take a step back.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[55:13]</span></p>
+
+<p>So in Canada, we can do this weird thing where we can email money to each other. I know Americans tend to get really confused because they have something called Venmo and other cash out type of applications. Well, in Canada, we can email each other money. Now it turns out that when you send somebody money, there is a text field that you can use to say, okay, here’s some context as to what this money is for. In one of our engagements, we found that people were using that, well, jilted spouses and lovers were using that to send each other some money or a fraction of a penny and sending some really abusive messages. Of course, that results into reputational risk.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[55:50]</span></p>
+
+<p>Now you would think that it’s a small problem, but for one bank alone, it was something like 700,000 users annually. You do the math for the top six banks in the country. And when they went to deploy the AI models, the accuracy that they were getting was something around 65, 66%, not good enough, clearly. So one, we ended up learning really choice words about how friendly or unfriendly people can be, especially when they owe each other money. But the point is that that is a type of…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[56:24]</span></p>
+
+<p>filtering, is a type of governance that our clients are now having to think about. The second big trend that I see is that it’s going to be a multi-model and a multi-agent world. What that means is that we’re all going to have a small number of really large models and a large number of very small models that we’re going to be deploying in our companies. Number three, the AI world by definition is a hybrid world. because you’re not going to have a scenario where you’re going to be copying all of your data where your model is, which means that you’re going to use some public frontier model that you consume via an API only. But for other use cases where your data is your crown jewel, you actually want to bring the model where your data is rather than the other way around.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[57:09]</span></p>
+
+<p>And especially with what’s going on geopolitically, it makes more sense to start thinking about sovereignty of your AI, how much you can trust the supply chain of that AI. how much visibility you have into the model that was trained and the data side that was trained, what was filtered and so on and so forth. Scaling of AI still remains a problem. There are situations where companies have tried to deploy AI just because they want to be able to claim to the board that they’re doing something with AI. Those models don’t work. Those projects are the first ones that fail.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[57:49]</span></p>
+
+<p>And last but not least, certainly the data matters. Right? your AI is only as good as the data. If you have challenges with data quality, data access, data security, the projects are not going to succeed. Okay. So we had a look at the corporate view on in terms of AI adoption.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[58:06]</span></p>
+
+<p>I also want to provide you a reality check on the cost decreases that enterprises are seeing globally. So this is a snapshot of a report from JP Morgan New Street in August 2024. That what this is showing you is that across a wide number of business functions across sales, legal, software, et cetera, most of them are reporting less than 10 % of savings. There are some outliers who talk about 20 % or greater than 20 % savings, but majority are reporting less than 10 % of savings. If you drill down even further, so this is from the US Census Bureau, the AI adoption by industry, you can see that the average adoption is around 15%. So if you combine the two, it means that adoption is still very early into the adoption cycle.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[59:07]</span></p>
+
+<p>The ROI that enterprises, not consumers, enterprises are getting from AI is still pretty low. And governance and quality of data are the paramount reasons why the AI projects are failing. Okay? All right, so let’s just summarize. So what did we learn today? So number one, AI adoption is five to 10 times faster than any technology wave of the past, right?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[59:35]</span></p>
+
+<p>And this wave is global and simultaneous. It’s not regional, it’s not sequential. The compounding effects of the data, compute and algorithms means that it is accelerating further and faster than anything else before. The infrastructure that’s being spent onto this is at an unprecedented scale as much as $200 billion in 2024 alone. And then the gap between the AI leaders and laggards is widening faster than expected. So I want to end on the following note.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:00:19]</span></p>
+
+<p>Regardless of what you see in the enterprise reality, the question is not whether AI will transform your industry. The question is whether you’re going to be ready when it does. So I hope that this episode gave you a good insight into everything that’s gone into these AI models, why it certainly we feel like everything’s happening all at once, what enterprise should be doing, how to think about these models, the scaling laws, et cetera. With that, thank you very much. Join me next time. Episode two is going to be about following the money.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:00:57]</span></p>
+
+<p>In next episode, we’re going to talk about Who’s paying for all of this? The answer involves the $212 billion already spent plus the biggest infrastructure bet in the industry. We’re going to cover things such as the recursive funding loops that exist into the AI market, the widening gap in the training versus inference economy, and the high risk of concentration in SNP 500. With that, thank you very much for joining. I’m Manav Gupta, and you are on Ship AI. Thank you.</p>
 
           </div>
         </div>
       </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+    
+    
+    <div class="mb-12">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="font-serif text-2xl font-bold">Clips & Highlights</h2>
+          <p class="text-sm text-muted mt-1">10 clips from this episode</p>
+        </div>
+        <a href="/shipai/clips/" class="text-xs font-medium text-accent hover:underline">View all clips</a>
+      </div>
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Shorts</h3>
+      <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide mb-6">
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Chat GPT vs Google</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:19</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Chat GPT vs Google</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">How Three Curves Changed AI Forever</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:33</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">How Three Curves Changed AI Forever</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Manav Gupta Warns Against Ignoring Te...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:09</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Manav Gupta Warns Against Ignoring Technology in Strat...</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">The Speed of Change: How Fast Can We ...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:30</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">The Speed of Change: How Fast Can We Adapt?</p>
+          </a>
+        
+          
+          <a href="https://www.youtube.com/shorts/BGf4GZGvO0w" target="_blank" rel="noopener" class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">How Three Curves Changed AI Forever</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:34</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">How Three Curves Changed AI Forever</p>
+          </a>
+        
+      </div>
+      
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Deep Dives</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+          
+          <a href="https://www.youtube.com/watch?v=Iia-bU1ojhU" target="_blank" rel="noopener" class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">Moore's Law Is Dead. The AI Curv...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:37</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">Moore's Law Is Dead. The AI Curve That Replaced It Is Terrifying</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">Chat GPT's Meteoric Rise</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">2:50</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">Chat GPT's Meteoric Rise</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">Moore's Law: The AI Moment</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:36</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">Moore's Law: The AI Moment</h4>
+            </div>
+          </a>
+        
+          
+          <a href="https://www.youtube.com/watch?v=9AJIVJv_b4I" target="_blank" rel="noopener" class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">ChatGPT's Rise to 100 Million Us...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">2:52</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">ChatGPT's Rise to 100 Million Users — The Fastest Adoption in History</h4>
+            </div>
+          </a>
+        
+      </div>
+      
     </div>
     
 
@@ -312,7 +873,7 @@
   
     <a href="/shipai/episodes/agi-is-coming/" class="block relative group">
       <div class="aspect-video overflow-hidden">
-        <img src="/shipai/assets/images/og/agi-is-coming.png"
+        <img src="https://img.youtube.com/vi/Zf1Rq-hoOOc/mqdefault.jpg"
              alt="AGI is coming"
              loading="lazy"
              width="320" height="180"
@@ -356,17 +917,17 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-7-agi-is-coming/id1832355436?i=1000755763218" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://www.youtube.com/watch?v=Zf1Rq-hoOOc" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     
@@ -433,12 +994,12 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-6-ai-agents/id1832355436?i=1000753648763" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -517,7 +1078,7 @@
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-5-ai-gets-a-body/id1832355436?i=1000750157728" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -560,11 +1121,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -575,6 +1132,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           

@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -165,7 +165,7 @@
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+      <a href="https://podcasts.apple.com/us/podcast/episode-5-ai-gets-a-body/id1832355436?i=1000750157728" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
         <svg class="w-4 h-4 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
         Apple Podcasts
       </a>
@@ -260,6 +260,592 @@
 
     <!-- Transcript -->
     
+    <div class="mb-12" id="transcript">
+      <details class="group">
+        <summary class="flex items-center justify-between p-5 bg-white rounded-card border border-black/[0.06] hover:border-black/10 transition-colors cursor-pointer list-none">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="font-semibold">Full Transcript</span>
+          </div>
+          <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><strong>Manav Gupta</strong> <span class="ts">[00:02]</span></p>
+
+<p>So in 2000, three, two, one. In 1920, the Czech playwright Karl Kopek introduced the word robot to the world in his play Rostam’s Universal Robots. Now interestingly, the word robot comes from the Czech robota, which means repetitive tasks or drudgery. Welcome to another episode of Ship AI. Today, we’re going to be covering what happens when AI gets a body So let’s begin. Now, we spent the last four episodes following the money, understanding why and what’s happening in AI, why it feels all of a sudden, understanding geopolitics.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:34]</span></p>
+
+<p>Well, this episode is about the paradigm shift. What happens when AI goes from screens to streets, from chatbots to robots? So have a look at this. The robots aren’t coming. They’re here already. Look at this image.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:04]</span></p>
+
+<p>Count them. These aren’t just concept renders, by the way. These are actually shipping products or active prototypes. In fact, there is a prototype in here that’s already retired by Boston Dynamics. NVIDIA released this at GTC, in fact, back in 2024, which is light years in AI, because they want you to understand that we have crossed the rubicon. We’ve crossed the threshold.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:27]</span></p>
+
+<p>For the last two to three years, the world has been obsessed with the emergence of large language models. I’m going to call it our chatbots. Let’s call that AI behind the screens. Well, that era is not ending, but it’s already been joined by something far bigger. AI is now about to get a body. And when AI gets a body, everything changes.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:52]</span></p>
+
+<p>Markets. become 100 times bigger. Technical challenge is different. Workforce implications are on a whole different level altogether. That’s what this episode is about. So here is a high-level formula that explains everything.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:09]</span></p>
+
+<p>For decades, we’ve had digital technology, and in parallel, separately, we’ve had automation. Robots or crude robots doing repetitive tasks. What’s new now is the combination. You add AI into the mix, and let’s be clear, AI in this context is real intelligence and ability to perceive, reason, and adapt. I know this seems like how LLMs have evolved over the course of the last few years. But add AI to physical systems.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:45]</span></p>
+
+<p>You get something that is qualitatively different. Take a car. Add AI to it, you get an autonomous vehicle. Could be a car, could be a truck, could be a taxi. Take a Veros worker, add AI to that. Give it a form factor so that it can either…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:03]</span></p>
+
+<p>Park the cars, move packages, work on logistics, deliver packages. You get an industrial robot. Take a human, replicate that form factor into a quadruped or a biped. Add sensors and add rotary actuators to it. You get a humanoid robot. Add a model into it that allows us it to perceive and sense, and at the same time understand commands in a human language.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:24]</span></p>
+
+<p>You get a humanoid robot. That is the unlock. This is why the biggest tech companies in the world are all pivoting to physical AI. Now, to be clear, this evolution of physical AI has not happened overnight. Like all good things, they’ve been through a long period of incubation and evolution. Starting in the 60s, we had what I’m going to call traditional industrial robots.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:56]</span></p>
+
+<p>Think of those as really crude. pre-programmed sequences from today’s context. They generally had rigid mechanical arms, limited to no sensors, but they were good at just doing repetitive tasks. Then, starting from 1990s, we saw the early autonomous robots, which had some capability to do simple environmental mapping. Think of the Roomba as an example. The Roomba had some intelligence around navigating corners, navigating boundaries, navigating different types of surfaces, being able to do mop and more recently, um vacuum and mop at the same time.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[04:42]</span></p>
+
+<p>They had some rule based decision making. Starting from 2010s, we began to see the emergence of embodied AI robots. This is where we then had AI-powered perception and, crucially, a sensor-actuator integration happened. We’ve all seen videos of the Boston Dynamics robot dogs, as an example, evolve over a period of time. And crucially, it’s the integration of AI with a sensory actuator mechanism that allowed perception and action loops to be embodied into a physical form. That then paved the foundation for advanced physical AI that is now making its way as highly generalizable and highly adaptive form of physical embodiment of AI or humanoids.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:20]</span></p>
+
+<p>We’ve already began to see things such as the Optimus from Tesla, the Jeevan from Unitree in China, and so on and so forth. Now what’s happening behind the scenes is for the last three years or so, the world is obsessed with the race of large language models. Who has the biggest model? Who’s rich benchmark the models performing, uh performing highly at what tasks that LLM can do. You know, it’s been a story about opening eye versus then topic versus Google. Well, that race continues, but the frontier has now moved.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[06:08]</span></p>
+
+<p>There’s a new race that’s emerging. which is new types of models, new types of foundation models called vision language action models. These are AI systems that will see the world through the vision models. They understand and they understand instructions in language, that’s the L or the language component of it. And then they take physical actions. Mind you, these are models that are fundamentally hard.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[06:36]</span></p>
+
+<p>These language models that we know today, they predict the next token. VLA models, they take it a step forward where they will predict the next movement that the robot has to undertake and undertake that move that that that that and not only predict that next movement but also take that next movement in 3D with the physics involved as well as the consequences of taking that action. So whoever solves this problem will own the next decade in the AI. And this isn’t just theory, by the way. We are already beginning to see a Cambrian explosion that happened on planet Earth 500 million years ago. And just like that time, we are seeing an explosion of all niches being filled, all life forms happening all at the same time.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[07:25]</span></p>
+
+<p>Look at the diversity with the emergence of these VLA models and giving AI a body. We’re now seeing a full spectrum and diversification of these models. We have quadrupeds, we have humanoids, we have snakes, we have swimmers, we have drones, we have warehouse robots, we have surgical arms, have remote surgical devices that are emerging, agricultural machines. Every form factor is being explored. This is evolution and fast forward driven by AI instead of natural selection. So here is the emerging robotics architecture in the global ecosystem.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[08:12]</span></p>
+
+<p>So if there is an organization that’s operating in a manufacturing and supply chain, they are going to be dependent upon or providing some form of compute. That’s the shovels and pickaxe provider. So we are going to require a lot more compute than ever before, and they’re all forms of it on edge and other embodiments of We are crucially also going to require new forms of subsystems and components that we did not have to care about in the LLM space. So that’s the certainly the sensors, the actuators, the motion providing, the components providing motions, such as gears and bushings, various forms of power, we’ll need materials for various types of components and alloys to fabricate different parts of the robots. Building on top of that. is the perception layer.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:09]</span></p>
+
+<p>This is where we’ll see emergence of vision systems. So think of this as the various types of cameras, whether it is regular cameras or thermal cameras. We’ll see emergence of depth sensing devices such as lidars. We’ll see adaptations and improvements in localization technologies such as radar and other sensor fusion or multimodal edge processing devices that are going to Then comes the intelligence layer. This is where the foundation models or the VLA models will sit, along with an unforeseen demand and generation of data to train these devices. That’s where we’ll see emergence of, true emergence of digital twins, synthetic data, and other forms of testing.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:56]</span></p>
+
+<p>And we’ll explore all of that in a bit more detail as we go through this episode. We’ll see emergence of lot more control and autonomy driven by algorithms for things such as path planning, for decision making for these devices. And then we’ll see emergence of software stacks that’s going to emerge both in terms of middleware so that we can do fleet management of these things. And then we’ll see the new frontier of new types of systems integration that’s going to emerge, full stack automation of these things, orbital launches. uh infrastructure that’s going to provide, know, ground stations, mobility devices, delivery logistics, et cetera, all in support of what we now call a robot today. That’s going to be an actual application domain, but that could be the humanoid of tomorrow, the robots in industrial warehouses, the autonomous vehicles, the UAVs, the devices used in defense, and so on and so That is the seismic shift.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:08]</span></p>
+
+<p>For enterprises, what this picture represents is supply chain complexity. A robot may have the software from the US, actuators from Japan, ah Chinese actuators, and this something might have been done in Vietnam. This is going to be geopolitics and risk built into the architecture. So I hope it gave you a little bit of insight of the paradigm shift that’s already happening within AI. Now, in order to truly understand this economic transformation that this paradigm shift represents, let’s now talk a little bit about the entirety of the opportunity that physical AI represents for us. So we’ve now established the paradigm shift.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:59]</span></p>
+
+<p>Now let’s talk about what it means in terms of dollars and cents. $50 trillion. Let that sink in. $50 trillion. According to various analysts from Morgan Stanley to Goldman Sachs to F prime, Dealbook, the bear case is about $9 trillion. The bull case is somewhere as much as $50 trillion.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:29]</span></p>
+
+<p>For context, the global software market today is approximately $600 billion. That includes all of digital AI, all of the chat bots. Copilots is a fraction of that, what? At the high end, approximately 50 billion. Physical AI is going to be 100 times larger. And we’ll look at a very quick back of the napkin use case as to how we arrive at this number.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:56]</span></p>
+
+<p>But the point I want you to take away is this is why Apple builds robots. This is why Meta is building glasses. This is why Tesla calls itself an AI company. This is why Amazon has a million warehouse robots. The point being that if you are a $3 trillion company and you want to grow, you don’t chase just a $50 billion hardware. You chase a $10 trillion hardware.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[13:25]</span></p>
+
+<p>You chase a $50 trillion. So, remember chat GPT? Well, according to Jensen Huang, for what it’s worth, the chat GPT moment for physical AI is here. And we’re already beginning to see this. Waymo is now delivering 150,000 paid rides per week, fully automated. Tesla has over 11 million devices, vehicles really, collecting data.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[13:49]</span></p>
+
+<p>Guess what data that data is going to be used for? Amazon has over a million warehouses. We’re already seeing over 13,000 humanoid robots shipped globally, a large majority of those in China in 2025 alone. This is no longer about an impressive demo. We’re already at the stage where it is being deployed at scale, maybe not quite at planetary scale yet, but certainly scale. So this isn’t about whether or not AI is going to transform industry.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:22]</span></p>
+
+<p>This is going to go about how fast and who leads it. So I promise that we’ll do some back of the map in math. So if you look at the cost of labor in just the developed world alone, and say it’s somewhere between 25 to 30 dollars per hour of human labor. For a humanoid, operating cost is going to be somewhere between $2 to $10. Remember I said about 13,000 humanoids were shipped last year. Last year, China also installed over 450,000 industrial robots.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:02]</span></p>
+
+<p>That was more than the rest of the world combined, the way. So if you now take into account the dollar value impact, for all human labor that this technology can do. That’s what leads us to a $50 trillion total addressable market. And here is a graph to substantiate that. This is from a report from Morgan Stanley, their robotics almanac. And what they’re talking about here is that by 2050 alone, they are projecting $25 trillion in global robot revenues for hardware sales only.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:41]</span></p>
+
+<p>This includes other components such as cameras. As the world builds more and more of these robots, they’re going to require actuators. They’re going to require rare earth magnets. They’re going to require motors. You’re certainly going to require a significant amount of compute as they are projecting 12.5 million exaflops of compute.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:10]</span></p>
+
+<p>According to Goldman, this could alter labor market structure in ways not seen since the Industrial Revolution. So I hope it gave you a little bit of insight into the size of the opportunity and how we are arriving at this massive seismic movement and the paradigm shift that I keep talking Now, the other aspect for us to look at is for us to truly go deeper into this field, let’s take a step back and understand the basics, understand what is a robot, how do you train these things, right? And then let’s get into the nuances of some of these new models that I’ve So apparently the ISO, International Standards Organization, has actually defined the word robot and it warrants a couple of minutes being spent on it. Let’s start with what is not a robot. Any of the software bots that we use today, whether that’s all of the bots, the RPA stuff that we do, that’s the robotic process automation that we do within enterprises, none of that counts as a robot. An autonomous car does not truly count as a robot.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:26]</span></p>
+
+<p>Remote controlled UAVs and drones, don’t count as a robot. So what is a robot? A robot is a program actuated mechanism. So it can do some action with a degree of autonomy to perform locomotion. So it can perform its movement, manipulation or positioning. And then I thought it would be interesting for us to look at what do we mean by autonomy.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:51]</span></p>
+
+<p>According to ISO, autonomy is defined as the ability to perform intended tasks, whatever the tasks are being given to this machine, based on current state and sensing. And here is the crucial part, without human intervention. So it’s really important that we all understand what you’re talking about is a robot that we’ve seen for years and years in the movies that they’re able to sense, convert that into some predictable action, and then actually act on that behalf. And the assembly is such that the parts work in unison with each other in order for them to take an action in three-dimensional work. And of course, while they’re taking the action, they’re able to get the feedback and calibrate their…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[18:37]</span></p>
+
+<p>actuators and sensors all at the same time. Well, this leads us to a really interesting problem. If humanity was to ever build a robot, well, how do you train a robot? Welcome to Moralex Paradox. So what’s really interesting is up until now, we’ve talked about how a chat GPT trained on the entire internet. Well, when it comes to physical manipulation, or manipulating our devices in three dimensional worlds, there is no internet.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:12]</span></p>
+
+<p>So what do do? Now, we compare this to, as I mentioned, MonoX Parallel Hots. Things that are incredibly easier for humans are perversely proportionally more difficult for machines or AI to do. Think of folding a shirt, climbing the stairs. So much easier. They just come naturally to humans.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:37]</span></p>
+
+<p>Trivially, in fact. to my five year old. for machines and AI incredibly different. Things that are easier for machines to do, repetitive tasks, multi-digit multiplication, so much easier for the machines to do that are generally different for humans to do. So therein lies a gap in training. So what is going on in the last few years is an emergence of different training approaches that is emerging.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:04]</span></p>
+
+<p>Number one is… teleoperation or a remote operation. So you might have seen videos of surgeons performing surgery remotely um over some kind of a radio link. Right?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:24]</span></p>
+
+<p>This is what requires real physics, high quality data, and we’re able to generate labeled data set. But just like AI, this is not repeatable. Right? Highly expensive because you need a highly trained human. You need the right conditions. You need a subject in which you’re able to these tasks as well.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:39]</span></p>
+
+<p>Well, turns out there is a couple of other ways. Just like how LLMs are being trained, we can generate synthetic data, which of course is nearly infinitely scalable. It’s compute efficient. But of course, the backdrop here is that there is a gap between simulation and reality. Turns out there is yet another way that humanity knows in which how to train these models, something that many of the humans are actually using it themselves, videos and video games. We can actually now build highly sophisticated AI-based engines for video games, where we can incorporate those video games through a combination of not just video games, by the way, but also with augmented reality.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[21:27]</span></p>
+
+<p>where we can have real-world data. We can scrape it at scale, and we can train our machines on that. And what’s interesting is that most of the leading companies, such as Tesla in this space now, they’ve started to focus on a combination of simulation and video to train their models. This once again goes back to the data probe strategy that I previously talked about. This is why Meta is now into the glasses game so that they can collect that data. This is why I want you to think about the 11 million Teslas on roads as data infrastructure.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:02]</span></p>
+
+<p>Every hand movement is being captured with the glasses. Every driving scenario is being recorded. Now, it’s not just enough to collect all this data. Once you collect this data for this global world, you actually need to able to train this model. So…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:25]</span></p>
+
+<p>Welcome to the world model. Now, this is one of the most important concepts in physical AI today, and it’s often glossed over. At its simplest, a world model is exactly what it sounds. A model of the world, well, really inside a robot’s head. So have a look at the Xyrel. The robot needs to grab an apple before it even moves a single joint.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:48]</span></p>
+
+<p>And we’ll get into the joint movements, the actuators and the sensors and all the rest of it. There has to be a coordinating brain which has to understand the task. It has to simulate the actions in its virtual mind. Then it has to make an informed decision about how to act. Well, guess what? This is what the field calls a model-based reasoning.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:16]</span></p>
+
+<p>Why does this matter? Well, think about how you grab a coffee cup. In real life, we don’t even think about it. We just consciously do not calculate every muscle movement. Our brain does it for us because it has an internal model of the phyllox. We know approximately how roughly the cup is going to be as we are drinking the coffee.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:37]</span></p>
+
+<p>We know that the weight is being reduced. We know how far to reach, how much pressure to exert, how hard to grip. We simulate these things in our brains before we act. Historically, the robots could not do that. They either followed very rigid programming rules or used trial and error for reinforcement learning, literally trying thousands of times until something worked. By the way, the locomotion of the bipeds and the tripads is still being based on RL.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[24:06]</span></p>
+
+<p>But the world models crucially add yet another layer on top, which is they let these models reason. about novel situations or new situations that these robots have not encountered yet. In other words, the robot looks at this apple on this table and it is able to go through a reasoning and action flow or a loop of something along the lines of I have never seen this apple on this table, but I understand an apple. I understand table. I understand gravity. can figure this out.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[24:54]</span></p>
+
+<p>There are number of key players that are emerging in this space, the way. One of the most famous ones is the V. Japa model from Netta or Jan Likun, even though Jan has moved on to start his own company. He’s been beating this drum for years. He calls the world models the path to true AI. NVIDIA announced their world model, world foundation model called for physical AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:14]</span></p>
+
+<p>called Cosmos, they announced it at GTC, I believe, last year in 2025. Not to be left behind, Google has been leading in this front as well. So they’ve had a couple of very interesting models called Genie and Dreamer that they released that learn word dynamics from video. There is a company called One X World Model that’s building their own, showing how crucial this is to robots. So the bottom line here is that the world models are what separates the robots from, that separates those robots that can only do what they’re programmed for versus robots that can reason about new situations. Now that’s the crucial difference between automation.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:06]</span></p>
+
+<p>and intelligence. I want to go a couple of steps deeper into these VLA models that I talked about a couple of times. So what you’re looking at here is a vision language action model. I think it’s important enough, especially for those that have spent a couple of years in LLM to understand how these things work. So these things actually work in a combination. So a visual input, if I go back to the previous screen, could be the table, the apple, the height of the table, how far the apple is.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:39]</span></p>
+
+<p>That’s the visual input, could be a visual or video input. There is then the language input, which is the command that it receives or it transliterates, translates from through video what action it has to take. The vision data goes through a vision encoder. The language data goes through a LLM backbone. And then they may be fused. through a cross-attention transformer model and sent to a decoder model or decoder layer in the same model to decode the action, which may lead to actuating the robotic arm, manipulating some other parts of the robot or navigation.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[27:23]</span></p>
+
+<p>At a 10,000 foot view, that’s what these VLA models are doing. And just to complete the picture, here is the difference between the foundation models between, let’s call it traditional AI and physical AI. The non-physical foundation models that we all know today in GPT and Clord and Gemini, what are they doing? They are largely speaking text in, text out. Or they might do image in, image out, or they might do text in and image out. So they are generally fast, a cheap feedback loop.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:00]</span></p>
+
+<p>Generate, you check it, you iterate. In the physical world, the input is coming through sensors. Could be cameras, could be lidars. Output is a command to the motor because it now has to control the motor that’s baked into its physical embodiment. So the feedback here is slow. It’s expensive.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:25]</span></p>
+
+<p>It’s happening in the real three-dimensional world. Contrast this with the millions of GPT conversations in one hour. A million robotic manipulations, it will require months of real-world time. Physical robots, it will require space. This is why, as I previously talked about, the simulation matters. This is where the race is now emerging to train these models.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:49]</span></p>
+
+<p>So… I just wanted to give everybody a high-level view of how these models are being trained. The next few parts, I’m going to spend talking about the various embodiments of physical AI. And really, I hope you’re all going to find it really interesting where the world is going.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:09]</span></p>
+
+<p>So let’s begin with humanoids. We’re now entering a territory that for the longest time seemed like science fiction. So let’s have look at this. Here is a partial history of robots and humanoids that I thought might be of interest. We already talked about where the tongue came from. Some of you might recall that in 1996, Honda announced the P1 and the P2 series of humanoids that procute.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:41]</span></p>
+
+<p>They could crawl at about one foot per a minute, if you’re lucky. In 2010, NASA Robonaut 2 was announced, which was a bi-peril humanoid. So you see some advancements happening. And then in 2017 really was the next generation Atlas model from Boston Dynamics, where they truly spent a long time training these models using reinforcement learning and getting these models to understand or getting these humanoids to understand locomotion, self-balancing. correcting how much force you need to spend in order to change their trajectory and so on and so forth. Here is a high level flow diagram of a humanoid robot.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:36]</span></p>
+
+<p>So if I super generalize the diagram and take a physical embodiment of AI, we’re going to require some form of a brain. Well, really, you’re going to require some number of sensors that send sensory data to its so-called brain. It certainly requires battery to operate. It’s going to have limbs of some sort, and it’s going to have actuators to actuate and move those limbs. So the way the flow is going to work in a combination of vision and languages, the robot is going to receive input from the environment in the form of vision or language. Those inputs are really going to be provided through a plurality of cameras so that it understands where it is in the three-dimensional space with relative to other objects.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[31:22]</span></p>
+
+<p>The brain has to then make sense of perception. It has to generate commands to move the motors. And then you’re going to have a series of actuators, combination of motors and encoder models that are going to present commands to those motors to convert the electricity into some action. And that’s going to result in either into rotational movement or into a linear movement. At a 50,000 foot view, that’s how these humanoids are being created. Now I talked about a little bit about some of the humanoids that are there available and some of the companies that are working in the US.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[32:09]</span></p>
+
+<p>Let’s spend a little bit of time looking at the humanoid ecosystem, especially in China. This is where the rubber hits the road, quite literally. Let me introduce you to the Chinese humanoid players that are actually deploying, not just demoing these humanoid robots. I referenced UniTree’s G1 a couple of times. It’s available for, get this, $16,000. This is the most deployed humanoid in the world today.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[32:42]</span></p>
+
+<p>Not the most capable, you, but the most accessible. And make no mistake, they are following the Chinese playbook. Go to the market, iterate fast, win on volume. They’re piggybacking on their manufacturing strength. They’re not the only provider, by the way, to be clear. There is the Ubitec Walker S.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:07]</span></p>
+
+<p>This one’s already working in actual car factories, by the way. Again, not pilots, production. There are a couple of other models here, Neo, Geely, Dongfeng. They’re doing things such as seat belt inspection, testing of door locks. They’re applying labels onto the cars. They’re doing real work and real knowledge.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:30]</span></p>
+
+<p>There is another company in China called Fourier. They have a model called GR1. They have taken a different strategy. Their focus is on healthcare. This thing has the capacity to carry 50 kilograms of weight. They’re designing this for what they’re calling the silver economy.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:45]</span></p>
+
+<p>So the idea here is that with China’s fertility rate at 1.02, one of the lowest in the world by the way now, they are bearing that humanoids are going to be solving the elder care prices. Hence the notion of silver economy. Then we are beginning to see emergence of AGI bot where they are trying to build these humanoids with truly generalized intelligence. President Xi Jinping personally visited their facility in April of 2024. And for the record, when the head of the state visits a robotic startup, that’s a signal.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:22]</span></p>
+
+<p>This is state priority for China. Why is China winning? Maybe if I spend a couple of minutes on that. Well, they certainly have the manufacturing DNA. They might have 28 % of the GDP compared to the US. But they have 10 % of the world’s GDP.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:47]</span></p>
+
+<p>They have three times the industrial base. Certainly the cost advantage. I mean, just go no further. The $16,000 unit region compared to starting price of $130,000 $1,000 for US humanoids available today. They certainly have a massive talent pipeline that’s available. Here’s the interesting part.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:11]</span></p>
+
+<p>There was a public survey done for perception about humanoids and the readiness of humans. And this study is a global study. This was done not just in China, but in the US as well. 61 % of the Chinese people that were poor, they had They believe that the robots will have a positive impact on the society versus only 5 % in the US. So much greater public acceptance. And mind you, they’re doing this not just in isolation.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:41]</span></p>
+
+<p>So this public acceptance is not happening per chance. They’ve been quite deliberate about this. You might have seen some of the public spectacles. If not, I’ll strongly encourage you to go have a look. So in 2024 onwards, they have had combat competitions in China that they actually broadcasted nationally for humanoid boxing. They’ve had dance performances.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[36:06]</span></p>
+
+<p>They have half marathons. Every major automaker from BYD to Gili, BAIC, they have integration of these humanoids onto factory floors. In fact, there is a government mandate of humanoid industry must mature by 2027. So I hope it gives you an idea of how serious China is into humanoid. Let’s have a look at the global geographic picture. So we talked about China.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[36:40]</span></p>
+
+<p>The US is well-funded, but surprisingly, compared to China, fewer number of players. We certainly have the Optimus series of humanoids from Tesla. There’s Figure AI, is Agility Robotics, Aptronic, and technically, One X Technologies is based in Norway. The playbook is the same, which is that these are startups, these are companies that are VC driven for premium positioning. The costs are generally at a higher price, but certainly they have a higher potential of capability as well. In Japan and Korea, interestingly, they have legacy robotics ah expertise.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[37:20]</span></p>
+
+<p>Honda’s Asimo was the pioneer. Toyota has the THR3. So we are beginning to see emergence of number of these companies around the world. In Europe, I think the approach is a bit more scattered. There is PAL robotics in Spain, antibiotics in Switzerland. There is once again a lot of regulatory caution that is slowing deployment.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[37:53]</span></p>
+
+<p>The best searches that I could see, no major players are emerging. So this is the pattern that should concern the American strategists. China filed over 7,700 patents on human noise over the course of last five years. Last I checked, the US at the same time frame filed 1,561. That’s a 5x gap. China does 54 % of global robot installations.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[38:29]</span></p>
+
+<p>Their bill of material is less than 50k compared to an average of 130k in the US. To be clear, we have seen this movie before with solar panels. Bell Labs invented the technology in New Jersey in 1954. By 2023, nearly 100 % of solar panel manufacturing production happens in China. I fear that the global robotics humanoid race is going to follow the same trajectory. The question for us all is going to be, whether we can change the…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[39:14]</span></p>
+
+<p>So we spent some time talking about humanoid robots. Let’s have look at other forms of embodiment of AI. So let’s have look at autonomous vehicle. Ugh. So this is the most mature category of physical AI. This represents at this time the most real revenue, real data, and by the way, some real cautionary details as well.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[39:40]</span></p>
+
+<p>The surprising thing in this list is the clear leader that’s emerged is Waymo, which is alphabet bagged player. They are at this point providing over 150,000 by some reports as many as over 450,000 weekly paid rides. At this point, this is not a pilot anymore. This is a business. They’ve had 90 % fewer crashes than human drivers. Depending on whom you ask, the valuation is somewhere between 45 to 100 billion.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[40:20]</span></p>
+
+<p>They’ve expanded from five cities to 17 by 2026. They’ve already announced partnerships with Uber and DoorDash. Vamo has proven autonomous vehicles work at scale. The wild card is Tesla, even though they were the first to promote FSD, fully self-driving. Mind you, in terms of volume alone, They have had more FSD miles than anybody else on the data volume. V12 is their breakthrough.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[40:55]</span></p>
+
+<p>They have an end-to-end neural net. They’re finally moving away from rules-based code. They have about 135 robot taxis in Austin now. So we should not count them out. The asterisk, if I put one on Tesla, is the NHTSA probes. That’s the National Highway Transportation Safety Authority.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[41:19]</span></p>
+
+<p>They’re betting everything on vision only. No lidar. It’s quite controversial, but if it works, their cost advantage is going to be insurmountable. An emerging B2B player is Aurora. They’ve had over 100,000 driverless miles with zero incidents. They’re predominantly operating in the Dallas-Houston corridor, 100 % on time.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[41:43]</span></p>
+
+<p>FedEx and Uber Freight are their primary customers. They’re targeting hundreds of trucks this year. Not a feature year, this year. They’ve done a smart pivot. To some extent, trucking is easier than robot taxis. Highways can be simpler.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[42:03]</span></p>
+
+<p>compared to city streets, B2B customers in many cases. So long as your package arrives on time, can be more forgiving than consumers. So it’s a safe bet. Amazon has a bet in a company called Zoocs. $1.3 billion they spent in the acquisition.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[42:22]</span></p>
+
+<p>This is a purpose-built bi-directional pod. There’s no frontal back. Vegas and San Francisco are where they’re doing public operations. They’ve just approved the exemption for NHTSA. They’re targeting by end of next year, so by end of 2027, they’re targeting 10,000 units per year. By the way, crucially in Zoocs, the difference is that there is no steering wheel.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[42:46]</span></p>
+
+<p>So this now brings us to a post-driving world. Finally, there is a cautionary tale here, which was the cruise from GM. They’ve had… over $10 billion in cumulative losses so far.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[43:04]</span></p>
+
+<p>In October of 2023, they dragged a pedestrian. And in December of 2024, a year after that, GM has exited robot taxis entirely. So things are going to go wrong. We’re going to see some cautionary tales emerge. But this is clearly the clear leader, the most mature category in physical AI. Not now, not to be left behind China.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[43:35]</span></p>
+
+<p>Different market, different regulatory environment, different velocity. But let’s have look here. The alphabet of China, as I’ve previously called it, Baidu, Apollo, they’ve had 17 million plus cumulative rides, 250,000 driverless rides per week. It’s the first profitable taxi, robotaxi operation anywhere in the world. RT6 model that they have, by the way, cost 60 % cheaper than its competitors at about $28,000. Again, this is the manufacturing advantage of China in action.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[44:10]</span></p>
+
+<p>They’re currently operating in 22 cities in the UAE. And by the way, when the Chinese companies go international, they go to the Middle East, then Southeast Asia first, not the US. So this again becomes yet another fight on the world scale. There is Pony.ai, which is providing the regulatory mode. They had a $5.25 billion IPO on NASDAQ.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[44:36]</span></p>
+
+<p>It’s the only company with all four tier one city permits in China. So they have tier one permits for Beijing, for Shanghai, Guangzhou, and Shenzhen. That now is a regulatory mode that they have compared to anybody else. They have done quarter of million. autonomous miles with 960-odd robot taxis. They are going to be the safe bet for institutional investors.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[45:05]</span></p>
+
+<p>There’s a couple of other players that you see here. V-Ride, which is fast emerging, a global player, the way. They’re now, they have a partnership with Uber as well. They’re operating on three different continents. While the US competitors are fighting over permits in California, V-Ride is building a global footprint. And again, it should give you some insights into how these Chinese operators operate in some cases.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[45:27]</span></p>
+
+<p>The company called DD, they have a slightly different play. I call this the platform play. Purely on autonomous vehicles division alone, they have a valuation of over $5 billion. They’ve done 80 million plus kilometers of testing. But what they’re doing is they’re building a platform. They currently have over half a billion, 550 million users on the DD platform.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[45:53]</span></p>
+
+<p>If they crack autonomy, they have instant distribution. There’s a trucking company called Cargobot that’s already active on this. Now, mind you, not to be left behind, we have a cautionary tale in China as well. There was a company called Autotalks, which was the first driverless operation in China at its peak. had over a thousand vehicles. And then they ended up closing in 2023 and they pivoted to personal autonomous vehicles for CES in 2026.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[46:26]</span></p>
+
+<p>The point being that even in China with government support, this is hard. So I hope it gave you a little bit of sense of the the most mature segment in physical AI. Let’s quickly pivot to yet another embodiment of physical AI in defense. This is the autonomous arms race, as I like to call it. What’s happening here is…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[47:11]</span></p>
+
+<p>Oh.</p>
+
+          </div>
+        </div>
+      </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+    
+    
+    <div class="mb-12">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="font-serif text-2xl font-bold">Clips & Highlights</h2>
+          <p class="text-sm text-muted mt-1">21 clips from this episode</p>
+        </div>
+        <a href="/shipai/clips/" class="text-xs font-medium text-accent hover:underline">View all clips</a>
+      </div>
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Shorts</h3>
+      <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide mb-6">
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Gets a Body and Everything Changes</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:21</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Gets a Body and Everything Changes</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Gets a Body: The Race for Physical...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:39</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Gets a Body: The Race for Physical AI is On</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI is a Skills Equalizer: Workforce D...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:36</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI is a Skills Equalizer: Workforce Dynamics</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Autonomous Arms Race: Drones & Defens...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:46</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Autonomous Arms Race: Drones & Defense Tech</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">China's Humanoid Robots: A Global Race</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:50</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">China's Humanoid Robots: A Global Race</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">General Rainey on Future of Warfare a...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:31</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">General Rainey on Future of Warfare and Drones</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Manav Gupta Recalls a Visionary Profe...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:35</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Manav Gupta Recalls a Visionary Professor's Prediction</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Physical AI's $50T Opportunity Explained</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:54</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Physical AI's $50T Opportunity Explained</p>
+          </a>
+        
+      </div>
+      
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Deep Dives</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI's Next Frontier: Vision-Langu...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">5:37</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI's Next Frontier: Vision-Language-Action Models</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI: The Skills Equalizer</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">3:56</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI: The Skills Equalizer</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">BCI: Future of Human-Computer In...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">5:07</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">BCI: Future of Human-Computer Interaction</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">BCI Risks & Ethical Challenges</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">3:24</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">BCI Risks & Ethical Challenges</h4>
+            </div>
+          </a>
+        
+      </div>
+      
+    </div>
+    
 
     <!-- More from This Series -->
     
@@ -278,7 +864,7 @@
   
     <a href="/shipai/episodes/agi-is-coming/" class="block relative group">
       <div class="aspect-video overflow-hidden">
-        <img src="/shipai/assets/images/og/agi-is-coming.png"
+        <img src="https://img.youtube.com/vi/Zf1Rq-hoOOc/mqdefault.jpg"
              alt="AGI is coming"
              loading="lazy"
              width="320" height="180"
@@ -322,17 +908,17 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-7-agi-is-coming/id1832355436?i=1000755763218" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://www.youtube.com/watch?v=Zf1Rq-hoOOc" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     
@@ -399,12 +985,12 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-6-ai-agents/id1832355436?i=1000753648763" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -526,11 +1112,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -541,6 +1123,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           

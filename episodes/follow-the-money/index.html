@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -281,6 +281,588 @@
 
     <!-- Transcript -->
     
+    <div class="mb-12" id="transcript">
+      <details class="group">
+        <summary class="flex items-center justify-between p-5 bg-white rounded-card border border-black/[0.06] hover:border-black/10 transition-colors cursor-pointer list-none">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="font-semibold">Full Transcript</span>
+          </div>
+          <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><strong>Manav Gupta</strong> <span class="ts">[00:01]</span></p>
+
+<p>In 2014, the largest technology companies in the world spent about $44 billion a year on capital investments. By 2024, that number passed well over $200 billion. And almost all of the increase had one name attached to it. You guessed it, AI. This isn’t incremental spending at all. This is not an innovation bucket.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:23]</span></p>
+
+<p>This is the largest concentrated investment of capital in corporate history. Seven companies, the so-called Magnificent Seven, are now spending more on AI infrastructure than the entire global energy sector. They’re pouring money into chips, into data centers, custom silicon, heck, even nuclear plants. And this is before the business models are proven, before margins stabilize, and before regulators catch up. And here’s the uncomfortable question no one likes to ask. What if it doesn’t pay off?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:58]</span></p>
+
+<p>In this episode we are going to follow the money, not the hype, not the demos, the actual dollars. Where are they going? Why they’re going? where they’re going? and What has to be true for this multi trillion dollar gambit to work? Because when capital moves this fast and this aggressively, it’s not about optimism.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:15]</span></p>
+
+<p>It’s about pressure and pressure always reveals the real story. Welcome to the podcast. This is Ship AI episode two, follow the money. Let’s go! All right, let’s start by looking at the big bet. So let’s start with this picture.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:38]</span></p>
+
+<p>So the US macro level data shows that the AI related investments have surged in the last few years. You can see that squiggly graph at the top, investments, capital investments into the technology sector that’s related to computers, communications, equipment and semiconductors far outpaces anything else since 2020. There was a little blip and then of course it took off. Whereas if you look at the energy sector, it’s barely grown. Whereas the rest of the non-energy, excluding telecoms, has remained largely flat. This is not a normal tech cycle.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:13]</span></p>
+
+<p>This is industrial scale reallocation of capital. AI is no longer riding on top of the economy anymore. It is the fastest growing sector inside it. Some have argued it’s a sector unto itself. When the production curves diverge like this, innovation stops being optional. It becomes structured.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:37]</span></p>
+
+<p>It is part of the cycle. This is the physical foundation that has made AI possible. All those models and data hungry planet scale models possible. Here’s another graphic just to substantiate the previous point. Look at how the data centers are bucking the trend in private non-residential structures. So in the 12 months ending on June 2025, data center construction has soared up 28 % and up 331 % from 2021.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:05]</span></p>
+
+<p>In stark comparison, the private sector spending on overall non-residential construction fell 4 % over the course of the last 12 months. That should tell you that all the money that’s being invested from in all the capital investment, bulk of that investment is going into building these data centers. Let’s go deeper. The Magnificent 7 that we talked about previously, once again, that’s the Amazon, Apple, Google, Nera, Microsoft, and Varia Tesla. Their capital investment in the last few years is 63 % year-on-year growth in 2024 alone. 15 % of their revenues are going towards capital expenditure.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:47]</span></p>
+
+<p>This is infrastructure spending at a scale we have not seen since the mainframe era from IBM in 1969. Let’s go deeper. This chart from JP Morgan clearly shows the divergence. The Magnificent 7’s CapEx plus R &amp;D has grown 6x, not 6%, not 60%, 6x since 2020. The rest of the large market cap essentially flat as you can see from that squiggly yellow line. In fact, the Magnificent 7 capital investment now exceeds that of the entire energy sector.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[04:27]</span></p>
+
+<p>Again, this is complete corporate capital reallocation. So another way of interpreting this chart is AI progress is being decided by who can spend. That’s the critical element. What these AI companies are now doing is they’re building economic mode around the models. The progress is going to be decided by who can spend building the data center, acquiring the energy, acquiring the data, acquiring the GPUs to build the models and not just about who can invest. Again, let’s go even deeper.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:04]</span></p>
+
+<p>Let’s put this in historical context. NVIDIA’s data center revenues as a share of market-wide capital spending are approaching 15%. That is at the same level where IBM’s peak revenues were in 1969. That’s the peak of the main frame era and the combination of Cisco, Luce and Nortel peak revenues in 2000. So the first chart on this page asks the question, Is today’s AI spending unprecedented? I mean, of course, the answer is yes.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:35]</span></p>
+
+<p>Now, AI’s data center spending now represents a larger share of the total capital market than IBM at its peak. right? That we’ve already established. Now let’s look at where is the money being spent. As I said previously, across 2024, the total capital exceeded over $200 billion in a single year. What’s interesting to note is half of that money goes directly to the GPUs and specialized chips.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[06:00]</span></p>
+
+<p>And here is the critical imbalance. Companies have to spend more than twice, 2.25x, in training the models as compared to running them. So training of these models, these hyperscale planet scale models, this is a one-time cost. Inference is what scales with revenue. And for AI to become sustainable and profitable, this ratio has to flip.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[06:28]</span></p>
+
+<p>Here’s another view of where the VC funding is happening, where the seed funding is going. So this is a chart from Y Combinator mapping out where all the startups are in AI in the dark blue or others. And you can see since the launch of ChatGPT in 2022, we are beginning to see a greater and greater concentration of investment in AI sector alone. Now, it’s not just about the investments. There is also revenue velocity that these companies are seeing, by the way. And then I’ll show you some yet another view on some of the investments that are being made in form of a circular loop.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[07:08]</span></p>
+
+<p>But before we get there, let’s look at the economy. The fastest revenue ramp in software history has been exhibited in the last three years by OpenAI and Anthropic. OpenAI grew as much as 65x, 65 times in a span of three years. They went from approximately $200 million in annual rate of revenue in 2023 to projected $13 billion by August of 2025. Anthropic grew by 80 times, going from $87 million in ARR to as much as $7 billion projected for 2025. In comparison, Salesforce took 10 plus years to reach a goal of $10 billion in ARR.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[07:51]</span></p>
+
+<p>AI companies are hitting that in about 36 months. So, We talked about investments, we certainly talked about the revenue velocity, but let’s also understand how these companies are coming up with newer and newer ways of finding um revenue. Okay, so I’m going to show you a visualization that hopefully makes that point a bit more clear. So. So On your screen, what you see is two companies right now, OpenAI and NVIDIA. OpenAI hit $500 billion in valuation in October, 2025.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[08:39]</span></p>
+
+<p>At this point, it became the world’s most valuable company surpassing SpaceX. Reportedly, they are now seeking $830 billion in their next round. The other big bubble that you see in green is NVIDIA market cap of 4.5 trillion with a T as of January 2026. They briefly hit $5 trillion in October of 2025 when DeepSeek knocked $600 billion in a single day. We’ll talk about DeepSeek separately.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:11]</span></p>
+
+<p>These two companies sit at the center of an intricate web where capital flows back and forth as revenue. And then I’ll show you how. So let’s begin. Here’s step one. Microsoft takes a 27 to 30 % stake in OpenAI because you know again the funding every funding round keeps diluting their stake. So the total investment since since 2019 that they’ve made is about 13.5 billion dollars.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:34]</span></p>
+
+<p>Here is where the loop comes in. So the money that Microsoft invests into OpenAI. OpenAI uses 80 % of its training and inferencing infrastructure is spent on Microsoft Azure Cloud. So 80 % of its compute is being spent on Microsoft Azure. What does that mean? So Microsoft spends billions, invests billions into OpenAI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[10:03]</span></p>
+
+<p>It gets not only that revenue back as cloud revenue, but it also gains its investment increases as the OpenAI valuation increases. So the money once again goes in circles. Let’s now talk about NVIDIA and the OpenAI look. September of 2025, NVIDIA announces a $100 billion commitment to OpenAI. In return, OpenAI agrees that they’re going to deploy 10 gigawatts worth of NVIDIA chips into their GPUs into their data centers. So again, the capital goes in, revenue comes out.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[10:44]</span></p>
+
+<p>So NVIDIA gets the return back as revenue. And of course, as the OpenAI evaluation increases, that 100 billion commitment increases same for. So same scenario happening here. In the next step, you see a tripartite agreement. So now comes Oracle into the mix. So now it’s a three-party agreement between OpenAI, Oracle, and NVIDIA.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:08]</span></p>
+
+<p>So in January of 2025, Project Stargates announced at the White House. It is a $500 billion commitment over four years, largest AI project ever. Oracle then signs, OpenAI rather, signs a $300 billion deal with Oracle for cloud infrastructure. Oracle then commits 40 billion dollars on Nvidia GPU for their Aveline Texas data center. That’s basically 400,000 Nvidia GPUs for a 15 year lease. So the triangle then closes.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:47]</span></p>
+
+<p>money flows to Oracle, money flows to OpenAI, flows to Oracle back to Nvidia. That’s the third loop in there. Then AMD joins the game. So in October, of 2025 AMD announces a deal with OpenAI. AMD offers warrants for 160 million shares about 10 % of partnership of AMD and the strike price is one cent per share. In exchange, OpenAI commits to six gigawatts of AMD GPU deployment.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:18]</span></p>
+
+<p>Of course, the scenario here is that the models that OpenAI is building and will build need so many GPUs that Nvidia alone may not be able to fulfill that demand. So therefore they are divesting their business model. So they’re going to another chip manufacturer, AMD in this scenario. Now, because of this investment and this commitment from OpenAI that they are going to buy six gigawatts worth of AMD GPU. AMD then expects $100 billion in revenue over four years from this deal. As soon as the date was announced, The AMD stock jumped 35 % adding $80 billion to the market cap.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:59]</span></p>
+
+<p>Even NVIDIA competitor is now in the circular economy. Everyone’s buying equity into their own customers. That’s another loop. Now not to be outdone, here comes Amazon and Google with Anthropic. Amazon and Google, they both decide to invest in Anthropic. So the idea is that even though Google is training their own Gemini series of AI models, they are hedging their bets.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[13:29]</span></p>
+
+<p>So Google now owns 14 % of Anthropic as revealed in code filings. And then AWS also enters into a primary partner for Anthropic’s primary cloud provider. Google then gave access to Anthropic to 1 million TPUs, which is tens of billions, undisclosed, but tens of billion dollars in revenue. So now in this scenario, we have two competitors, Google and Amazon potentially. They’re both getting cloud business in return, right? And they are both investing in Anthropic.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:09]</span></p>
+
+<p>Anthropic in return is using services from cloud from both cloud providers. So they’re both getting their money back in terms of the services being consumed. So they’re getting the one layer of return on that. Plus as the valuation of Anthropic increases, the the return on their investment increases as well. So you can think of this as a pincer attack on OpenAI, but yet another form of circular funding. Next come the startup ecosystem.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:39]</span></p>
+
+<p>So now you have NVIDIA investing into XAI, Mistral, Figure AI, and OpenAI then investing into smaller startups such as Harvey, Cursor, and Ambience. So what’s the idea here? So NVIDIA’s VC R is everywhere. X.AI is up from a valuation of 2 billion dollars in January oh of 2026 to as much as 230 billion dollars of valuation. Mistral, they participated into a 1.7 billion euro funding round.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:05]</span></p>
+
+<p>Figure AI 50 million seed, it’s now valued at 39 billion dollars. Each one of these startups in turn is going to buy NVIDIA chips. The OpenAI startup fund in turn they have deployed $175 million across 37 plus companies such as Harvey as an example. And to be clear, OpenAI invested only $5 million in seed funding in 2022 in Harvey AI. It’s now valued at $2 billion valuation. AnySphere, now known as Cursor or known for Cursor the product.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:41]</span></p>
+
+<p>They invested $8 million in a seed funding now. It’s now worth $29 billion market cap. All of them are using OpenAI’s APIs. So now you can think of this as a downstream investment. So all of these startups, they got funding from OpenAI. OpenAI’s investment increases as the valuation of those companies increases.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:02]</span></p>
+
+<p>But OpenAI also gets money back from those companies as those companies are using APIs to build their business model. Let’s talk about the final step. I jokingly call this the house of cards, but here is the full network. with some concentration stats. Really at the heart of it all is just eight or nine companies that control the entire AI ecosystem. 53 % and there is also some concentration risk by the way.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:34]</span></p>
+
+<p>53 % of NVIDIA’s data center revenue comes from just three mystery clients that they don’t disclose. In fact, two of their customers are responsible for 39 % of their quarterly revenue. If any one of them stumbles, the world’s most valuable company is in trouble. There is certainly we talked about the dependency on S &amp;P 500 of the Magnificent 7 because the Magnificent 7, have driven 42 % of returns in 2025. The tech sector represented by Magnificent 7, it represents 63 % of total gains in S &amp;P 500. So we can call this circular economy.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:19]</span></p>
+
+<p>Some people have gone as far as to say that there is a concentration risk, potentially the beaver, the bubble, but there is certainly enough stressors here to give us a pause that there is something going on here beyond just the natural routes of monetizing their services. Okay, let’s take a step back. So we talked about investments being made. new economies and new models that are investing. We talked about the revenue velocity. But are there any projections of where, how big is this market?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:51]</span></p>
+
+<p>How big could this market potentially be? So not to be left behind ah consulting firms such as ah in this scenario, Morgan Stanley, they have come up with some pretty bold assertions of the total addressable market for generative AI. And really when they talk about AI, predominantly what they’re talking about is generative AI. So Morgan Stanley’s projection is as much as $4 trillion, which is about 15 % of US GDP, as much as the entire German GDP. And they’ve broken it down into just over 1.3 trillion three in software and IT, another 1.1 trillion in professional services.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[18:27]</span></p>
+
+<p>And then you see the further breakdown into things such as customer operations, R &amp;D, supply chain, et cetera. And the key assumptions behind these projections are that enterprises can expect to get 15 as much as 20 % in productivity gains, that almost 50 % of the tasks that are done globally are augmentable through AI, and that enterprises are going to have enterprise-wide adoption in AI. I mean, that’s where this is coming from. And to be clear, they’re not…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:04]</span></p>
+
+<p>they’re not that far off in at least the early productivity signals that most companies have achieved. So here is some examples from various research studies such as MIT, Harvard / BCG, some studies from Stanford, the AI assisted coding studies done by whether it is Microsoft, GitHub Copilot, PayPal, et cetera. Across the board, we originally observed is that for AI assisted coding, some of these firms were reporting as much as 55 % efficiency gains, productivity gains that they could write code faster, write documentation faster. PayPal CEO is famously on record that their developers were 30 % more productive. Now, by the way, caveat here that these are all early signals. We’ll get into a lot more detail upon company claims versus academic studies.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:59]</span></p>
+
+<p>But this is what the promised land is that with all those investments with the new economic models that are emerging and these early productivity signals potentially there is enough revenue to be had potentially there is a promised land that these companies are going to go to make some money. All righty. Okay. Now comes act two. So we talked about the models. Let’s get into the machine behind this AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:29]</span></p>
+
+<p>Let’s get a little bit more deeper. So let’s have a look at NVIDIA’s revenue chart. So NVIDIA had revenue of $57 billion in the quarter ending October of 2025 with a nearly 63 % growth. This brings the company’s revenue in the last 12 months to $187 billion. Again, a 65.2 % year-on-year growth.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:55]</span></p>
+
+<p>This is fantastic. This continually shows how when there is a gold rush, the company selling shovels and pickaxes is the one that’s going to make the most money. Now let’s look at how the big tech is monetizing AI. And I’ve just chosen these as some examples, but I hope that it drives the point home. Microsoft, So what most companies have come up with is either a seed based licensing, some consumption APIs or some consumer consumptions. And then you can see Microsoft Copilot starts with $30 per user per month.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[21:30]</span></p>
+
+<p>ChatGPT has some similar costs. There is alternative consumer subscriptions as well. And then there is weighted pricing. These are just the standard pricing there. You can get pro pricing or unlimited et cetera plans for $200 a month as well. Now that new models have come up.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[21:49]</span></p>
+
+<p>On the cloud side, there is the Azure OpenAI service or the Amazon Bedrock, Google Vertex API. These are all API token based pricing. But really what’s interesting is that as the models become more and more well, they become more and more accurate or bigger and bigger, uh they are under constant market pressure of reduction in cost in the token pricing as well. So we’ll examine that in a bit more detail. Beyond the CAPEX, there is a VC ecosystem that has invested over 200 billion dollars in the last four years in the various seed rounds, um just in AI companies. And what’s interesting here is that there is so much I don’t want to call it hype, but so much interest, nobody wants to be left behind.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:47]</span></p>
+
+<p>But what’s really interesting for all of these companies is that of course, public market demands profitability. It’s creating a funding cliff. There is a gap between private valuation and the public market signals. So there might be some potential corrections for at least some of the companies that that’s coming. But in this arms race, one thing is absolutely clear. Beyond the GPU monopoly, there are new silicon that is emerging that’s going to reshape economics.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:16]</span></p>
+
+<p>So, so far all funding roads, all revenue leads to NVIDIA. But what we’re now beginning to see is a race for custom silicon. So Google in particular, they saw this very early on in 2011, 2012, they started working on Google TPUs for some type of workloads, such as the inferencing workloads, they can be highly performant compared to NVIDIA at a lower price. Amazon has come up with Tranium, which is 40 % cost reduction. So does Microsoft and Meta. So we’re beginning to see projections of as much as $200 billion of revenue in just custom silicon alone.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:54]</span></p>
+
+<p>There is some new economics emerging around deployment of AI on the edge, on cheaper hardware, on commodity infrastructure. And then contrast all of that with what’s going on with the supply chain reality. So the reality today is that there was a point in time where there was a lead time of 55 weeks 53 weeks to get our Nvidia to get somebody’s hands on Nvidia h100 What we’re also beginning to see is emerging competition from new well some of the existing vendors like Intel with their Gaudi 3 and AMD, which is 40 % cheaper So we’ll begin to see a lot more pressure on NVIDIA from these new entrants. If that’s not enough, but have a look at what’s happening to the data center build time. So this is an example from XAI Colossus, where they built a fully functional data center in 2024 in 122 days. This is a, mind you, this is a data center which is 750,000 square feet in size.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:02]</span></p>
+
+<p>which is approximately 418 homes in the US. The average half built house duration is 122 days. And on their website, they proudly claim that they were told that it was going to take 24 months to build this. And they decided to take the project in their own hands, questioned everything, removed what was necessary, and they accomplished their goal in four months. The reason I highlight this is that speed is becoming a competitive advantage. These AI megaliths, they are questioning everything and they’re removing any unnecessary step in the way.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:37]</span></p>
+
+<p>To keep this in perspective, this is a 200,000 NVIDIA GPU super cluster. It’s really a supercomputer. From rack to training of Grok, it took them just 19 days with a total target power capacity of 2 gigabits. This clearly sets a new standard for infrastructure deployment. So all of that money that you see that’s being invested into building the data centers, that’s how that money is being used. But I wish that the building of the data centers was linear.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:17]</span></p>
+
+<p>There is certainly challenges. What do data centers need? They need two big credible things. They need energy. Well, apart from space, they need energy. And they need water.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:29]</span></p>
+
+<p>So let’s just talk about the energy constraint for the time being. So what’s going on is that the AI’s appetite for power is reshaping the grid. So data centers have gone to be using as much as 1.5 % of the global electricity, which is a 12 % growth. So it’s going faster, four times faster than the total electricity growth that we can build in the grid in the first place. Geographically 45 % of the data center electricity is consumed in the US, followed by China and then Europe.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:58]</span></p>
+
+<p>So what have the big tech starting to do? They’re actually now trying to build their own nuclear power plants. Right, So Microsoft, Google, Amazon and Meta, they have made significant announcements and certainly investments into building their nuclear power plants to take into account predictable pricing grid independence so that they’re going to be able to have high energy density. Here is some more details on it. So Microsoft as an example, famously it’s a $1.6 billion project.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[27:36]</span></p>
+
+<p>They’ve gotten a billion of a loan from Department of Energy. They’re going to be building an 835 megawatt nuclear plant. Not to be left behind, Amazon, $20 billion investment into the Talon Susquehanna PPA project. And again, you get the idea. these, AI is not, is no longer just about data. It’s no longer just about GPU.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:09]</span></p>
+
+<p>It is now about a whole new risk factor, which is around nuclear regulatory rights, water tribunals, and the grid interconnection cues. Not talked about enough yet is the hidden cost of AI, which is water. Five million gallons per day is what a large data center requires per day. By 2030, the projection is that they’re going to require as much as 317 billion gallons of water per year globally. To put that in perspective, that’s the water that’s used by the state of Texas. So The new risk vectors when it comes to increasing AI and efficiency of AI, that’s going to require dealing with water rights tribunals, location arbitrage, nuclear regulatory delays, in addition to all the other challenges that the Magnificent 7 are dealing with.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:04]</span></p>
+
+<p>Okay, let’s take a step back. So we talked about revenue and business models. We talked about how they’re spending the money. Maybe there is one other perspective that we should talk about, which is the hidden costs that perhaps are not quite that evident in the first place. Okay, let’s just talk about the training versus inferencing economics and I’ll show you a bit more detailed chart to drive home this point. So in 2027, if I look at the CapEx split, 27 billion was spent in training versus $12 billion in inferencing.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:38]</span></p>
+
+<p>As I said previously, 2.25x. And again, just to recap, for AI to profit, this ratio has to flip because training is a one-time investment, inferencing scales up with revenue. But have a look at what’s going on here. This should give you a really an interesting clue on what’s happening with these models. So this is a chart from APOC AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:06]</span></p>
+
+<p>On the X axis is the publication date. On the Y axis is cost in dollar. And again, it’s Y axis is the log scale. So that should give you an idea of how, when we build these planet scale models, how much money is required to train these models. So what is estimated is…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:25]</span></p>
+
+<p>the cost breakdown to develop key frontier models such as GPT-4 and Gemini Ultra, including R &amp;D and staff costs. So this is not compute alone. So hardware costs, approximately, we can estimate as about 47 to maybe as high as 67%. R &amp;D costs are quite substantial at about 29 to as much as 50%. And the remaining 2 to 6 % goes towards energy consumption. So what does this tell you?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:52]</span></p>
+
+<p>What this tells you is that the largest training runs will cost more than a billion dollars by 2027. Which means that the frontier models of tomorrow that are being trained, they will be too expensive for most organizations except you guessed it, the Magnificent Seven, the most well-funded organization. So all that money that’s being invested, that economic moat that I talked about, the investments in data centers. They are being built so that these companies can continue to build the biggest, the best model that there is at planetary scale with all of humanity’s data and all of humanity’s hopefully knowledge and build beyond post beyond transformer architecture models and build a financial mode that nobody else is going to go to surpass. So that inference versus training cost, that’s the first hidden cost. Mind you, there is also a second element to this hidden cost, which is the cost of the talent.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[31:52]</span></p>
+
+<p>To put it in perspective, for every dollar that’s spent in the industry on NVIDIA chips, the companies are spending 80 cents on talent. Personally, I think it’s maybe perhaps even higher. What’s really interesting is the top talent in AI, the top researchers, they are now commanding what top developers used to command in the Silicon Valley at the height of Comp Sci development, .com type of booms and so on and so forth. A typical entry level data scientist, somewhere between 300k to 500k. At the top firms, the best of the best MML engineers can command as much as 800k.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[32:32]</span></p>
+
+<p>Top AI researchers, in fact, in some cases, the AI researchers have been personally offered multi-million, multi-hundred million dollar bonuses. These are the stars that are really shaping the industry. And then if you look at the burnout in the talent, that is happening pretty quickly as well, because talent as a percentage of bond rate, about 20 % of the uh investment in FAANG companies um is being spent on the talent. And then you can see that there is certainly an ongoing crisis in trying to retain this talent. It is not unheard of that talent is being pushed from one company to the other at astronomical prices and contracts. All right.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:25]</span></p>
+
+<p>There is two new taxes that are emerging. So the previous two were well understood and well known, but There is a new tax that potentially was not accounted for historically. So prior to GPT-3, the idea was scrape everything now, pay nothing. Essentially now the model is being shifted. For example, in GPT-5 they will have to license everything because the consumers, the content creators, the regulators are now waking up. Regulation is now catching up.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:58]</span></p>
+
+<p>So rather than just scraping anything and everything and not paying and paying nothing, they now have to license everything potentially and pay perpetually. Here’s some examples. So Reddit entered into a $130 million a year deal um with Google and OpenAI. And the idea here is that because it’s human generated data, which is quite highly labeled, that data is highly valuable. And rather than Google and OpenAI just scrubbing it, they’re now having to pay Reddit for that data. And the strategic implication here is that it’s going to be number one cited source in AI models more than three times than Wikipedia.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:34]</span></p>
+
+<p>Similar things apply for other news sources that you see here like Newscore, New York Times, and so on and so forth. So really the annual estimated cost for data that potentially the startups may have not thought about previously is going to be over $800 million a year. My point being that training on free internet data is over. New entrants cannot afford the high quality web. This actually works in the favor of the Magnificent 7 and the builder of these planetary scale models that have started early on because they now have this incumbency mode that new startups cannot pay. So this is a data tax that locks in the dominant players of the industry.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:22]</span></p>
+
+<p>Here comes the next potentially historically hidden cost that is now going to emerge and make it even harder for newcomers into this segment is as regulation catches up, the regulatory costs at least for enterprises in many cases they exceed the hardware cost for enterprise AI deployments. So again, just to put it in perspective, if you think about the European Union’s AI Act implementation in total terms of R &amp;D, in terms of humans, in terms of providing all the risk documents and disclosures to the regulators, you’re looking at at least about five to $10 million if you’re lucky, potentially higher. For the patchwork of regulations from various US states, you’re looking at somewhere between $2- $5 million per state. If it happens to be a global company that’s working in Europe, they have to comply to GDPR. That’s another $3 to $7 million a year. Therefore, for an enterprise, the total compliance burden could be as high as an additional 25 % on AI budgets.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[36:29]</span></p>
+
+<p>That’s purely on compliance. Add to it… the research that every organization has to do on safety, that ensuring that the model is not leaking any PII data, the model is not providing any guidance that it should not provide, that it is not um hallucinating as an example, that it’s not providing hateful information and so on and so forth. And then, and by the way, there is two elements to that cost.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[37:02]</span></p>
+
+<p>There is the budget spent on safety and alignment of the model. So this is in the model training phase itself. Reportedly, Anthropic is spending as much as 30 % of the budget on model safety and alignment, followed closely by OpenAI at 25%, DeepMind from Google at 20%. So that’s $15 billion a year at the purely at the model training level itself. And then there is a second level of safety research investment that enterprises have to do when they’re adopting this within the enterprise. The flip side of this is what these companies are now able to do is they are now approaching what they’re calling proactive compliance ROI, which is that hey, our models are the box, already are compliant to certain type of regulations or we provide you these type of guardrails, therefore we can help you achieve the compliance quickly.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[37:53]</span></p>
+
+<p>And then there are some stats here in terms of how they can achieve productive compliance. The point here being that it’s both a cost, it’s a hidden cost to some extent, but they’re now trying to turn it into comparative differentiation by saying that compliance is no longer just a regulatory overhead. But if they were to build this compliance and safety into the model itself, they can use that as a competitive mode. All right, so we covered a lot. Let’s now talk about the crisis within the business models. Let’s spend a little bit of time understanding the margin crisis.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[38:31]</span></p>
+
+<p>So as the world moves away from the traditional SaaS, which was 80 % to 90 % of gross margin to, I’m going to call them for lack of a better term, AI supernovas, which are venture capital subsidized. They only have about 25 % gross margin because what’s happening now, what’s happening now is that as historically the SaaS companies, they would sell access to a tool. So if I’m Salesforce, if I am ServiceNow, if I am any other SaaS company, I’m selling access to a tool on a per seat, per month license. What is now happening is a transition, slow but surely, a transition to service as a software, where what the companies, what enterprises want is an outcome, not just a seat license. Can you give me an AI agent for HR? That’s going to help me shift some costs around uh running my HR operations.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[39:33]</span></p>
+
+<p>So that’s on an outcome basis per resolution. And what’s baked into that cost? is I’m going to say compression of the margin because of the expectation here is that when I’m getting that outcome behind the scenes that SAS that offering that capability now has to make requests to an AI model. Hopefully one of the frontier models. Which means that every query every query that’s being run it has two costs. It has certainly the compute cost.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[40:09]</span></p>
+
+<p>And then it has the token cost. And then as soon as agents get involved, there is an explosion of in token consumption, in some cases, 10 times, maybe even 100 times, depending upon how complex the task is. All right. So the margin is now compressing. So if I’m a traditional SaaS vendor, my margins are now beginning to be squeezed. And there is some evidence that the math doesn’t quite work.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[40:38]</span></p>
+
+<p>So as an example, the GitHub copilot, famously there was a study that they are losing $20 per user in early 2023. I’m sure they’ll figure out some ways of getting around it. Replet, they had sub 10 % gross margin at peak. Again, they lifted the pricing from 20 to 30 % up and so on and so forth. So the implication here being that if the AI companies continue to have lower margins than SaaS, maybe Wall Street is going to reward them with a lower multiple. All right, so that’s one of the crisis.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[41:17]</span></p>
+
+<p>I talked about this one a little bit, but it’s worthwhile revisiting this as well, which is the AI cost paradox. So what’s interesting is that as we continue to build bigger and bigger models with better and better architectures on hardware that is more and more expensive, so certainly the training costs tend to go higher and higher. But the inferencing costs to run the same model is declining. The adoption is accelerating. So that’s yet another curve. But the expectation of cost per thousand tokens is declining.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[41:51]</span></p>
+
+<p>So there is something broken in this model tension, which is that building the frontier model is exponentially more expensive. But selling across the access cost, the selling the cost of accesses is declining. And we’ll see this in detail graphs. So here’s an example, like performance per dollar. So this is purely onto the infrastructure side. So if you look at whether it is NVIDIA chips as an example, the performance tends to get better and better, which means the cost of inferencing for NVIDIA, sorry, the cost of inferencing for GPT 3.5, if that was $20 in 2022, that’s going</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[42:28]</span></p>
+
+<p>to cost OpenAI only seven cents in 2024, giving a return of 280 times. With some of the efficiencies achieved in the models, like five, three with 3.8 billion parameter model can outperform historically what was Palm 540 billion parameter model, which is 142 times improvement. So what we’re beginning to see is the performance per dollar of the hardware is improving. The performance, the algorithmic improvement in the model, which means that as soon as you build a model and you start then monetizing the model, you’re basically now into an arms race that when the next model comes out, that’s going to be cheaper to run. Your running inferencing costs are already higher.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[43:32]</span></p>
+
+<p>So now you’re running against a, well, you’re really swimming upstream. Then finally, the other thing that’s going on is that the interesting tension that was going on between open and closed source models, closed souls are beginning to close parity. There was a point where the, on MMLU benchmark, the open source models had as much as a 8%- 10 % difference. Well, now with open source models, that gap has shrunk to under 2%. So open source models are reaching parity as well. Therefore, that’s yet another tension in the business model for these um mega AI model, frontier model providers.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[44:04]</span></p>
+
+<p>And of course, who can forget the deep seek AI Sputnik moment. So what happened on January 27, 2025 is NVIDIA suffered the largest single day drop in the US market history, wiping, losing nearly $600 billion in their market cap. This was triggered by a Chinese AI company that most people had not heard of. I mean, had not heard of at that point. We have all since heard of DeepSeek, a Guangzhou based startup ah from our street. They released an open source, what they call a reasoning model, which matched open AI frontier models capabilities at a fraction of the cost.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[44:48]</span></p>
+
+<p>Famously, Mark Andreessen called it the AI’s Sputnik moment. And the comparison is really quite apt. This was like how Soviet Union shocked America in 1957. DeepSeek demonstrated that the Chinese capabilities had exceeded, far exceeded the Western expectations. And then quite clearly, they had a number of innovations that they introduced, ranging from architectural…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[45:16]</span></p>
+
+<p>architectural breakthroughs that slash the memory requirements by as much as 93 % to successful FP8 and we’ll get into some more technical details subsequently, but they trained a 670 billion parameter model, allegedly a much smaller model compared to OpenAI frontier model at the time. And they achieved similar or better performance on a number of tasks. And by the way, not only NVIDIA lost the market cap, The contagion spread across the sector, Broadcom lost 70%, Micron lost 12%. There were certainly billionaire wealth loss, both by Jensen Wong and Larry Ellison as well. So the reason why I bring this up is that in addition to those hidden costs, the frontier model providers are now facing headwinds from new entrants into the market, such as DeepSeek And then maybe final couple of things that I want to talk about uh within the promise versus reality and within certainly the enterprises on ROI. So very famously, there was a study done by MIT, which claimed that 70 % of the projects failed to deliver promised ROI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[46:35]</span></p>
+
+<p>And they broke it down into whether it was, you know, hidden costs, not in quotes, such as the cost of implementation, cost of integration, certainly the big kahuna, which is the cost of bringing the right data to the model because the model is only as good as the data. uh Of course, once you implement our solution, uh you need some ongoing tuning. That had some additional costs as well. uh And then there was a reality check around time to value because the vendors claimed that they could achieve ROI within three to six months, the actual reality was the projects had to run as long as 12 to 18 months. And what this did is it gave the enterprises a pause that the ROI success factors around APIs, vertical AI, API services, there is some churn and it gave industries a pause around how they go about implementing their AI. So this was the first, not a stop.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[47:46]</span></p>
+
+<p>but a pause that the enterprise adoption started to slow down when it came to adoption of AI. Perhaps one final page on um these significant investments that are being made. So Arvind Krishna, who is the CEO of IBM, he went on to a podcast on the verge to talk about how uh there is a gap in the math for all of the infrastructure investments that are being made. And the punchline here is as follows. Arvind’s calculation is that for all of the investment that’s already committed to build, um which is allegedly as much as 8 trillion dollars. It’s going to require as much as 800 billion dollars of annual profit just to pay back the interest.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[48:35]</span></p>
+
+<p>Let’s pause for a second. The current committed build outs from OpenAI slash target $1.4 trillion Meta capex $70 to $72 billion. Alphabet is only $90 billion and such. So the position that Arvind is taking is that if a single company is committed to spending 20 to 30 gigawatts in data center capacity alone, not taking into account a hardware refresh cycle of say approximately five months. So even if they get so advanced that they can repeat the x-ray Colossus data center build out and they build these things in span of 122 days and rack and stack those from from build out to training they can do that really really quickly.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[49:23]</span></p>
+
+<p>Well that only works if they have unlimited power which they don’t. So if these companies are committing 20 to 30 gigawatts of data centers to fill that data center they need as much as 80 billion dollars for every one gigawatt of data center. You times that by the 100 gigawatt that’s committed to spend annually and you’re looking at a impossible number. Now, keep that in mind that, you know, this is one individual’s view, but I think it’s certainly a good back of a napkin math that says that, okay, you know, there is some very bullish ah projections that have been made by the organizations and potentially they’ll have to look at new business cases. And hence, this explains some of those circular economy loops as well. All right, let’s take a step back.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[50:18]</span></p>
+
+<p>we talked about… We talked about. We talked about a number of things so far. Let’s now really talk about the path forward.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[50:32]</span></p>
+
+<p>So what is it lies in store for these organizations? You’ve seen a version of this page previously. What this is talking about is performance per dollar is improving rapidly, which means that the hardware at any given precision and fixed performance level becomes 30 % cheaper year on year. Right? I mean, this is the Moore’s law really is what we’re talking about here, right? So new entrance can gain, can leverage efficiency gains.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[51:01]</span></p>
+
+<p>I talked about this a little bit as well, that the inferencing, inference prices are falling year on year, you know, as much as 900X decline in inferencing, depending upon the task that at hand. In this scenario, for example, GPT-4, It used to cost about $40 per million tokens. 14 months later when Gemini 1.5 Flash came out, it could beat GPT-4 score on a set of PhD level tasks for basically a fraction of the cost. Right. So this tells you how the inference pricing or prices are decreasing.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[51:42]</span></p>
+
+<p>I mean, that’s what we covered in the previous section. So what all of this is leading to is a third vector into the economy. So, so far we talked about just the frontier models. But if you take into account all of the headwinds that are facing these companies, we are now beginning to see a slowdown in the exponential growth of planetary scale LLMs. And it’s giving rise to what the industry is now beginning to call small language models. The idea behind these small language models is that these are specialized, efficient models that are trained for specific use cases.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[52:23]</span></p>
+
+<p>Right. And let’s just talk about that in a bit more detail. The idea behind a small language model is, I mean, there is no clear definition to be clear. There is no…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[52:42]</span></p>
+
+<p>there is no consensus between what constitutes a small language model, but broadly speaking, let’s say somewhere between 7 to 12 billion parameter model is a small language model. And rather than being generalist on everything, so they are going to have general knowledge of English or language understanding, but they will have some emerging capabilities like reasoning and logic because they are smaller. Therefore the training costs are going to be lower. The inferencing speeds is actually going to be fast because they’re just so much smaller, so they don’t really need necessarily specialized hardware, which means they don’t need as deep as heavy GPUs. This also means that rather than being deployed only in the cloud, only in the data center, they can be They can be fine-tuned for our use case. They will still have, you know, on usually a decoder only architecture and they might be available.</p>
+
+          </div>
+        </div>
+      </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+    
+    
+    <div class="mb-12">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="font-serif text-2xl font-bold">Clips & Highlights</h2>
+          <p class="text-sm text-muted mt-1">21 clips from this episode</p>
+        </div>
+        <a href="/shipai/clips/" class="text-xs font-medium text-accent hover:underline">View all clips</a>
+      </div>
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Shorts</h3>
+      <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide mb-6">
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI ROI Gap: 70% of Projects Fail</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:55</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI ROI Gap: 70% of Projects Fail</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's $4T Impact on Enterprise Product...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:25</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's $4T Impact on Enterprise Productivity</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's Growing Appetite for Power</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">1:00</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's Growing Appetite for Power</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's Spartanic Moment: DeepSeek's Impact</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:59</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's Spartanic Moment: DeepSeek's Impact</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Spending: Training vs Inference</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:53</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Spending: Training vs Inference</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Talent Costs Skyrocket</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:56</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Talent Costs Skyrocket</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">ChatGPT's Explosive Growth vs Tech Gi...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:59</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">ChatGPT's Explosive Growth vs Tech Giants</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Magnificent Seven's AI Spending Surpa...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:40</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Magnificent Seven's AI Spending Surpasses Global</p>
+          </a>
+        
+      </div>
+      
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Deep Dives</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI's Hidden Costs: Compliance & ...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">2:42</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI's Hidden Costs: Compliance & Safety</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI's Hidden Costs: Margin Crisis...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">3:16</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI's Hidden Costs: Margin Crisis & Cost Paradox</h4>
+            </div>
+          </a>
+        
+          
+          <a href="https://www.youtube.com/watch?v=P-n84j4AkKU" target="_blank" rel="noopener" class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI's Hidden Costs: Compliance & ...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">2:43</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI's Hidden Costs: Compliance & Safety</h4>
+            </div>
+          </a>
+        
+          
+          <a href="https://www.youtube.com/watch?v=tOvgkeTOzuI" target="_blank" rel="noopener" class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI's Hidden Costs: Margin Crisis...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">3:17</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI's Hidden Costs: Margin Crisis & Cost Paradox</h4>
+            </div>
+          </a>
+        
+      </div>
+      
+    </div>
+    
 
     <!-- More from This Series -->
     
@@ -299,7 +881,7 @@
   
     <a href="/shipai/episodes/agi-is-coming/" class="block relative group">
       <div class="aspect-video overflow-hidden">
-        <img src="/shipai/assets/images/og/agi-is-coming.png"
+        <img src="https://img.youtube.com/vi/Zf1Rq-hoOOc/mqdefault.jpg"
              alt="AGI is coming"
              loading="lazy"
              width="320" height="180"
@@ -343,17 +925,17 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-7-agi-is-coming/id1832355436?i=1000755763218" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://www.youtube.com/watch?v=Zf1Rq-hoOOc" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     
@@ -420,12 +1002,12 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-6-ai-agents/id1832355436?i=1000753648763" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -504,7 +1086,7 @@
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-5-ai-gets-a-body/id1832355436?i=1000750157728" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -547,11 +1129,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -562,6 +1140,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           

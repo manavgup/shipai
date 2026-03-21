@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -260,6 +260,456 @@
 
     <!-- Transcript -->
     
+    <div class="mb-12" id="transcript">
+      <details class="group">
+        <summary class="flex items-center justify-between p-5 bg-white rounded-card border border-black/[0.06] hover:border-black/10 transition-colors cursor-pointer list-none">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="font-semibold">Full Transcript</span>
+          </div>
+          <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><strong>Manav Gupta</strong> <span class="ts">[00:01]</span></p>
+
+<p>Hello there. The job market has already shifted. New job postings that are AI related are up 448%, whereas non-AI tech jobs are shrinking by as much as 10%. So AI is already here. You’re watching or listening to the Ship AI podcast, episode four, in the series, The State of AI. So let’s begin.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:28]</span></p>
+
+<p>You are not competing with AI. That ship has already sailed. You are, however, competing with people who use AI. And that competition has already begun. Over the last few years, we would hear about how AI will eventually work. It will eventually change how we work.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:48]</span></p>
+
+<p>It will eventually disrupt jobs. It will eventually force adaptation. Well, I’m here to tell you that the data says something tremendously different. This is no longer a future tense problem. It’s a present tense divide. um Traditional non-AI tech jobs are shrinking, and in fact, CEOs are no longer doing experiments.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:05]</span></p>
+
+<p>They’re rewriting performance reviews, headcount approvals, and hiring criteria around one assumption, AI fluency. And here is the uncomfortable truth, jobs aren’t disappearing en masse. What’s disappearing, however, is neutrality. The middle ground between oh, I’ll wait and see to I use it every single day has completely disappeared. In this episode, we are going to uncover how cheap intelligence has rewired the labor market, how the productivity gains aren’t showing up in our paychecks. And while the real risk in 2026 is no longer about being replaced by AI, it is being outpaced by those who actually are using AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:55]</span></p>
+
+<p>All right, so let’s begin. So in Act 1 we are going to look at the economic substrate and truly try and understand why the cost of intelligence is collapsing and what truly it means for the value of human labor. Okay, so let’s have a look at this chart. This is a chart from a16z.com and this showcases us the decline in the in the inferencing costs of some of the frontier LLMs for reasoning tasks. The punchline here is that the reasoning capability is deflating faster than Moore’s law.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:45]</span></p>
+
+<p>um So on the vertical axis, we are looking at the cost per million tokens on a log scale So every step down is a massive step on the horizontal x-axis. We are looking at time Just a couple of years in So if you look at birds eye view of this graph the reasoning cost of These frontier models has declined by 1000 X in two and half years only. Now just to put this in perspective, the concept that something other than a human could reason and in fact could be made available at scale to millions if not billions of people around the globe was just either a thing of fantasy or perhaps available only to researchers. But in a short two and a half years, not only has that capability arrived but it has been diffused to about every single LLM user globally. So to drill down on this chart a bit deeper, focus on the purple line first. So these are models that I’m going to say are exhibiting basic reasoning threshold.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[04:03]</span></p>
+
+<p>So this is being measured on one of the most famous and widely adopted benchmarks called multimodal language understanding or MMLU. So what this graph is showing you is the decline how starting with GPT-3, it introduced reasoning capability at $60 for million tokens. By 2024, it drops to about 20 cents with Lama 270, the Lama 27 billion. Now that’s not an optimization. That is a structural collapse. And look at the…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[04:45]</span></p>
+
+<p>Orange line that’s even more telling these are high capability models that are crossing much higher Thresholds and much higher reasoning benchmarks. In fact, they are nearing what’s what’s widely known as a human benchmark for reasoning And again, we see the same pattern repeat itself here a stepwise clef rather than a gradual slope Each new generation of the model resets the curve downward So the costs are falling for these reasoning models by 10x per year. That’s faster than compute, that’s faster than cloud pricing, that’s faster than labor. So when we talk about AI adoption at scale, this is why leaders love AI. This is because the arbitrage is too large to ignore. What this chart tells you is it’s the…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:40]</span></p>
+
+<p>quiet engine behind polarization around everything else, whether it’s polarization of jobs, polarization in wage premiums for AI researchers, polarization of burnout with knowledge workers trying to keep up with all the innovations and all the new capabilities that the LLMs are introducing, and of course, the disappearance of neutrality. So when intelligence costs pennies, Using it is no longer a choice. Not using it becomes an anomaly. Which brings me to the very famous Jevons paradox being applied to AI. Now let’s just take a step back. So in mid 19th century, Britain was undergoing rapid industrialization powered obviously by coal and the adoption of steam engines.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[06:28]</span></p>
+
+<p>Many economists and leaders at the time worried that with the declining coal reserves threatened the nation’s economic vitality. But then a consensus began to emerge that with the increase in the efficiency of steam engine, it will eventually collapse reduction of consumption of coal. So the belief was that the more optimized, the better these steam engines become, the demand for coal is going to plummet. Until into the debate stepped a young economist by the name of William Stanley Jevons, who published an article where he argued that the improvements in fuel efficiency and cost effectiveness will actually do the opposite. They’re going to lead to a rising use of industrial steam engines, and paradoxically, it is going to increase the demand for coal. And history proved Jevons right.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[07:38]</span></p>
+
+<p>And by the way, we have seen this happen again and again. When the internet was first introduced, heck, when refrigerators were first introduced, they were absolutely priced absurdly high. Eventually, as they got better and better, they were consuming less electricity. Therefore, then they started appearing in homes. In fact, many homes now have more than one. We saw this with the pricing of the internet as well.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[08:03]</span></p>
+
+<p>So really, the Jevons paradox is that when our technology becomes more efficient, we don’t use less. We actually use more. Efficiency gains that are arrived, whether it’s in fuel efficiency, cost per query, the um amount of electricity that is being used to generate those models, it actually results in driving increased total consumption. So as the models are becoming more and more efficient, lower costs are making them accessible to more and more users, which leads to…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[08:38]</span></p>
+
+<p>Exponential growth in total energy and resource consumption. So what’s going on? So you have reasoning costs of these frontier models declining. You have broader adoption, which then explains a picture such as this. So this is from the US Census Bureau data that the University of Maryland put together. What this is showing you is the employment evolution.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:13]</span></p>
+
+<p>So this is USA market data only. And what this is telling you is the change in America in AI versus non-AI IT postings. AI job postings are up by as much as 448 % over a period of seven years while the non-AI jobs have shrunk. by as much as 9%. In fact, what’s interesting is the AI jobs exist and the opportunity to apply AI exists in every sector of every industry. So if you look at this picture here, which is showing you a percentage of um job postings by each sector, each industrial sector, whether it is information, industry, professional, scientific, and technical services industry, and then it’s trying to rank it based upon intensity of the sector’s AI related jobs.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[10:12]</span></p>
+
+<p>So in other words, what proportion of jobs within a certain industry were posted for AI, and therefore they created this AI intensity uh measurement. And notice what’s going on in this. anything that’s in the middle of this chart here, so the top half of this chart, that’s information, professional, scientific and technical services industry, finance and insurance industry. In these sectors, practically all work is knowledge work. The greater the knowledge work, the greater the opportunity there is to implement AI, which of course begs the question, okay, what are the industries where perhaps…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[10:55]</span></p>
+
+<p>the intensity is the lowest, perhaps they are not quite as applicable, where AI would be quite yet as have a profound impact, at least at the time of this data collection. So that tells you accommodation and food services, support services, public administration, real estate rent and leasing and so on and so forth. And this is not just one research, one organization’s data. Have a look at the data from ZoomInfo, which is tracking the AI title trends. So these are job postings that have AI in their title of an overall trend for the last three years. There is a 200 % increase in AI-related jobs despite the rise of AI engines, AI services such as ChatGPT.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:45]</span></p>
+
+<p>And AI is still very much a focus. If you drill down into this graph, AI is very much a focus um in broad engineering disciplines. So here is an example. The AI dominant sectors remain any of the professional, scientific and technical industry, the information industry, manufacturing, finance and insurance, retail and trade. More and more of jobs or 89 % almost 90 % of the jobs in this industry or Have have constant have AI job concentration. So Tough luck if you are in these industry and if you’re not using AI There is a problem So let’s take a step back in If you if you happen to be in any of these industries If you’re a professional, if you’re a scientist, if you are a technician of some sort, if you happen to work in the information technology industry, if you’re working in manufacturing, finance, or in retail, you are expected to use AI because guess what?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:59]</span></p>
+
+<p>Your leaders are already serving mandates and pushing out notices to use AI. Let’s have a look. Let’s go to act two. So now we’re going to look at the mandates from the various CEOs, because now they are no longer asking their employees to experiment with AI. They are now altering the fundamental consumptions of employment. So in this section, we’re going to look at some of the examples.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[13:35]</span></p>
+
+<p>And these are not meant to call these companies out negatively in any shape or form, by the way. These are purely examples where there was public data available. of the mandates from the CEOs and what happened subsequently. So Toby Lutke, who is the CEO of Shopify, fellow Canadian, so I thought I’ll start there. So he issued a post on Twitter, well, now known as X, in April of 2025. And he had six mandates.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:08]</span></p>
+
+<p>That the fundamental expectation is that AI proficiency is non-negotiable. They colloquially call it get stuff done, or the GSD, get S done. Prototype, so AI should be a part of the prototyping. Performance reviews, in fact, AI usage is now graded using, uh or performance is now being graded using AI, and so on and so forth. But really the crux of his mandate was AI usage is now a baseline expectation at Spotify. If you’re not climbing, you’re sliding, is the quote from Toby.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:45]</span></p>
+
+<p>Here is another example. So this is Luis Wan-An who made a post, who’s the CEO of Duolingo. And he made very public announcements on a LinkedIn post on April 29, 2025, where they were going to start phasing out contractors and contract work using AI. Humans will then become the auditor of AI, of the machine. In fact, his post went on to say that new headcount will only be approved if the team can validate, if the team can prove that AI can no longer do the work. And much like what we saw with Shopify, they were promoting and they’ve started to use AI in hiring and performance reviews.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:34]</span></p>
+
+<p>And of course, they introduced Fridays or FR AI days for experimentation. So again, the idea here being that they want to use AI more and more. And not to be confused, look at the results. Yes, there was some pushback to be clear. was widespread pushback from users. There was some condemnation on social media.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:04]</span></p>
+
+<p>But the reality is that the revenue projections actually were increased to over a billion dollars. Now, they did not do any full-time layoffs, but they have started phasing out contractors. So if you thought that your job was safe, if you’re a contractor, AI is coming for you. Here is another example. This is the cautionary tale from Klarna. This was a reversal that nobody expected.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:31]</span></p>
+
+<p>So Klarna issued a press release in February of 2024, and then they followed up with an interview in May of 2025. So in February of 2025, they made a claim that they could have an AI chatbot that could do the work of 700 full-time agents projected to save them $40 million in savings. And in fact, the court was that, or the claim was that the AI chatbot could provide as much as five and a half times the resolution of problems faster than humans. Now, they did have a slight reversal because they ran into some challenges. They’ve now started hiring humans again. But the bottom line is that the CEOs are beginning to experiment.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:19]</span></p>
+
+<p>They are believing in the value of AI. They can see what this can do to their top and bottom lines, despite some, let’s call it some issues that are still to be resolved. Which brings me to the thesis for this segment, which is, I love this quote from Jensen Huang. You’re not going to lose your job to an AI, but you’re going to lose a job to someone who uses AI. I mean, you we all knew that this is coming Okay, so let’s take a step back to understand what’s going on in the enterprise world so you are going to find regardless of which company that you’re working with if you are a knowledge worker your CEOs your senior leaders are absolutely looking to figure out ways of how they can Achieve what is now famously known as productivity? Which some say is is a colloquialism for how do you get rid of people?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[18:18]</span></p>
+
+<p>Now, one can argue that the technology may not quite be there yet, but what it is certainly doing is it’s giving us lift. It’s just changing how people do their jobs. It’s changing expectations about speed. There used to be a point in time where you and I, where workers could be good enough that I graduated middle of the class, that I’m a hard worker, that I can read, that I can consume info. The expectation now is that you’re going to be able to leverage a tool to consume info, whether it’s a document, whether it’s an email, and then apply your own judgment on top of that. Okay, with that, now let’s get into Act 3, which is let’s now examine the true reality of AI adoption.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:04]</span></p>
+
+<p>So we’re going to look at the AI maturity gap. We’re going to look at whether or not any premiums are being granted to wages or not. And then… changes that are role specific.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:25]</span></p>
+
+<p>Okay, so here is an interesting point. This is a cleaned up version of a report from McKinsey. So they had issued a report called Super Agency in the Workplace. Really, the idea was trying to understand how many companies and organizations are giving agency or AI agents work to do and implementing AI. And they found something really interesting. They found that 92 % of companies were investing in AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:53]</span></p>
+
+<p>I’m surprised that they actually found 8 % of the companies that were not using AI. I mean, I certainly would like to understand the thought process there, but perhaps there are companies in segments where they are not using AI just yet. But here’s the interesting part that even though there is this mass hysteria about using AI and implementing AI, the percentage of companies that were at AI maturity in the framework, how McKinsey defined it was only 1%. Matter of fact, what’s interesting is look at the quotes from C-suite. They actually are complaining that their own teams are unable to roll out AI as fast as they would like. Nearly half of them think that the AI deployment is too slow.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:39]</span></p>
+
+<p>And 92%, again, they plan to increase their AI investment in the next three years. But here is the interesting point. It’s not that the employees are not ready to implement AI either. all consumers globally, which are employees or all employees that are consumers in turn, they’ve all experimented with publicly available LLMs. Employees are in fact three times more ready than leaders think. In that same report from McKinsey, They have data from employees that are using AI for 30 % or more of their daily work.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[21:19]</span></p>
+
+<p>What the leaders are estimating that it is only about 4 % of people are using it, but in fact, as much as 13 % of people are using AI daily in some shape or form. In fact, 47 % of, so nearly half of the employees think that their usage of AI is going to increase by 30 % or more within a year. There is a lot more hunger for AI to be used by the employees. Okay, CEOs want AI to be used. They are complaining that the AI rollout is not happening fast enough. On the other hand, you have employees using AI more than what their leaders think.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:06]</span></p>
+
+<p>This seems to me ripe for misalignment. And that’s exactly what the data shows here. So this is the Stanford and Digital Economy Lab report on uh misalignment of AI implementation, which is a polite way of saying that a large number of AI projects failed. And what’s interesting here is where the AI has been implemented. So I’ve tried to super simplify the very dense chart in the Stanford report, broken it down into these four sections. So what you have here is…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:44]</span></p>
+
+<p>On the bottom left of this two by two quadrant is a, I’m gonna call it a low priority zone, that there is low desire and low capability. It’s neither wanted nor possible. For example, some kind of a creative work with a client. Or you have a, on the bottom right, the red light zone, which is low desire to implement, but potentially AI could have high capability. For example, meeting agendas, communications with vendors. So certainly AI can do it, but do the vendors to the participants agreeable amenable to doing so.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:15]</span></p>
+
+<p>Then you have on the top left the R &amp;D zone, which is where AI has a where there is a higher desire between employees between the humans, but AI itself has low capability, low trusted capability. Workers want this, but AI cannot do it at scale yet. Now, mind you, this doesn’t mean that no form of AI exists that can do this. There already exists budgeting tools that use AI to help you be better and smarter, but can these things scale at an enterprise level in a way that it can be trusted by humans and deployed for budget monitoring, as an example? And then we come to the green light zone on the top right, which is there is both a high desire and high capability of AI. The point of this two by two is that if the initial projects happen to be anywhere other than the green light zone where there is both a high desire from employees and high capability of the technology to implement it, those projects will invariably fail.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[24:28]</span></p>
+
+<p>That’s in data reporting, quality control, retrieval augmented generation, talking to my documents and so on and so forth. That’s the sweet spot today. where the technology can be implemented. Which brings me to the part that what the workers want is a partnership, not a replacement. So organizations where there’s an equal partnership, those are the companies where AI implementations have succeeded. In fact, what the…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:09]</span></p>
+
+<p>workers are saying is that they are rejecting full automation, which absolutely should make everybody wonder if full automation is coming. I’ll submit to you that that’s what the ultimate end goal with AI is. As of today though, workers want use of AI as a collaborator. In other words, if AI…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:34]</span></p>
+
+<p>can free up time for high value of work as much as 69 % of employees are willing to be equal partners and initiators of implementing this technology. Okay, all right, so we talked about the state of adoption, we talked about human and AI partnership, and we talked about how employees are so keen on using this technology. So if employees are this keen to use this tech, then clearly, they should be some premium that they are seeing in their pay, but perhaps not. So in section four, we’re going to examine the labor market divergence and how I think there are two job markets emerging, right? And what I’m seeing is I am not seeing the use of AI providing premiums to workers that are actually using AI. So certainly there is a premium being paid to those skills that are using AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:41]</span></p>
+
+<p>So this is a report from PWC uh on global AI jobs barometer and they have analyzed approximately one billion job ads. The AI skill, if implemented into a job, is providing a boost of as much as $18,000 a year. But look at what’s interesting. Where somebody has AI skill plus soft skill. That’s the biggest area of premium. So certainly those who have the soft skills to communicate as well as the hard skill to actually use that technology.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[27:15]</span></p>
+
+<p>They are the ones reaping the biggest benefits. But there is a secondary market that’s going on here, which is the repricing of skills. There used to be a time that there were certain number of skills in the tech sector, especially around coding, the arcane task of debugging systems administration. database administration, these used to be very in-demand jobs and they would command high wages. But with the use of AI, what we’re now seeing is a significant depreciation in systems administrator, in SQL developers, in senior software engineers. And so what we’re seeing is appreciation in other jobs such as mid-level AI engineer, machine learning engineer, and we’re now seeing emergence of a whole new category of AI jobs, which are the LLM developers.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:10]</span></p>
+
+<p>And then finally, here’s what we see for the first time ever in history, a risk being introduced to the computer science degree. Now, mind you, this data is slightly skewed because this is looking at translating the computer science degree to getting a job as a developer or a platform engineer solely. So the point behind this is that computer engineering degree now is no longer as safe as one may think historically because now there is growing risk that the technology skills alone are being commoditized. There used to be a point where the tech job by itself was a monolithic category that used to be safe that is now dead. Okay, so now that takes us to step five, which is if now that now that we have looked at wider option of AI, we have now looked at the desire by workers to use AI, then clearly we should see significant levels of productivity. Or do we?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:21]</span></p>
+
+<p>Let’s have a look. So allow me to introduce to you the productivity evidence and then we’ll talk about some of the rigorous data and examples and then we’ll look at the actual productivity. Now there are number of research studies that have been done and remote control, randomized controlled trials or RCTs that have been done by pretty much every company under the sun that you can think of. Microsoft, Accenture, other Fortune 100 companies, GitHub, Stanford MIT. For certain number of tasks, they are finding a productivity gain. So here is an example.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:57]</span></p>
+
+<p>This was a Stanford MIT study. The average productivity gain. with about 5,000 developers was approximately 26 % on average. Certainly the junior developers were gaining as much as 35 to as close to 40%. But look at what’s buried into that data. For senior developers, the gain was 8 to 16%.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:16]</span></p>
+
+<p>In fact, in some cases, the senior developers ended up spending time, ended up losing their productivity. So what’s going on is that… that even though certain number of jobs might be gaining the productivity, the productivity is not uniform. The gains are only for the junior jobs and routine jobs that are wrote.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:40]</span></p>
+
+<p>But as anybody that has ever written code at scale will tell you that a developer’s job of writing code is only about 20 to 30%. So who cares if I can write code 50 times faster. If the code is slop and I cannot debug it, then there is a problem. So the bottom line is that the gains may be real as evidenced by these control trials, but they have not really translated to wage increases. In fact, backing that up, this is a, this is a study from McKinsey where what they’re saying is that as many as 80 % of the pilots are delivering little to no PNL of the actual uh AI deployment. What AI is actually doing that even though there is so-called boost in productivity.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[31:31]</span></p>
+
+<p>Top AI users are the most exhausted because. Biologically, what’s going on is that everybody is trying to now catch up and understand what AI has done. It’s great that I can use cloud code or codex. or deep seek to generate a bunch of code. I now have to integrate that code into my existing pipeline, into my existing code base. I have to run tests.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[32:01]</span></p>
+
+<p>I have to understand how it behaves with the rest of the ecosystem. I should be able to log and monitor it. All of those additional tasks are not as easy for AI. They still require cognitive load. Therefore, what we’re now finding is that AI users, that are full-time AI users, are 70 % of full-time AI users are reporting burnout. So here is the worker sentiment, the reality gap.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[32:31]</span></p>
+
+<p>52 % half of humanity, half of workers are worried about AI. 36 % are hopeful. Again, the fear is uniform across the board that AI is going to make them replaceable. The actual reality is less than 15%. of users are actually using AI daily. So you now have this new technology that’s like magic.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:04]</span></p>
+
+<p>There is collapsing an inference cost for reasoning models of 1000 act of 1000 X. There are mandates from CEOs to use AI. There is increase in AI job postings. But when it comes to real measurable. AI ROI, there is still some questions around it. So one can argue that there is a circular economy here.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:29]</span></p>
+
+<p>But the reality is that with everything else that’s going on in the industry right now, for all knowledge workers, the choice is already made for us. You have really only two choices. Number one, you learn AI now and you can stand to gain as much as 56 % premium in your job. If you use it right, you might get a productivity multiplier. You will get some career security. Option B is that you choose to ignore AI At that scenario you are part of the shrinking job market with a skills depreciation You will be on the wrong side of the CEO mandates and And and you may be facing career disruption So if you are Not using AI my suggestion to you would be to come up with a first week plan What I would suggest you do is you become zero, what I like to call zero to AI integrated in five days period.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:30]</span></p>
+
+<p>So here is the plan. The plan is as follows. On the first day, let’s say you start Monday, I want you to audit the tasks that you do, list your top 10 weekly tasks, mark which tasks you use for AI assistance, and I challenge you to find one high frequency, low stakes task that AI can do. You spend your Tuesday setting it up. Most of these tools are free. On Thursday, well, on Wednesday, you learn it, you implement it.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:03]</span></p>
+
+<p>On Thursday, you take a step back and reflect what worked, what did not work. And on Friday, you now begin adding other tasks to your workflow. Slow and steady. Start documenting your progress, share your results with a colleague. That’s the only way for AI literacy for workers in today’s world. Okay, so here’s where we land.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:27]</span></p>
+
+<p>AI did not arrive like a wave that wiped out jobs overnight. One can argue that it arrived like gravity, quietly, constantly, quite candidly impossible to get out of. Gravity doesn’t care where we live. It only cares where we have adopted your furring. The evidence is clear. Productivity is up, even though questionable.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:49]</span></p>
+
+<p>Output is up. even though there might be remote in in control trials only. Expectations are up. But.</p>
+
+          </div>
+        </div>
+      </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+    
+    
+    <div class="mb-12">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="font-serif text-2xl font-bold">Clips & Highlights</h2>
+          <p class="text-sm text-muted mt-1">20 clips from this episode</p>
+        </div>
+        <a href="/shipai/clips/" class="text-xs font-medium text-accent hover:underline">View all clips</a>
+      </div>
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Shorts</h3>
+      <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide mb-6">
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI: A Collaborator, Not a Replacement</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">1:00</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI: A Collaborator, Not a Replacement</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI and the Future of Work: What CEOs ...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:33</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI and the Future of Work: What CEOs Want</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Fluency: The Invisible Threat to E...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:39</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Fluency: The Invisible Threat to Expertise</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI Fluency: The New Job Requirement</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:59</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI Fluency: The New Job Requirement</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI in Prototyping & Performance Reviews</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">1:00</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI in Prototyping & Performance Reviews</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI or Obsolescence: The Choice for Kn...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:29</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI or Obsolescence: The Choice for Knowledge Workers</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's Gravity: Reshaping Work and Prod...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:34</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's Gravity: Reshaping Work and Productivity</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's Promise and the Quest for Real ROI</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:21</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's Promise and the Quest for Real ROI</p>
+          </a>
+        
+      </div>
+      
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Deep Dives</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI Adoption: The Jevons Paradox</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">3:30</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI Adoption: The Jevons Paradox</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI Adoption: The Maturity Gap</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:00</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI Adoption: The Maturity Gap</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI in Every Industry</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">1:09</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI in Every Industry</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI in the Workplace: CEO Mandates</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">5:24</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI in the Workplace: CEO Mandates</h4>
+            </div>
+          </a>
+        
+      </div>
+      
+    </div>
+    
 
     <!-- More from This Series -->
     
@@ -278,7 +728,7 @@
   
     <a href="/shipai/episodes/agi-is-coming/" class="block relative group">
       <div class="aspect-video overflow-hidden">
-        <img src="/shipai/assets/images/og/agi-is-coming.png"
+        <img src="https://img.youtube.com/vi/Zf1Rq-hoOOc/mqdefault.jpg"
              alt="AGI is coming"
              loading="lazy"
              width="320" height="180"
@@ -322,17 +772,17 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-7-agi-is-coming/id1832355436?i=1000755763218" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://www.youtube.com/watch?v=Zf1Rq-hoOOc" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     
@@ -399,12 +849,12 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-6-ai-agents/id1832355436?i=1000753648763" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -483,7 +933,7 @@
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-5-ai-gets-a-body/id1832355436?i=1000750157728" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -526,11 +976,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -541,6 +987,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           

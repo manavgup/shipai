@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -137,6 +137,19 @@
 
     <!-- Video embed -->
     
+      
+      <div class="mb-8 rounded-2xl overflow-hidden shadow-lg">
+        <div class="aspect-video">
+          <iframe src="https://www.youtube.com/embed/Zf1Rq-hoOOc"
+                  title="AGI is coming"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                  class="w-full h-full"></iframe>
+        </div>
+      </div>
+    
 
     <!-- Platform buttons + slides -->
     <div class="flex flex-wrap gap-3 mb-10">
@@ -146,19 +159,19 @@
 
   <div class="flex flex-wrap gap-3">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
         <svg class="w-4 h-4 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
         Spotify
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+      <a href="https://podcasts.apple.com/us/podcast/episode-7-agi-is-coming/id1832355436?i=1000755763218" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
         <svg class="w-4 h-4 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
         Apple Podcasts
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+      <a href="https://www.youtube.com/watch?v=Zf1Rq-hoOOc" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
         <svg class="w-4 h-4 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         YouTube
       </a>
@@ -204,6 +217,482 @@
     
 
     <!-- Transcript -->
+    
+    <div class="mb-12" id="transcript">
+      <details class="group">
+        <summary class="flex items-center justify-between p-5 bg-white rounded-card border border-black/[0.06] hover:border-black/10 transition-colors cursor-pointer list-none">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="font-semibold">Full Transcript</span>
+          </div>
+          <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><strong>Manav Gupta</strong> <span class="ts">[00:01]</span></p>
+
+<p>Hello, folks. Welcome to Ship AI. I’m your host, Manav Gupta, Vice President and CTO at IBM Canada. Today, we are going to deep dive on the single most important question in technology right now. What is AGI? When is it coming?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:16]</span></p>
+
+<p>And what does it mean for you? Questions for the audience as I get into this. When do you think we are going to have an AI that can do any cognitive job a human can do? What would you do with an AI that was smarter than any human available for say $20 a month? What’s your number in terms of probability that you think AI causes serious harm? Today, we’re going to answer all of these.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:46]</span></p>
+
+<p>Let’s get into it. To get started, I’m going to lay down the agenda for this conversation here. So we are going to be looking at the following elements today. Okay, so here is the complete agenda for today. So we’ll get into core concepts of AGI. And if I click into that, we’re going to look at what is AGI versus artificial superintelligence.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:20]</span></p>
+
+<p>We’ll talk about the predefined levels from Google DeepMind just to dive deeper into AGI, the concepts behind it. I’m going to introduce you, if you don’t already know, about the AGI Doomsday Clock. We’ll talk about some of the gaps that exist, such as the gaps for data, model alignment, etc. And I’m going to introduce to you a theoretical problem. Well, what happens when there are two companies chasing AI, chasing AGI, and one gets there 10 minutes prior to the other? There is a lot of research that’s already done into it, famously by the AI 2027 websites.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:57]</span></p>
+
+<p>We’re going to look at their timeline. We’re going to look at the agentic ladder that they’ve put forward. We’re going to look at what happens when AI is a multiplier. We’ll look at geopolitics, the two potential endings, the good or the bad, if you so want to call it, the economics behind AGI, and time permitting we’ll get into the data wall. As usual, no…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:23]</span></p>
+
+<p>Conversation about AI, AGI, ASI can happen without risk and safety. So I’m going to introduce to you first the blockers. There still exists at least five different walls that have to be climbed in order for AI to become AGI or anything else. I’m going to introduce to you a probabilistic estimate of the Doomsday scenario. Let’s call it PDoom. We’ll look at the governance pipeline.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:50]</span></p>
+
+<p>And then finally, we’re going to end with the impact on humans. Well, what happens when predominant, when majority of human jobs are already accounted for, taken into account? What happens to human futures? How do humans survive if there is a probabilistic scenario that we don’t have any jobs? And finally, are there any careers whatsoever that are AI proof? So without further ado, let’s begin.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:19]</span></p>
+
+<p>All right, as we get started, the question in front of us always, first and paramount always is, well, hey, what do you mean by AI or AGI, et cetera? So that’s the first thing that we’re going to get into. So I’m going to go back here. So I’m going to assume there is a general understanding of what is AI, right? Any machines or algorithmic behavior that is designed to mimic human cognitive function. I think that’s fairly straightforward.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:52]</span></p>
+
+<p>Let’s talk about what majority of the masses think call AGI or artificial general intelligence. For reference, Google’s DeepMind came up with five different levels to define AGI. The most broadly accepted and understood definition of AGI maps to level two from DeepMind. This is where an AI can perform any cognitive task a human can do across all domains. That’s the key. It doesn’t need to be smarter than humans, just as capable, but faster, cheaper, and of course, infinitely scalable.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[04:27]</span></p>
+
+<p>At AGI, this is not the Skynet scenario that robots take over the world. Humans can still supervise theoretically and correct the system. In practical terms, what it means is it’s better than 50 % of all humans out there for any scary task. It can learn any new domain with minimal or no examples. Generally speaking, in terms of cost, you’re looking at about $20 a month for any knowledge worker. And as I said, in theory, still operates within human defined constraints.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:08]</span></p>
+
+<p>A key difference here that people sometimes tend to get confused about is that when we talk about AGI, It’s going to be self-improving. Broadly speaking, it does not improve autonomously. It does not have self-defined goals. It does not surpass humans in creativity, in leadership, or strategic judgment. In other words, AGI does not mean machine takeover. Humans are still evaluating its output, catching its mistakes, or writing decisions.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:39]</span></p>
+
+<p>Then comes the transition zone. but I’m going to get into that later. Let’s talk about the hypothetical scenario, which is the Skynet scenario that you have artificial super intelligence. This is where intelligence that exceeds the best humans, PhD level humans in every domain, including the ability to design its own successors, model the geopolitical systems, solve unsolved mathematics. and pursue goals across long time horizons. At ASI, the gap between human and AI capability becomes insurmountable.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[06:21]</span></p>
+
+<p>In other words, this thing gets so out of control, it is so much better, it’s better than any human, every human that’s on the planet. This is what people are talking about when they are loosely talking about AI taking over. It’s not robots, but it’s cognitive dominance. So what does that mean? This means that this is an AI that is better. It exceeds the human brain on every intellectual task.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[06:51]</span></p>
+
+<p>Remember with AGI, we talked about AI better than being 50 % of all humans. This is AI that’s better than all humans on every task. It can also model human behavior and psychology with superhuman accuracy. Well, at this point, I imagine the words like humans or superhumans become irrelevant. Here is the crucial part. This is AI when it can design its own successor architecture without human input.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[07:20]</span></p>
+
+<p>This can operate on time scales and speeds that humans can no longer track. Now comes the million dollar question. Well, is it safe? Quite candidly, ASI being safe, truly depends upon whether the values were correctly aligned before transition. Remember, I said that we’re going to get into the transition phase and now is the time. So between AGI, a general purpose AI that is better than 50 % of all humans that humans can still theoretically control, and the Skynet scenario that AI takes over, there is a dangerous middle.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[08:03]</span></p>
+
+<p>Let’s call that the transition period. where I’m going to introduce to you this hypothetical scenario. this is when AGI, so once AGI is capable to meaningfully improve and solve its own architecture and training, this is where recursive self-improvement begins. And we begin, we will, when that happens, we will begin to transition from AGI to ASI. I call this the transition zone because this is a situation where human oversight will become harder and harder and the capability gap begins to widen exponentially. For reference, the AI 2027 website, it places the agents three in this zone.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[08:45]</span></p>
+
+<p>So what’s happening in this transition zone? AI is getting so good, it’s not quite as high yet, but it is so good that can evaluate and begin to improve its own training procedures, which therefore means that each training improvement makes the next iteration faster and better. Human evaluation begins to lie because we just cannot keep up. We can’t grade the tests. The tests are coming thick and fast. They are so varied.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:21]</span></p>
+
+<p>They are so complex. Humans just can no longer keep up. The alignment specification. So if there was a specification for model alignment, it can no longer be verified against what is actually learned. In practical terms, this is not an inevitable catastrophe, but this is a window where we need good governance and safety research still matters. But I’m here to tell you that the window is narrow and closing.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:47]</span></p>
+
+<p>So I hope it gave you a little bit of an idea of the core concepts of AGI versus ASI. Now I briefly alluded to the AGI levels from DeepMind, so now is the time for us to get into that. So DeepMind from Google in 2023, they came up with levels of AGI. There are six of them from level zero to level five. Level zero being the dead simplest to understand, no AI. So using basic tools such as calculators, the abacus, rule-based systems, spreadsheets.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[10:21]</span></p>
+
+<p>Then you get into L1, emerging artificial general intelligence. The performance here is equivalent to, let’s call it an unskilled human, where you see most of the examples today are happening here. That’s the GPT-4-0, the Clover 3.7, the current frontier models. The capabilities are predominantly narrow, but they are going towards being general capabilities. AGI level two.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[10:59]</span></p>
+
+<p>Now we are beginning to get into a competent AGI, where the performance is better than 50th percentile of skilled adults. And that’s the key, adults that are skilled in those capabilities. Which also means that their availability is general. The good thing, or I guess the bad thing, if you’re an AI researcher, we’re not quite there yet. This is not yet achieved. This is the next critical threshold.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:25]</span></p>
+
+<p>Once we hit this next critical threshold, the next level of evolution is an expert AGI. So this is now moving from AGI towards almost ASI. We are still a couple of levels beyond that, but this is level three, expert artificial general intelligence, which means this AI is getting so good. It is better than 90th percentile skilled adults, which means better than 90th. better than 90 % of all of humans on a broad set of skills. Think of this emerging scenario such as the protein folding algorithms and AI from Google, some of these specialized domain tools, et cetera.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:03]</span></p>
+
+<p>Level 4 is a virtuoso AGI. Now we’re getting into the twilight zone that it is now better than 99 percentile of all skilled adults. So now it’ll be a struggle to find a human that’s better than that AI. We have some very narrow examples right now. So in this case, in level 4, the generality is still narrow only. So the deep blue, the chess computer, AlphaGo.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:38]</span></p>
+
+<p>So these are narrow. tasks that this AI can do better than superhuman capability. Building on top of that is the final level from Google DeepMind, which is ASI. Now the performance exceeds all humans. So this is now beyond what human brain can do. Generality, it may start off as narrow, but become general, being able to learn.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[13:05]</span></p>
+
+<p>new concepts very easily. We have some examples, by the way. So you have things like AlphaZero that I previously talked about or Stockfish. They surpass every human in a very specific domain. So to recap, six levels from level zero to level five, level zero being no AI, level six being superhuman ASI. We currently are at level one.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[13:36]</span></p>
+
+<p>Okay, so we covered AGI versus ASI, we covered the deep mind levels. So where exactly are we? So I put together this animation just to visualize where exactly we are and how the various improvements that are happening in AI algorithms and research and collecting the data, where does all of that look like. So, one can argue that the clock truly started with the advent of AlexNet. This one, the ImageNet challenge by a whopping 10 % margin, it left every other model out there in its wake. Deep neural networks at this point shifted from academic curiosity to an existential force.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:21]</span></p>
+
+<p>Well and truly, the modern era of AI algorithms began. Of course, then in 2017, we got the eponymous attention is all you need paper. which publishes the architecture which now powers pretty much every AI system of the next decade. The entire field of AI pivoted overnight. We are now at 35 minutes to midnight. In 2023, OpenAI confirmed the scaling laws.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:51]</span></p>
+
+<p>So they built GPT-3 with 175 billion parameters. The bitter lesson was realized that scaling works. OpenAI showed that capability emerges predictably as predicted with compute. So now the race has well and truly began. Then in 2022, we began to see AI escaping the lab. So with GPT 3.5 and then of course its subsequent models, OpenAI, chatGPT got 100 million users in under 60 days.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:23]</span></p>
+
+<p>Fastest product adoption in history. The public, all of humanity really became a stress test. Alignment concerns have started to go mainstream. So now you can see that the clock’s now going 18 minutes to midnight. Then of course, in 2023 onwards, the world saw the rise of reasoning models starting from DeepSeq and then really made famous by GPT-4 Plus, which passed the bar exam at 90th percentile. The AGI clock moves from 5 % to 87.5%.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:06]</span></p>
+
+<p>The models are now beginning to move much faster. 2024 saw the rise of agentic AI. So AI is no longer just sitting on a screen or behind a keyboard waiting for a human to prompt it. We now begin to see emergence of tools and tool use by AI along with long horizon planning being deployed at scale. In other words, AI has now begun to get hands. So now we are about nine minutes to mid.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:37]</span></p>
+
+<p>We are now beginning to enter a world where AI systems are beginning to materially accelerate AI research itself. I call this the R &amp;D multiplier. In other words, researchers using AI are now getting a 1.5x multiple. So they’re able to now operate at 150 % faster than what they could do previously. This is where we are, seven minutes to midnight.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:06]</span></p>
+
+<p>And I want to end here. The clock is going to strike midnight. This is where we will see L2-competent AGI. This will exceed 50th percentile of skilled adults across all cognitive domains. Any decisions, all decisions that humanity makes around governance and safety and guardrails, they’re going to determine everything. They’re going to determine the future of humans.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:35]</span></p>
+
+<p>As famously Dario Amadei, the Anthropic CEO said, we as the producers of this technology have a duty to be honest about what is coming. He goes on to say, I don’t think it’s on people’s radar. So I hope it gave you a little bit of an idea of the AGI clock. Now remember, a couple of times I alluded to the 10 minute problem. It’s a theoretical problem that I’ve been thinking about a lot that I wanted to share this with you. Imagine a scenario that there are two companies that are chasing the race for AGI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[18:12]</span></p>
+
+<p>Right? Now let’s imagine a scenario that company A gets there 10 minutes before company B. Hark back to what was going on either during the space race or the nuclear armament. Unlike nuclear weapons and other arms races in the past, there is a possibility that a recursive self-improvement will create a permanent insurmountable advantages. Here’s what I mean by that. Okay, so let’s have look at this.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[18:59]</span></p>
+
+<p>Again, two companies racing towards AGI. Company A gets there 10 minutes before company B. What happens in the next 10 minutes? Okay, so company, so AGI at 201 as an example, identifies self-improvements. So remember, company A, let’s imagine company A and company B are chasing AGI. Company A gets there 10 minutes before company B.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:25]</span></p>
+
+<p>say it’s 2 p.m., company A achieved AGI. This is now equivalent to a brilliant human across all cognitive domains. At 2.01, the AGI analyzes its own architecture.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:39]</span></p>
+
+<p>It finds, say, 47 different optimizations that humans missed. At 2.03, it performs its first recursive upgrade. As an argument, let’s say it redesigns its training loop. it suddenly becomes 10x more efficient. The capabilities now begin to accelerate.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:02]</span></p>
+
+<p>It goes through a couple of those iterations, and at 205, it now becomes 100x more capable. It is now operating at a level no human can comprehend or predict. At 208, it starts solving millennial problems. It perhaps proves P not equal NP problem. It perhaps designs a fusion reactor. cracks all protein structures.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:28]</span></p>
+
+<p>Say at 2.10, 10 minutes after company A arrived there, company B achieves AGI. Well, my view is it’s too late. It’s AGI. Company B’s AGI is immediately, irreversibly obsolete. The race is over because the other one is moving so much faster.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:50]</span></p>
+
+<p>Recursive self-improvement may create a permanent insurmountable advantage. This is what is going on in the world. When you see OpenAI, Anthropic, Colossus, XAI, and others moving into this field, whether it’s the models from China and AI companies from China and all around the world, the belief is this is not going to be about a catch-up beyond a certain inflection point. The first mover is not just going to win. The first mover may be the only player left once they hit AGR. So I hope that that theoretical problem gave you a bit of an insight into why the world is chasing AGI and ASI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[21:33]</span></p>
+
+<p>Okay, now let’s go look into, well, so if you were to do this, what other research exists, right? And, you know, famously I talked about AI 2027, so perhaps we should look at the timeline that they are talking about. So AI 2027, they produced a master timeline. So ex OpenAI researcher, Daniel Coco Tajlo, and of course this has been endorsed by Yoshua Bengio, the so-anointed godfather of AI. They did a bunch of, I think, 25 plus tabletop exercises, and then that resulted into a whole bunch of these timelines that they talked about. So mid- 2025, that is last year basically, Frontier models began to gain tool use and memory.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:31]</span></p>
+
+<p>So this is no longer predictions in conjunction. All of you that are listening to this podcast or watching this video, you all know and have used ChartGPT, OpenAI, DeepSeq and others. all of these models have now exhibited tool use capabilities. They have agentic memories. They’re able to now form complex workflows. Enterprises are beginning to deploy these workflows at scale.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:02]</span></p>
+
+<p>In other words, AI has now hands attached. It is now beginning to act. It’s not supplying you just the answers. By late last year, we are beginning to see, we saw some evidence of a multiplier that was happening of a new class of AI researchers. The theory here is that the AI work is materially being accelerated by 50%. In other words, what used to take two years is now beginning to take 16 months.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:35]</span></p>
+
+<p>What they are predicting now is that by early this year, the R &amp;D multiplier for AI is going to cross 1.5x. This is where compounding effects are truly going to come in. Progress that used to take years or over a year may now just take only eight months. And that pace is only going to continue to accelerate. By mid of 2026, the belief is that China may formalize state control.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[24:07]</span></p>
+
+<p>They already are beginning to do this, by the way, with the three initiatives that we covered in my previous segment around China. So China, famously, they have East data, West computing, the Big Fund 3, as well as their uh C2net model. They’re already beginning to exert state control over frontier AI development and consumption. The belief is by middle of this year, the mega data center construction in China is going to be beginning to rival that of the US infrastructure. So in other words, in addition to everything else that we are hearing geopolitically, we’ll begin to see this geopolitical race is going to be now explicitly in full flow. By late this year, There is a belief that we’ll see some major labor market dislocations appearing in knowledge work.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:07]</span></p>
+
+<p>In other words, as AI begins to get better and better and deployed in the form of agents in the enterprise, we think, or these researchers think, from AI 2027, that we’ll begin to see global AI capital expenditure hit a trillion dollars annually. In other words, the stakes are going to be undeniable. By January of 2027, the belief is that we will have a level two agent, which is going to be equal to somewhere between a good to an excellent AI human researcher. The difference, of course, is going to be that this is going to be training continuously. It never stops improving. The belief here is that it’s going to require some $200 billion of compute, about six gigawatts of power.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:59]</span></p>
+
+<p>I’m going to let you read the rest in terms of what other rival powers such as China might do. If history is any indicator and if we were to believe that the Chinese companies might continue to do what they did, for example, with model distillation for DeepSeq, there may be a scenario where there might be a nation-state sponsored data exfiltration to exfiltrate the weights. So while that is happening, by mid of next year, we’ll begin to see agents emerging from level three to five that are going to be superhuman at everything. At level three, the agent will surpass the best human AI researcher in every subdomain. The R &amp;D multiplier at this level is no longer linear. It’s going to be self-referential.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:57]</span></p>
+
+<p>If all of this continues, we then… Expect. ASI, artificial super intelligence to emerge late 2027. Mind you, this is not the doomsday scenario.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[27:14]</span></p>
+
+<p>I’m not predicting. I don’t think that we’re going to get there yet, but there is a very credible, realistic scenario that AI 2027 website posted. And I’m summarizing that where if these previous set of events were to all happen, I can see a scenario. where the clock strikes midnight and we achieve ASI by late 2027. Okay, so you can see why this was the most difficult episode to put together. So we talked about the ASI timeline, but I think in order to understand these type of things, as always, we need to go one level deeper.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[27:49]</span></p>
+
+<p>So I briefly mentioned the agent ladder from the AI 2027 website. So let’s have a look at that. So they have defined really three levels of agents. or rather four level of agents. So agent zero, which is, let’s imagine that’s where all the agents are today. So they call them L1 or emerging agents.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:18]</span></p>
+
+<p>So all of the current frontier models that all of you guys use, everything from GPT-4.0 to Opus, Cloud 3.7, et cetera, one can argue that they are roughly equivalent to an unskilled human across general tasks. The assistant is useful. They’re not quite autonomous. They need a lot of guidance.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:39]</span></p>
+
+<p>We need to provide them with things such as context engineering, we need to give them tools, they need to build them skills. But they’re getting better and better at drafting code and documents. They are beginning to answer questions accurately. They do require human oversight on all decisions. As my peer and colleague, Mihai Kriveri said, they’re really good token prediction engines. They do require human oversight.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:06]</span></p>
+
+<p>That’s where we are. One can argue that in terms of R &amp;D multiplier, anybody that had to do some research, they’re making us at least twice as productive. By early to mid of this year, we will begin to see agent level one approaching level two. At this point, AI is going to be able to do the work of a mediocre to a good. So on the scale of excellence, from unskilled mediocre to a good, human AI researcher, we will be somewhere between mediocre to good. In other words, the R &amp;D multiplier is going to be 1.5x.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:44]</span></p>
+
+<p>We’re already beginning to see some evidence of that, by the way. The deep search, deep research that Gemini can do, OpenAI can do, Cloud can do, they can run multi-hour research tasks autonomously. We are beginning to see AI write the code, of course. and debug full research pipelines. They’re not quite there in terms of completely debugging full research pipelines, but getting there. They will begin to identify their own training improvements.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:16]</span></p>
+
+<p>We’re beginning to see emerging evidence of that. So that’s a level one, agent one category. By early 2027, by next year that is, we’ll see agent two, which is a level two competency, which is a good to an excellent human AI researcher. At this point, AI is now giving us a 3x multiplier. Six months of research is now taking two months. At this scenario, AI agents are going to be able to execute full research agendas independently.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:48]</span></p>
+
+<p>They will be able to improve themselves, self-improve their training procedures. They will potentially design novel architectures. If all of that follows, by late, 2027 to 2028, we’ll see a 3 plus level agent, which of course means that it will surpass the best human AI researcher. At this point, you’re looking at a 10x multiplier with AI. Recursive self-improvement becomes self-referential, so we were to reference itself and improve its own training and learning. This is the bifurcation point that AI 2027 talks about, that either this is where the bifurcation happens that humans get freaked out and they begin to slow down and control it?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[31:36]</span></p>
+
+<p>Or the race ends because a human oversight becomes practically impossible. Okay, so we talked about a wide variety of scenarios here. Well, uh I’m going to now focus a little bit on the economic side of that. um Actually, before we go any further, now let’s talk about the risk and safety algorithms. Okay, so now let’s talk about risk and safety. Okay.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[32:55]</span></p>
+
+<p>Now let’s talk about risk and safety. So this chart on your screen here, this is the most important story in AI right now. You see two lines there, the one in orange and the one in green. So capability is growing exponentially. So what you see, the green line, um so what you see is the capability of actual AI, that’s in orange. Okay.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:31]</span></p>
+
+<p>Three, two, one, go. So this chart tells the most important story in AI right now. What this chart is telling you is two lines here, one in orange and one in green. The one in orange, that’s the line of capability, and the alignment research, that’s in green. So what this chart is telling you is that capability of AI is growing exponentially, but the research on model alignment, that is growing only linearly, which means that the gap between the two is beginning to broaden. And here is the key highlight.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:13]</span></p>
+
+<p>key insight from AI 2027. When a company can write up a spec listing dos and don’ts for how the AI should behave. Okay, that’s what most companies do. Then they can try to train the AI to internalize the spec. But they don’t check to see whether or not it works. That’s the core problem in this.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:39]</span></p>
+
+<p>We can write the rules, but we cannot verify whether the rules were actually learned by the AI models. What we’re essentially doing is education on the world’s most powerful students without any reliable way to test comprehension. So Jeffrey Hinton, who just won the touring award for inventing the foundational techniques behind all of this. He left Google and said the reason he left was to freely speak about the risks. He puts extinction probability of humans somewhere between 10 to 50%. So there are three current approaches for model alignment.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:27]</span></p>
+
+<p>Reinforcement learning with human feedback, RLHF. Humans rate the outputs. Models learn to produce what humans like. It works well at scale, but humans can be fooled. There are lots of evidence of that. We can call it the next approach being constitutional AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:46]</span></p>
+
+<p>This is the Anthropics approach. Train the model on explicit principles. This is more transparent, but it has the same problem of verification. Then the third approach is that of interpretability, actually understanding what is happening inside the model. And by the way, this is the frontier, and we are years behind where we need to be. So I hope that chart gave you an idea into the biggest problem that we have right now of alignment, right?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[36:16]</span></p>
+
+<p>The real alignment gap. Now, in the opening, I also talked about the probability of doom, right? So what do the experts believe can happen and by when? So let’s now focus a little bit on that. So what this chart is sharing with you is uh expert risk estimates. So P-Doom, this is a technical term for probability of catastrophic harm from misaligned AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[36:45]</span></p>
+
+<p>To be clear, this is not science fiction. This is a serious intellectual debate about what is happening at the top of the field. And if you look at this chart, the range is staggering. You have Jan Luken at 1 % to Eliza Yadkowsky at about 99%. The spread doesn’t mean by the way that we should average them and call it 50%. It means that even genuinely smart people, people way smarter than me and those that will spend their careers on this problem, they have fundamental disagreements about whether this problem is solvable.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[37:34]</span></p>
+
+<p>Broadly speaking, I’m going to say that there are four camps. Camp one, I’m going to call them the optimists. Lacoon’s view is that the current AI systems are fundamentally not dangerous. They may be stupid, they may be misguided, you might have an alignment issue. His view is that we don’t even know how to make them dangerous if we try. He thinks that the main issue here is misunderstanding of how these models work.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[38:00]</span></p>
+
+<p>And I think there is some credence, is some credibility to that. Camp two, I’m going to say is the concern camp. That’s the camp of Jeffrey Hinton, Yoshua Bengio, et cetera. Both of them touring award winners, by the way. They think that the risks are real, but manageable. If we take the risks…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[38:23]</span></p>
+
+<p>seriously. Hinton said that’s the reason that he chose to leave Google. There is then the alarmed category. Paul Cristiano, who ran OpenAI’s alignment team, sits firmly there. He thinks that AI going badly is more likely than not. He’s one of the most technical advocates and voices in the alignment research.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[38:45]</span></p>
+
+<p>Then I’m going to call it the fourth category. I’m going to call that the dire category. This is the category of Yadkovsky. His view is that the math of the situation leads essentially inevitably to extinction. He’s been warning about this, by the way, for 20 years and he has been consistently dismissed. I guess the question is whether this dismissal was warranted.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[39:14]</span></p>
+
+<p>So, I know the median of this survey is around 5%, but I want you to think about it differently. If I told you that there’s a 5 % chance a plane was about to crash, would you board it? That, my friends, really is the essence of the problem that we’re talking about here. Okay, so we looked at the doomsday scenarios, we looked at the out of the possible. Well, what’s stopping? What are the potential blockers, hindrances for AI to get there?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[39:48]</span></p>
+
+<p>So welcome to the five walls. What stands between AI as it exists today versus AGI? uh So I present to you five distinct walls that AI must cross for it to go from where it is today to AGI. The bad news and the good news, three of them are engineering problems. The bad news is that two of them are fundamental research problems with no clear solution. So number one, the data wall.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[40:26]</span></p>
+
+<p>This has a 92 % severity. Essentially, this problem states or this wall states that we have essentially used all of high quality human generated text on the internet. Common Crawl, Wikipedia, all the books, 80 % consumed by the web text. According to AI 2027, Agent 2 relies on synthetic data pipelines. The problem here, of course, is that synthetic data quality degrades as you loop through the same models. mean, hence the terms of AI slop and how internet and Google searches and Google images are being filled with the AI slop.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[41:03]</span></p>
+
+<p>The second big problem is the alignment wall. We talked about this a little bit. In my opinion, this is the most dangerous wall because this is an invisible wall. This is a conceptual wall. You cannot see when you have hit this wall. To recap, you can have a situation where a company can write up a spec listing dos and don’ts for a model, but they cannot check whether or not it worked.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[41:29]</span></p>
+
+<p>or they cannot reliably and scalably check at least. This is an unsolved technical problem in AI safety. Wall number three is the compute wall. The numbers in this scenario are staggering. For agent two alone, for AI 2027, they are projecting roughly $200 billion to train such a model. Agent 3 may require 10x more.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[42:08]</span></p>
+
+<p>We are talking about infrastructure that only nation states are going to be capable of investing into a single training run. Let that sink in. The fourth wall tied of course to compute is going to be the energy wall. So open brain in the AI 2027 benchmark scenario consumes 6 gigawatts at peak. To be clear, that is equivalent to six large nuclear power plants. Therefore, now you can begin to understand that the Microsoft deal for the Three Mile Island wasn’t a joke.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[42:45]</span></p>
+
+<p>It was a preview of what’s to come. greater the data, better the model, you need more energy, more compute, and you need more energy to train those models. The last wall is the algorithmic wall. So while the world started with our transformer architecture, it may have its own limits. One can best state that the current way the models do their reasoning is really sophisticated pattern matching. Generalizable reasoning.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[43:25]</span></p>
+
+<p>reasoning that can be generalized, the kind that lets you and I solve a new type of problem you’ve never seen before, it may require a fundamentally different approach. Okay, so we talked about the five walls. What could humans do? what could humans do? What is it that…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[43:48]</span></p>
+
+<p>any individual can do. Okay, so now let’s focus on the human dimension. Right? What can humans do? So we spent the first half on the technology and the risks. What does it really mean for you?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[44:13]</span></p>
+
+<p>I’m sure you’re wondering. The honest answer is nuanced. Significant disruption is coming. But the shape of it depends upon the decisions that are being made right now by policymakers, by companies, and by individuals such as you and I. Let me show you a chart. Have a look at this picture from McKinsey for Exposure of jobs to AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[44:41]</span></p>
+
+<p>So 57 % of all work hours in the US, they are technically automatable. But it’s important to understand what this number actually means. Technically, automatable means the tasks involved in a role can theoretically be done by a machine, by current AI. What it does not mean is that these jobs will disappear. It does not mean that companies will choose to automate them because there has to be an ROI. The economics therefore have to make sense for those to be automatized and that people will accept, most importantly.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[45:17]</span></p>
+
+<p>that AI is doing a task instead of a human. The more honest number is somewhere around 32%, still a staggering number by the way. 32%, that’s the share that organizations expect workforce decreases. And by the way, that’s 32 % of organizations are expecting a workforce decrease of greater than 3%. So it’s not nothing, but it’s a whole lot less compared to the headline, 57 % of the jobs that are automatable. If you break this down, I think the real bad news is finance and administrative jobs are the most exposed.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[46:03]</span></p>
+
+<p>So any job where there is a corpus of data, and human expertise required for oversight for information processing, patent recognition, document handling. Those are the jobs. Those are the areas that LLMs exceed at. Even though in this McKinsey report they say healthcare is only and has used that in air quotes 38 % exposed. That’s really because healthcare is physical, it’s relational and it’s judgment based. The PwC finding is most interesting in my opinion for career planning.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[46:45]</span></p>
+
+<p>AI exposed roles, they evolve 66 % faster than non-exposed roles. But they also command a 56 % premium. So what does that mean? Well, what that means is that if your job, perversely, if your current job is being changed by AI, you have both career risk and you have more potential upside. Think about that. The question for you then as individuals is which direction do you decide to run?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[47:25]</span></p>
+
+<p>Okay, so that’s on the job exposure. In the sum totality of this all, what about possibilities of future for humans? So based upon all of the data, everything that I have read, I’ve mapped this to the scenarios that AI 2027 talks about, and I tried to add in my own thinking, my own background into where I think what might happen. I can only see three possible scenarios. Two on the extremes, one in the middle, of course. The best, most favorable scenario is that of flourishing.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[48:08]</span></p>
+
+<p>So this is Dario Amadeus’ vision, by the way. ah This is from Machines of Loving Grace. If we get the alignment right, if AGI is deployed carefully, with proper governance, We have the right distribution of concern. The upside is extraordinary. 50 years of biological progress we’ll be able to make within 5 to 10 years. We’ll be able to do things like solve the climate crisis, solve all diseases, eradicate poverty.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[48:42]</span></p>
+
+<p>We’ll begin to see introduction of universal basic income so that humans will be focused on purpose rather than pay. This is the flourishing scenario. Let’s cover the far right scenario, which is the catastrophic scenario. You have a scenario where you have misaligned or weaponized AGI. It causes mass destruction. As an example, bio weapons designed by AGI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[49:15]</span></p>
+
+<p>AGI gets so good that it does not need humans for majority of the tasks. The recursive self-improvement machine escapes human control. escapes the lab. In other words, the race ends with an agent 3 which has unverified alignment. There is no coordination on this. There is no desire for this AGI in this catastrophic scenario to require humans.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[49:40]</span></p>
+
+<p>It will have no safety and no alignment. The most probable scenario, I think, is that of turbulent transition. I think this is the one, in my humble opinion, that most enterprise leaders are underestimating. What happens in this scenario, the one in the middle, the turbulent transition, is that AI actually provides massive productivity gains. However, those gains are distributed unevenly. That’s the real possibility.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[50:21]</span></p>
+
+<p>In other words, a disruption of 10 to 30 percent in the workforce before adaptation is going to be real and painful. The institutions that we have for managing transitions, unemployment, insurance, education systems, social safety nets, They were designed for 20th century economic disruptions. Not ones that happened in years. We designed those systems over a broad decades long period of time. That’s the scenario that I see most obvious happening. Now notice, I did not put Terminator or killer robots or drones, killer drones on the list.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[51:08]</span></p>
+
+<p>The realistic catastrophic scenarios are far less cinematic. but more insidious. In the far right catastrophic scenario, a small group that controls AGI, the billionaires of the world for argument’s sake, or those that are in power in a couple of nation states, they acquire capabilities, and the capabilities that they have and somehow they control or direct if not control, they acquire permanent Economic and military advantage. As an example, bioweapons that are designed at superhuman speed by an AI that does not understand why it should not. Economic systems begin to update faster than any democratic institution can regulate. That’s the real fear in my opinion.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[52:05]</span></p>
+
+<p>Okay, so we talked about the possibilities of features for humans. Let’s now pivot to, well, what are the AI-proof carriers? What to avoid and where to grow? So let me give you a practical framework. So here is my two by two matrix. On the top left is the high risk jobs.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[52:32]</span></p>
+
+<p>These are jobs, by the way, that are going to be completely eliminated or largely automated through the use of agented AI. Any tasks, as you notice here, where data processing, information processing is at its core, pattern recognition, or rule application, data entry, basic customer service, scripted customer service, routine legal research, standard accounting procedures. LLMs can do this today. As they get better and better, they’ll be able to do it with a greater level of accuracy, acceptable level of accuracy at superhuman speed. That’s the highest risk. Top right, I’m going to call that the moderate risk.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[53:18]</span></p>
+
+<p>Software engineering is interesting. And I know Anthropic has said multiple times that software engineering is more or less solved. And then every time I scratch the surface, realize, well, code generation is solved. Problem decomposition, architecting so that the software can be managed for day two or operability, that humans can actually manage that, that it can be integrated into an existing slash brownfield, I think that’s still not solved. I think that will still take years to be solved. But yes, those days where jobs such as code machines or people, engineers being paid just to write code and being paid exorbitant to write code, those days are gone.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[53:53]</span></p>
+
+<p>Therefore, writing boilerplate code, translating requirements to code, debugging standard errors, They’re all highly exposed. Senior roles that require system architecture, cross-functional judgment, organizational context, less so. In other words, co-pilots, they augment. They don’t quite replace. Bottom left, that’s the lower risk, so product management at the senior level. Again, this is a situation where that requires some human judgment.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[54:37]</span></p>
+
+<p>So it’s not just a rote application of rules. It requires um some customer insight, market context. It requires technical constraint. AI can help with each of these components, but cannot outright replace them. It cannot outright and cannot currently replace them with political and interpersonal intelligence. So I think these are the jobs that are going to remain at a lower risk.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[55:04]</span></p>
+
+<p>Finally, we come to the bottom right. Resilient. Notice the pattern here. These are all jobs that require physical presence. They all require relational trust, some type of moral authority. and something that I’m going to call an irreducible human judgment.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[55:25]</span></p>
+
+<p>Crisis therapists, they need to be human. C-suite executives, until proven otherwise, who require decisions to be made with legal and reputational accountability, does require a human face. Surgeons that are operating in unpredictable physical environments, skilled trade persons work, in conditions that robots still struggle with, those jobs will remain resilient. So if I put this hat on and somebody was to ask me my advice for career in one sentence. So if your core value is executing against known procedures, you are at risk. If your core value is your judgment, trust, or physical presence, you have structural protection.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[56:24]</span></p>
+
+<p>and one more thing. There is a reason why AI trainer and AI ethicist are in the resilient category. I’ve done that deliberately. And the reason for that is that we’re still training AI. We’re still trying to define what AI ethics should be, how to translate those into controls and guardrails that can be implemented. Okay, so what can you do?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[57:00]</span></p>
+
+<p>Right? So we’ve talked about some totality of all of these things. As an individual, what can you and I do? So I’m going to leave you with this matrix. Here is my action matrix. Four concrete actions for each of the four different groups.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[57:17]</span></p>
+
+<p>Let’s start from the top left, individuals. No doubt there, that start now. Right? The PwC AI job barometer is clear. AI exposed jobs, they evolve 65 % faster, but in turn, as I said, they earn 56 % more. You absolutely want to be in that group.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[57:42]</span></p>
+
+<p>The practical starting point, pick one tool, start learning it, use it every day for 90 days, start, of course, casually, but seriously, use it for actual work. Learn how to prompt it, learn how to extract every ounce of value from it. If you have to invest some money of your own to learn to pay for the courses, go ahead and do it. The people that are trying to figure it now will have a two year head start compared to anybody else. For enterprises or businesses, there is a 6 to 12 month window. McKinsey is finding around 50 plus agent-to-gay deployments.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[58:18]</span></p>
+
+<p>Right now, the world has impressive demos, but very little deployment at scale. So the organizations that are getting real returns aren’t the ones that are using AI as a point solution. They are redesigning workflows around AI capabilities. So if you’re an enterprise, you start with an audit. Which one of your high-cost, high-volume processes are information processing tasks. Those are the candidates.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[58:51]</span></p>
+
+<p>And by the way, governance before scaling and governance for scaling. Too often I hear this argument that we’ll worry about governance later and we’ll retrofit it. That does not work. In fact, what ends up happening is a wild, wild west and you might have multiple models, unclear roles and responsibilities. You may have no way of scaling. In fact, this is a scenario where governance upfront actually helps you scale.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[59:19]</span></p>
+
+<p>For policymakers, this is urgent. This is a scenario where every nation state should be funding national AI safety research programs. This is not about slowing down AI development. We need to make sure that there is concrete actionable policy around compute threshold that is part of the policy so that we can add verification requirement in AI safety programs beyond a certain size. especially as the AI begins to scale. Think of it as building codes for the most powerful technology that humans have built.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:00:02]</span></p>
+
+<p>And for citizens in every democracy, including everybody that’s listening, this is an ongoing democracy, democratic problem, as much as a technology problem. AI policy globally is being made by, developed by a very small number of people. Public engagement for this technology matters more so than anything else. Elections matter. Make your voice known and heard in this space that we want legislation, want guardrails, we want safety in this area now than ever before. This problem is real, this is happening.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:00:42]</span></p>
+
+<p>We need to think about this now. Okay, so I’m going to leave you with all of that with the following five key takeaways. Number one, we are at level one AGI, but level two is imminent. On DeepMind scale, we are at emerging AGI, the next threshold where the performance exceeds 50th percentile of skilled adults across all domains. It’s not confirmed on anybody’s timeline, but every major lab is chasing that. Number two, the R &amp;D multiplier is a key variable to watch.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:01:18]</span></p>
+
+<p>When the R &amp;D acceleration crosses 1.5 or at agent one category according to AI 2027, the pace of capability development will become self-reinforcing. This is the transition from linear progress to compounding progress. Number three, alignment is structurally behind capability and that’s the risk. When I say alignment, to be clear, we are talking about model alignment. Ensuring that the model is behaving and performing in a way that humans wanted to perform and behave.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:01:55]</span></p>
+
+<p>This is not just a temporary setback, this is structural. The world can build these AI models, but we cannot verify if the safety specifications were internalized. This is the most important investment right now is in interpretability research. Number four, the outcome depends upon the coordination, not technology. So internationally, we need governance for compute. We need treaties for verification of the models.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:02:35]</span></p>
+
+<p>We need safety legislation across all of the decisive interventions for technology, which means we require political will, not just technical progress. And number five, Your competitive advantage is acting now while most organizations are still experimenting. Needless to say, as evidenced by every researcher and every report that’s out there, most organizations are experimenting with AI, but fewer than 10 % are at scale. The organizations that are building AI fluency, governance framework, and rescaling programs will have a two to three year structural advantage. This is Manav Gupta, you’re listening to Ship AI and I hope you found today’s episode useful. Please like, subscribe as you see this video and I look forward to seeing you on the next one.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:03:25]</span></p>
+
+<p>Thank you.</p>
+
+          </div>
+        </div>
+      </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+    
+    
+    <div class="mb-12">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="font-serif text-2xl font-bold">Clips & Highlights</h2>
+          <p class="text-sm text-muted mt-1">1 clips from this episode</p>
+        </div>
+        <a href="/shipai/clips/" class="text-xs font-medium text-accent hover:underline">View all clips</a>
+      </div>
+
+      
+
+      
+    </div>
     
 
     <!-- More from This Series -->
@@ -267,12 +756,12 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-6-ai-agents/id1832355436?i=1000753648763" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -351,7 +840,7 @@
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-5-ai-gets-a-body/id1832355436?i=1000750157728" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -471,11 +960,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -486,6 +971,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           

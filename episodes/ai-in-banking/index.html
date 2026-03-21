@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -255,6 +255,302 @@
 
     <!-- Transcript -->
     
+    <div class="mb-12" id="transcript">
+      <details class="group">
+        <summary class="flex items-center justify-between p-5 bg-white rounded-card border border-black/[0.06] hover:border-black/10 transition-colors cursor-pointer list-none">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="font-semibold">Full Transcript</span>
+          </div>
+          <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><span class="ts">[00:01]</span></p>
+
+<p>All righty. Hello, hello, hello. Good morning, good afternoon, everyone, and welcome to yet another episode of the podcast. It is my great pleasure to introduce one of my best, one of my good friends and a longtime colleague, I’m somebody who I’ve worked with a long time and I admire a lot. um And so without further ado, welcome to the show, VIN. VIN Tran is the Vice President for Data and AI Platforms.</p>
+
+<p><span class="ts">[00:25]</span></p>
+
+<p>at RBC Royal Bank of Canada and an RBC Fellow. Vin, welcome to the show. Thank you, Manav. It’s great to see you again. Thanks for having me today. Okay.</p>
+
+<p><span class="ts">[00:42]</span></p>
+
+<p>So listen, first of all, thanks for making the time. Thank you for doing this. And just as we get started and I’ve got a raft of questions prepared for you, but before we get started, just give us a little bit of a taste about your role. What is it that you do? What does data and AI platforms for a large organization like RBC mean? What value does that provide?</p>
+
+<p><span class="ts">[01:01]</span></p>
+
+<p>Just give us a taste of what’s the day in the life of you or the developers in your organization might look like. Absolutely. So my job as the VP of Data and AI Platforms at RBC, um I’m really responsible, my team is responsible for bringing AI to the bank. um Last February, our CEO at our investor day got on stage and talked about how we were doubling down and we were really investing and really really moving towards a future with AI. And AI, we believe that AI will be key to our ability to deliver best in class customer digital experience. So that is our job.</p>
+
+<p><span class="ts">[01:51]</span></p>
+
+<p>So our job is to bring those capabilities to the hundreds of application teams at the bank that create that digital experience. Now, You might ask, well, AI is available. What are you doing then from a platform perspective? So our job, because we’re a very highly regulated industry, is to ensure that that AI is accessible in a way that is safe and secure and resilient and responsible. So we’ve got to make sure that the way teams access those capabilities and AI meets our regulatory requirements. So we’re really focused around building platform and enabling capabilities that are compliant, cost effective, and convenient for them to use.</p>
+
+<p><span class="ts">[02:31]</span></p>
+
+<p>I’m pretty new in the role. I moved into this role about six months ago in May. Prior to that, I was VP in Cloud. and led a very similar transformation, very similar experience. If we look back six years ago, cloud was the transformational technology. It was the technology that we needed to create incredible digital experiences.</p>
+
+<p><span class="ts">[03:00]</span></p>
+
+<p>But it was also a technology that could be misused and improperly used. So we needed to create a platform that… enabled the bank to use those capabilities again in a way that was safe, resilient and responsible. So here I am, they’ve asked me to take on a very similar role here in data and AI.</p>
+
+<p><span class="ts">[03:21]</span></p>
+
+<p>And just to add from that, know, I spoke a lot about the AI. We look at data, the data part of my mandate is really to centralize, create high integrity. accurate data so that we can really drive meaningful insights from AI. We think that without having that centralized data source and our data consolidated and easily accessible in a secure way, we think that the AI cannot be effective without that. So that’s why that’s part of my mandate as well. I absolutely love it.</p>
+
+<p><span class="ts">[04:04]</span></p>
+
+<p>Thank you for that. And I love the fact that you talked about AI having to be safe, secure, and resilient more than once. So just for everybody that’s listening, watching to this, just tell me a little bit more. So this is like for a bank, this does not mean that you just take any model or the state of the art frontier model, Jag GPT, Anthropic Claude, or anything else that you might be using. It’s not just use that, bring that into the enterprise and start using that within your ecosystem, it? Like there’s some something more happens that you end up doing to absolutely.</p>
+
+<p><span class="ts">[04:37]</span></p>
+
+<p>So when we, we’ve got to go through a pretty rigorous process to ensure that the models, the frontier models, the open source models, any models that we use are approved by our organization. So we go through a model risk management process, which validates, know, constantly validates these models to ensure that they reflect our priorities and don’t have that they are accurate and they limit bias and all of these things that we want to make sure that we can trust. So from a model perspective, we have an organization that carefully reviews it. From an AI perspective, we’ve got our compliance, we’ve got our risk, we’ve got security organizations that are really traveling with us to ensure that how we use AI is going to be safe and responsible and resilient. One of the things that we look at AI as bringing us tremendous capabilities. It’s able to do things like reason and complete complex tasks, which before we really had to do manual.</p>
+
+<p><span class="ts">[05:49]</span></p>
+
+<p>If you couldn’t write the business logic before and code it yourself, then we needed humans to do a lot of this. Now… AI has allowed us to rely on that business logic, that brain somewhere else in a frontier model, in a large language model, even an open source model. It’s in some other location.</p>
+
+<p><span class="ts">[06:18]</span></p>
+
+<p>That has drastically reduced the complexity of our applications. That has reduced the time it takes us to build these things. And it’s empowered us to do things that I don’t think we would have ever been able to do before. But with that…</p>
+
+<p><span class="ts">[06:36]</span></p>
+
+<p>with that power, with that capability, comes some risks. When you’re not writing that logic, we’re relying on something else. We’re relying on a model. We’re relying on the corpus of data that that model has access to to make those decisions. So that. uh creates even more of a focus on us to ensure that we have the right governance, that we have the right guardrails, because we all know that models can hallucinate.</p>
+
+<p><span class="ts">[06:59]</span></p>
+
+<p>We all know that this is non-deterministic behavior. So we’ve got to ensure that the power it has, the intelligence it has, is carefully governed and monitored. so that we get the outcomes we expect. So that’s where the big challenge. oh governance in your context, in your vision, that’s not just code for going slow, is it? Like there is, you’re still producing high quality models or whether you’re fine tuning them or the art model that you have, and you’re adding other things to it rather than taking anything else away or making those models slower.</p>
+
+<p><span class="ts">[07:53]</span></p>
+
+<p>So tell us a little bit more about like, what does it really mean? if you’re obviously on one of the largest banks in the world, the largest bank in Canada. So if I had come to using of AI within RBC, whether I’m paying for internal users or for external users, I mean, you clearly said that it has to be safe, it has to be secure, it has to be compliant, you have to have all sorts of rules and checks. But I imagine you still want the best model that there is, right? And knowing RBC a little bit. I know you guys have a phenomenal engineering discipline.</p>
+
+<p><span class="ts">[08:31]</span></p>
+
+<p>So just give us a little bit of a taste about like when you, when you truly talk about taking a state of the art model and you’re adding this governance, you’re not really going slow. You’re still pushing the boundaries of what AI, predictive and generative can do, but in a regulated industry. So maybe just paint a paint, paint a paint, just go a little bit deeper. Maybe just talk about. you whether from your perspective or, know, from the bank’s perspective, what is your vision for AI in a regulatory industry that is the cornerstone of human civilization? absolutely, absolutely.</p>
+
+<p><span class="ts">[09:13]</span></p>
+
+<p>So the way we look at AI and specifically agentic, agentic is really where we think we can drive business value by delivering capabilities using AI. It is a manifestation of all the capabilities, the DevOps capabilities, the cloud capabilities we’ve built in the past, and now building business systems. out of it. That’s what agent is for us. So we think that to deliver and to scale AI, we need to be able to control it. We as an organization, highly regulated, we can’t scale something that we can’t control.</p>
+
+<p><span class="ts">[09:52]</span></p>
+
+<p>So I look at em what does that mean? Well, we have this concept of a control plane and you kind of alluded to it enough where the control plane is really a set of guardrails and we deliver the control plane through a platform. Platform engineering is really um an approach that we have subscribed to that allows us to promote standardization and reuse and security and guardrails. And what we’re doing with this control plane is we’re saying, if you want to deploy an agent, here is how you will deploy it. you will onboard a Git repo, will have scaffolding and it’ll have our supported languages. It’ll have our supported frameworks.</p>
+
+<p><span class="ts">[10:46]</span></p>
+
+<p>It will connect to models that are only available through a central LLM gateway that we have. So we’re controlling what models can be used. And those models are very… very specifically validated, tested to ensure that they meet our standards.</p>
+
+<p><span class="ts">[11:06]</span></p>
+
+<p>So we don’t, there’s thousands of models right now, I think, that you can get access to. We have gone through the rigor to enable, I think, six, seven, eight models. And we’re continuing to grow that collection of models we’ve enabled. But we don’t want to change the way the model works. not going to, we can’t change that logic. We want the power, we want the investments that all the massive trillion dollar companies have put into these models.</p>
+
+<p><span class="ts">[11:38]</span></p>
+
+<p>But we want to just make sure that the actions that this model can take, the plans that it comes up with are approved. We want to make sure the actions are carefully vetted. and are in fact the right ones that they should take. And our goal is to, when we say govern, our goal is to really oversee, understand the intent, the actions, ensure that we have approvals and we meet our security compliance and regulatory. I love it. And I think so.</p>
+
+<p><span class="ts">[12:30]</span></p>
+
+<p>And just so that I understand this correctly. So when you say all these controls, you’re talking about all these controls, not just for generative AI, which is a fact, but for all types of AI. Is that correct? Correct. for when we look at introducing controls and when we look at AI as a whole, there’s traditional AI, there’s Gen. AI, um and we as part of our platform, we’re enabling all of those capabilities.</p>
+
+<p><span class="ts">[12:52]</span></p>
+
+<p>So it’s not necessarily just Gen. AI. And our job, before things go to production, the most important thing we need to be able to do before any application, any agent, any system goes to production, is be able to assess the risk and make sure it’s our responsibility that when that goes to production, everybody understands the risk and the controls and the compliance for them. is the responsibility of our platform and that’s the responsibility of our control plane. That’s why you’ll see that platform engineering approach and platform approach very widely used at RBC. It enforces guardrails, enforces controls, it enforces standardization so that everybody does things in the approved, secure, way.</p>
+
+<p><span class="ts">[13:43]</span></p>
+
+<p>I love it. So I know you’re a big fan of control planes and you mentioned control plane a couple of times. I think too many people, especially those that are in the consumer space, right? I mean, I just go, I use chat GPT or I’ll go use Cloward or I’ll go use whatever model that I want to use. So there is the, I’ll take consumers of AI on the consumer side, right? I’m just going to go use somebody’s model.</p>
+
+<p><span class="ts">[14:18]</span></p>
+
+<p>But then, you you give us a framework around what it takes for taking a model. It might be a state of the art model or a frontier model of some kind or an open source model. And then you bring it into an enterprise so that it’s safe, secure and reliant as you said. And I really loved what you said. And a couple of things that I really loved. One, you said that you have to control the CI in order to scale it.</p>
+
+<p><span class="ts">[14:39]</span></p>
+
+<p>So this is not about going slow. This is about understanding, as you said, the risks that are going in. or in being introduced and how you mitigate those risks in order to scale that AI. I think that’s absolutely fantastic. And I also love your comment about taking the platform approach even to AI and delivering AI in a safe, secure, reliable manner. So maybe just give us a little bit of a, maybe go a bit deeper onto the control plane with regards to AI, know, so others that are watching and others that are listening to this and trying to figure out how they.</p>
+
+<p><span class="ts">[15:17]</span></p>
+
+<p>scale AI within their organizations? How should they start thinking about a control plane for AI? So uh when you look at an agent, let’s say, m a control plane overall for AI, I’m going to focus specifically on agents for a second. Because I think a control plane for overall uh AI is something that enforces the secure configuration and deployment of each of those services, whether it’s transcription service, summarization, traditional AI, or even um Gen.AI, Gen.AI capabilities.</p>
+
+<p><span class="ts">[15:58]</span></p>
+
+<p>The goal of the control plane is to ensure that those things are configured and deployed and utilized safely. I want to double click on the control plane specifically for Agentic. When we look at Agentic, and I think that’s kind of what you’re alluding to, Manav, I think all of this we’ve built on top of our existing investments in RBC. So we know that AI as a whole is a very hybrid technology. You’re not going to do this all on-prem. You’re not going to do this all in cloud.</p>
+
+<p><span class="ts">[16:37]</span></p>
+
+<p>There is a good mix of both capabilities. And luckily at RBC, and we’ve had the foresight to invest heavily on a hybrid cloud strategy. So hybrid cloud has allowed us to ensure we deploy and configure services, monitor drift and manage cost and security and compliance. So. So from a configuration perspective and deployment, we’re heavily using our cloud investments. Now, when you speak about a control plane from an agentic perspective, what we’re really seeing in the industry is we’re seeing that the control plane and a lot of these agentic platforms that you’re seeing come out now, they really focus on controlling that experience from beginning to end.</p>
+
+<p><span class="ts">[17:31]</span></p>
+
+<p>They’re very consuming their end-to-end systems and this kind of creates a bit of lock-in. So this is something we’re very conscious of because you’ll see… you’ll see from an agentic perspective, you’ll have an agent builder, some low code, no code, graphical UI that can allow you to create an agent. You’re gonna drag and drop that agent.</p>
+
+<p><span class="ts">[17:57]</span></p>
+
+<p>You’re going to give that agent some data source, maybe embed some files. You’re going to give it an instruction. You’re gonna choose uh a model. And then you’re going to connect it to some MCP servers, some tools. Those tools are part of that. platform.</p>
+
+<p><span class="ts">[18:16]</span></p>
+
+<p>That platform usually offers some tools, out of the box tools for you already. Uh, so your platform, so, so now, now the picture emerges. Do you basically, what you have done is you’ve built a platform and the platform is providing, I’ll say common capabilities like authentication, logging, monitoring, discovery of LLMs, right? Being able to end, you talked about the LLM gateway that becomes a common way for you to, for the developers and consumers to find and use the LLMs. And then you’re adding on top. other controls for isentic AI as an example.</p>
+
+<p><span class="ts">[18:53]</span></p>
+
+<p>For sure, exactly. And when those agents connect to those MCP servers, we’re going to connect through an MCP gateway. That ensures that those agents are authenticating with those MCP servers. And it also allows us to closely manage, tightly manage the MCP servers that we have available in the…</p>
+
+<p><span class="ts">[19:11]</span></p>
+
+<p>organization. That’s another control for us, right? And I was comparing this to the industry and the agentic platforms that come out. This is a standard approach you see. uh That agent builder allows you to create agents, connects to MCPs, servers and tools through some central MCP gateway, right? And that’s one of our controls.</p>
+
+<p><span class="ts">[19:41]</span></p>
+
+<p>uh The central LLM gateway, that’s another control. uh limit, monitor, restrict access to large language models. em Another control is once that agent is created, it’s created in some registry so that we know about that agent. So now we have an inventory and we can stop and start and we monitor that agent. um The other thing that you’ll start seeing these platforms do is they deploy those agents to a common runtime environment. So that’s very important because that allows us to tightly monitor what that agent is doing.</p>
+
+<p><span class="ts">[20:17]</span></p>
+
+<p>We can now do that and we’re seeing a lot of platforms do this. You can now monitor that agent and see the traffic going in and out of that agent. And you can… you can see what it’s doing at the transport level.</p>
+
+<p><span class="ts">[20:38]</span></p>
+
+<p>So we can see the messages, the TCP messages that are coming in and going out so that we can create policies to say, hey, wait a second, that agent should not call that MCP server. So that’s why it’s so important to have these agents in a controlled runtime environment so that we can monitor what it’s thinking about. what you’re describing really is a recipe for how to truly scale AI within the enterprise, right? These are the building blocks that every organization, doesn’t matter how many of you guys are a bank, but any other organization, they will all need to think in that platform-centric approach and build those common capabilities, right? when you talk about scaling and going fast, always think about, people think, OK, well, I just got to go run and let people build these things. we take a slightly different approach.</p>
+
+<p><span class="ts">[21:33]</span></p>
+
+<p>We say, if I have a lot of confidence, because we’re a huge bank, we’re in the large bank in Canada, and we know that thousands of agents will be created, So we will invest a lot of time upfront in building that capability, centralizing that, standardizing it, having it approved by, having it reviewed and approved by our security organization, our risk organization. Our approach to scaling is create that, those guardrails, that platform. m Once you’re 100 % confident with it, then you can scale. Then we open the doors and people could, that’s how we scale. We don’t scale by giving everybody tools. Yeah.</p>
+
+<p><span class="ts">[22:24]</span></p>
+
+<p>and that then allows the true schematic to happen. Sorry, I interrupted you there. No, and it’s, you know, we’ve got a leader that talks about the recipe books. Here’s, you know, create the platform and then give everybody the recipes and they will go build this and that’s how you scale with confidence. And that…</p>
+
+<p><span class="ts">[22:44]</span></p>
+
+<p>so fascinating. This is amazing. I really wish, and from my vantage point, at least in Canada, I work with a number of Canadian organizations. And I think the way you just laid out is really a recipe for how do you truly scale, whether it’s cloud in the past, as you said, or now with AI and agent-integri, how do you build those building blocks? think that’s absolutely fantastic. Now, maybe…</p>
+
+<p><span class="ts">[23:11]</span></p>
+
+<p>Slight sidetrack. How do you control AI slop? Because I imagine the size of RBC and all the developers you have, there is, I’m sure some fascination or desire to go fast, build new services, deploy new services. You guys clearly have a bunch of models that are available. So how are you adding those, implementing those, that in that, desire to go fast? How are you ensuring quality?</p>
+
+<p><span class="ts">[23:42]</span></p>
+
+<p>Yeah, so I think right now we’re, I think everybody is in a very early stage, right? So we are seeing probably oh what the industry is seeing is there’s a lot of POCs out there’s a lot of uh There’s a lot of trial and error and we genuinely believe that where we are with AI and with agentic today, especially agentic, we believe where we are today is not where we’re gonna be in six months or a year. We think it’s gonna look drastically different. We think there will be a lot of standards built. We think um things like observability will improve. m things like human in the loop will improve and workflows.</p>
+
+<p><span class="ts">[24:27]</span></p>
+
+<p>So we think there will be drastic changes. So for us right now in, you know, agentics, nine, 10, 11 months old for us right now. It’s that slop or that discovery that the building those muscles and building things that maybe we’ll probably throw away is part of building. that skill set. when I look at RBC and I look at, we’ve got thousands of people, we’ve got all of our lines of businesses interested in AI and building agentic and AI systems. they’re probably not all gonna go to production, all of these systems, but they’re all building muscles.</p>
+
+<p><span class="ts">[25:10]</span></p>
+
+<p>They’re all building knowledge uh that will lead us to those production systems that will drive business value in 2026 and 2027, right? So, you know, I think my answer here is we’re building platforms to help create the guardrails and we’re building… um we’re going to go through our regular change management process to get things in production. Just like cloud, we’re going to see a whole lot of Hello World agents and a whole lot of deployments that we’re going to shut down in a couple of months because they’re not doing anything.</p>
+
+<p><span class="ts">[25:58]</span></p>
+
+<p>But that’s an important part of this experience and this journey, I think, for our organization. That’s amazing. So really it’s the experiential development and familiarizing all the developers with the tech, with the control plane, with all the guardrails so that the organization feels comfortable while the technology matures. I like that. Now talking about standards, I know you talked about MCP. What other standards are you guys looking at?</p>
+
+<p><span class="ts">[26:24]</span></p>
+
+<p>What about A2A? Are you starting to experience agents talking to each other yet? Absolutely, yeah. that’s, you know, for those that are on a similar journey like us, when you start the agentic journey, you start with a Python app that uses some framework like LangJ, LangGraph, and everybody builds these simple agents and says, hey, success, right? You feel good. Yes.</p>
+
+<p><span class="ts">[26:57]</span></p>
+
+<p>eh But then we to the business, we start talking to the business and the business says, that’s great, but I need like 15 of those things talking to each other, connecting and doing all these complex things. So A to A is something that we think is inevitable, that’s very important for us uh to move into the next level of agents to really provide value. But what comes with that is, We think that uh agent-to-agent communications is a bigger part of a workflow that we need to be able to facilitate and make easy to build. I don’t think you want to necessarily build a complex workflow. one Git repo at a time, one agent at a time. So there’s something that, so we need agents that can orchestrate, we need, and those agents, from a communication perspective, will use A2A as a technology where…</p>
+
+<p><span class="ts">[27:51]</span></p>
+
+<p>we’re standardizing on. um Another thing that is very important, what’s even more important, I think, than A2A for us is we’re seeing from an observability perspective, that’s super important to understand what the intent and what the actions these agents are taking. So we are, you’ll quickly see that uh OTEL formats are becoming, are the standard for many of these frameworks. So. So that’s going to be critical for us to be able to understand and see what and interpret what these agents are seeing and doing. Those are some of the big things.</p>
+
+<p><span class="ts">[28:41]</span></p>
+
+<p>One area that I’d love to see standardized more is when an agent comes up with a plan, it’s going to come up with a plan and it’s going to say, based on the instruction, based on the data, based on the tools, the model thinks it should do these things. Hmm. How do we happen to those plans? Because that’s a critical part of a human in the loop for us. If every framework published a plan in a standard and format in a certain way, then we could hook into that to say, okay, let’s get an approval for this plan so that we don’t, so that. And we can publish this plan so a human in the loop can see that and say, yes, I want you to do those things.</p>
+
+<p><span class="ts">[29:23]</span></p>
+
+<p>So those are some of the things we’re seeing evolve. I think I predict that you’re going to see more of those standards, more of those common problems ah be addressed in a consistent way across all of these frameworks. We’re going to see. I I absolutely like where you’re going with this, especially with the common standard way for agents to publish their plans for review, for hooking in, you know, pre-approvals, know, pre-plan injections into it. I think that’s fantastic. Now, you didn’t, I know you talked overall about security.</p>
+
+<p><span class="ts">[30:04]</span></p>
+
+<p>What about securing the agent IDs? What are you guys thinking there? And I know it’s early. know there is a lot of research going on around machine ID’s and know, spiffy type of protocols or frameworks are coming up. Any thoughts around that? So I think there’s two, we started down the spiffy path like most did, but one of the things we’re starting to see uh evolve uh is Active Directory and Entra specifically on Microsoft’s identity provider.</p>
+
+<p><span class="ts">[30:43]</span></p>
+
+<p>um They’re starting to promote and they’ve built out an agent identity type which we think might help address some of these things. There’s a lot of investment across the whole industry right now in this area. We know that agents, we’d love them to assume an identity. think it’s going to be something like workload identity with Kubernetes. Because most agents, the vast majority of agents are going to be deployed as pods in some Kubernetes environment. is kind of the direction we’re seeing.</p>
+
+<p><span class="ts">[31:22]</span></p>
+
+<p>That’s the direction we’re going at least. That helps us scale user cloud investments. ah But we think that that’s an area that’s still developing. Spiffy is working for us right now. ah It creates a little more of the burden on us to maintain that provider and maintain the assignments and the entitlements and everything. How do we do this with if we can leverage existing Active Directory investments, will that integrate more effectively on-prem for us?</p>
+
+<p><span class="ts">[31:52]</span></p>
+
+<p>We think there’s a huge opportunity in there and we’re working pretty closely with Microsoft and some others to really standardize on that. But absolutely, the goal is that every agent runs under an identity, that identity has some entitlement somewhere and… and systems, MCP servers, things that that agent will access, we’ll have to validate against that set of entitlements. So it’s new, yeah.</p>
+
+<p><span class="ts">[32:33]</span></p>
+
+<p>yeah, so lots of work to be done in the agent space with regards to scaling it within the enterprise. Okay. So what’s your prediction for the next for 2026 and beyond? Maybe the next couple of couple of years. Are you, are you expecting, I think you already said you’re expecting the standards to evolve quite a lot, but just give us a taste of where do you think the industry is going to go? Because I think there is, there is that interesting tension going on around scaling of these models, hitting the walls, going post transformer architectures.</p>
+
+<p><span class="ts">[33:01]</span></p>
+
+<p>There is these, you know, multi trillion dollar commitments happening around building gigawatt, multi gigawatt data centers. So whether we, so with all of that, that’s happening. What, what’s, what do you think is going to happen on the enterprise side? Because you know, effectively what large organizations do is what consumers and users are impacted by eventually. Where do think all of that is gonna go? Yeah, I think that, you know, I don’t want to say bubble, but I think we’re definitely in a very heated ah AI market.</p>
+
+<p><span class="ts">[33:32]</span></p>
+
+<p>So you and I both had the pleasure of being around during the dot com days. And I remember being a web developer then and getting job offers here and job offers there from companies that were worth untold millions. that you didn’t even know what they did. was, you know, open a store, do this, right? So I think there’s a little bit of that, you know, excitement and I don’t want to say bubble, but there’s a lot of, there’s a little bit of that happening right now. And I suspect over the next couple of years, some of that’s going to simmer a little.</p>
+
+<p><span class="ts">[34:17]</span></p>
+
+<p>Investors are going to look for… return on their investments. Some of the smaller companies might be acquired and merged and all of this. uh I think that it’ll settle a bit.</p>
+
+<p><span class="ts">[34:32]</span></p>
+
+<p>And I suspect that this is big business. see trillion dollar investments in GPU farms and infrastructure. I think you’re gonna be left with some big players, some trillion dollar companies that are going to somewhat create an experience like we saw in cloud, which was three or four major providers that own 80, 90 % of the market. So I think a lot of that will settle. think standards will be more well-defined. There are some challenges we have right now, and I think the world has them, around…</p>
+
+<p><span class="ts">[35:12]</span></p>
+
+<p>You know, how many agents, how GPU dependent do we want to be running our business systems, right? And token limits still exist right now. There’s still a lot of things that make me as an engineer, make me as a VP, a little uncomfortable with running completely. Before we run all our mission critical systems on this, there’s a lot of things that we’ve got to…</p>
+
+<p><span class="ts">[35:40]</span></p>
+
+<p>and make sure that we’re comfortable with, right? So I think the hardening, I think you’re gonna see the market kind of stabilize, you’re gonna see all the startups, the valuations stabilize a little, you’re gonna see the features and the capabilities become a little more enterprise ready and safe and not necessarily safe, but I mean, from a… uh production readiness. uh That will mature before we feel more comfortable being able to run those production systems.</p>
+
+<p><span class="ts">[36:18]</span></p>
+
+<p>That’s what I would expect. Okay, all right. Listen man, thank you. You’ve been so generous with your time. I absolutely appreciate it. Maybe just before we let you go, one last question for you.</p>
+
+<p><span class="ts">[36:35]</span></p>
+
+<p>So clearly you’ve done a lot in your career. You’ve been so successful. You’re leading one of the, I’ll say epitome of engineering organizations at one of the largest banks in the world. And you know a lot about a lot of things, know, as clearly that’s evident. So for people that are starting out, What guidance would you give them? You know, maybe whether they are fresh out of university or even when people that are going, they might be seasoned developers and I’ll call it distributed computing, distributed space.</p>
+
+<p><span class="ts">[37:08]</span></p>
+
+<p>And they’re now getting their hands dirty on AI. How do you, somebody in your position and the size of team that you lead, the diversity of team that you lead. How would you guide them into how can they keep up to date with what seems to be a radical new innovation happening every week almost? absolutely. So, you know, I’ll tell you, if you asked me this last year, I probably would have had a different answer, but what I discovered this year going from cloud to data and AI, I was not a data and AI guy. I spent the last 10 years building cloud and I was very passionate about cloud.</p>
+
+<p><span class="ts">[37:45]</span></p>
+
+<p>When this opportunity came, I said, This was a challenge. This was an opportunity to do something impactful and solve one of the biggest problems and challenges we had as an organization. And I had to, I convinced myself and now I’m glad I did that, and actually I had some coaching from a leader you know, but I convinced myself that, or I was convinced that, As a technologist, your strength isn’t the technology. Don’t tie yourself to the technology. I thought my strength was cloud. And this leader said to me, Vin, your strength is not a technology.</p>
+
+<p><span class="ts">[38:31]</span></p>
+
+<p>It’s the ability to deliver. It’s the ability to inspire and motivate people. The technology is just the tool you’re using to deliver something. So in the last six months, I’ll tell you, I have focused myself, my efforts on learning this technology. I’ve focused myself on the capabilities and making sure I’m spending the least productive hours of my day in commutes learning this stuff. But the…</p>
+
+<p><span class="ts">[39:11]</span></p>
+
+<p>thing I would say to the engineers, the architects, the technologists out there is don’t tie yourself to their technology because you’ve got, especially cloud engineers, let’s say, cloud engineers have built on top of DevOps skills. And now we’re seeing AI engineers built on top of cloud skills. So this is just part of… add them.</p>
+
+<p><span class="ts">[39:37]</span></p>
+
+<p>It’s a part of your technology evolution and there’s such a dearth of talent right now that there’s such a great opportunity for you to take those skills you already have, grow them into something that can move your career and just launch your career, take off, use your skills to do something that very few are able to do right now. That would be my recommendation. Oh, thank you. That’s fantastic. And listen, once again, thank you so much for your time, sharing, for being so candid, sharing so much about how you think about AI and systems design, platform engineering, how you put in the guardrails, the evolution of standards. I think you give people a lot to think about.</p>
+
+<p><span class="ts">[40:25]</span></p>
+
+<p>And I absolutely appreciate the guidance you’re giving to the young technologists, new technologists, and how they can get started in their journeys. So thank you so much. Thanks for being on the show.</p>
+
+          </div>
+        </div>
+      </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
 
     <!-- More from This Series -->
     
@@ -273,7 +569,7 @@
   
     <a href="/shipai/episodes/ozge-yeloglu-vp-ai-analytics-cibc/" class="block relative group">
       <div class="aspect-video overflow-hidden">
-        <img src="/shipai/assets/images/og/default.png"
+        <img src="https://img.youtube.com/vi/gdkgnO8XVJo/mqdefault.jpg"
              alt="Ozge Yeloglu, VP AI & Analytics, CIBC"
              loading="lazy"
              width="320" height="180"
@@ -315,17 +611,17 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/ozge-yeloglu-vp-ai-analytics-cibc/id1832355436?i=1000751195157" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://www.youtube.com/watch?v=gdkgnO8XVJo" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     
@@ -392,12 +688,8 @@
 
   <div class="flex gap-1">
     
-      <a href="" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
-        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      </a>
     
-    
-      <a href="" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/mihai-criveti-context-forge/id1832355436?i=1000754479816" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -511,11 +803,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -526,6 +814,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           

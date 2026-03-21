@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -255,6 +255,496 @@
 
     <!-- Transcript -->
     
+    <div class="mb-12" id="transcript">
+      <details class="group">
+        <summary class="flex items-center justify-between p-5 bg-white rounded-card border border-black/[0.06] hover:border-black/10 transition-colors cursor-pointer list-none">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="font-semibold">Full Transcript</span>
+          </div>
+          <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><span class="ts">[00:21]</span></p>
+
+<p>OK, so you have to unmute yourself, Lawrence, and accept the and take off. Take yourself off the other. Yes. That’s the yeah, that’s yeah, exactly. All right, OK, let’s get started. 321 Hello there.</p>
+
+<p><span class="ts">[00:36]</span></p>
+
+<p>Welcome once again to another episode of ship AI. Today I’m joined by Lawrence Van. Lawrence is the chief architect and innovation officer at one of the largest banks in Canada, Bank of Montreal. Lawrence had has a lich has a long and rich history in financial services industry and I was snooping on his LinkedIn in preparation for this. And I was amazed to see how long he’s been just with Bank of Montreal as well as significant previous experience in building uh large scale distributed systems with other financial institutions. Lawrence has a Bachelor of Engineering degree from Carleton University in Ottawa and a Master’s in Applied Science from University of British Columbia.</p>
+
+<p><span class="ts">[01:15]</span></p>
+
+<p>So among many other questions for Lawrence, it’s a big jump from going from Ottawa to… British Columbia, so we’ll get into all of that and lot more with that. Welcome, Lawrence. Thank you for having me.</p>
+
+<p><span class="ts">[01:34]</span></p>
+
+<p>It’s good to be here. Thank you, Lawrence. OK, so as we get started, maybe tell us a little bit more about what does it mean to be the chief architect and innovation officer at one of the largest institutions in Canada, which has such a rich history. I mean, I don’t think it’s an hyperbole that Bank of Montreal is weaved into the Canadian fabric, right? It’s part of Canada. It’s one of the big institutions in the country.</p>
+
+<p><span class="ts">[02:01]</span></p>
+
+<p>So can you just give us a little bit more insight as new engineers, new developers come in. What does it mean to run a large organization such as the one that you are a part of and how do you architect and build systems for scale? And then I’m sure the question, the next question that comes up to you always is, oh, can we not just use AI for this? So give us your perspective on that please a little bit, just as we get started. No, perfect, perfect. Again, thanks for having me.</p>
+
+<p><span class="ts">[02:31]</span></p>
+
+<p>Bang on Trio will also be more financial groups. uh We’re really much focusing on how to grow the good both in business and uh in personal lives and communities and helping the sort of communities and the populations that we actually operate in. And with that in mind, uh technology is one of the core capability within a financial services organizations. We spread across North America. coast to coast. So from that perspective, uh using technology is foundational to some of our abilities in order to provide services and helping our customers and clients in their daily lives.</p>
+
+<p><span class="ts">[03:01]</span></p>
+
+<p>uh From technology perspectives, I fortunate enough to have opportunity to work in many different areas to cover various uh line of business from capital markets to uh retail business, wealth business, and some of the risk management business, and so on and so forth. And from that experience, I was fortunate enough to have opportunities to work in enterprise architectures, which is primarily looking at how to actually, uh from a design architecture perspective, uh looking at from an entire organization perspective as how do we continue to leverage technology, uh both What we learned yesterday wasn’t wrong. It’s just that there’s a better way. There’s always a better way as the technology continue to evolve. So there’s a lot of things we do to help the organization not just look at currently what we do, but also looking ahead, helping the organizations to reduce blind spots, but also take advantage of where the industry is going. So there’s a lot of elements that we do in enterprise architecture.</p>
+
+<p><span class="ts">[04:16]</span></p>
+
+<p>It’s looking ahead a bit. So coupled with sort of uh some of the innovation activities and today any organizations that look ahead a little bit and look at innovations always look at AI. So AI is one of the core foundational but also very strategic capability that we believe uh would not just transform the bank but also sort of uh transform society at large and it was any data point. the most recent or the current World Economic Forum’s AI is front and center, lots of topics about that. So that’s kind of where we’re looking at lot of these things. And maybe just one more sort of point I want to make is within the bank, we’re very much focusing on applying AI.</p>
+
+<p><span class="ts">[05:03]</span></p>
+
+<p>So maybe less a little bit about, you know, research, the sort of next frontier. AI capabilities, but more focusing on what is already proven and commercially available. And how do organizations like BMODES can actually take advantage of using AI to transform or augment some of our business capability to create differentiating products and services for our Wow, yeah, so lots to unpack just right there. But I think I’m gonna start with something you said more than once in that introduction there, that technology is an integral part of the business. And some of this is confirmation bias, by the way, right? Like at least from personally for me, but for those that are listening that are perhaps earlier in their careers, just walk us through understanding in a large organization such as yourselves that that serves millions of Canadians and Americans and other citizens of the world, that there will be business functions who might historically have seen technology as expense versus part of innovation, or I guess more and more great now a part of a critical part of delivering functionality to the business.</p>
+
+<p><span class="ts">[06:25]</span></p>
+
+<p>I think sometimes that gets lost. We kind of assume, oh, of course. any bank is going to have tech. But that’s not always the case, is it? Because there are so many other competing priorities. So just give us your perspective on that.</p>
+
+<p><span class="ts">[06:45]</span></p>
+
+<p>Yeah, so at the end of the day, uh banking is a relationship business, right? So we have to build trust and because you trust us and hands we can actually look after your financial needs and so on and so forth. But in order to be able to deliver some of those uh functionality and services and product and services, uh there’s three drivers, right? So one, it’s going to customer expectations. So customer. it’s very comfortable dealing with technologies for any other product and services they acquire in their daily life.</p>
+
+<p><span class="ts">[07:15]</span></p>
+
+<p>So it’s just a matter time that they will also expect financial product services to be delivered through technology as well. So that’s kind of one of the driver. And then the second driver is as technology uh evolve and to your point, we’re talking about now over a few decades. And from that perspective, the technology also has matured to be uh applicable to various business industry, including banking industry. So the customer, there’s customer expectations, there’s the industry evolutions that you cannot be left behind. And then the third pieces would be from regulatory pressure.</p>
+
+<p><span class="ts">[07:57]</span></p>
+
+<p>So banking industry is a heavily regulated industry. And in order to address various regulatory requirements, uh ranging from Putin risk management, all the way to how do you make sure that your product and services are resilient and highly available. Technology has to be part of that equation. It’s no longer possible to distribute and fulfill product and services without the help of technology. Yeah, I think I think that’s a great point so. And you said this in your previous answer as well that when you are, I guess you are.</p>
+
+<p><span class="ts">[08:35]</span></p>
+
+<p>You have the unenviable task of one building systems that both scale and survive the test of time. And at the same time you mentioned that you have to keep an eye on what’s next. What next technology is coming next down the pipe? So give us your sort of mental model of how do you decide? I mean, because you are delivering critical business functions to millions of consumers, the systems you build, they have to last several years. At the same time, expectations keep on changing because they want the banking and dealing with the bank to become easier and easier, right?</p>
+
+<p><span class="ts">[09:15]</span></p>
+
+<p>Faster and faster. So then you have to keep an eye out on, what’s coming down the pipe? How do you balance the two? Yeah, so some of this is we’re back to now start to talk a little bit about uh how do we actually design foreign organizations? How do we design for security? How we design for uh resiliency?</p>
+
+<p><span class="ts">[09:40]</span></p>
+
+<p>How do we design for uh ability to adapt to business environment changes? And so one of the things we typically do is to divide our capabilities into a systems of experience, system of interactions. And typically these are end user uh systems, like whether it’s external customer facing or employee facing systems versus that there’s the concept of a system of records. So these are the transaction systems that actually maintained the uh accounting systems, maintaining uh people’s financial accounts, balances, and so on and so forth. Those systems tends to be less frequently in terms of changing new requirements and functionality compared to the functionality that is required by systems of interaction or systems of experience. That tends to change evolve quite quickly.</p>
+
+<p><span class="ts">[10:39]</span></p>
+
+<p>Not that long ago, we call sort of internet banking. It’s really provided through a browser interface on your desktop, a lot of disappointing click. And then we advanced nowadays on mobile banking. So all this is touch base. So it’s completely different interfaces. And not only the interface is changing, some of the functionality that people will grow to expect, uh ability to turn on or turn off credit card, ability to get alert when certain things changes within their financial accounts so that we can actually deliver it to their mobile phone and so on.</p>
+
+<p><span class="ts">[11:12]</span></p>
+
+<p>A lot of this functionality needs to continue to evolve. As customers going to expect a different experience, as some of this information, we have different ability to deliver them as opposed to historically has to be always an in-person transaction. So definitely we have always look at an environment to identify things that we need to continuously evolve very quickly per demand, per requirement. And things that actually fundamentally at its core are more are more consistent, less susceptible to changes. Yeah, that makes sense. you mentioned systems of engagement, systems of record.</p>
+
+<p><span class="ts">[12:00]</span></p>
+
+<p>Are you now working on systems of intelligence? Well, interesting thing is, regardless of a lot of the system, you start to now come into the picture of what is the best way for you to make management decisions? What is the best way for you to manage risk? And what is the best way to serve customers when you now want to get to segment of one? Each person is individuals and you want to be able to scale that capability. then everything cannot be now all just governed by rule base that you can actually predetermine and then you now programmatically uh design them in terms of functionality and capability.</p>
+
+<p><span class="ts">[12:48]</span></p>
+
+<p>Instead, now it’s much more sophisticated. So from how customers want to interact, understanding what individuals actually prefer, what kind of information is important, what kind of… uh communication style, it’s more conducive for the individual. All the way to, for example, even when because we run large sets of technology, to be able to monitor, to make sure that all the systems are up and running 7.24, lots of information</p>
+
+<p><span class="ts">[13:08]</span></p>
+
+<p>and lots of data. So how do you actually manage that to be able to collect and analyze those data to identify potential anomaly? without getting into the space of data analytics and AI, it will be very difficult. So naturally, the concept of intelligence starts uh to now come into the picture, at least from an augmented intelligence perspective. Yep, so so tell us a little bit more about um how is the bank in a regulated industry? And I mean, I know I say the bank being such a big entity.</p>
+
+<p><span class="ts">[13:58]</span></p>
+
+<p>I’m sure different parts of the bank, whether it’s wealth and retail, they probably have different points of views. Give us a sense of. How are you? Where are you in your journey? I mean, I imagine like any large financial institution, you probably already are using AI before Chad GPT arrived at the. on the world stage.</p>
+
+<p><span class="ts">[14:21]</span></p>
+
+<p>So just talk us through what you already had as a bank before we get into generative AI and then we’ll get into agents subsequently. Yeah, so certainly I think that maybe just two concepts. So the first is when we look at things like AI, we see it in three components. So we see it, the first component we see is the data. What data are we able to collect in terms of quality and the appropriate representation so that it can be ready to be used? And so that’s one part.</p>
+
+<p><span class="ts">[15:01]</span></p>
+
+<p>The second part is we tend to look at our business process. So some of this is at the individual procedure and task level. Some of this is at the end-to-end business process level. And then through those two components, we can start to now think about how to apply different algorithms. Some of the algorithms could be rule-based, deterministic, like we talked a little bit about already. uh Some could be required, very specific uh machine learning or deep learning model.</p>
+
+<p><span class="ts">[15:26]</span></p>
+
+<p>such as classifications uh of customer segment, for example. It’s a classification exercise. It can be done through machine learnings and deep learning techniques. So it’s AI. uh All the way to nowadays, we’ll get into the concepts of generative AI to address that. the first concept is we see things in three components.</p>
+
+<p><span class="ts">[15:51]</span></p>
+
+<p>And then from the perspective of… applying AI, so we’ve been in the business for quite some time, uh knowing how to uh process data and understand our business process. uh There’s quite a few opportunities for us to use very specific machine learning and deep learning models to address very specific tasks, usually classification exercise, a very specific classification exercise, a very specific prediction exercise, that it’s a very localized, very specific with a much smaller data set to generate a very specific outcome, which we can validate and we can track. So I would say that from a bank perspective, those kinds of capability are actually uh quite mature within the organization.</p>
+
+<p><span class="ts">[16:31]</span></p>
+
+<p>uh And obviously with the introduction of things like chat GPTs a couple of years back, uh we started getting into looking at how to actually apply and leverage Gen.AI within the bank as well. OK, so. I mean, again, you you you covered a lot there in terms of applying. Let’s call it traditional AI or productive AI. You you talked about the classification models.</p>
+
+<p><span class="ts">[17:03]</span></p>
+
+<p>That’s certainly one element of it. So clearly you have a robust, solid practice around it. You know how to implement them. You know how to monitor those. So as you embark on your adoption of GPT’s and generative AI. Where are you on the on your journey and what?</p>
+
+<p><span class="ts">[17:21]</span></p>
+
+<p>What did you see so far? What lessons did you learn? Just give us a give us your rundown of where you are and how you see that evolving for a financial services organization. Yeah, so I see that we were still relatively early on in the journey. uh In terms of, we definitely have, uh like many companies, that we do use generative AI solutions. uh In this particular case, like I mentioned, we always look at data and process and then the AI solution.</p>
+
+<p><span class="ts">[17:50]</span></p>
+
+<p>I can talk a little bit about applying AI for technology activities, like… specifically for system and software development lifecycle use cases. uh Typically, to do software developments, have three uh or four considerations. First is the type of workload you create, whether you’re creating a customer-facing transaction system, whether it’s a batch-based data processing systems, or whether infrastructure is code.</p>
+
+<p><span class="ts">[18:29]</span></p>
+
+<p>One is the variations of the workload. Second is we typically look at is the maturity and the experience of the individual teams and individual role within the team, which whether they’re more conducive to use to get assistance or where they’re quite already quite experts in building some of this capability. And so from that perspective, we spend quite a bit of time to do change measurements to let people understand how to leverage some of the AI capabilities on their specific tasks. So ranging from, for example, in system development lifecycle, typically, we have requirement gathering. So how do you gather requirements? A lot of this AI can play a role to help because a lot of the requirements are typically through discussion within a meeting.</p>
+
+<p><span class="ts">[19:17]</span></p>
+
+<p>So you can actually summarize the meeting through ongoing discussions. and through documentations by creating word documents, for example, with different structure and table and so on and so forth. So using AI to help to create those artifacts, uh it’s quite efficient. And so now the individual doesn’t have to worry about formatting, worry about uh making sure that uh every item is bulleted so that it can follow the traceability. So AI can help in things like requirement gathering. And similarly, obviously a lot of people heard about sort of uh using AI to start generating code snippet, code segment, and so on and so forth.</p>
+
+<p><span class="ts">[19:57]</span></p>
+
+<p>And we also see a varying degree of uh success in that space as well, ranging from smaller code segment to sort of be able to generate an entire component just based on uh very detailed prompting. And so our experience is it really vary depends on the workload, depends on the individual robot’s experience. And we find that iteration of learning how to do prompting correctly and how do you actually provide enough context for AI assistance, it’s very important. It can mean probably like more than 10 % kind of productivity just through that alone. And so we’re going through that journey and part of it is allow the organization also to innovate within their own team to say once they understand some of the basics and understand sort of uh the result they can get from the tooling, is there any other additional things that they can do more from an end-to-end perspective, right? Rather than, well, can I just help with requirement?</p>
+
+<p><span class="ts">[21:16]</span></p>
+
+<p>Can I help with generating test scenario? Can I help with generate code snippet? can we actually start from providing intent and be able to generate production quality code, right? So people start to experiment a lot of those things to try and to see what kind of impacts they would have from an end-to-end perspective. And maybe just one more data point, it’s that we also start to see that it used to be the business to technology interactions are much longer before, right? So a business would come up with the business ideas and they’ve now talked to the technology team.</p>
+
+<p><span class="ts">[21:49]</span></p>
+
+<p>Typically, it takes two weeks to two months to come up with a prototype. Now the cycle becomes two hours to two days. So the interaction becomes very different now. So now you can have more ideas. You can trial many different things. You can create more solid understanding of an idea before you need to launch into a full-scale development.</p>
+
+<p><span class="ts">[22:08]</span></p>
+
+<p>That’s just one example. And then we’ve uh seen various examples as well in terms of the ability to leverage AI to increase pro-activities from sort of how we apply AI for SDLC. So you’re definitely seeing some productivity gain using some variance of generative AI. I think that’s very important to understand. But then I think you also mentioned that there is a variance in the productivity. Because I know there is a big debate going on in industry right now on is this real?</p>
+
+<p><span class="ts">[22:44]</span></p>
+
+<p>Is the productivity real or not? But I think what I’m hearing from you is that for certain tasks, Right, the meeting, snippet generation, some aspect of code generation. There is some lift that you’re getting. And how are you? So that is true. Are you baking that into the KPIs now that you expect your teams to perform faster, deliver faster?</p>
+
+<p><span class="ts">[23:03]</span></p>
+
+<p>Yeah, I would say, this is why sort of sort of back to sort of my original answer to your question is we’re still experimenting a little bit for sure. Like we are we’re trying to take advantage of the potential improvement on productivity, quality and how to now translate into sort of the the is it overall functionality? Is it overall quality? Is it overall risk mitigations in terms of some of the designs and stuff like that. So we to be seen, but from early on experiments from some of the things that we’re measuring, uh we definitely believe that there will be productivity gain. I think the two things we learn quite a bit is one is you do have to have a good measurement systems to start with so that you know where your baseline and you do actually uh able to measure the actual outcome versus just input, which is activities.</p>
+
+<p><span class="ts">[24:00]</span></p>
+
+<p>uh And then the other thing is is that change management. turns out actually, it’s less about, well, this tool is better than the other tool, or I want a full different brand new workbench. It turns out a lot of this stuff is once you started the change management to actually get the developers to learn how to use it effectively, all the way to now that they know it’s effective, how would they now… adjust and bake in those improvements into the way they work so that you collectively can get an end-to-end.</p>
+
+<p><span class="ts">[24:38]</span></p>
+
+<p>So it’s no longer important that maybe two of the 10 developers are productive. You have to get all of them productive in order to achieve the end-to-end um cycle time improvement, for example. OK, all right. So you’re using AI, Gen.AI for a bunch of things, right? Like you mentioned some of the use cases, whether it’s from using of the copilot, so to code generation, code assistance, code reviews, specification generation, et cetera.</p>
+
+<p><span class="ts">[25:04]</span></p>
+
+<p>What about agents? Where are you in that journey? And do you see how do you, what’s your vision? What’s your view of how the industry is going to adopt AI agents? Yeah, so it’s very interesting because a lot of this stuff is eventually, if you want to get the true productivity is you want to make a lot of this process fully automated. So in a very autonomous world, that’s where sort of in a lot of use case, we can see how people start thinking about agents.</p>
+
+<p><span class="ts">[25:44]</span></p>
+
+<p>We are trying to go very conservatively only because it’s difficult enough to work with a single non-deterministic solution. It’s another thing to expect that multiple non-deterministic entities communicate among themselves and would generate a somewhat predictable outcome. oh We’re not yet quite comfortable with that notion just yet. um only because it’s not easy to imagine the amount of degree of monitorings and uh validations that is currently available. Give you that reassurances that it actually would function very well just yet. uh think obviously the industry is changing very fast.</p>
+
+<p><span class="ts">[26:47]</span></p>
+
+<p>I think the fully of fully agentic world. probably not that far away. And when we talk about not that far away, we’re talking about maybe in two, three, and most, like three or five years, but maybe even much shorter than that, depends on which expert you talk to. So it’s inevitable. You cannot just stay with uh assistants that answer questions only. m Sooner or later, if they can always answer the correct question, why can’t they actually go do the work as opposed to just answering uh questions?</p>
+
+<p><span class="ts">[27:13]</span></p>
+
+<p>uh So we can certainly see the need to go to uh a generic environment, but I would urge people to think a lot more about their end-to-end process. uh Think about even designing agents, because it’s important, like in the API microservices world, it’s important to define services with bounded context so that you don’t have overlap. It’s that much more important. You have that kind of design thinking and capability to define agents that doesn’t have overlap functions. Because otherwise, if you’re now trying to dynamically identify which is the appropriate agents to the payment, for example, there’s at least three to four different types of electronic payments. So you don’t want to design four agents with overlapping.</p>
+
+<p><span class="ts">[28:03]</span></p>
+
+<p>And then you don’t know which one to pick, right? And that would be the kind of things that I think there’s a few prerequisites of maturity that you want to have before you feel comfortable to safely deploy sort of agenic solutions within especially within a uh sort of banking industry. So if I rephrase or summarize what you said, non-deterministic multi-agent orchestration such that they are auditable, measurable, and I guess defensible with regulators, that still there is still some work left to be done in that space for sure. What’s your take on what happens in that scenario to humans? Because I think I’m a big believer that for these agents to truly work. I mean, I’m not getting into the societal ramification of that, but I think just as technologists, purely on the technologist’s point of view, I do think that we, as implementers and adopters of the tech, we will truly only get ROI if there is minimal human in the loop, which is what current models seem to be.</p>
+
+<p><span class="ts">[29:13]</span></p>
+
+<p>Do you agree with that? Is that kind of how the bank is thinking that for some, I’m not saying for all systems, but some type of systems where you start or at least in early project, early implementations, you’re going to have true agency given to these agents that execute a task on behalf of a human without a human involvement. Is that how you are thinking about it? Yeah, I think some of this is inevitable. There will be situation now. This is really my personal point of view.</p>
+
+<p><span class="ts">[29:55]</span></p>
+
+<p>uh I do also at the same time think that uh some of the work, there will be new work created, for example, instead of managing, instead of just let loose and whole bunch of agents running, you do have to have people to be able to manage agents. Now, what’s that mean? remain to be defined as we learn more. And then the other thing is very interesting. It’s back to your early point is if you can, as an organization, if you can take some of the more known task, known business process to be now can be fully automate. The only, the second derivative benefits that you can get, it’s not to just get rid of the people, but it’s to actually use that opportunity, use that capacity.</p>
+
+<p><span class="ts">[30:38]</span></p>
+
+<p>to really think about how to create differentiating product and services. Like someone has to be able to use that extra capacity that is generated from the productivities in order to differentiate. And that would be where I would offer, where we are thinking a lot is in terms of how to actually get our organizations to identify those kind of products and services that are much more uh mechanical, much more standard, much more maybe uh more defined and known and drive people to move to be more creative and more innovative and thinking about product and services that we can truly differentiate in the market. Yeah, I think you said something that I really, really subscribe to because I think there is the nihilistic point of view that AI will come in and take all our jobs with agents and so on. ah I’m of the belief that yes, there is disruption, which every new technological wave provides. But I think they always create new jobs too.</p>
+
+<p><span class="ts">[31:59]</span></p>
+
+<p>The jobs tend to evolve, right? So that view that. It becomes this all powerful entity and maybe who knows with AGI some entity is developed that is so far out that it can it has general intelligence that it when faced with a new concept it can it can arrive at an assumption. I mean, maybe that’s an extreme polar end, but with the existing architectures known to humanity, I don’t think that that’s the world that we see. Do you agree with that? No, yeah.</p>
+
+<p><span class="ts">[32:34]</span></p>
+
+<p>And I think this is where I would say uh many experts have many different opinions. I think uh the most differences in a lot of the opinion is actually the timeline. So when do we get to where that actually some of this kind of scenario will play out? I would say that like back to maybe more what we see from different research and different…</p>
+
+<p><span class="ts">[32:56]</span></p>
+
+<p>uh We believe that um there needs to be some step changes in the current uh approach. Because right now, a lot of the models are really text-based, sort of maybe two-dimensional, like image and video-based. In order for it to progress, it needs to step changes in potentially even the architectures and how models are needed to be developed to get to a more spatial. in order to get to more sort of other aspect of organization and social aware type of intelligence. And so from that perspective, I’m more optimistic that we have enough time to your point as as human as uh job as occupations that we have time, just enough time to continue to adjust like all the other technology revolution. So hopefully I’m right.</p>
+
+<p><span class="ts">[34:03]</span></p>
+
+<p>And I’m a little bit more optimistic from that perspective. Yeah, makes sense. OK, so. You know where you are in your career and you know, like me, I know you talked to lots and lots of younger technologists in Canada across North America. But there is there seems to be an emerging school of thought to your point about how the some of the experts are that or don’t get into comps I because you know coding is dead. What’s your take?</p>
+
+<p><span class="ts">[34:44]</span></p>
+
+<p>What guidance to say? If I’m starting out at Bank of Montreal today, what advice would you give me? Yeah, I think the concept of coding is that it’s probably a little bit too extreme, but I think being able to understand a lot of the concept, especially design concept, think knowing a specific programming language in detail is probably less of a differentiation. Obviously, you need to be able to understand, for example, now everything is most of the stuff is Python based. So understanding Python programming language is very important, but it’s more important to understand the design construct. is more important to have critical thinking.</p>
+
+<p><span class="ts">[35:20]</span></p>
+
+<p>It’s more important to be able to problem solve. And a lot of this is actually skill we can acquire. And be able to continue to learn. need to be able increasingly, it’s even more important to be able to differentiate uh real evidence-based data from reliable sources than information that not necessarily is real. So I think those skillset, being able to…</p>
+
+<p><span class="ts">[35:42]</span></p>
+
+<p>uh differentiate, being able to have critical thinking. It’s that much more important. Having said that though, you still need some fundamental skills, like knowing how to programming, it’s still important. Knowing the technology stack, my background is actually uh doing chip design before. So it’s from silicon all the way up, understanding sort of the runtime model, understand some of this stuff, it’s still important. Yeah, listen, I think I completely agree.</p>
+
+<p><span class="ts">[36:11]</span></p>
+
+<p>So to your point. Problem decomposition, critical thinking. Right to to your point, even understanding how the machine is working is really valuable because even though what programmers do today might be delegated to a machine that does the task, you still need to operate it. You still need to understand the output of it. And if we treat it as a black box. I’m not sure how much trust we can place in that.</p>
+
+<p><span class="ts">[36:39]</span></p>
+
+<p>Spot on. Yeah, so I want to end where I started. So you went from University of Ottawa to University of British Columbia. So walk us through that. What happened there? That’s like three and a half thousand kilometers journey there.</p>
+
+<p><span class="ts">[36:53]</span></p>
+
+<p>I was amazed by how vast Canada is. And it’s very interesting that I heard a lot of of concept of coast to coast. I heard a lot of concepts of, you know, it’s a very different, potentially lifestyles and so on, even though it’s the same country. And that kind of sparked part of the interest is to say that, I have opportunities to spend quite a few years in Ottawa, great. Wouldn’t be nice to also kind of learn sort of how the Western Canada is like. So I decided to go to Vancouver and just from job-wise, I did actually also work a year in Edmonton.</p>
+
+<p><span class="ts">[37:34]</span></p>
+
+<p>So I do quite enjoy. learning lot more about Canada as a country and being able to have the opportunity to spend some time in different cities. I love it. listen, final question, I guess. So if you peer into your crystal ball as the chief innovation officer at Bank of Montreal, so this is now the other hat, where do you think your organization is going to be, say, three years from now? I think anything beyond three is unreal, unreasonable.</p>
+
+<p><span class="ts">[38:13]</span></p>
+
+<p>Three years from now. Where do you think this conversation is going to go? it’s interesting because I would say that first is I think it’s a fun time within technology in any industry actually. But specifically in banking is there’s a lot of dynamic is changing both geopolitical all the way to the advancement of technology. And with AI, a lot of this is actually compounding effect. So you see a lot of things.</p>
+
+<p><span class="ts">[38:44]</span></p>
+
+<p>We look at things like new science discovery, Like with AlphaFold and all this stuff. So I think if you talk about three years from now, I would say that we may be looking at uh hopefully, right? Very different, but more positive world. uh may have much more understanding of how to solve a heart problem like cure cancer and so on and so forth with the proper usage of help from AI. And then the other things I would maybe just leave it, oh because we do work with IBM and IBM is a leader in this, is hopefully by then we also have more understanding of quantum computing, understanding how it’s going to now do some of the stepwise changes to some of the capability that hopefully by then we will learn more about that as well. All of it.</p>
+
+<p><span class="ts">[39:35]</span></p>
+
+<p>Lawrence, I want to sincerely thank you. It’s a pleasure. could spend my entire day just chit chatting with you and picking your brain and learning. So I absolutely appreciate you giving us the time and sharing your insights. It is extremely beneficial. And I’m really sure that anybody that watches, listens to this podcast will indeed feel the same.</p>
+
+<p><span class="ts">[39:50]</span></p>
+
+<p>So on that note, thank you so much, Lawrence. Thank you so much for having me.</p>
+
+          </div>
+        </div>
+      </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+    
+    
+    <div class="mb-12">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="font-serif text-2xl font-bold">Clips & Highlights</h2>
+          <p class="text-sm text-muted mt-1">15 clips from this episode</p>
+        </div>
+        <a href="/shipai/clips/" class="text-xs font-medium text-accent hover:underline">View all clips</a>
+      </div>
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Shorts</h3>
+      <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide mb-6">
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI in Banking: Data, Process, Algorithms</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:51</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI in Banking: Data, Process, Algorithms</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI in Banking: Transforming Society</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:57</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI in Banking: Transforming Society</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's Impact on Banking and Future Inn...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:43</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's Impact on Banking and Future Innovations</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI: Transforming Banking & Society</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:42</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI: Transforming Banking & Society</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Evolving Technology and Organizationa...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:21</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Evolving Technology and Organizational Strategy</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Future of AI: Agentic Systems on the ...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:26</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Future of AI: Agentic Systems on the Horizon</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Future of Automation and Autonomous A...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:52</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Future of Automation and Autonomous Agents</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">How Business & Tech Collaboration Spe...</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:17</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">How Business & Tech Collaboration Speeds Up</p>
+          </a>
+        
+      </div>
+      
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Deep Dives</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI Agents: The Future of Work?</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:00</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI Agents: The Future of Work?</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI in Banking: Past, Present, Fu...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:00</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI in Banking: Past, Present, Future</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI in Software Development Lifec...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">1:01</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI in Software Development Lifecycle</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">Banking's Tech-Driven Transforma...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">3:30</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">Banking's Tech-Driven Transformation</h4>
+            </div>
+          </a>
+        
+      </div>
+      
+    </div>
+    
 
     <!-- More from This Series -->
     
@@ -273,7 +763,7 @@
   
     <a href="/shipai/episodes/ozge-yeloglu-vp-ai-analytics-cibc/" class="block relative group">
       <div class="aspect-video overflow-hidden">
-        <img src="/shipai/assets/images/og/default.png"
+        <img src="https://img.youtube.com/vi/gdkgnO8XVJo/mqdefault.jpg"
              alt="Ozge Yeloglu, VP AI & Analytics, CIBC"
              loading="lazy"
              width="320" height="180"
@@ -315,17 +805,17 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/ozge-yeloglu-vp-ai-analytics-cibc/id1832355436?i=1000751195157" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://www.youtube.com/watch?v=gdkgnO8XVJo" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     
@@ -392,12 +882,8 @@
 
   <div class="flex gap-1">
     
-      <a href="" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
-        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      </a>
     
-    
-      <a href="" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/mihai-criveti-context-forge/id1832355436?i=1000754479816" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -511,11 +997,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -526,6 +1008,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           

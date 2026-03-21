@@ -35,18 +35,16 @@
   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/shipai/" class="flex items-center gap-2.5 group">
-      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-        </svg>
-      </div>
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
       <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
     </a>
     <!-- Desktop links -->
     <div class="hidden md:flex items-center gap-8">
       
         <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
       
         <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
       
@@ -66,6 +64,8 @@
   <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
     
       <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" class="block text-sm font-medium py-1">Clips</a>
     
       <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
     
@@ -326,6 +326,561 @@
 
     <!-- Transcript -->
     
+    <div class="mb-12" id="transcript">
+      <details class="group">
+        <summary class="flex items-center justify-between p-5 bg-white rounded-card border border-black/[0.06] hover:border-black/10 transition-colors cursor-pointer list-none">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span class="font-semibold">Full Transcript</span>
+          </div>
+          <svg class="w-5 h-5 text-muted transition-transform duration-300 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="bg-white border border-t-0 border-black/[0.06] rounded-b-card px-6 py-6">
+          <div class="prose-shipai text-sm" id="transcript-content">
+<p><strong>Manav Gupta</strong> <span class="ts">[00:08]</span></p>
+
+<p>Hello there. Sanctions did not kill Chinese AI. They in fact mutated it into something, well, more. A leaner, inference optimized, vertically integrated competitor. Welcome to Ship AI. I’m your host, Manav Gupta.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:25]</span></p>
+
+<p>This is episode three in the series State of AI. Today, we are going to peer behind the red silicon curtain and look at the state of China’s mutation of AI. This is the story of constraint to innovation. In this episode, we are going to cover the evolution of AI in China in the following six parts. Part one, we’re going to cover how constraint defined the innovations from DeepSea. In second part, we’re going to look at the open ecosystem acceleration from the Chinese innovators.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[00:56]</span></p>
+
+<p>In part three, we’re going to cover China’s sovereign AI compute stack. In part four, we will briefly touch upon the big bet that China is making on physical economy and the rise of humanoid robots. In part five, we are going to cover what it means for enterprise leaders. And in part six, we are going to recap and look at the key takeaways. So with that, let’s dive in. Right.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[01:29]</span></p>
+
+<p>To start with, I’m going to start sharing my screen here and I’ll bring up on this key graphic. that I think really sets the stage for all of us to understand what’s going on. So what you see here is a graph in cumulative number of large scale AI systems by countries since 2017. And quite clearly, United States is in lead with 155 models, China with about 105 models. But the gap really is more than just about quantity. To truly understand this, Let’s understand what qualifies to be on this chart.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:03]</span></p>
+
+<p>So every line here counts only the large scale AI systems, models that have been trained with greater than 10 to the power of 23 floating point operations. Now that number is too abstract. So let’s try to make some sense of it. 10 to the power of 23 flops is 100 billion teraflops. That’s 10. and 23 zeros after that.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[02:33]</span></p>
+
+<p>Or 100 billion trillion mathematical operations. That still doesn’t convey how big is it, right? And how big is it in compared to anything else. Purely in terms of hardware, we are talking about between well over 10,000 high-end GPUs training a model for at least eight hours. Or in terms of electric capacity, we’re talking about somewhere between one to five gigawatts of capacity. That’s enough to power more than 1,000 homes in North America for a year.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:01]</span></p>
+
+<p>In terms of cost, purely in terms of financial cost, we are talking about somewhere between 10 to as much as $100 million. So the point being that 10 to the power of 23 is a point at which AI stops being just about code and it starts being about infrastructure. And we’re measuring that infrastructure in data centers, power grids, and nation state capital. And by the way, remember that 10 to the power of 23 is not the ceiling. That’s just the starting point. That’s the entry ticket to be countered into this ecosystem.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[03:37]</span></p>
+
+<p>The biggest frontier models are far beyond that. Where you see really tens of thousands of GPUs being used for weeks in dedicated data centers. So now look at the chart again. Up until 2021, really nothing happens. Right then. 2022 happens, we all know about the explosion that Chad GPT brought to the world.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[04:01]</span></p>
+
+<p>And then the curve begins to break upwards. That’s the moment that AI stopped being an experiment and started becoming industrial, really. So again, in that context, the United States leads and then it accelerates. China follows closely on a slightly delayed, but still a steep trajectory. Everybody else, whether it is Hong Kong, Canada, UAE, et cetera, they barely register. So another interpretation of this chart is really if you think about it, this is just a compute duopoly.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[04:34]</span></p>
+
+<p>It’s not a multipolar world at all. And that’s why this chart matters. This is the scale that at this scale when the models require data centers, power contracts, and nation state capital, AI stops being about clever code. This starts, the AI starts being about who can reliably mobilize that level of compute. So that sets the real question. If the advanced chips were restricted to China, how did they still scale the models at this scale?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:07]</span></p>
+
+<p>That is the story that we’re about to unpack. All right, let’s go deeper. So act one, this is the story about the constraint. that created the innovation, also known as the GPU poor paradigm. So let’s jump in and then we’ll try to understand what’s going on in the broader context. So here’s what happened.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[05:39]</span></p>
+
+<p>The story goes that January of 27th, 2025, almost a year to date, a little known Chinese startup by the name of DeepSeek, it turned the world upside down, causing a single causing the largest single day drop in market cap in the US history. NVIDIA lost 20 % or almost $600 billion in its market cap. What really shocked the market was that the AI model from this little known company called DeepSeek, it matched the world’s foremost frontier model, OpenAI’s O1 on several benchmarks, such as Amy, the Math 500, and scored as much as 2,000. 29 on code forces. And reportedly, this model was trained on only $5.6 million as compared to estimated $100-plus million that OpenAI spent.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[06:26]</span></p>
+
+<p>That shockwave caused a ripple across the entire sector. Nobody was spared. ASML lost 7%, Broadcom lost 17%, AMD lost 8%, TSMC lost 13%. Famously, Mark Enriessen likened it to the Sputnik satellite that shocked the Western world and called it the AI’s Sputnik moment. The key facts are this is from a company called DeepSeek based in Guangzhou in China with roughly about 200 engineers. And to top it all, they released the model in an open source MIT license.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[07:07]</span></p>
+
+<p>And here’s the kicker. They originated as a research lab for a hedge fund. So what happened? So the story here is that it is not just about the innovations from Deepsea, but really the net reality here is that in October of 2022, the United States further imposed additional controls, restricting the sale of advanced chips and chip making equipment to China. This is on top of the previous sanctions back in 2018 on restricting these chips. The intent was explicit, cap China’s ability to train these frontier scale AI models.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[07:52]</span></p>
+
+<p>But buried in this news were three not well known facts. Fact one, knowing that these sanctions were coming, the Chinese companies were already on a path to acquiring these GPUs. Maybe not the most powerful GPUs that the world had to offer, but certainly powerful enough GPUs. So they started stockpiling the NVIDIA A100 GPUs. Fact two, the sanctions in 2022, they did not ban all of the AI GPUs. So they still had access to slightly lower performance GPUs that had restricted connectivity between memory.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[08:29]</span></p>
+
+<p>But these servers, the Nvidia H800s, the A800s, they retained the raw high compute. Now, fact three, the loopholes were closed a year later, but the cat was out of the bag. innovators, were able to stockpile enough GPUs to start building their own GPU farms and start training their own AI models. But this story about DeepSea, this is not just about stockpiling GPUs and retraining or replicating what the West had done. To be clear, there were significant technical innovations that DeepSea provided that truly shocked the world. So it’s worthwhile to spend some time trying to understand what that was.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:14]</span></p>
+
+<p>So let’s have look. So DeepSeq innovations, especially with the R1 models, they solved two of the biggest constraints in the world of AI, memory and compute. So when you’re building these AI models at scale, those are the two critical things that you require. So let’s dive a little deeper into at least the two innovations, the two technical innovations, and then we’ll talk about the real heart of what truly spooked the researchers out west. Innovation number one. something called multi-headed latent attention or MLA.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[09:49]</span></p>
+
+<p>So here is the problem. Traditional architecture of these large language models, they’re all based on what’s called a transformer architecture. And in this transformer architecture, the model store massive key and value matrices. Think of the matrix as a vector, right? So you have a key column, a value column, and there is multiple rows. So they store a massive matrix.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[10:14]</span></p>
+
+<p>The longer the context, so the longer you’re having a conversation with the model, the more memory you need. It scales quadratically. This is why running these large models is so expensive. So the solution from DeepSeq was pretty novel. They compressed those matrices into what’s known as a latent vector. Think of it as zipping a file before using it and then unzipping when you need it.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[10:37]</span></p>
+
+<p>The result, 93 % reduction. in the memory required for this KV cache with almost six times, 5.76 to be precise, a faster inference so they were to produce the tokens faster at a fraction of the cost without compromising on quality. So why does it matter? Well, it matters because now you can run frontier class models on hardware that would have choked before. This is why DeepSeq was able to offer API pricing that was 27 times cheaper compared to OpenAI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:09]</span></p>
+
+<p>Innovation number two, mixture of experts. So traditional AI models, the way they do it is when you think about these models with billions or trillions of parameters, so each parameter is at point or store on that vector. So these models, they store all the parameters for every query. So think of it as turning every light on in a skyscraper in a building when you want to find one room. DeepSeq version three. It had 675 billion of these parameters distributed across 256 specialized experts or networks.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[11:46]</span></p>
+
+<p>But here is a trick that they introduced. For any given query, only 37 billion of those 670 billion were active. And then they had the most relevant ah for the query, they were routed to only eight of the most relevant experts. To put it in layman’s terms, think of it as a hospital. You don’t need every specialist when you go in for a broken arm. You’ll be routed to orthopedics, and then the right expert or experts from orthopedics will be there to answer your query.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:22]</span></p>
+
+<p>The result? Frontier class capability at a fraction of the compute cost. That’s how DeepSeq was able to train a frontier class model for a fraction of the price compared to OpenAI. Now, those two were not the only technical innovations to be clear. Innovation number three that really spooked the rest of the world was the implementation of what’s known as pure reinforcement learning. This is the one that truly stunned the researchers.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[12:58]</span></p>
+
+<p>So traditional AI training requires millions of human labeled data. Think of it as some human truly annotating that, okay, this is the question, this is the right answer. The largest of the AI model manufacturers will employ humans in low-cost English-speaking countries to produce that label data. The result? Yes, this is expensive. It’s slow.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[13:24]</span></p>
+
+<p>As you can imagine, scaling this, building those millions of label data sets is terribly expensive. It’s limited by human effort. Deepsea tried something radical with their R10. What if we could just tell the model? Just get the right answer. and just let it figure out how to arrive at that answer.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[13:41]</span></p>
+
+<p>Because it knows what the right answer is, and you’re just iterating over and over again until the model gets their answer. So what they did was they gave the model math problems with only a single reward signal, correct or incorrect. So if the model gives an answer that’s incorrect, it’ll go back, it understands the signal, it’ll then start calibrating itself into a different direction. There is no step-by-step demonstrations, no human-written reasoning, chains. Over time, over subsequent iterations, sufficient number of iterations on the data set, what started emerging was remarkable. The model spontaneously developed what researchers called the aha moment, without anybody teaching it, by the way, self-verification.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[14:17]</span></p>
+
+<p>The model evolved to a point where it would take a step and then it would validate its work, extended reasoning, breaking the problem into multiple steps. The model would pause and reconsider its approach and allocate more thinking time for harder problems. The results were astounding on AME benchmark, which is the America Invitational Mathematics examination. The accuracy jumped for DeepSeq from 15.6 % to 71 % matching opening eye Owen’s models. The DeepSeq paper goes on to describe this as witnessing the raw power and beauty of reinforcement learning.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:00]</span></p>
+
+<p>Rather than explicitly teaching the model how to solve a problem, we simply provide it with the right incentives and it autonomously develops problem-solving strategies. The bottom line? Three innovations. One thesis. You don’t need the most compute. You start with the smartest architecture.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:25]</span></p>
+
+<p>MLA makes memory cheap. MOE makes compute efficient. Pure RL makes training scalable. And that’s the story of how Chinese companies circumvented, bypassed the GPU poor paradigm or the constraints put on by the sanctions. Okay, what’s the other thing that happened? So one might think that this innovation from DeepSeek was a flash in the pan, that perhaps it was a lone innovator, a single lone wolf creator that created these models unto itself.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[15:49]</span></p>
+
+<p>The truth couldn’t be further. ah So let’s talk about Act 2, the exploration of open source and commoditization of intelligence. Let’s start by examining the story of Alibaba and its Quen series of models. Alibaba, the Chinese e-commerce giant, it calls Quen the llama of the East. And it’s really not just marketing. It’s a business model declaration.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[16:28]</span></p>
+
+<p>So think about how Meta gives away the Lama C family of models to commoditize intelligence, commoditize the model layer and keep the ecosystem on Metos infrastructure. Well, Alibaba is doing the exact same thing with Alibaba Cloud. So if you look at the Quinn family of models, you have Quinn 2.5 and Quinn 3, they span from 0.5 billion, so 500 million parameters to 72 billion parameters. So clearly, it’s a wide range of devices that’s good for deploying either on edge to cloud servers.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:00]</span></p>
+
+<p>Quen 2.5 is their flagship model, estimated to be 500 billion plus parameters. It’s another mixture of experts model, 128,000 context, our token context window. At that point, you can throw a book at it or a complex program for it to deploy. Quen 3.4 with 32 billion is the killer app.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:24]</span></p>
+
+<p>It rivals GPT-4 on human eval, widely considered to be the most stringent benchmark, and it outperforms. And why coding matters, one may ask? This is strategic, not accidental. Developers who use the Quen coder ecosystem get logged into Alibaba’s ecosystem. It’s the same play that GitHub made with Copilot, right? Own the developer, and you own the future.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[17:53]</span></p>
+
+<p>If 10 million developers were to use Quincoder worldwide, that’s 10 million potential Alibaba Cloud customers. The other thing that Alibaba is doing is the infrastructure play. And this is the key insight. As Alibaba themselves are acknowledged, this is less about selling the model, it’s more about selling the compute. There is a reason why Quinn is Apache 2.0 license.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[18:20]</span></p>
+
+<p>It’s completely open, commercial use is allowed, anybody can download it, anybody can use it. But they’ve figured out that most companies do not want to manage GPUs. So they offer a model studio similar to the Amazon Bedrock model. It’s easy to, on which it is easy to deploy the Quinn models on Alibaba Cloud. And once you’re in there, you’re paying for compute, you’re paying for storage, the whole stack, AKA the meta of the East. So that’s one thing.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[18:58]</span></p>
+
+<p>The other interesting thing about the Quen models is told on this chart here. So this chart from Stanford HAI, it tells a remarkable story. So the line for Quen in purple, this has now surpassed Mera’s llama in cumulative downloads. So this is Alibaba beating Mera at their own open source game. that meta-health pioneer. And by the way, not to be left behind, have a look at DeepSeek’s trajectory as well.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[19:30]</span></p>
+
+<p>It’s nearly vertical growth starting mid-2025. So if nothing else, what I want you to take away from this is that the open-weights strategy is working. It’s a wedge that the Chinese companies have quite deliberately and thoughtfully and methodically created. The Chinese models are gaining developer mindshare. And this matters because developers that are building their applications on Chinese models today, they become part of the Chinese AI ecosystem tomorrow. That’s the punch line.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:10]</span></p>
+
+<p>Not to be left behind and not to assume that Alibaba and the Quinn is the only series of models. Let’s talk about zero one dot AI founded by Kai Fuli, the famous bridge builder. who founded Microsoft Research China, president of Google China previously. He now runs a $3 billion hedge fund. I beg your pardon, a $3 billion VC fund. The company’s name in Mandarin, Lingyi Wanbu, and apologies for my translation, means zero to one produces all things.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[20:38]</span></p>
+
+<p>Just think about the implications of that. They know exactly what they’re trying to do. Zero and one, the bits. They created everything. Zero and one, zero led to one, AI, it’ll generate everything. They have cumulatively raised $300 million from Alibaba, Tencent and Xiaomi, becoming a billion dollar unicorn in just eight months.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[21:00]</span></p>
+
+<p>But then came the 2025 pivot with DeepSeq. So when DeepSeq collapsed the API margins overnight, the pre-training teams disbanded. And they started on a new strategy. So they pivoted very quickly from being a model first to an application first strategy. And what’s that new strategy, you ask? The new strategy is what’s known in the AI world as a model distillation strategy.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[21:33]</span></p>
+
+<p>where you use a giant open model, whether it is Llama3, DeepSeq itself, as a teacher model to train a smaller student model on a specialized downstream task. It’s cheap, you’re relying on the ethos of open source, and you can build downstream models that far outperform and are cheaper and require much smaller footprint to run compared to the giant models. They have in fact pivoted from obsessing about MMLU benchmark scores to scores around inferencing cost on revenue versus inferencing cost rather. So they’re less interested in trying to build a more accurate model versus they’re trying to obsess about whether the models are generating revenue. That’s a significant change just in mindset. The story doesn’t end there by the way.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:30]</span></p>
+
+<p>Let’s quickly look at the global, I’m gonna call it the intelligence race. So this chart breaks down the race company by company over a period of time, and it tells you an even more fascinating story. So look at 2023. OpenAI in blue is the only game in town. It’s far ahead anybody else. By mid 2024, you begin to see emergence of other US competitors.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[22:55]</span></p>
+
+<p>You see Google, Anthropic, Mera starting to catch up. But watch as the Chinese companies are introduced, Alibaba in orange, DeepSeek as in salmon, Baidu, Minimax, Moonshot, Bytance. They were all behind in 2024. But look at what happens mid-2025. DeepSeek’s line goes nearly vertical. Chinese companies subsequently by late 2025, they’re clustered right along with the US leaders.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:26]</span></p>
+
+<p>So the gap has closed. There certainly was a gap. But the gap has closed in about 18 months, faster than anybody expected. So that’s the key insight. There isn’t one Chinese champion. It’s an entire ecosystem that is catching up simultaneously.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[23:44]</span></p>
+
+<p>Let’s spend a little bit more time looking at the Yi family of models. So we talked about the company structure. they have released, 0.1.AI has released a number of models under the Yi family. uh with many of the models with 200,000 context, or 200,000 context, rather, and a mixture of experts model with only 14 cents for a million tokens, 18 times cheaper than GPT-4.0 at</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[24:02]</span></p>
+
+<p>the time of this podcast. Plus, they obviously have other models for coding. They are ranked number six on the global chatbot ranking arena on problems for math, for hard prompts. Oasis is the spin-off. of their gaming platform with the soon engine. And the strategy that they’re on, where they’re going, is text to game.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[24:36]</span></p>
+
+<p>No more of manual hard coding, no more of manual code generation to create the games. So this in itself should tell you the broader story of the pricing war and the chip survival and how the strategy has shifted. maybe final three other pictures to showcase just quite tremendous their impact has been. So this is a chart from artificialanalysis.ai and it is ranking the world’s foremost frontier models on a variety of tasks. This one here is just the intelligence index, which is a combination of model performance on a wide variety of benchmarks, such as LiveCodeBench, SciCode, Terminal Bench Hard and so on and so forth.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:27]</span></p>
+
+<p>Now, notice the first four five models are American models. But then along comes at with 55 points, points GLM, DeepSeq V through, Kimi K2 at number 10. So the point being that the Chinese models have started closing the gap dramatically on this critical benchmark. But I think the real story you’re going to see on the next couple of pages. Look at this. leaderboard from chatbot arena.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[25:55]</span></p>
+
+<p>This is the largest crowd sourced LLM evaluation platform. What do see? The top 10 is dominated by Chinese labs. Z.ai, Moonshot, Alibaba, Deepsea. GLM 4.6 from Xi holds the number one spot with an ELO of 1,442.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:15]</span></p>
+
+<p>Notice the country column, China, China, China. You see Mr. Allard from France. Then it’s China all the way. There is only one US model in the top 25. Open your eyes GPT OSS 120B.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:31]</span></p>
+
+<p>This is not about training the biggest model anymore. This is about efficient, capable, open models. Therefore, this strategy of open models with open weights is working. It’s creating a wedge. Anybody in the world now can download a model. They can run it because they have open weights.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[26:53]</span></p>
+
+<p>They can fine tune the model to suit their needs. Western closed source frontier models are now having to compete against a ever rising force. and a flood of high quality open source alternatives. Have a look at this final picture that tells you the story of capabilities of models, of open models over time by country. So this is a scatter plot from Epoch AI. To me, this is visualizing the entire open weights race.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[27:21]</span></p>
+
+<p>So the gray dots that you see on this, these are proprietary models. Mind you, they’re still generally at the top. They’re generally from American companies. We get that. But look at the colored markers. So the blue square, the blue rectangle, that’s the American models.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[27:37]</span></p>
+
+<p>The pink triangles are China. In 2023, most US models led by Lama, mostly Lama, they led the pack. By 2024 and into 2025, the pink triangles are everywhere at the top. If anything, the key insight that I want you to drive from this is that China chose open as a strategic wedge against the Western competitors. And because they cannot compete necessarily with opening as closed mode, closed API mode, they’re now undercutting it and commoditizing the foundation layer. All right, so let’s take off a stock of what did we just cover.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[28:22]</span></p>
+
+<p>So China is massively investing, Chinese organizations are massively investing in building open weights models that are not just good enough, but they’re being offered on a highly permissive open licenses with open weights, completely democratizing development of AI. Let’s now spend some time looking at what their national strategy looks like with regards to nation state investments uh in the development of AI, also known as the AI sovereign compute stack. Or sometimes I like to joke about calling it the red stack. All right. So what is the Chinese government doing? What is the state doing?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:10]</span></p>
+
+<p>So here is initiative number one. So this is the quite famous East data, West computing. infrastructure map. The idea behind this initiative is it brings together green energy, energy storage, data centers, and a massive leap in computing power. And we’ll get into that in a lot more detail. So the idea behind this is this is one of the most integral parts of China’s AI infrastructure development.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[29:32]</span></p>
+
+<p>It encompasses and connects the strategic build out of China’s data centers, deep learning platforms, computing hubs, as well as energy storage. smart grids, intelligent power systems, ah you name it. And why are they doing it? Why really are they doing this? So let’s truly go a bit deeper to try and understand this. So the problem that they have is that the Eastern provinces, that’s Beijing, Shanghai, Shenzhen, these are high population areas with high energy costs.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:02]</span></p>
+
+<p>As we all know, data centers consume massive power. And because of the sheer volume of power that’s required, 70 % of data power is coal. So what do you do? How do you solve this problem? So that’s what the solution, as you can now imagine, the East Data West computing solution is. So the idea is you train the AI models in the West.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:32]</span></p>
+
+<p>You serve inferencing in the East. That’s closer to the location, closer to the consumers. In the Western provinces, which are the inner provinces, that’s Guizhou, Inner Mongolia, Gansu, they have massive solar and wind capacity. Electricity is 50 % cheaper. They have some natural cooling due to weather advantages. Therefore, train the models in the West where energy is cheaper.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[30:58]</span></p>
+
+<p>So, influencing in the East, where there is a massive concentration of consumers. So, the latency is going to be lower as well. And it’s a win-win-win. So by the way, that’s just part one. Part two is China’s big fun round three. This is largest ever bet from China on semiconductor self-sufficiency to the tune of $47.5 billion, which is by the way more than the US CHIPS Act.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[31:22]</span></p>
+
+<p>What’s the thesis? They are trying to compress 30 years of semiconductor evolution into five years in three phases. This is the third phase. Hence. Big Fund 3, phase one was around manufacturing focus, $21.8 billion.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[31:44]</span></p>
+
+<p>It went to foundries like SMIC. Phase two, 2019 to 2024, it went into wafer fabrication. They hit some snags with some of the executives being swept up into massive anti-corruption sweeps, but that’s by and by. Phase three, this is the strategic pivot. For the first time, they are targeting equipment and materials, the exact choke points. So this is the exact strategy to counter the US sanctions.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[32:20]</span></p>
+
+<p>This is where the US export controls by them the hardest. The 15 year duration signals patient capital. So they know what they’re doing. They are well aware of the challenges in front of them. So this is deliberate. This is a nation state investment, strategic investment, encountering the the worst of the sanctions from their perspective.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[32:42]</span></p>
+
+<p>Okay, the bottom line, China will likely achieve with this level of investment, meaningful self-sufficiency in mature and moderately advanced semiconductors by 2030. Now, they still have, by the way, some challenges around uh getting at advanced below seven nanometer fabrication, but they’re not that far behind. SMIC surprised everybody with Kirin 9000S in 2023. So they are maybe two years behind, but not the five years that everybody thought they were in. Okay, so we covered the first two. Here is the trifecta of the third, which is C2Net.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[33:24]</span></p>
+
+<p>So if Big Fun 3 is about building the tools, C2Net is about using them. So the vision literally is use computing power as conveniently as using electricity. Well, really, put another way, this is going to be a national computing grid that treats AI compute as a public utility. There are number of hubs that they’ve identified. I think they’re creating eight different hubs for a total computing capacity of 280 exa-flops, which is a 30 % increase year on year. Of the eight hubs, three are going to be in the east, five in the west.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:07]</span></p>
+
+<p>This effectively connects the usage of that hub. So effectively this interconnects with the East Data West Computing Initiative that they have. All right. The other thing to note here is what this investment is doing. So what you see begin to emerge is the emergence of the cloud brain stacks. So the cloud brain one, which was based on NVIDIA chips in 2019, it achieved 120 paraflops on NVIDIA GPUs.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[34:35]</span></p>
+
+<p>Cloud brain two is where things begin to go a bit interesting. So they expanded the throughput by 10x, but instead of using NVIDIA, they’re now relying on Huawei’s Ascend platform. And CloudBrain 3, which is expected to go live this year, is going to have another 16 extra capacity at 16,000 petaflops, again on Huawei Ascend 910C chips. So what you’re beginning to see is emergence of the domestic chip stack, which is at best comparable to Nvidia A100, mind you. and the 910C is about 65 % of Nvidia’s at the time flagship H100. Not quite parity, but they’re workable.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[35:29]</span></p>
+
+<p>So the gap is real. Now, the reality also is that most analysts put China behind or used to put China behind the US about 24 months, but I think what they have shown in 2025 is maybe they’re not quite that far behind. So if we recap it all, what we’re learning here is that China is not just about building the AI models. They have three pronged strategy. And they are investing very deliberately, solving their energy problem with East Data West computing. They are trying to solve their hardware sovereignty bet with the Big Fund 3.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[36:11]</span></p>
+
+<p>And then they are tying it all together with a national computing grid strategy that will allow them to treat AI compute as a public utility. In other words, if none of this came through, China is building a parallel compute stack. It may not be as powerful as NVIDIA’s ecosystem, but it’s going to be sanction-proof and it’s going to be good enough for their needs. All right, let’s pivot to the next part, which is act four. And in this one, we are going to talk about the rise of the humanoid robots. Before we get started, I want you to have a quick visual at just the top five.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[36:57]</span></p>
+
+<p>It’s not even nowhere near the entire list. It’s not even top 10. Just to give you an idea of the emergence of the humanoid robots, most of them powered with some type of AI capability, certainly being trained using reinforcement learning. So now you see the amalgamation of AI with the physical world. So the big bet from China is giving rise to this physical economy. In some ways, this is the atoms versus the bits story.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[37:28]</span></p>
+
+<p>While we’ve been talking about and everybody else has been talking about the AI models, arguably the real impact is going to be in the physical world. So just look at the philosophical divergence. Some of the biggest organizations in the US like Tesla with its Optimus, Figure AI, they are prioritizing generalized intelligence. They wanna build a machine once that is capable enough for handling a wide variety of generalized tasks with advanced dexterity. There is some indications, this is one person’s opinion, that they are waiting for AGI to come before their deployment. China on the other hand, with UB Tech and Unitree, they’re deploying good enough models, good enough robots now.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[38:12]</span></p>
+
+<p>This mirrors their broader strategy by the way. While US aims for frontier models, China’s deploying and aiming for application. The other interesting point to note here is just how cheap they are going to be. So Unitree at 16,000 US dollars a year compared to Western company counterpart robots at entry. point of $90,000. One might call it the iPhone moment for humanoid robotics.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[38:43]</span></p>
+
+<p>Not to be outdone. So you may have not heard about some of these other stories here, by the way. So Ubitec Walker S as an example, it’s the first mass factory deployment. We have seen reports coming from China that some of the robots, they have been deployed at uh companies like Zekker, where These robots have accomplished 21 consecutive days of cargo packing at 800 million yen in orders. Therefore, this is not just a demo. This is deployment for real.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[39:21]</span></p>
+
+<p>JD.com is running dark warehouses with 4.9 efficiency in packing. So 99.99, 10x efficiency, 24.7 completely unmanned.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[39:30]</span></p>
+
+<p>This is what makes infrastructure that makes two-hour shipping possible. That’s where the world is going. So the implications are that the emerging markets, the Southeast Asia, Latin America, Middle East, they are going to become the battleground for robotics. And I’ll submit to you that good enough at a fraction of the cost is the China’s playbook. Okay, so we talked about where we think the convergence of AI to physical world is happening. Now, I also wanted to cover a little bit about some of the socio-political climate and what’s going on there.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[40:08]</span></p>
+
+<p>So what happened in 2020 was um Jack Ma, one of the pioneers in China, he criticized the regulators and called them to exhibit what he called at the time. pawn shop mentality. Within weeks, the Ant Group’s 37 billion IPO was canceled and a sweeping curtain fell where the tech bros of China, they were curtailed. The numbers are staggering. As much as $1 trillion US dollars was wiped from the Chinese tech market value. Foreign participation in China VC collapsed from 18 % to 8.5 % and the message was received by everybody.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[40:53]</span></p>
+
+<p>Now, what we’re now seeing is a slight thought, a slow thought that’s happening. So in 2025, Premier Xi invited all the tech titans and Jack Ma was there as well, including as well Liang Wenfang from DeepSeek, who’s the new hero. And we started hearing some quotes that now is the perfect time to thrive. Therefore, you can reasonably conclude that this is a thaw, this is a reset, but on new terms. What we’re now seeing is that it’s a new approach to business relations. And the state is now taking 1 % equity stake, just 1 % only, but they get a board seat and they get veto rights.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[41:36]</span></p>
+
+<p>So quite clearly, this is about national alignment. This is about alignment of the tech pros, the tech startups. like the Tencent and Alibaba’s onto national strategy. All subsidiaries have them now. The other thing that we’re seeing is government guidance funds as well. So state is now the largest limited partner in most VC deals.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[42:05]</span></p>
+
+<p>Capital is being directed towards hard tech away from consumer internet. So again, you can conclude that this is a industrial policy with Chinese characteristic. In other words, Innovation is being directed, not discovered. Okay. And then the final part that I wanted to convey is the flip side of AI. And mind you, I don’t want to just use this to castigate just one country and their operations.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[42:34]</span></p>
+
+<p>Clearly I’m not qualified to do so, but like with all forms of AI, there can be different uses of AI. What we’re seeing is what I like to call the dual use paradox. as well as the emergence of two incompatible technology stacks or the global bifurcation. So the same AI infrastructure that is enabling Huawei’s Pangu to discover drugs in months, it is now enabling the integrated joint operations platform or iJob, which is a predictive policing system in the province of Xinjiang. Through the use of massive widespread data collection, the iJob system uses AI to identify and flag people for questioning and potential detention. I’m going to strip away, I’m going to stay away from whether or not it’s ethical, but what I’m suggesting is as these technologies evolve and get more and more powerful, all companies and all nation states and their regulatory bodies have to come up with the right set of guardrails to ensure that these things are used for the betterment of the humanity rather than…</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[43:48]</span></p>
+
+<p>That’s all I’m going to say on that. So this is the uncomfortable truth that we all have to grapple with. But the bigger story for our purposes is the emergence of the incompatible stacks that are emerging. On the one hand, you have the Western stack with NVIDIA and its mode, both in hardware and software with CUDA, the emergence of the H100, the H200 and the Blackwell GPUs, as well as the closed source US frontier model. developers, the OpenAI, Anthropic, and Googles of the world. On the other hand, you have the Chinese AI stack with Huawei Ascend.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[44:30]</span></p>
+
+<p>Their domestic investments that they’re making into high bandwidth memory or HBM. And the rise of the open source models with open weights led by DeepSeq with Quen and Yi models. These two stacks are becoming hardware incompatible. So code that can run and CUDA won’t run on Ascend without significant work. And clearly what’s gonna happen is that the battlegrounds are going to be emerging economies like Southeast Asia, Middle East, adult America. These regions will have to choose tax.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[45:04]</span></p>
+
+<p>For Western policymakers, one can conclude that good enough AI at a fraction of the cost that China provides may be too tempting. In fact, one can argue the irony here is, the export controls that the West imposed on China, they may have slowed down China’s scaling, but they accelerated their efficiency innovation. In other words, one can argue that DeepSeek exists because of the chip restrictions from China. That’s all I’m going to say on that. All right. Let’s recap what we learned so far.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[45:43]</span></p>
+
+<p>So while everybody obsesses over AI models, China is betting on atoms, not just bits. US companies like Tesla and figure AI they are waiting for one can argue for AGI before mass deployment. China is leveraging its vast manufacturing experience. and capabilities to develop good enough, not develop, not just develop, but deploy good enough models, good enough robots. It’s the same pattern we saw with AI models. So that’s going to be the new feature, that’s going to be the future, that’s going to be the new playbook that all CEOs, all CTOs will have to grapple with.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[46:22]</span></p>
+
+<p>In part five, let’s pivot to enterprise perspective and what every CEO, every CTO should be concerned about. So at a broad level, here are the five strategic questions every CTO must ask themselves. Should you have a China contingency in your AI strategy? Well, what do you do when your developers start using Quen? Should you just completely blacklist the Chinese models just because they are from China? Well, what do you do if those models are more efficient?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[47:06]</span></p>
+
+<p>What if they’re giving the results better, faster, cheaper, and you have open source and open weights? And if you have open source models with open weights, does that make sense for you versus proprietary? What about hardware dependence? Are you as an organization too dependent on a single chip architecture? Should you remain on truly just a single chip architecture? Well, what about efficiency versus capability?</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[47:33]</span></p>
+
+<p>So certainly the frontier models might be more capable, but if you have a business function for customer acquisition, for loss prevention, for fraud detection, do you want to use a model that’s deep seek style efficient versus more frontier capability? What about your software bill of material and your supply chain for AI? Do your vendors have an exposure to China? Those are some of the things that you might have to worry about. Maybe a couple of other things in our segment around myth versus reality. So the general thing that I sometimes hear about is that China is years behind the US in AI.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[48:13]</span></p>
+
+<p>Well, the reality is, as we saw, deep-seek matches frontier models at 5 % of the cost. It’s no surprise that China is leading in industrial robotics deployment. The first mass deployed humanoid factories in the world are Chinese. So those are some of the things that as technology owners, technology leaders, we have to grapple with. All right, let’s quickly look at the key takeaways from this section. um Some things that all of us have to grapple with.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[48:52]</span></p>
+
+<p>So what did we learn today? So architecture strategy. Denied hardware, China became the world leader in efficient AI. Deep-seek innovations of mixture of experts, multi-headed latent attention, are innovations that became geopolitical survival mechanisms. China is developing what I’m going to call an industrial fortress in AI. What they’re betting on is that the real value of AI is going to lie in the physical world.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[49:22]</span></p>
+
+<p>when the logical, the digital world of AI is integrated into humanoid robots, warehouses, drug discovery. They’re playing to their manufacturing strength. The emergence of competitive stacks, CUDA versus Ascend, two incompatible stacks, and certainly the wedge that China has created with open weights, open source models versus the global south influence. They are certainly regulating their economy. The Jack Ma moment is over as we just found out, but the Tech Nations are now national champions that are serving state goals in exchange for license to operate. They are certainly making significant bets with Big Fund 3 in achieving autonomy and trying to break through the export controls enforced by the US CHIPS Act.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[50:07]</span></p>
+
+<p>So they are betting that they can achieve sovereignty for semiconductors in five to 15 years. And then lastly, and perhaps a point that I’ve repeated more than once already, the approach of body versus brain, at least for now, the idea being that they can deploy good enough models at a fraction of the cost of acquiring those same humanoids um while the US companies wait for AGI. All right, I want to end this where I started, which is sanctions did not kill Chinese AI. They, in fact, created a parallel ecosystem that’s leaner, more efficient, and ruthlessly focused on industrial deployment. I’m Manav Gupta, and thank you for listening to me. Thank you for giving your time and attention to this for two episode three in the State of AI podcast.</p>
+
+<p><strong>Manav Gupta</strong> <span class="ts">[51:08]</span></p>
+
+<p>In the next episode, just to give you a teaser of what’s coming next time, we’re going to be going into the enterprise world and we’re going to talk about AI m at work. And what I’m going to be covering next time is what does the job says about AI and productivity, some of the emerging mandates from CEOs of start of companies such as Shopify and Duolingo. And maybe I’ll share with you our workforce transformation playbook. With that, thank you very much and I look forward to seeing you at the next episode. Thank you.</p>
+
+          </div>
+        </div>
+      </details>
+    </div>
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+    
+    
+    <div class="mb-12">
+      <div class="flex items-end justify-between mb-6">
+        <div>
+          <h2 class="font-serif text-2xl font-bold">Clips & Highlights</h2>
+          <p class="text-sm text-muted mt-1">15 clips from this episode</p>
+        </div>
+        <a href="/shipai/clips/" class="text-xs font-medium text-accent hover:underline">View all clips</a>
+      </div>
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Shorts</h3>
+      <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide mb-6">
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI in the Physical World</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:54</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI in the Physical World</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">AI's Dual Use Paradox</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:50</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">AI's Dual Use Paradox</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">Alibaba's Quen: The Llama of the East</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:52</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">Alibaba's Quen: The Llama of the East</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">China's 3-Pronged AI Strategy</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:42</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">China's 3-Pronged AI Strategy</p>
+          </a>
+        
+          
+          <a href="#"  class="shrink-0 w-32 group">
+            <div class="relative aspect-[9/16] rounded-lg overflow-hidden bg-gradient-to-b from-slate-700 via-blue-800 to-slate-900 mb-2 group-hover:shadow-md transition-shadow">
+              <div class="absolute inset-0 flex items-center justify-center p-3 text-center">
+                <span class="text-white text-[11px] font-bold leading-tight">CTO's 5 Strategic AI Questions</span>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center gap-1">
+                <div class="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center">
+                  <svg class="w-2.5 h-2.5 text-white ml-px" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <span class="text-[9px] text-white/60">0:57</span>
+              </div>
+              <div class="absolute top-1.5 right-1.5 bg-red-500 text-white text-[8px] font-bold px-1 py-px rounded">SHORT</div>
+            </div>
+            <p class="text-[11px] font-medium line-clamp-2 group-hover:text-accent transition-colors">CTO's 5 Strategic AI Questions</p>
+          </a>
+        
+      </div>
+      
+
+      
+      <h3 class="text-xs font-semibold tracking-[0.12em] uppercase text-muted/60 mb-3">Deep Dives</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">Act 3: The Sovereign Compute Stack</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:00</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">Act 3: The Sovereign Compute Stack</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">AI's Sputnik Moment</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">1:10</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">AI's Sputnik Moment</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">China's AI Bet: Atoms Over Bits</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">4:13</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">China's AI Bet: Atoms Over Bits</h4>
+            </div>
+          </a>
+        
+          
+          <a href="#"  class="group flex bg-white rounded-card border border-black/[0.06] overflow-hidden hover:border-black/10 hover:shadow-md transition-all">
+            <div class="w-40 shrink-0 bg-gradient-to-br from-slate-700 via-blue-800 to-slate-900 flex items-center justify-center p-3 relative">
+              <span class="text-white text-xs font-bold text-center leading-tight">China's AI & Robotics Strategy: ...</span>
+              <div class="absolute bottom-2 left-2 text-[10px] text-white/50 font-medium">3:48</div>
+            </div>
+            <div class="p-4 flex flex-col justify-center">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded">SEGMENT</span>
+              </div>
+              <h4 class="font-semibold text-sm group-hover:text-accent transition-colors line-clamp-2">China's AI & Robotics Strategy: Three-Pronged</h4>
+            </div>
+          </a>
+        
+      </div>
+      
+    </div>
+    
 
     <!-- More from This Series -->
     
@@ -344,7 +899,7 @@
   
     <a href="/shipai/episodes/agi-is-coming/" class="block relative group">
       <div class="aspect-video overflow-hidden">
-        <img src="/shipai/assets/images/og/agi-is-coming.png"
+        <img src="https://img.youtube.com/vi/Zf1Rq-hoOOc/mqdefault.jpg"
              alt="AGI is coming"
              loading="lazy"
              width="320" height="180"
@@ -388,17 +943,17 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-7-agi-is-coming/id1832355436?i=1000755763218" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
     
-      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://www.youtube.com/watch?v=Zf1Rq-hoOOc" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     
@@ -465,12 +1020,12 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-6-ai-agents/id1832355436?i=1000753648763" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -549,7 +1104,7 @@
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-5-ai-gets-a-body/id1832355436?i=1000750157728" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
@@ -592,11 +1147,7 @@
       <!-- Brand -->
       <div class="md:col-span-1">
         <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-            </svg>
-          </div>
+          <img src="/shipai/assets/images/logo.jpg" alt="Ship AI" class="w-9 h-9 rounded-lg">
           <span class="font-serif font-bold text-lg text-white">Ship AI</span>
         </div>
         <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
@@ -607,6 +1158,8 @@
         <div class="space-y-2.5">
           
             <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
           
             <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
           
