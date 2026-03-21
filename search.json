@@ -1,0 +1,113 @@
+[
+  
+  {
+    "title": "The Speed of Now",
+    "url": "/shipai/episodes/the-speed-of-now/",
+    "series": "state-of-ai",
+    "episode_number": 1,
+    "date": "Jan 13, 2026",
+    "duration": "59 min",
+    "description": "The conversation delves into the exponential growth of AI models, the impact of compute abundance, global adoption of AI, and the comparison of AI performance with human capability."
+  },
+  
+  {
+    "title": "Follow the Money",
+    "url": "/shipai/episodes/follow-the-money/",
+    "series": "state-of-ai",
+    "episode_number": 2,
+    "date": "Jan 20, 2026",
+    "duration": "1h 10 min",
+    "description": "In 2014, the largest tech companies spent $44 billion on capital investments. By 2024, that number passed $200 billion — almost all of it tied to AI."
+  },
+  
+  {
+    "title": "The Red Silicon Curtain",
+    "url": "/shipai/episodes/the-red-silicon-curtain/",
+    "series": "state-of-ai",
+    "episode_number": 3,
+    "date": "Jan 27, 2026",
+    "duration": "51 min",
+    "description": "Sanctions didn't kill Chinese AI — they mutated it into something more formidable: a leaner, inference-optimized, vertically-integrated competitor."
+  },
+  
+  {
+    "title": "AI At Work",
+    "url": "/shipai/episodes/ai-at-work/",
+    "series": "state-of-ai",
+    "episode_number": 4,
+    "date": "Feb 3, 2026",
+    "duration": "32 min",
+    "description": "The conversation explores the impact of AI adoption on the labor market, job tasks, disruption, and fluency."
+  },
+  
+  {
+    "title": "AI In Banking — Vinh Tran, RBC",
+    "url": "/shipai/episodes/ai-in-banking/",
+    "series": "guest-conversations",
+    "episode_number": 1,
+    "date": "Feb 3, 2026",
+    "duration": "40 min",
+    "description": "Vinh Tran, VP of Data and AI Platforms at RBC, shares how one of the world's largest banks is approaching AI at enterprise scale."
+  },
+  
+  {
+    "title": "Lawrence Wan, Chief Architect, BMO",
+    "url": "/shipai/episodes/lawrence-wan-chief-architect-bmo/",
+    "series": "guest-conversations",
+    "episode_number": 2,
+    "date": "Feb 10, 2026",
+    "duration": "39 min",
+    "description": "Lawrence Wan, Chief Architect and Innovation Officer at BMO, shares insights on technology transformation, AI adoption, and the future of agentic systems in banking."
+  },
+  
+  {
+    "title": "What's Next",
+    "url": "/shipai/episodes/whats-next/",
+    "series": "state-of-ai",
+    "episode_number": 5,
+    "date": "Feb 10, 2026",
+    "duration": "45 min",
+    "description": "Physical AI, autonomous systems, and where the technology is heading."
+  },
+  
+  {
+    "title": "Ozge Yeloglu, VP AI & Analytics, CIBC",
+    "url": "/shipai/episodes/ozge-yeloglu-vp-ai-analytics-cibc/",
+    "series": "guest-conversations",
+    "episode_number": 4,
+    "date": "Feb 24, 2026",
+    "duration": "52 min",
+    "description": "The conversation with Ozge Yeloglu covers her journey to becoming the VP of Advanced Analytics and AI at CIBC, her approach to deploying AI at scale, and the framework she built for success. It als..."
+  },
+  
+  {
+    "title": "The Man Behind IBM's AI Agent Gateway",
+    "url": "/shipai/episodes/mihai-criveti-ibm-context-forge/",
+    "series": "guest-conversations",
+    "episode_number": 3,
+    "date": "Mar 4, 2026",
+    "duration": "54 min",
+    "description": "Mihai Criveti, Distinguished Engineer at IBM and creator of Context Forge, on why AI agents need agentic middleware, MCP's enterprise gaps, and what production-grade agent architecture actually loo..."
+  },
+  
+  {
+    "title": "AI Agents.",
+    "url": "/shipai/episodes/ai-agents/",
+    "series": "state-of-ai",
+    "episode_number": 6,
+    "date": "Mar 6, 2026",
+    "duration": "53 min",
+    "description": "The episode explores the rise of AI agents, their evolution from chatbots, and the challenges and opportunities in deploying and scaling AI agents. It delves into the characteristics of AI agents, ..."
+  },
+  
+  {
+    "title": "AGI is coming",
+    "url": "/shipai/episodes/agi-is-coming/",
+    "series": "state-of-ai",
+    "episode_number": 7,
+    "date": "Mar 17, 2026",
+    "duration": "1h 0 min",
+    "description": "Seven Minutes to Midnight: AGI Is Coming What is AGI? When is it arriving? And what does it mean for your career, your organization, and humanity?In this episode of Ship AI, Manav Gupta delivers on..."
+  }
+  
+]

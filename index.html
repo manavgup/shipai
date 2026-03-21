@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ship AI — Podcast by Manav Gupta — Ship AI</title>
-  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ship AI — Podcast by Manav Gupta — Ship AI</title>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Ship AI — Podcast by Manav Gupta | Ship AI</title>
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="Ship AI — Podcast by Manav Gupta" />
@@ -23,724 +23,1186 @@
 {"@context":"https://schema.org","@type":"WebSite","description":"A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.","headline":"Ship AI — Podcast by Manav Gupta","image":"https://manavgup.github.io/shipai/assets/images/og/default.png","name":"Manav Gupta","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://manavgup.github.io/shipai/assets/images/og/default.png"}},"sameAs":["https://www.youtube.com/playlist?list=PLF0cewATp-wl_xK1rbE2bX2YcRVlZKUhM","https://www.linkedin.com/in/manavgupta/","https://medium.com/@manavg","https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3"],"url":"https://manavgup.github.io/shipai/"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/shipai/assets/css/main.css">
-  <link rel="alternate" type="application/atom+xml" title="Ship AI" href="/shipai/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shipai/assets/css/main.css">
+<link rel="alternate" type="application/atom+xml" title="Ship AI" href="/shipai/feed.xml">
+
 </head>
-<body>
-  <nav class="site-nav">
-    <div class="nav-inner">
-      <a href="/shipai/" class="nav-brand">Ship AI</a>
-      <div class="nav-links">
-        
-          <a href="/shipai/episodes/">Episodes</a>
-        
-          <a href="/shipai/blog/">Blog</a>
-        
-          <a href="/shipai/state-of-ai/">Slides</a>
-        
-          <a href="/shipai/about/">About</a>
-        
+<body class="bg-cream font-sans text-ink">
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/shipai/" class="flex items-center gap-2.5 group">
+      <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
+      </div>
+      <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
+    </a>
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
+      
+        <a href="/shipai/state-of-ai/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Slides</a>
+      
+        <a href="/shipai/about/" class="relative text-sm font-medium text-ink/70 hover:text-ink transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">About</a>
+      
+    </div>
+    <!-- Mobile hamburger -->
+    <button id="mobile-toggle" class="md:hidden p-2 -mr-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-cream border-t border-black/5 px-6 py-4 space-y-3">
+    
+      <a href="/shipai/episodes/" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/blog/" class="block text-sm font-medium py-1">Blog</a>
+    
+      <a href="/shipai/state-of-ai/" class="block text-sm font-medium py-1">Slides</a>
+    
+      <a href="/shipai/about/" class="block text-sm font-medium py-1">About</a>
+    
+  </div>
+</nav>
+
+
+  <main class="pt-16">
+    
+
+
+
+
+<!-- Hero + Latest Episode (side by side) -->
+<section class="relative pt-6 pb-10 md:pt-10 md:pb-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="md:grid md:grid-cols-2 md:gap-12 md:items-center">
+      <!-- Left: headline + CTA -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-6 h-[2px] bg-accent"></div>
+          <span class="text-[11px] font-semibold tracking-[0.2em] uppercase text-accent">Video Podcast</span>
+        </div>
+
+        <h1 class="font-serif text-3xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] tracking-tight mb-4">
+          AI Trends That
+          <span class="text-accent">Matter</span> for
+          Business Leaders
+        </h1>
+
+        <p class="text-base md:text-lg text-muted leading-relaxed max-w-lg mb-6">
+          Hosted by <strong class="text-ink font-semibold">Manav Gupta</strong> — exploring enterprise AI adoption, market dynamics, and what's next.
+        </p>
+
+        <!-- Platform buttons -->
+        <div class="flex flex-wrap gap-2.5 mb-5">
+          
+            <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-4 py-2 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></span>
+              Spotify
+            </a>
+          
+            <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-4 py-2 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399zM12 6.528c3.03 0 5.496 2.458 5.496 5.496 0 1.632-.576 2.832-1.392 3.744-.468.516-1.008.924-1.536 1.26-.312.192-.612.36-.876.48a3.6 3.6 0 01-.456.18c-.072.024-.144.024-.168.024h-.024l-.048-.024c-.048-.024-.048-.048-.072-.072-.024-.048-.024-.072-.024-.12 0-.072.024-.12.048-.168.048-.048.096-.072.144-.096a5.56 5.56 0 00.408-.192c.264-.144.564-.336.84-.552.492-.384.936-.84 1.272-1.392.336-.552.552-1.2.552-2.064 0-2.376-1.92-4.296-4.296-4.296-2.376 0-4.296 1.92-4.296 4.296 0 .864.216 1.512.552 2.064.336.552.78 1.008 1.272 1.392.276.216.576.408.84.552.12.072.264.144.408.192.048.024.096.048.144.096.024.048.048.096.048.168 0 .048 0 .072-.024.12-.024.024-.024.048-.072.072l-.048.024h-.024c-.024 0-.096 0-.168-.024a3.6 3.6 0 01-.456-.18 8.5 8.5 0 01-.876-.48c-.528-.336-1.068-.744-1.536-1.26C6.576 14.856 6 13.656 6 12.024 6 8.986 8.462 6.528 12 6.528zm-.024 3.168c1.296 0 2.352 1.056 2.352 2.352 0 .672-.168 1.2-.48 1.632-.312.408-.72.72-1.176.96a.132.132 0 01-.048.024.12.12 0 01-.072-.024.12.12 0 01-.024-.072c0-.048.024-.072.048-.096.408-.216.744-.48.984-.816.264-.36.384-.792.384-1.296v-.312c0-1.104-.864-1.968-1.968-1.968s-1.968.864-1.968 1.968v.312c0 .504.12.936.384 1.296.24.336.576.6.984.816.024.024.048.048.048.096a.12.12 0 01-.024.072.12.12 0 01-.072.024.132.132 0 01-.048-.024 3.36 3.36 0 01-1.176-.96c-.312-.432-.48-.96-.48-1.632 0-1.296 1.056-2.352 2.352-2.352zM12 13.2a.792.792 0 01.792.792v3.48c0 .12-.024.24-.072.348l-.696 1.632a.132.132 0 01-.048.048.084.084 0 01-.048 0 .084.084 0 01-.048 0 .132.132 0 01-.048-.048l-.696-1.632A.816.816 0 0111.064 17.472v-3.48A.792.792 0 0112 13.2z"/></svg></span>
+              Apple Podcasts
+            </a>
+          
+            <a href="https://www.youtube.com/playlist?list=PLF0cewATp-wl_xK1rbE2bX2YcRVlZKUhM" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white border border-black/8 rounded-badge px-4 py-2 text-sm font-medium hover:border-black/15 hover:-translate-y-0.5 hover:shadow-md transition-all">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span>
+              YouTube
+            </a>
+          
+        </div>
+
+        <!-- Social proof -->
+        <div class="flex items-center gap-3 text-sm text-muted">
+          <span class="font-medium text-ink/50 text-[11px] tracking-wider uppercase">Guests from</span>
+          <span class="font-bold text-ink/40 tracking-tight">IBM</span>
+          <span class="text-ink/15">|</span>
+          <span class="font-bold text-ink/40 tracking-tight">BMO</span>
+          <span class="text-ink/15">|</span>
+          <span class="font-bold text-ink/40 tracking-tight">CIBC</span>
+        </div>
+      </div>
+
+      <!-- Right: Latest Episode card -->
+      
+      <div class="mt-8 md:mt-0">
+        <div class="text-[11px] font-semibold tracking-[0.15em] uppercase text-accent mb-3">Latest Episode</div>
+        <a href="/shipai/episodes/agi-is-coming/" class="group block bg-white rounded-2xl border border-black/[0.06] overflow-hidden hover:border-black/10 transition-all duration-500 hover:shadow-xl hover:shadow-black/[0.04]">
+          
+          
+            <div class="relative">
+              <div class="aspect-video overflow-hidden">
+                <img src="/shipai/assets/images/og/agi-is-coming.png"
+                     alt="AGI is coming"
+                     loading="lazy"
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors flex items-center justify-center">
+                <div class="w-14 h-14 rounded-full bg-white/95 flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                  <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+            </div>
+          
+          <div class="p-5">
+            
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-badge">EP 7</span>
+    <span class="text-xs text-muted">State of AI</span>
+  </div>
+
+
+            <h3 class="font-serif text-xl md:text-2xl font-bold mt-2 mb-2 group-hover:text-accent transition-colors">AGI is coming</h3>
+            <p class="text-sm text-muted leading-relaxed line-clamp-2 mb-3">Seven Minutes to Midnight: AGI Is Coming What is AGI? When is it arriving? And what does it mean for your career, your organization, and humanity?In this epi...</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 text-xs text-muted">
+                <span>Mar 17, 2026</span>
+                
+                  <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+                  <span>1h 0 min</span>
+                
+              </div>
+              <span class="inline-flex items-center gap-1 text-accent text-xs font-semibold group-hover:gap-2 transition-all">
+                Listen
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<div class="h-[1px] max-w-7xl mx-auto" style="background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent)"></div>
+
+<!-- State of AI Series -->
+
+<section class="py-10 md:py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="observe flex items-start justify-between mb-8">
+      <div>
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1 rounded-badge">7-Part Series</span>
+        </div>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold tracking-tight">State of AI 2025</h2>
+        <p class="text-muted mt-2 max-w-lg">A deep dive into the forces reshaping artificial intelligence — from market dynamics to geopolitics to the workforce of tomorrow.</p>
+      </div>
+      <a href="/shipai/episodes/" class="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:gap-2.5 transition-all mt-2">
+        View all
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/agi-is-coming/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="/shipai/assets/images/og/agi-is-coming.png"
+             alt="AGI is coming"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-badge">EP 7</span>
+    <span class="text-xs text-muted">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/agi-is-coming/" class="hover:text-accent transition-colors">AGI is coming</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Mar 17, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>1h 0 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">Seven Minutes to Midnight: AGI Is Coming What is AGI? When is it arriving? And what does it mean for your career, your organization, and humanity?In this episode of Ship AI, Manav Gupta delivers on...</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+        <a href="/shipai/state-of-ai/ep07/" class="text-xs font-medium text-accent bg-accent-light/60 px-2.5 py-1 rounded-button hover:bg-accent-light transition-colors">View Slides</a>
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/ai-agents/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/nImYX3MdqFE/mqdefault.jpg"
+             alt="AI Agents."
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-badge">EP 6</span>
+    <span class="text-xs text-muted">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/ai-agents/" class="hover:text-accent transition-colors">AI Agents.</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Mar 6, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>53 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">The episode explores the rise of AI agents, their evolution from chatbots, and the challenges and opportunities in deploying and scaling AI agents. It delves into the characteristics of AI agents, ...</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=nImYX3MdqFE" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/whats-next/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/NKqZ8WLez1o/mqdefault.jpg"
+             alt="What's Next"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-badge">EP 5</span>
+    <span class="text-xs text-muted">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/whats-next/" class="hover:text-accent transition-colors">What's Next</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Feb 10, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>45 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">Physical AI, autonomous systems, and where the technology is heading.</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+        <a href="/shipai/state-of-ai/ep05/" class="text-xs font-medium text-accent bg-accent-light/60 px-2.5 py-1 rounded-button hover:bg-accent-light transition-colors">View Slides</a>
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=NKqZ8WLez1o" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/ai-at-work/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/4FrIimMGAzE/mqdefault.jpg"
+             alt="AI At Work"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-badge">EP 4</span>
+    <span class="text-xs text-muted">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/ai-at-work/" class="hover:text-accent transition-colors">AI At Work</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Feb 3, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>32 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">The conversation explores the impact of AI adoption on the labor market, job tasks, disruption, and fluency.</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+        <a href="/shipai/state-of-ai/ep04/" class="text-xs font-medium text-accent bg-accent-light/60 px-2.5 py-1 rounded-button hover:bg-accent-light transition-colors">View Slides</a>
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/episode/1EVz1rHYVMDj9jCXLtSalr" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/episode-4-ai-at-work/id1832355436?i=1000747719674" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=4FrIimMGAzE" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/the-red-silicon-curtain/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/IfG6wYkNxYs/mqdefault.jpg"
+             alt="The Red Silicon Curtain"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-badge">EP 3</span>
+    <span class="text-xs text-muted">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/the-red-silicon-curtain/" class="hover:text-accent transition-colors">The Red Silicon Curtain</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Jan 27, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>51 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">Sanctions didn't kill Chinese AI — they mutated it into something more formidable: a leaner, inference-optimized, vertically-integrated competitor.</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+        <a href="/shipai/state-of-ai/ep03/" class="text-xs font-medium text-accent bg-accent-light/60 px-2.5 py-1 rounded-button hover:bg-accent-light transition-colors">View Slides</a>
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/episode/5OQt4WYX8NTsfaKTV0uH9J" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/episode-3-the-red-silicon-curtain/id1832355436?i=1000746844707" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=IfG6wYkNxYs" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/follow-the-money/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/jHBq7leglS4/mqdefault.jpg"
+             alt="Follow the Money"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-badge">EP 2</span>
+    <span class="text-xs text-muted">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/follow-the-money/" class="hover:text-accent transition-colors">Follow the Money</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Jan 20, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>1h 10 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">In 2014, the largest tech companies spent $44 billion on capital investments. By 2024, that number passed $200 billion — almost all of it tied to AI.</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+        <a href="/shipai/state-of-ai/ep02/" class="text-xs font-medium text-accent bg-accent-light/60 px-2.5 py-1 rounded-button hover:bg-accent-light transition-colors">View Slides</a>
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/episode/4TDh40AR5Z8zP62BXpvwqL" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/episode-2-follow-the-money/id1832355436?i=1000745889839" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=jHBq7leglS4" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/the-speed-of-now/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/pLwnbZOGMlw/mqdefault.jpg"
+             alt="The Speed of Now"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-badge">EP 1</span>
+    <span class="text-xs text-muted">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/the-speed-of-now/" class="hover:text-accent transition-colors">The Speed of Now</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Jan 13, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>59 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">The conversation delves into the exponential growth of AI models, the impact of compute abundance, global adoption of AI, and the comparison of AI performance with human capability.</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+        <a href="/shipai/state-of-ai/ep01/" class="text-xs font-medium text-accent bg-accent-light/60 px-2.5 py-1 rounded-button hover:bg-accent-light transition-colors">View Slides</a>
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/episode/4gjzKp52DJ4xjqzaOMS8KJ" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/episode-1-the-speed-of-now/id1832355436?i=1000744980784" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=pLwnbZOGMlw" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<div class="h-[1px] max-w-7xl mx-auto" style="background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent)"></div>
+
+<!-- Guest Conversations -->
+
+<section class="py-10 md:py-14">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="observe mb-8">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-badge">Interview Series</span>
+      </div>
+      <h2 class="font-serif text-3xl md:text-4xl font-bold tracking-tight">Guest Conversations</h2>
+      <p class="text-muted mt-2 max-w-lg">In-depth conversations with enterprise AI leaders on the front lines of transformation.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/ozge-yeloglu-vp-ai-analytics-cibc/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="/shipai/assets/images/og/default.png"
+             alt="Ozge Yeloglu, VP AI & Analytics, CIBC"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-badge">Guest</span>
+    <span class="text-xs text-muted">Conversation</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/ozge-yeloglu-vp-ai-analytics-cibc/" class="hover:text-accent transition-colors">Ozge Yeloglu, VP AI & Analytics, CIBC</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Feb 24, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>52 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">The conversation with Ozge Yeloglu covers her journey to becoming the VP of Advanced Analytics and AI at CIBC, her approach to deploying AI at scale, and the framework she built for success. It als...</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/@manavgupta1284" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/mihai-criveti-ibm-context-forge/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/XFKjVkMRRdU/mqdefault.jpg"
+             alt="The Man Behind IBM's AI Agent Gateway"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-badge">Guest</span>
+    <span class="text-xs text-muted">Conversation</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/mihai-criveti-ibm-context-forge/" class="hover:text-accent transition-colors">The Man Behind IBM's AI Agent Gateway</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Mar 4, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>54 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">Mihai Criveti, Distinguished Engineer at IBM and creator of Context Forge, on why AI agents need agentic middleware, MCP's enterprise gaps, and what production-grade agent architecture actually loo...</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=XFKjVkMRRdU" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/lawrence-wan-chief-architect-bmo/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/AAOwv4hqYPs/mqdefault.jpg"
+             alt="Lawrence Wan, Chief Architect, BMO"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-badge">Guest</span>
+    <span class="text-xs text-muted">Conversation</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/lawrence-wan-chief-architect-bmo/" class="hover:text-accent transition-colors">Lawrence Wan, Chief Architect, BMO</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Feb 10, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>39 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">Lawrence Wan, Chief Architect and Innovation Officer at BMO, shares insights on technology transformation, AI adoption, and the future of agentic systems in banking.</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/episode/3k7htSbgrddU43epjL7XR3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/lawrence-wan-chief-architect-bmo/id1832355436?i=1000749085451" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=AAOwv4hqYPs" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+        <div class="observe">
+          
+
+
+<article class="bg-white rounded-card border border-black/[0.06] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/ai-in-banking/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/eyelv9dUxPg/mqdefault.jpg"
+             alt="AI In Banking — Vinh Tran, RBC"
+             loading="lazy"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-badge">Guest</span>
+    <span class="text-xs text-muted">Conversation</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/ai-in-banking/" class="hover:text-accent transition-colors">AI In Banking — Vinh Tran, RBC</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+      <span>Feb 3, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>40 min</span>
+      
+    </div>
+    <p class="text-sm text-muted leading-relaxed mt-2 line-clamp-2">Vinh Tran, VP of Data and AI Platforms at RBC, shares how one of the world's largest banks is approaching AI at enterprise scale.</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/episode/0Ip4P7B6qbAjmHSPEFgmSp" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/ai-in-banking-vinh-tran-rbc/id1832355436?i=1000747861001" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=eyelv9dUxPg" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<!-- Newsletter CTA -->
+<section class="py-10 md:py-14 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="observe max-w-xl mx-auto text-center">
+      <h2 class="font-serif text-2xl md:text-3xl font-bold mb-3">Stay in the loop</h2>
+      <p class="text-muted mb-6">Get notified when new episodes drop — plus exclusive AI insights for business leaders.</p>
+      <div class="flex gap-3 max-w-md mx-auto">
+        <input type="email" placeholder="your@email.com" class="flex-1 px-4 py-3 rounded-lg border border-black/10 bg-cream text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-colors">
+        <button class="px-6 py-3 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-hover transition-colors">Subscribe</button>
       </div>
     </div>
-  </nav>
-
-  <main>
-    <div class="header">
-  <h1>Ship AI</h1>
-  <p class="tagline">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists.</p>
-  <p class="host">Hosted by Manav Gupta</p>
-  <div class="platforms">
-    
-      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-        Spotify
-      </a>
-    
-      <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399zM12 6.528c3.03 0 5.496 2.458 5.496 5.496 0 1.632-.576 2.832-1.392 3.744-.468.516-1.008.924-1.536 1.26-.312.192-.612.36-.876.48a3.6 3.6 0 01-.456.18c-.072.024-.144.024-.168.024h-.024l-.048-.024c-.048-.024-.048-.048-.072-.072-.024-.048-.024-.072-.024-.12 0-.072.024-.12.048-.168.048-.048.096-.072.144-.096a5.56 5.56 0 00.408-.192c.264-.144.564-.336.84-.552.492-.384.936-.84 1.272-1.392.336-.552.552-1.2.552-2.064 0-2.376-1.92-4.296-4.296-4.296-2.376 0-4.296 1.92-4.296 4.296 0 .864.216 1.512.552 2.064.336.552.78 1.008 1.272 1.392.276.216.576.408.84.552.12.072.264.144.408.192.048.024.096.048.144.096.024.048.048.096.048.168 0 .048 0 .072-.024.12-.024.024-.024.048-.072.072l-.048.024h-.024c-.024 0-.096 0-.168-.024a3.6 3.6 0 01-.456-.18 8.5 8.5 0 01-.876-.48c-.528-.336-1.068-.744-1.536-1.26C6.576 14.856 6 13.656 6 12.024 6 8.986 8.462 6.528 12 6.528zm-.024 3.168c1.296 0 2.352 1.056 2.352 2.352 0 .672-.168 1.2-.48 1.632-.312.408-.72.72-1.176.96a.132.132 0 01-.048.024.12.12 0 01-.072-.024.12.12 0 01-.024-.072c0-.048.024-.072.048-.096.408-.216.744-.48.984-.816.264-.36.384-.792.384-1.296v-.312c0-1.104-.864-1.968-1.968-1.968s-1.968.864-1.968 1.968v.312c0 .504.12.936.384 1.296.24.336.576.6.984.816.024.024.048.048.048.096a.12.12 0 01-.024.072.12.12 0 01-.072.024.132.132 0 01-.048-.024 3.36 3.36 0 01-1.176-.96c-.312-.432-.48-.96-.48-1.632 0-1.296 1.056-2.352 2.352-2.352zM12 13.2a.792.792 0 01.792.792v3.48c0 .12-.024.24-.072.348l-.696 1.632a.132.132 0 01-.048.048.084.084 0 01-.048 0 .084.084 0 01-.048 0 .132.132 0 01-.048-.048l-.696-1.632A.816.816 0 0111.064 17.472v-3.48A.792.792 0 0112 13.2z"/></svg>
-        Apple Podcasts
-      </a>
-    
-      <a href="https://www.youtube.com/playlist?list=PLF0cewATp-wl_xK1rbE2bX2YcRVlZKUhM" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        YouTube
-      </a>
-    
   </div>
-</div>
-
-
-
-
-
-<div class="series-section">
-  <div class="series-header">
-    <h2>State of AI 2025</h2>
-    <span class="series-badge badge--s1">6-Part Series</span>
-  </div>
-  <p class="series-desc">A deep dive into the BOND AI Trends Report — adoption speed, economics, global competition, workforce impact, and what's next.</p>
-  <div class="episodes-grid">
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/the-speed-of-now/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/pLwnbZOGMlw/mqdefault.jpg"
-           alt="The Speed of Now"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 1</div>
-    <a href="/shipai/episodes/the-speed-of-now/" class="ep-title-link">
-      <div class="ep-title">The Speed of Now</div>
-    </a>
-    <div class="ep-meta">
-      <span>Jan 13, 2026</span>
-      <span>59 min</span>
-    </div>
-    <p class="ep-description">The conversation delves into the exponential growth of AI models, the impact of compute abundance, global adoption of AI, and the comparison of AI performance with human capability.</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep01/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/4gjzKp52DJ4xjqzaOMS8KJ" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/episode-1-the-speed-of-now/id1832355436?i=1000744980784" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=pLwnbZOGMlw" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/follow-the-money/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/jHBq7leglS4/mqdefault.jpg"
-           alt="Follow the Money"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 2</div>
-    <a href="/shipai/episodes/follow-the-money/" class="ep-title-link">
-      <div class="ep-title">Follow the Money</div>
-    </a>
-    <div class="ep-meta">
-      <span>Jan 20, 2026</span>
-      <span>1h 10 min</span>
-    </div>
-    <p class="ep-description">In 2014, the largest tech companies spent $44 billion on capital investments. By 2024, that number passed $200 billion — almost all of it tied to AI.</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep02/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/4TDh40AR5Z8zP62BXpvwqL" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/episode-2-follow-the-money/id1832355436?i=1000745889839" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=jHBq7leglS4" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/the-red-silicon-curtain/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/IfG6wYkNxYs/mqdefault.jpg"
-           alt="The Red Silicon Curtain"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 3</div>
-    <a href="/shipai/episodes/the-red-silicon-curtain/" class="ep-title-link">
-      <div class="ep-title">The Red Silicon Curtain</div>
-    </a>
-    <div class="ep-meta">
-      <span>Jan 27, 2026</span>
-      <span>51 min</span>
-    </div>
-    <p class="ep-description">Sanctions didn't kill Chinese AI — they mutated it into something more formidable: a leaner, inference-optimized, vertically-integrated competitor.</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep03/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/5OQt4WYX8NTsfaKTV0uH9J" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/episode-3-the-red-silicon-curtain/id1832355436?i=1000746844707" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=IfG6wYkNxYs" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/ai-at-work/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/4FrIimMGAzE/mqdefault.jpg"
-           alt="AI At Work"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 4</div>
-    <a href="/shipai/episodes/ai-at-work/" class="ep-title-link">
-      <div class="ep-title">AI At Work</div>
-    </a>
-    <div class="ep-meta">
-      <span>Feb 3, 2026</span>
-      <span>32 min</span>
-    </div>
-    <p class="ep-description">The conversation explores the impact of AI adoption on the labor market, job tasks, disruption, and fluency.</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep04/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/1EVz1rHYVMDj9jCXLtSalr" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/episode-4-ai-at-work/id1832355436?i=1000747719674" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=4FrIimMGAzE" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/whats-next/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/NKqZ8WLez1o/mqdefault.jpg"
-           alt="What's Next"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 5</div>
-    <a href="/shipai/episodes/whats-next/" class="ep-title-link">
-      <div class="ep-title">What's Next</div>
-    </a>
-    <div class="ep-meta">
-      <span>Feb 10, 2026</span>
-      <span>45 min</span>
-    </div>
-    <p class="ep-description">Physical AI, autonomous systems, and where the technology is heading.</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep05/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=NKqZ8WLez1o" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/ai-agents/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/nImYX3MdqFE/mqdefault.jpg"
-           alt="AI Agents."
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 6</div>
-    <a href="/shipai/episodes/ai-agents/" class="ep-title-link">
-      <div class="ep-title">AI Agents.</div>
-    </a>
-    <div class="ep-meta">
-      <span>Mar 6, 2026</span>
-      <span>53 min</span>
-    </div>
-    <p class="ep-description">The episode explores the rise of AI agents, their evolution from chatbots, and the challenges and opportunities in deploying and scaling AI agents. It delves into the characteristics of AI agents, ...</p>
-  </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=nImYX3MdqFE" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card">
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 7</div>
-    <a href="/shipai/episodes/agi-is-coming/" class="ep-title-link">
-      <div class="ep-title">AGI is coming</div>
-    </a>
-    <div class="ep-meta">
-      <span>Mar 17, 2026</span>
-      <span>1h 0 min</span>
-    </div>
-    <p class="ep-description">Seven Minutes to Midnight: AGI Is Coming What is AGI? When is it arriving? And what does it mean for your career, your organization, and humanity?In this episode of Ship AI, Manav Gupta delivers on...</p>
-  </div>
-  <div class="ep-actions">
-    
-    <a href="/shipai/state-of-ai/ep07/" class="btn btn--slides">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      View Slides
-    </a>
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/@manavgupta1284" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-  </div>
-</div>
-
-
-
-<div class="series-section">
-  <div class="series-header">
-    <h2>Guest Conversations</h2>
-    <span class="series-badge badge--s2">Interview Series</span>
-  </div>
-  <p class="series-desc">Interviews with AI leaders, practitioners, and researchers shaping the future of enterprise AI.</p>
-  <div class="episodes-grid">
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/ai-in-banking/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/eyelv9dUxPg/mqdefault.jpg"
-           alt="AI In Banking — Vinh Tran, RBC"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 1</div>
-    <a href="/shipai/episodes/ai-in-banking/" class="ep-title-link">
-      <div class="ep-title">AI In Banking — Vinh Tran, RBC</div>
-    </a>
-    <div class="ep-meta">
-      <span>Feb 3, 2026</span>
-      <span>40 min</span>
-    </div>
-    <p class="ep-description">Vinh Tran, VP of Data and AI Platforms at RBC, shares how one of the world's largest banks is approaching AI at enterprise scale.</p>
-  </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/0Ip4P7B6qbAjmHSPEFgmSp" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ai-in-banking-vinh-tran-rbc/id1832355436?i=1000747861001" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=eyelv9dUxPg" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/lawrence-wan-chief-architect-bmo/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/AAOwv4hqYPs/mqdefault.jpg"
-           alt="Lawrence Wan, Chief Architect, BMO"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 2</div>
-    <a href="/shipai/episodes/lawrence-wan-chief-architect-bmo/" class="ep-title-link">
-      <div class="ep-title">Lawrence Wan, Chief Architect, BMO</div>
-    </a>
-    <div class="ep-meta">
-      <span>Feb 10, 2026</span>
-      <span>39 min</span>
-    </div>
-    <p class="ep-description">Lawrence Wan, Chief Architect and Innovation Officer at BMO, shares insights on technology transformation, AI adoption, and the future of agentic systems in banking.</p>
-  </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/episode/3k7htSbgrddU43epjL7XR3" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/lawrence-wan-chief-architect-bmo/id1832355436?i=1000749085451" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=AAOwv4hqYPs" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card has-thumb">
-  
-    
-    <a href="/shipai/episodes/mihai-criveti-ibm-context-forge/" class="ep-thumb-link">
-      <img src="https://img.youtube.com/vi/XFKjVkMRRdU/mqdefault.jpg"
-           alt="The Man Behind IBM's AI Agent Gateway"
-           class="ep-thumb"
-           loading="lazy"
-           width="320" height="180">
-      <span class="ep-thumb-play">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
-      </span>
-    </a>
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 3</div>
-    <a href="/shipai/episodes/mihai-criveti-ibm-context-forge/" class="ep-title-link">
-      <div class="ep-title">The Man Behind IBM's AI Agent Gateway</div>
-    </a>
-    <div class="ep-meta">
-      <span>Mar 4, 2026</span>
-      <span>54 min</span>
-    </div>
-    <p class="ep-description">Mihai Criveti, Distinguished Engineer at IBM and creator of Context Forge, on why AI agents need agentic middleware, MCP's enterprise gaps, and what production-grade agent architecture actually loo...</p>
-  </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/watch?v=XFKjVkMRRdU" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-      
-
-<div class="episode-card">
-  
-  <div class="ep-card-body">
-    <div class="ep-number">Episode 4</div>
-    <a href="/shipai/episodes/ozge-yeloglu-vp-ai-analytics-cibc/" class="ep-title-link">
-      <div class="ep-title">Ozge Yeloglu, VP AI & Analytics, CIBC</div>
-    </a>
-    <div class="ep-meta">
-      <span>Feb 24, 2026</span>
-      <span>52 min</span>
-    </div>
-    <p class="ep-description">The conversation with Ozge Yeloglu covers her journey to becoming the VP of Advanced Analytics and AI at CIBC, her approach to deploying AI at scale, and the framework she built for success. It als...</p>
-  </div>
-  <div class="ep-actions">
-    
-    
-      
-<div class="platform-buttons">
-  
-    <a href="https://open.spotify.com/show/5T0b1sFoRRJKZMSMnBkYfq" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-      Spotify
-    </a>
-  
-  
-    <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1807338029" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399z"/></svg>
-      Apple
-    </a>
-  
-  
-    <a href="https://www.youtube.com/@manavgupta1284" class="btn btn--platform" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      YouTube
-    </a>
-  
-</div>
-
-    
-  </div>
-</div>
-
-    
-  </div>
-</div>
-
+</section>
 
 
 
 
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      &copy; 2026 Manav Gupta &middot;
-      <a href="/shipai/feed.xml">RSS</a>
+  <footer class="bg-ink text-white/80 py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </div>
+          <span class="font-serif font-bold text-lg text-white">Ship AI</span>
+        </div>
+        <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
+      </div>
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Quick Links</h4>
+        <div class="space-y-2.5">
+          
+            <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
+          
+            <a href="/shipai/state-of-ai/" class="block text-sm hover:text-white transition-colors">Slides</a>
+          
+            <a href="/shipai/about/" class="block text-sm hover:text-white transition-colors">About</a>
+          
+        </div>
+      </div>
+      <!-- Series -->
+      <div>
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Series</h4>
+        <div class="space-y-2.5">
+          <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">State of AI 2025</a>
+          <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Guest Conversations</a>
+        </div>
+      </div>
+      <!-- Listen On -->
+      <div>
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Listen On</h4>
+        <div class="space-y-2.5">
+          
+            <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></span>
+              Spotify
+            </a>
+          
+            <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399zM12 6.528c3.03 0 5.496 2.458 5.496 5.496 0 1.632-.576 2.832-1.392 3.744-.468.516-1.008.924-1.536 1.26-.312.192-.612.36-.876.48a3.6 3.6 0 01-.456.18c-.072.024-.144.024-.168.024h-.024l-.048-.024c-.048-.024-.048-.048-.072-.072-.024-.048-.024-.072-.024-.12 0-.072.024-.12.048-.168.048-.048.096-.072.144-.096a5.56 5.56 0 00.408-.192c.264-.144.564-.336.84-.552.492-.384.936-.84 1.272-1.392.336-.552.552-1.2.552-2.064 0-2.376-1.92-4.296-4.296-4.296-2.376 0-4.296 1.92-4.296 4.296 0 .864.216 1.512.552 2.064.336.552.78 1.008 1.272 1.392.276.216.576.408.84.552.12.072.264.144.408.192.048.024.096.048.144.096.024.048.048.096.048.168 0 .048 0 .072-.024.12-.024.024-.024.048-.072.072l-.048.024h-.024c-.024 0-.096 0-.168-.024a3.6 3.6 0 01-.456-.18 8.5 8.5 0 01-.876-.48c-.528-.336-1.068-.744-1.536-1.26C6.576 14.856 6 13.656 6 12.024 6 8.986 8.462 6.528 12 6.528zm-.024 3.168c1.296 0 2.352 1.056 2.352 2.352 0 .672-.168 1.2-.48 1.632-.312.408-.72.72-1.176.96a.132.132 0 01-.048.024.12.12 0 01-.072-.024.12.12 0 01-.024-.072c0-.048.024-.072.048-.096.408-.216.744-.48.984-.816.264-.36.384-.792.384-1.296v-.312c0-1.104-.864-1.968-1.968-1.968s-1.968.864-1.968 1.968v.312c0 .504.12.936.384 1.296.24.336.576.6.984.816.024.024.048.048.048.096a.12.12 0 01-.024.072.12.12 0 01-.072.024.132.132 0 01-.048-.024 3.36 3.36 0 01-1.176-.96c-.312-.432-.48-.96-.48-1.632 0-1.296 1.056-2.352 2.352-2.352zM12 13.2a.792.792 0 01.792.792v3.48c0 .12-.024.24-.072.348l-.696 1.632a.132.132 0 01-.048.048.084.084 0 01-.048 0 .084.084 0 01-.048 0 .132.132 0 01-.048-.048l-.696-1.632A.816.816 0 0111.064 17.472v-3.48A.792.792 0 0112 13.2z"/></svg></span>
+              Apple Podcasts
+            </a>
+          
+            <a href="https://www.youtube.com/playlist?list=PLF0cewATp-wl_xK1rbE2bX2YcRVlZKUhM" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span>
+              YouTube
+            </a>
+          
+        </div>
+      </div>
     </div>
-  </footer>
+    <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <span class="text-xs text-white/30">&copy; 2026 Ship AI. All rights reserved.</span>
+      <a href="/shipai/feed.xml" class="text-xs text-white/30 hover:text-white/60 transition-colors">RSS Feed</a>
+    </div>
+  </div>
+</footer>
+
+
+  <script>
+  // Sticky nav scroll effect
+  (function() {
+    var nav = document.getElementById('main-nav');
+    if (!nav) return;
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) {
+        nav.classList.add('nav-scrolled');
+      } else {
+        nav.classList.remove('nav-scrolled');
+      }
+    });
+  })();
+
+  // Scroll fade-in animations
+  (function() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.observe').forEach(function(el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+      observer.observe(el);
+    });
+  })();
+  </script>
 </body>
 </html>
