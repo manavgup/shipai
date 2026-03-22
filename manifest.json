@@ -1,0 +1,21 @@
+{
+  "name": "Ship AI",
+  "short_name": "Ship AI",
+  "description": "AI trends, enterprise adoption, and what it means for business leaders",
+  "start_url": "/shipai/",
+  "display": "standalone",
+  "background_color": "#faf8f5",
+  "theme_color": "#1e40af",
+  "icons": [
+    {
+      "src": "/shipai/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/shipai/assets/images/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}
