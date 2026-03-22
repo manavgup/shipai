@@ -192,14 +192,14 @@
     
     <div class="flex flex-wrap gap-2 mb-5">
       
-        <span class="text-xs font-semibold text-accent bg-accent-light px-2.5 py-1 rounded-badge uppercase tracking-wide">blog</span>
+        <span class="text-xs font-semibold text-accent dark:text-blue-400 bg-accent-light dark:bg-blue-900/40 px-2.5 py-1 rounded-badge uppercase tracking-wide">blog</span>
       
       
-        <span class="text-xs font-medium text-muted bg-black/[0.04] px-2.5 py-1 rounded-badge">ai-workforce</span>
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">ai-workforce</span>
       
-        <span class="text-xs font-medium text-muted bg-black/[0.04] px-2.5 py-1 rounded-badge">enterprise-ai</span>
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">enterprise-ai</span>
       
-        <span class="text-xs font-medium text-muted bg-black/[0.04] px-2.5 py-1 rounded-badge">productivity</span>
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">productivity</span>
       
     </div>
     
@@ -241,7 +241,7 @@
 
         <!-- Mobile ToC (collapsible) -->
         <div class="lg:hidden mb-8" id="mobile-toc-wrapper">
-          <details class="bg-white rounded-card border border-black/[0.06] shadow-card">
+          <details class="bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] shadow-card">
             <summary class="cursor-pointer px-5 py-3 font-serif font-semibold text-sm text-ink flex items-center justify-between select-none">
               Table of Contents
               <svg class="w-4 h-4 text-muted transition-transform details-open-rotate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -299,13 +299,13 @@
         </div>
 
         <!-- Share buttons -->
-        <div class="mt-14 pt-8 border-t border-black/[0.06]">
+        <div class="mt-14 pt-8 border-t border-black/[0.06] dark:border-white/[0.08]">
           <h3 class="font-serif text-lg font-bold text-ink mb-4">Share this article</h3>
           <div class="flex flex-wrap gap-3">
             <!-- Twitter/X -->
             <a href="https://twitter.com/intent/tweet?text=AI+Is+Changing+Work%2C+Not+Replacing+Workers&url=https%3A%2F%2Fmanavgup.github.io%2Fshipai%2Fblog%2F2026%2F02%2F05%2Fai-changing-work-not-replacing-workers%2F"
                target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-button bg-black/[0.04] hover:bg-black/[0.08] text-ink text-sm font-medium transition-colors"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-button bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.12] text-ink dark:text-gray-200 text-sm font-medium transition-colors"
                aria-label="Share on X (Twitter)">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -315,7 +315,7 @@
             <!-- LinkedIn -->
             <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmanavgup.github.io%2Fshipai%2Fblog%2F2026%2F02%2F05%2Fai-changing-work-not-replacing-workers%2F"
                target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-button bg-black/[0.04] hover:bg-black/[0.08] text-ink text-sm font-medium transition-colors"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-button bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.12] text-ink dark:text-gray-200 text-sm font-medium transition-colors"
                aria-label="Share on LinkedIn">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -324,7 +324,7 @@
             </a>
             <!-- Copy link -->
             <button onclick="copyPostLink(this)"
-                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-button bg-black/[0.04] hover:bg-black/[0.08] text-ink text-sm font-medium transition-colors cursor-pointer"
+                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-button bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.12] text-ink dark:text-gray-200 text-sm font-medium transition-colors cursor-pointer"
                     aria-label="Copy link to clipboard">
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
@@ -336,9 +336,9 @@
 
         <!-- Related Episodes -->
         
-        <div class="mt-14 pt-8 border-t border-black/[0.06]">
+        <div class="mt-14 pt-8 border-t border-black/[0.06] dark:border-white/[0.08]">
           <h3 class="font-serif text-xl font-bold text-ink mb-2">Related Episodes</h3>
-          <p class="text-sm text-muted mb-6">Dive deeper into these topics in the podcast.</p>
+          <p class="text-sm text-muted dark:text-gray-400 mb-6">Dive deeper into these topics in the podcast.</p>
           <div class="grid sm:grid-cols-2 gap-5">
             
               
@@ -377,7 +377,7 @@
     <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
       <a href="/shipai/episodes/ai-at-work/" class="hover:text-accent transition-colors">AI At Work</a>
     </h3>
-    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted">
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted dark:text-gray-500">
       <span>Feb 3, 2026</span>
       
         <span class="w-1 h-1 rounded-full bg-muted/40"></span>
@@ -396,17 +396,17 @@
 
   <div class="flex gap-1">
     
-      <a href="https://open.spotify.com/episode/1EVz1rHYVMDj9jCXLtSalr" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://open.spotify.com/episode/1EVz1rHYVMDj9jCXLtSalr" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
         <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       </a>
     
     
-      <a href="https://podcasts.apple.com/us/podcast/episode-4-ai-at-work/id1832355436?i=1000747719674" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://podcasts.apple.com/us/podcast/episode-4-ai-at-work/id1832355436?i=1000747719674" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
         <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
       </a>
     
     
-      <a href="https://www.youtube.com/watch?v=4FrIimMGAzE" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] flex items-center justify-center hover:bg-black/[0.08] transition-colors">
+      <a href="https://www.youtube.com/watch?v=4FrIimMGAzE" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
         <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     
@@ -426,7 +426,7 @@
         
 
         <!-- Subscribe CTA -->
-        <div class="mt-14 mb-4 bg-accent/[0.04] border border-accent/10 rounded-card p-8 text-center">
+        <div class="mt-14 mb-4 bg-accent/[0.04] dark:bg-accent/[0.08] border border-accent/10 dark:border-accent/20 rounded-card p-8 text-center">
           <div class="flex justify-center mb-4">
             <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
               <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -435,7 +435,7 @@
             </div>
           </div>
           <h3 class="font-serif text-xl font-bold text-ink mb-2">Enjoying this article?</h3>
-          <p class="text-sm text-muted max-w-md mx-auto mb-5">Ship AI is a video podcast covering the trends, tools, and strategies driving enterprise AI. New episodes every two weeks.</p>
+          <p class="text-sm text-muted dark:text-gray-400 max-w-md mx-auto mb-5">Ship AI is a video podcast covering the trends, tools, and strategies driving enterprise AI. New episodes every two weeks.</p>
           <div class="flex flex-wrap items-center justify-center gap-3">
             <a href="/shipai/episodes/" class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-white text-sm font-semibold rounded-button hover:bg-accent-hover transition-colors">
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -443,7 +443,7 @@
               </svg>
               Browse Episodes
             </a>
-            <a href="/shipai/" class="inline-flex items-center gap-2 px-5 py-2.5 bg-black/[0.04] text-ink text-sm font-semibold rounded-button hover:bg-black/[0.08] transition-colors">
+            <a href="/shipai/" class="inline-flex items-center gap-2 px-5 py-2.5 bg-black/[0.04] dark:bg-white/[0.08] text-ink dark:text-gray-200 text-sm font-semibold rounded-button hover:bg-black/[0.08] dark:hover:bg-white/[0.12] transition-colors">
               Visit Homepage
             </a>
           </div>
@@ -454,12 +454,12 @@
       <!-- Desktop ToC sidebar -->
       <aside class="hidden lg:block">
         <div class="sticky top-24">
-          <nav class="bg-white rounded-card border border-black/[0.06] shadow-card p-5" id="desktop-toc-wrapper" aria-label="Table of contents">
+          <nav class="bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] shadow-card p-5" id="desktop-toc-wrapper" aria-label="Table of contents">
             <h4 class="font-serif font-bold text-sm text-ink mb-3 uppercase tracking-wide">On this page</h4>
             <div id="desktop-toc"></div>
           </nav>
           <!-- Read time & word count -->
-          <div class="mt-4 px-1 text-xs text-muted space-y-1">
+          <div class="mt-4 px-1 text-xs text-muted dark:text-gray-400 space-y-1">
             <div class="flex items-center gap-1.5">
               <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
