@@ -167,7 +167,12 @@
 
     
     
-    <div class="mb-8">
+    
+    
+
+    <!-- Featured post (latest) — uses blog-card component in horizontal variant -->
+    
+    <div class="mb-12 blog-item" data-tags="ai-governance agentic-ai enterprise-ai eu-ai-act compliance" data-title="ai governance in the age of agents" data-excerpt="we are entering an era defined not just by ai models, but by ai agents — autonomous systems that perceive, reason, and act in the world. as these capabilities expand, so too does the responsibility to govern them.">
       
 
 
@@ -223,11 +228,83 @@
 
     </div>
 
-    
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      
+    <!-- Filter bar -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-black/[0.06]">
+      <div class="flex flex-wrap gap-4 md:gap-6" id="filter-tabs">
+        <button class="filter-tab text-sm font-semibold text-ink pb-1 relative active" data-filter="all" onclick="filterPosts(this)">
+          All
+          <span class="absolute bottom-[-2px] left-0 w-full h-[2px] bg-accent"></span>
+        </button>
         
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="agentic-ai" onclick="filterPosts(this)">
+          Agentic ai
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="ai-adoption" onclick="filterPosts(this)">
+          Ai adoption
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="ai-governance" onclick="filterPosts(this)">
+          Ai governance
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="ai-workforce" onclick="filterPosts(this)">
+          Ai workforce
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="china-ai" onclick="filterPosts(this)">
+          China ai
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="compliance" onclick="filterPosts(this)">
+          Compliance
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="enterprise-ai" onclick="filterPosts(this)">
+          Enterprise ai
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="enterprise-strategy" onclick="filterPosts(this)">
+          Enterprise strategy
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="eu-ai-act" onclick="filterPosts(this)">
+          Eu ai act
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="geopolitics" onclick="filterPosts(this)">
+          Geopolitics
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="productivity" onclick="filterPosts(this)">
+          Productivity
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+      </div>
+      <div class="relative">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        <input type="text" id="search-input" placeholder="Search posts..." oninput="searchPosts(this.value)" class="pl-10 pr-4 py-2.5 w-full md:w-64 bg-white border border-black/8 rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition-colors" />
+      </div>
+    </div>
+
+    <!-- Post grid (remaining posts) — uses blog-card component -->
+    
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="posts-grid">
+      
+        <div class="blog-item" data-tags="ai-workforce enterprise-ai productivity" data-title="ai is changing work, not replacing workers" data-excerpt="episode 4 of ship ai was the hardest one to make. not because the data was difficult to find – there’s more research on ai and labor markets than on almost any other ai topic right now. it was hard because the data tells a story that defies the two dominant narratives. ai is neither the job-destr...">
+          
 
 
 
@@ -278,8 +355,10 @@
 </article>
 
 
+        </div>
       
-        
+        <div class="blog-item" data-tags="china-ai geopolitics enterprise-strategy" data-title="china's ai strategy: what every executive needs to know" data-excerpt="when we recorded episode 3 of ship ai, i expected to tell a story about how us export controls were slowing down chinese ai. the story i actually found was the opposite. sanctions didn’t kill chinese ai – they mutated it into something leaner, more efficient, and in some respects more formidable ...">
+          
 
 
 
@@ -330,8 +409,10 @@
 </article>
 
 
+        </div>
       
-        
+        <div class="blog-item" data-tags="ai-adoption enterprise-ai" data-title="5 things that surprised me about ai adoption speed" data-excerpt="when i started pulling together the research for our first episode of ship ai, i thought i had a decent handle on how fast ai was moving. i’ve been in enterprise tech long enough to have lived through the cloud migration wave, the mobile-first scramble, and the big data hype cycle. i figured ai a...">
+          
 
 
 
@@ -380,13 +461,66 @@
 </article>
 
 
+        </div>
       
     </div>
     
 
+    <!-- No results -->
+    <div id="no-results" class="hidden text-center py-16">
+      <div class="max-w-md mx-auto">
+        <svg class="w-16 h-16 mx-auto text-muted/30 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+        </svg>
+        <p class="text-muted text-lg font-medium mb-1">No posts found</p>
+        <p class="text-muted/70 text-sm">Try a different search term or clear the filters.</p>
+      </div>
+    </div>
+
     
   </div>
 </section>
+
+<script>
+var activeFilter = 'all';
+
+function filterPosts(btn) {
+  activeFilter = btn.dataset.filter;
+  // Update tab styles
+  document.querySelectorAll('.filter-tab').forEach(function(t) {
+    t.classList.remove('font-semibold', 'text-ink', 'active');
+    t.classList.add('font-medium', 'text-muted');
+    t.querySelector('span').style.width = '0';
+  });
+  btn.classList.add('font-semibold', 'text-ink', 'active');
+  btn.classList.remove('font-medium', 'text-muted');
+  btn.querySelector('span').style.width = '100%';
+  applyFilters();
+}
+
+function searchPosts(query) {
+  applyFilters(query.toLowerCase());
+}
+
+function applyFilters(query) {
+  if (!query) query = document.getElementById('search-input').value.toLowerCase();
+  var items = document.querySelectorAll('.blog-item');
+  var visible = 0;
+  items.forEach(function(item) {
+    var tags = item.dataset.tags || '';
+    var matchesTag = activeFilter === 'all' || tags.indexOf(activeFilter) !== -1;
+    var matchesSearch = !query || item.dataset.title.indexOf(query) !== -1 || (item.dataset.excerpt && item.dataset.excerpt.indexOf(query) !== -1);
+    if (matchesTag && matchesSearch) {
+      item.style.display = '';
+      visible++;
+    } else {
+      item.style.display = 'none';
+    }
+  });
+  document.getElementById('no-results').classList.toggle('hidden', visible > 0);
+}
+</script>
+
 
   </main>
 
