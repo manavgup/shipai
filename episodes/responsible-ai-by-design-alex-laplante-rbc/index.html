@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-300">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsible AI by Design | Alex LaPlante, RBC — Ship AI</title>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Responsible AI by Design Alex LaPlante, RBC | Ship AI</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Responsible AI by Design Alex LaPlante, RBC" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Alex LaPlante is VP of Cash Management Technology at RBC, former Interim Head of Borealis AI, co-author in Harvard Business Review, and a member of Canada’s federal AI Strategy Task Force. In this conversation, she unpacks what separates organizations that actually ship AI from those stuck in demo mode — and why the answer is less about technology than culture, cross-functional collaboration, and asking the right questions before you build.What we cover:The “can we / should we” framework for every AI projectWhy responsible AI has to be designed in from day one, not bolted on at the endHow RBC built an enterprise-grade MLOps platform to scale AI safelyWhy “developer productivity” is the wrong frame — and what to measure insteadAgentic AI in regulated industries: the realistic deployment pathCanada’s AI talent and commercialization gap — and what the Task Force is recommendingmanavgup.github.io/shipai" />
+<meta property="og:description" content="Alex LaPlante is VP of Cash Management Technology at RBC, former Interim Head of Borealis AI, co-author in Harvard Business Review, and a member of Canada’s federal AI Strategy Task Force. In this conversation, she unpacks what separates organizations that actually ship AI from those stuck in demo mode — and why the answer is less about technology than culture, cross-functional collaboration, and asking the right questions before you build.What we cover:The “can we / should we” framework for every AI projectWhy responsible AI has to be designed in from day one, not bolted on at the endHow RBC built an enterprise-grade MLOps platform to scale AI safelyWhy “developer productivity” is the wrong frame — and what to measure insteadAgentic AI in regulated industries: the realistic deployment pathCanada’s AI talent and commercialization gap — and what the Task Force is recommendingmanavgup.github.io/shipai" />
+<link rel="canonical" href="https://manavgup.github.io/shipai/episodes/responsible-ai-by-design-alex-laplante-rbc/" />
+<meta property="og:url" content="https://manavgup.github.io/shipai/episodes/responsible-ai-by-design-alex-laplante-rbc/" />
+<meta property="og:site_name" content="Ship AI" />
+<meta property="og:image" content="https://manavgup.github.io/shipai/assets/images/og/default.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://manavgup.github.io/shipai/assets/images/og/default.png" />
+<meta property="twitter:title" content="Responsible AI by Design Alex LaPlante, RBC" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-03-27T00:00:00+00:00","datePublished":"2026-03-27T00:00:00+00:00","description":"Alex LaPlante is VP of Cash Management Technology at RBC, former Interim Head of Borealis AI, co-author in Harvard Business Review, and a member of Canada’s federal AI Strategy Task Force. In this conversation, she unpacks what separates organizations that actually ship AI from those stuck in demo mode — and why the answer is less about technology than culture, cross-functional collaboration, and asking the right questions before you build.What we cover:The “can we / should we” framework for every AI projectWhy responsible AI has to be designed in from day one, not bolted on at the endHow RBC built an enterprise-grade MLOps platform to scale AI safelyWhy “developer productivity” is the wrong frame — and what to measure insteadAgentic AI in regulated industries: the realistic deployment pathCanada’s AI talent and commercialization gap — and what the Task Force is recommendingmanavgup.github.io/shipai","headline":"Responsible AI by Design Alex LaPlante, RBC","image":"https://manavgup.github.io/shipai/assets/images/og/default.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://manavgup.github.io/shipai/episodes/responsible-ai-by-design-alex-laplante-rbc/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://manavgup.github.io/shipai/assets/images/og/default.png"}},"url":"https://manavgup.github.io/shipai/episodes/responsible-ai-by-design-alex-laplante-rbc/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+// Apply dark mode before render to prevent flash of wrong theme
+(function() {
+  var saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+</script>
+<link rel="icon" type="image/svg+xml" href="/shipai/assets/images/favicon.svg">
+<link rel="apple-touch-icon" href="/shipai/assets/images/logo.jpg">
+<link rel="manifest" href="/shipai/manifest.json">
+<meta name="theme-color" content="#1e40af">
+
+<!-- Preconnect to external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="dns-prefetch" href="https://www.youtube.com">
+<link rel="dns-prefetch" href="https://i.ytimg.com">
+<link rel="dns-prefetch" href="https://img.youtube.com">
+
+<!-- Preload Google Fonts CSS, then load as stylesheet (non-render-blocking) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"></noscript>
+
+<link rel="stylesheet" href="/shipai/assets/css/main.css">
+<link rel="alternate" type="application/atom+xml" title="Ship AI" href="/shipai/feed.xml">
+
+</head>
+<body class="bg-cream dark:bg-ink font-sans text-ink dark:text-gray-200 transition-colors duration-300">
+  <!-- Skip to main content link for keyboard users -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg">
+    Skip to main content
+  </a>
+
+  <nav id="main-nav" aria-label="Main navigation" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI - home" width="36" height="36" decoding="async" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
+      <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
+    </a>
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
+      
+        <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
+      
+        <a href="/shipai/state-of-ai/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Slides</a>
+      
+        <a href="/shipai/about/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">About</a>
+      
+    </div>
+    <div class="flex items-center gap-2">
+      <!-- Dark mode toggle -->
+      <button id="theme-toggle" class="p-2 rounded-lg text-ink/60 dark:text-gray-400 hover:text-ink dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08] transition-colors" aria-label="Toggle dark mode">
+        <!-- Sun icon (shown in dark mode) -->
+        <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+        </svg>
+      </button>
+      <!-- Mobile hamburger -->
+      <button id="mobile-toggle" class="md:hidden p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-cream dark:bg-ink border-t border-black/5 dark:border-white/5 px-6 py-4 space-y-3" role="menu">
+    
+      <a href="/shipai/episodes/" role="menuitem" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" role="menuitem" class="block text-sm font-medium py-1">Clips</a>
+    
+      <a href="/shipai/blog/" role="menuitem" class="block text-sm font-medium py-1">Blog</a>
+    
+      <a href="/shipai/state-of-ai/" role="menuitem" class="block text-sm font-medium py-1">Slides</a>
+    
+      <a href="/shipai/about/" role="menuitem" class="block text-sm font-medium py-1">About</a>
+    
+  </div>
+</nav>
+
+<script>
+(function() {
+  // Dark mode toggle
+  var themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      var isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  }
+
+  // Mobile menu toggle
+  var toggle = document.getElementById('mobile-toggle');
+  var menu = document.getElementById('mobile-menu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', function() {
+    var isHidden = menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isHidden ? 'Close menu' : 'Open menu');
+  });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      toggle.focus();
+    }
+  });
+})();
+</script>
+
+
+  <main id="main-content" class="pt-16">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastEpisode",
+  "name": "Responsible AI by Design | Alex LaPlante, RBC",
+  "description": "Alex LaPlante is VP of Cash Management Technology at RBC, former Interim Head of Borealis AI, co-author in Harvard Business Review, and a member of Canada's federal AI Strategy Task Force. In this conversation, she unpacks what separates organizations that actually ship AI from those stuck in demo mode — and why the answer is less about technology than culture, cross-functional collaboration, and asking the right questions before you build.What we cover:The \"can we / should we\" framework for every AI projectWhy responsible AI has to be designed in from day one, not bolted on at the endHow RBC built an enterprise-grade MLOps platform to scale AI safelyWhy \"developer productivity\" is the wrong frame — and what to measure insteadAgentic AI in regulated industries: the realistic deployment pathCanada's AI talent and commercialization gap — and what the Task Force is recommendingmanavgup.github.io/shipai",
+  "datePublished": "2026-03-27T00:00:00+00:00",
+  "duration": "45 min",
+  "episodeNumber": 0,
+  "url": "https://manavgup.github.io/shipai/episodes/responsible-ai-by-design-alex-laplante-rbc/",
+  "image": "https://manavgup.github.io/shipai/assets/images/og/default.png",
+  "partOfSeries": {
+    "@type": "PodcastSeries",
+    "name": "Ship AI",
+    "url": "https://manavgup.github.io/shipai/",
+    "description": "A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta."
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Manav Gupta"
+  }
+}
+</script>
+
+<section class="pt-12 pb-20">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-muted dark:text-gray-500 mb-8">
+      <a href="/shipai/" class="hover:text-ink dark:hover:text-white transition-colors">Home</a>
+      <span class="text-black/20 dark:text-white/20">/</span>
+      <a href="/shipai/episodes/" class="hover:text-ink dark:hover:text-white transition-colors">Episodes</a>
+      <span class="text-black/20 dark:text-white/20">/</span>
+      <span class="text-ink dark:text-gray-200 font-medium">Responsible AI by Design | Alex LaPlante, RBC</span>
+    </nav>
+
+    <!-- Episode header -->
+    <div class="mb-8">
+      
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/40 px-2 py-0.5 rounded-badge">EP 0</span>
+    <span class="text-xs text-muted dark:text-gray-400">State of AI</span>
+  </div>
+
+
+      <h1 class="font-serif text-4xl md:text-5xl font-bold tracking-tight mt-3 mb-4">Responsible AI by Design | Alex LaPlante, RBC</h1>
+      <div class="flex items-center gap-4 text-sm text-muted dark:text-gray-500">
+        <span>March 27, 2026</span>
+        
+          <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+          <span>45 min</span>
+        
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>Hosted by Manav Gupta</span>
+      </div>
+    </div>
+
+    <!-- Video embed -->
+    
+
+    <!-- Platform buttons + slides -->
+    <div class="flex flex-wrap gap-3 mb-10">
+      
+      
+    </div>
+
+    <!-- About This Episode -->
+    <div class="prose-shipai mb-12">
+      <p>Alex LaPlante is VP of Cash Management Technology at RBC, former Interim Head of Borealis AI, co-author in Harvard Business Review, and a member of Canada’s federal AI Strategy Task Force. In this conversation, she unpacks what separates organizations that actually ship AI from those stuck in demo mode — and why the answer is less about technology than culture, cross-functional collaboration, and asking the right questions before you build.What we cover:The “can we / should we” framework for every AI projectWhy responsible AI has to be designed in from day one, not bolted on at the endHow RBC built an enterprise-grade MLOps platform to scale AI safelyWhy “developer productivity” is the wrong frame — and what to measure insteadAgentic AI in regulated industries: the realistic deployment pathCanada’s AI talent and commercialization gap — and what the Task Force is recommendingmanavgup.github.io/shipai</p>
+
+    </div>
+
+    <!-- Key Takeaways -->
+    
+
+    <!-- Interactive Resources -->
+    
+
+    <!-- Transcript -->
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+
+    <!-- More from This Series -->
+    
+    
+    
+    <div>
+      <h2 class="font-serif text-2xl font-bold mb-6">More from This Series</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        
+          
+            
+
+
+<article class="bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/agi-is-coming/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/Zf1Rq-hoOOc/mqdefault.jpg"
+             alt="AGI is coming"
+             loading="lazy"
+             decoding="async"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/40 px-2 py-0.5 rounded-badge">EP 7</span>
+    <span class="text-xs text-muted dark:text-gray-400">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/agi-is-coming/" class="hover:text-accent transition-colors">AGI is coming</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted dark:text-gray-500">
+      <span>Mar 17, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>1h 0 min</span>
+      
+    </div>
+    <p class="text-sm text-muted dark:text-gray-400 leading-relaxed mt-2 line-clamp-2">Seven Minutes to Midnight: AGI Is Coming What is AGI? When is it arriving? And what does it mean for your career, your organization, and humanity?In this episode of Ship AI, Manav Gupta delivers on...</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+        <a href="/shipai/state-of-ai/ep07/" class="text-xs font-medium text-accent dark:text-blue-400 bg-accent-light/60 dark:bg-blue-900/40 px-2.5 py-1 rounded-button hover:bg-accent-light dark:hover:bg-blue-900/60 transition-colors">View Slides</a>
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/episode-7-agi-is-coming/id1832355436?i=1000755763218" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=Zf1Rq-hoOOc" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+            
+          
+        
+          
+            
+
+
+<article class="bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/ai-agents/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/nImYX3MdqFE/mqdefault.jpg"
+             alt="AI Agents."
+             loading="lazy"
+             decoding="async"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/40 px-2 py-0.5 rounded-badge">EP 6</span>
+    <span class="text-xs text-muted dark:text-gray-400">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/ai-agents/" class="hover:text-accent transition-colors">AI Agents.</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted dark:text-gray-500">
+      <span>Mar 6, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>53 min</span>
+      
+    </div>
+    <p class="text-sm text-muted dark:text-gray-400 leading-relaxed mt-2 line-clamp-2">The episode explores the rise of AI agents, their evolution from chatbots, and the challenges and opportunities in deploying and scaling AI agents. It delves into the characteristics of AI agents, ...</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/episode-6-ai-agents/id1832355436?i=1000753648763" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=nImYX3MdqFE" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+            
+          
+        
+          
+            
+
+
+<article class="bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] overflow-hidden shadow-card card-hover">
+  
+  
+    <a href="/shipai/episodes/whats-next/" class="block relative group">
+      <div class="aspect-video overflow-hidden">
+        <img src="https://img.youtube.com/vi/NKqZ8WLez1o/mqdefault.jpg"
+             alt="What's Next"
+             loading="lazy"
+             decoding="async"
+             width="320" height="180"
+             class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+        <div class="w-12 h-12 rounded-full bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center shadow-lg">
+          <svg class="w-5 h-5 text-ink ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </a>
+  
+  <div class="p-5">
+    
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/40 px-2 py-0.5 rounded-badge">EP 5</span>
+    <span class="text-xs text-muted dark:text-gray-400">State of AI</span>
+  </div>
+
+
+    <h3 class="font-semibold text-[1.05rem] leading-snug mt-2">
+      <a href="/shipai/episodes/whats-next/" class="hover:text-accent transition-colors">What's Next</a>
+    </h3>
+    <div class="flex items-center gap-2 mt-1.5 text-xs text-muted dark:text-gray-500">
+      <span>Feb 10, 2026</span>
+      
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>45 min</span>
+      
+    </div>
+    <p class="text-sm text-muted dark:text-gray-400 leading-relaxed mt-2 line-clamp-2">Physical AI, autonomous systems, and where the technology is heading.</p>
+    <div class="mt-4 flex items-center gap-2">
+      
+        <a href="/shipai/state-of-ai/ep05/" class="text-xs font-medium text-accent dark:text-blue-400 bg-accent-light/60 dark:bg-blue-900/40 px-2.5 py-1 rounded-button hover:bg-accent-light dark:hover:bg-blue-900/60 transition-colors">View Slides</a>
+      
+      
+        <div class="ml-auto">
+          
+
+
+  <div class="flex gap-1">
+    
+      <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" title="Listen on Spotify" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
+        <svg class="w-3 h-3 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    
+    
+      <a href="https://podcasts.apple.com/us/podcast/episode-5-ai-gets-a-body/id1832355436?i=1000750157728" target="_blank" rel="noopener" title="Apple Podcasts" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
+        <svg class="w-3 h-3 text-[#9933CC]" viewBox="0 0 24 24" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0H5.34zm6.525 3.56a8.558 8.558 0 014.666 1.178c.346.209.463.66.254 1.006a.726.726 0 01-.994.258 7.108 7.108 0 00-3.926-.98c-3.942 0-7.142 3.2-7.142 7.142 0 3.942 3.2 7.143 7.142 7.143 3.178 0 5.87-2.08 6.79-4.952a.726.726 0 01.912-.468c.378.122.586.526.464.904C18.96 18.37 15.67 20.88 11.865 20.88c-4.744 0-8.595-3.85-8.595-8.595 0-4.744 3.85-8.594 8.595-8.594v-.13zm-.001 3.45a5.145 5.145 0 015.145 5.145 5.145 5.145 0 01-5.145 5.144 5.145 5.145 0 01-5.144-5.144 5.145 5.145 0 015.144-5.145zm0 2.354a2.79 2.79 0 100 5.582 2.79 2.79 0 000-5.582z"/></svg>
+      </a>
+    
+    
+      <a href="https://www.youtube.com/watch?v=NKqZ8WLez1o" target="_blank" rel="noopener" title="Watch on YouTube" class="w-7 h-7 rounded-full bg-black/[0.04] dark:bg-white/[0.08] flex items-center justify-center hover:bg-black/[0.08] dark:hover:bg-white/[0.15] transition-colors">
+        <svg class="w-3 h-3 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+    
+  </div>
+
+
+        </div>
+      
+    </div>
+  </div>
+</article>
+
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+  </main>
+
+  <footer class="bg-ink text-white/80 py-16" role="contentinfo">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2.5 mb-4">
+          <img src="/shipai/assets/images/logo.jpg" alt="" loading="lazy" decoding="async" width="36" height="36" class="w-9 h-9 rounded-lg">
+          <span class="font-serif font-bold text-lg text-white">Ship AI</span>
+        </div>
+        <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
+      </div>
+      <!-- Quick Links -->
+      <nav aria-label="Footer navigation">
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Quick Links</h4>
+        <div class="space-y-2.5">
+          
+            <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
+          
+            <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
+          
+            <a href="/shipai/state-of-ai/" class="block text-sm hover:text-white transition-colors">Slides</a>
+          
+            <a href="/shipai/about/" class="block text-sm hover:text-white transition-colors">About</a>
+          
+        </div>
+      </nav>
+      <!-- Series -->
+      <div>
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Series</h4>
+        <div class="space-y-2.5">
+          <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">State of AI 2025</a>
+          <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Guest Conversations</a>
+        </div>
+      </div>
+      <!-- Listen On -->
+      <div>
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Listen On</h4>
+        <div class="space-y-2.5">
+          
+            <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></span>
+              Spotify
+            </a>
+          
+            <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399zM12 6.528c3.03 0 5.496 2.458 5.496 5.496 0 1.632-.576 2.832-1.392 3.744-.468.516-1.008.924-1.536 1.26-.312.192-.612.36-.876.48a3.6 3.6 0 01-.456.18c-.072.024-.144.024-.168.024h-.024l-.048-.024c-.048-.024-.048-.048-.072-.072-.024-.048-.024-.072-.024-.12 0-.072.024-.12.048-.168.048-.048.096-.072.144-.096a5.56 5.56 0 00.408-.192c.264-.144.564-.336.84-.552.492-.384.936-.84 1.272-1.392.336-.552.552-1.2.552-2.064 0-2.376-1.92-4.296-4.296-4.296-2.376 0-4.296 1.92-4.296 4.296 0 .864.216 1.512.552 2.064.336.552.78 1.008 1.272 1.392.276.216.576.408.84.552.12.072.264.144.408.192.048.024.096.048.144.096.024.048.048.096.048.168 0 .048 0 .072-.024.12-.024.024-.024.048-.072.072l-.048.024h-.024c-.024 0-.096 0-.168-.024a3.6 3.6 0 01-.456-.18 8.5 8.5 0 01-.876-.48c-.528-.336-1.068-.744-1.536-1.26C6.576 14.856 6 13.656 6 12.024 6 8.986 8.462 6.528 12 6.528zm-.024 3.168c1.296 0 2.352 1.056 2.352 2.352 0 .672-.168 1.2-.48 1.632-.312.408-.72.72-1.176.96a.132.132 0 01-.048.024.12.12 0 01-.072-.024.12.12 0 01-.024-.072c0-.048.024-.072.048-.096.408-.216.744-.48.984-.816.264-.36.384-.792.384-1.296v-.312c0-1.104-.864-1.968-1.968-1.968s-1.968.864-1.968 1.968v.312c0 .504.12.936.384 1.296.24.336.576.6.984.816.024.024.048.048.048.096a.12.12 0 01-.024.072.12.12 0 01-.072.024.132.132 0 01-.048-.024 3.36 3.36 0 01-1.176-.96c-.312-.432-.48-.96-.48-1.632 0-1.296 1.056-2.352 2.352-2.352zM12 13.2a.792.792 0 01.792.792v3.48c0 .12-.024.24-.072.348l-.696 1.632a.132.132 0 01-.048.048.084.084 0 01-.048 0 .084.084 0 01-.048 0 .132.132 0 01-.048-.048l-.696-1.632A.816.816 0 0111.064 17.472v-3.48A.792.792 0 0112 13.2z"/></svg></span>
+              Apple Podcasts
+            </a>
+          
+            <a href="https://www.youtube.com/playlist?list=PLF0cewATp-wl_xK1rbE2bX2YcRVlZKUhM" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span>
+              YouTube
+            </a>
+          
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <span class="text-xs text-white/30">&copy; 2026 Ship AI. All rights reserved.</span>
+      <a href="/shipai/feed.xml" class="text-xs text-white/30 hover:text-white/60 transition-colors">RSS Feed</a>
+    </div>
+  </div>
+</footer>
+
+
+  <script>
+  // Sticky nav scroll effect — runs immediately (affects above-fold UX)
+  (function() {
+    var nav = document.getElementById('main-nav');
+    if (!nav) return;
+    var scrolled = false;
+    window.addEventListener('scroll', function() {
+      var shouldBeScrolled = window.scrollY > 60;
+      if (shouldBeScrolled !== scrolled) {
+        scrolled = shouldBeScrolled;
+        if (scrolled) { nav.classList.add('nav-scrolled'); }
+        else { nav.classList.remove('nav-scrolled'); }
+      }
+    }, { passive: true });
+  })();
+
+  // Scroll fade-in animations — deferred to avoid blocking first paint
+  // Respects prefers-reduced-motion: animations are skipped entirely
+  (function() {
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initObserver() {
+      if (prefersReducedMotion) {
+        // If user prefers reduced motion, make all elements visible without animation
+        document.querySelectorAll('.observe').forEach(function(el) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.observe').forEach(function(el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+        observer.observe(el);
+      });
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initObserver);
+    } else {
+      setTimeout(initObserver, 1);
+    }
+  })();
+  </script>
+</body>
+</html>
