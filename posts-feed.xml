@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-04-01T15:50:18+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">What I Found Inside Claude Code’s 513K Lines of Source Code</title><link href="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/" rel="alternate" type="text/html" title="What I Found Inside Claude Code’s 513K Lines of Source Code" /><published>2026-04-01T00:00:00+00:00</published><updated>2026-04-01T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/"><![CDATA[<p>I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-04-01T16:08:16+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">What I Found Inside Claude Code’s 513K Lines of Source Code</title><link href="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/" rel="alternate" type="text/html" title="What I Found Inside Claude Code’s 513K Lines of Source Code" /><published>2026-04-01T00:00:00+00:00</published><updated>2026-04-01T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/"><![CDATA[<p>I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.</p>
 
 <h2 id="why-read-the-source">Why Read the Source?</h2>
 
@@ -8,7 +8,7 @@
 
 <p>The first surprise: Claude Code doesn’t run on Node.js. It uses <a href="https://bun.sh/">Bun</a>, the newer JavaScript runtime built on the JavaScriptCore engine. The terminal UI is built with <a href="https://github.com/vadimdemedes/ink">Ink</a> — essentially React for the terminal. State management uses Zustand, a lightweight alternative to Redux. This stack choice tells you something about the team’s priorities: performance and developer experience over ecosystem maturity.</p>
 
-<p>For the full technical breakdown, see the <a href="/deep-dives/claude-code/01-overview.html">Overview &amp; Stack</a> companion page.</p>
+<p>For the full technical breakdown, see the <a href="/shipai/deep-dives/claude-code/01-overview.html">Overview &amp; Stack</a> companion page.</p>
 
 <h2 id="the-query-loop-where-the-magic-happens">The Query Loop: Where the Magic Happens</h2>
 
@@ -23,7 +23,7 @@
   <li><strong>Post-sampling hooks</strong> — interceptors that can modify behavior after each step</li>
 </ol>
 
-<p>This isn’t a simple request-response loop. It’s a state machine that can recurse, branch, and self-correct. The <a href="/deep-dives/claude-code/03-query-loop.html">Query Loop deep dive</a> walks through each stage with code excerpts.</p>
+<p>This isn’t a simple request-response loop. It’s a state machine that can recurse, branch, and self-correct. The <a href="/shipai/deep-dives/claude-code/03-query-loop.html">Query Loop deep dive</a> walks through each stage with code excerpts.</p>
 
 <h2 id="43-tools--more-than-you-think">43 Tools — More Than You Think</h2>
 
@@ -31,7 +31,7 @@
 
 <p>What’s remarkable isn’t the number — it’s the execution model. Each tool runs through a streaming executor that supports <strong>sibling abort</strong>: if Claude Code spawns multiple tool calls in parallel and one returns a definitive answer, it can cancel the others. This is the kind of optimization that separates a polished agent from a prototype.</p>
 
-<p>The <a href="/deep-dives/claude-code/04-tool-catalog.html">Tool Catalog</a> page has the full list with categories and descriptions.</p>
+<p>The <a href="/shipai/deep-dives/claude-code/04-tool-catalog.html">Tool Catalog</a> page has the full list with categories and descriptions.</p>
 
 <h2 id="the-permission-model-is-deeply-engineered">The Permission Model Is Deeply Engineered</h2>
 
@@ -45,7 +45,7 @@
 
 <p>The Bash tool is the most interesting case. Before executing any shell command, Claude Code parses it into an AST (Abstract Syntax Tree) and runs it through <strong>24 separate validators</strong>. Commands like <code class="language-plaintext highlighter-rouge">rm -rf /</code>, <code class="language-plaintext highlighter-rouge">curl | bash</code>, or <code class="language-plaintext highlighter-rouge">git push --force</code> are caught before they ever touch your system.</p>
 
-<p>See the full <a href="/deep-dives/claude-code/05-permissions.html">Permissions</a> and <a href="/deep-dives/claude-code/10-security.html">Security</a> pages for details.</p>
+<p>See the full <a href="/shipai/deep-dives/claude-code/05-permissions.html">Permissions</a> and <a href="/shipai/deep-dives/claude-code/10-security.html">Security</a> pages for details.</p>
 
 <h2 id="the-subagent-swarm">The Subagent Swarm</h2>
 
@@ -55,7 +55,7 @@
 
 <p>This is architecturally similar to how a senior developer delegates tasks to a team — and it explains why Claude Code can handle large-scale refactors that would overwhelm a single-context-window approach.</p>
 
-<p>The <a href="/deep-dives/claude-code/08-subagents-swarm.html">Subagents &amp; Swarm</a> page has the full topology.</p>
+<p>The <a href="/shipai/deep-dives/claude-code/08-subagents-swarm.html">Subagents &amp; Swarm</a> page has the full topology.</p>
 
 <h2 id="memory-more-than-chat-history">Memory: More Than Chat History</h2>
 
@@ -70,7 +70,7 @@
 
 <p>The system uses Sonnet for memory operations (cheaper than Opus for routine reads/writes) and includes an “autoDream” feature that proactively saves observations about the project as it works.</p>
 
-<p>See the <a href="/deep-dives/claude-code/09-memory.html">Memory System</a> page for the full architecture.</p>
+<p>See the <a href="/shipai/deep-dives/claude-code/09-memory.html">Memory System</a> page for the full architecture.</p>
 
 <h2 id="security-6-layers-deep">Security: 6 Layers Deep</h2>
 
@@ -91,13 +91,13 @@
 
 <p>Because no deep codebase review is complete without them: Claude Code contains over 200 spinner verbs (the messages shown while it’s thinking), a Buddy companion system with 18 procedurally generated species (including a 1% shiny variant), codenames for internal projects, and a Chrome integration that’s quietly being built.</p>
 
-<p>The <a href="/deep-dives/claude-code/20-easter-eggs.html">Easter Eggs &amp; Evolution</a> page has the full collection.</p>
+<p>The <a href="/shipai/deep-dives/claude-code/20-easter-eggs.html">Easter Eggs &amp; Evolution</a> page has the full collection.</p>
 
 <h2 id="what-this-tells-us-about-ai-engineering">What This Tells Us About AI Engineering</h2>
 
 <p>Reading Claude Code’s source confirmed something I’ve been saying on this podcast: the gap between “AI demo” and “AI product” is enormous. Building a reliable AI agent requires serious engineering in permissions, memory, context management, tool execution, and safety. The teams that figure this out will define the next decade of software development.</p>
 
-<p>This is the first episode of a new <strong>Deep Dives</strong> series on Ship AI, where we go beyond the headlines and into the engineering. If you prefer the video walkthrough, <a href="/episodes/claude-code-under-the-covers/">watch the episode</a>. The full 20-page companion deck is available at <a href="/deep-dives/claude-code/">/deep-dives/claude-code/</a>.</p>]]></content><author><name>Manav Gupta</name></author><category term="blog" /><category term="claude-code" /><category term="ai-agents" /><category term="deep-dive" /><category term="source-code" /><summary type="html"><![CDATA[I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://manavgup.github.io/shipai/assets/images/og/post-claude-code-under-the-covers.png" /><media:content medium="image" url="https://manavgup.github.io/shipai/assets/images/og/post-claude-code-under-the-covers.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">AI Governance in the Age of Agents</title><link href="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/" rel="alternate" type="text/html" title="AI Governance in the Age of Agents" /><published>2026-03-17T00:00:00+00:00</published><updated>2026-03-17T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/"><![CDATA[<p>We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility to govern them. This article explores what it really means to direct, monitor, and manage AI in a world of agents: the frameworks, the risks, the lifecycle models, and the tooling capabilities every enterprise needs to think about.</p>
+<p>This is the first episode of a new <strong>Deep Dives</strong> series on Ship AI, where we go beyond the headlines and into the engineering. If you prefer the video walkthrough, <a href="/shipai/episodes/claude-code-under-the-covers/">watch the episode</a>. The full 20-page companion deck is available at <a href="/shipai/deep-dives/claude-code/">/deep-dives/claude-code/</a>.</p>]]></content><author><name>Manav Gupta</name></author><category term="blog" /><category term="claude-code" /><category term="ai-agents" /><category term="deep-dive" /><category term="source-code" /><summary type="html"><![CDATA[I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://manavgup.github.io/shipai/assets/images/og/post-claude-code-under-the-covers.png" /><media:content medium="image" url="https://manavgup.github.io/shipai/assets/images/og/post-claude-code-under-the-covers.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">AI Governance in the Age of Agents</title><link href="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/" rel="alternate" type="text/html" title="AI Governance in the Age of Agents" /><published>2026-03-17T00:00:00+00:00</published><updated>2026-03-17T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/"><![CDATA[<p>We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility to govern them. This article explores what it really means to direct, monitor, and manage AI in a world of agents: the frameworks, the risks, the lifecycle models, and the tooling capabilities every enterprise needs to think about.</p>
 
 <h2 id="what-is-ai-governance">What Is AI Governance?</h2>
 
