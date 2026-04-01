@@ -1,22 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script>(function(){var p=sessionStorage.getItem("spa-redirect");if(p){sessionStorage.removeItem("spa-redirect");history.replaceState(null,"",location.pathname+p);}})()</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="slidev:version" content="0.49.29">
-<link rel="icon" href="https://cdn.jsdelivr.net/gh/slidevjs/slidev/assets/favicon.png">
-<title>State of AI 2025 - Slidev</title>
-<meta name="description" content="## State of AI 2025\nA video podcast series exploring AI trends, economics, and implications.\n">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir+Next:wght@200;400;600&family=Nunito+Sans:wght@200;400;600&family=Fira+Code:wght@200;400;600&display=swap" type="text/css">
-  <script type="module" crossorigin src="/shipai/state-of-ai/assets/index-zhLxwpoj.js"></script>
-  <link rel="modulepreload" crossorigin href="/shipai/state-of-ai/assets/modules/vue-ClX13Vh0.js">
-  <link rel="modulepreload" crossorigin href="/shipai/state-of-ai/assets/modules/shiki-CoS8ht4k.js">
-  <link rel="stylesheet" crossorigin href="/shipai/state-of-ai/assets/modules/shiki-Bxv373Z5.css">
-  <link rel="stylesheet" crossorigin href="/shipai/state-of-ai/assets/index-DMhHqrCa.css">
-</head>
-<body>
-  <div id="app"></div>
-  <div id="mermaid-rendering-container"></div>
-  
-</body>
-</html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>State of AI 2025 — Ship AI</title><link rel="stylesheet" href="style.css">
+<style>.idx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:20px 0}
+.idx-card{background:var(--white);border:1.5px solid var(--rule);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);transition:.2s;text-decoration:none;color:var(--ink);display:block}
+.idx-card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 4px 32px rgba(0,0,0,.1);text-decoration:none}
+.idx-num{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;margin-bottom:4px}
+.idx-title{font-size:14px;font-weight:600;margin-bottom:4px}
+.idx-desc{font-size:11px;color:var(--mu);line-height:1.45}
+.idx-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--lt);margin-top:8px}
+.arc-table{margin:24px 0}
+.arc-table td:first-child{font-weight:600;white-space:nowrap}
+.arc-table td:nth-child(3){font-style:italic;color:var(--mu)}
+</style></head>
+<body><div class="page">
+<div class="hero-sm" style="margin-bottom:24px">
+  <h1>State of <span style="color:var(--c1)">AI</span> 2025</h1>
+  <p class="subtitle">Video podcast series exploring AI trends, economics, and implications. <strong>From the fastest technology adoption in history to AGI.</strong></p>
+</div>
+
+<div class="idx-grid">
+  <a class="idx-card" href="ep01/" style="border-top:3px solid var(--c1)">
+    <div class="idx-num" style="color:var(--c1)">01</div>
+    <div class="idx-title">The Speed of Now</div>
+    <div class="idx-desc">The fastest technology adoption in history. ChatGPT to 365B searches in 2 years. Compute costs down 90%.</div>
+    <div class="idx-meta">59 min</div>
+  </a>
+  <a class="idx-card" href="ep02/" style="border-top:3px solid var(--c3)">
+    <div class="idx-num" style="color:var(--c3)">02</div>
+    <div class="idx-title">Follow the Money</div>
+    <div class="idx-desc">The economics of AI infrastructure. $212B CapEx, GPU bottlenecks, and the ROI question.</div>
+    <div class="idx-meta">1h 10 min</div>
+  </a>
+  <a class="idx-card" href="ep03/" style="border-top:3px solid var(--c4)">
+    <div class="idx-num" style="color:var(--c4)">03</div>
+    <div class="idx-title">The Red Silicon Curtain</div>
+    <div class="idx-desc">Global AI competition and DeepSeek. Sanctions didn't kill Chinese AI, they mutated it.</div>
+    <div class="idx-meta">51 min</div>
+  </a>
+  <a class="idx-card" href="ep04/" style="border-top:3px solid var(--c5)">
+    <div class="idx-num" style="color:var(--c5)">04</div>
+    <div class="idx-title">AI at Work</div>
+    <div class="idx-desc">Jobs, productivity, and CEO mandates. AI is disrupting tasks, not entire jobs.</div>
+    <div class="idx-meta">32 min</div>
+  </a>
+  <a class="idx-card" href="ep05/" style="border-top:3px solid var(--c6)">
+    <div class="idx-num" style="color:var(--c6)">05</div>
+    <div class="idx-title">What's Next</div>
+    <div class="idx-desc">Physical AI, autonomous systems, robotics, and edge AI. Intelligence moves from screens to the real world.</div>
+    <div class="idx-meta">45 min</div>
+  </a>
+  <a class="idx-card" href="ep06/" style="border-top:3px solid var(--c2)">
+    <div class="idx-num" style="color:var(--c2)">06</div>
+    <div class="idx-title">The Age of Agency</div>
+    <div class="idx-desc">AI agents, ReAct pattern, multi-agent orchestration, frameworks, and governance.</div>
+    <div class="idx-meta">53 min</div>
+  </a>
+  <a class="idx-card" href="ep07/" style="border-top:3px solid var(--c10)">
+    <div class="idx-num" style="color:var(--c10)">07</div>
+    <div class="idx-title">AGI Is Coming</div>
+    <div class="idx-desc">Seven minutes to midnight. AGI levels, alignment, the five walls, job exposure, and human futures.</div>
+    <div class="idx-meta">1h 0 min</div>
+  </a>
+</div>
+
+<section>
+<h2>Interactive Visualizations</h2>
+<p class="section-desc">Standalone interactive charts and dashboards from the series. Click to explore.</p>
+
+<div class="idx-grid">
+  <a class="viz-link" href="ep01/ep01/visualizations/ai-timeline/podcast-view.html">
+    <div class="viz-icon" style="background:var(--c1)">&#x1F4C8;</div>
+    <div><div class="viz-title">AI Model Timeline</div><div class="viz-desc">EP01 — Interactive timeline of AI model releases and capabilities</div></div>
+  </a>
+  <a class="viz-link" href="ep02/ep02/sp500vsAI.html">
+    <div class="viz-icon" style="background:var(--c3)">&#x1F4B0;</div>
+    <div><div class="viz-title">S&amp;P 500 vs AI Stocks</div><div class="viz-desc">EP02 — Market performance comparison</div></div>
+  </a>
+  <a class="viz-link" href="ep02/ep02/visualizationv3.html">
+    <div class="viz-icon" style="background:var(--c3)">&#x1F4CA;</div>
+    <div><div class="viz-title">CapEx Investment</div><div class="viz-desc">EP02 — $212B capital expenditure visualization</div></div>
+  </a>
+  <a class="viz-link" href="ep03/ep03/visualizations/bifurcation-stack.html">
+    <div class="viz-icon" style="background:var(--c4)">&#x1F30D;</div>
+    <div><div class="viz-title">AI Bifurcation Stack</div><div class="viz-desc">EP03 — US vs China technology stack divergence</div></div>
+  </a>
+  <a class="viz-link" href="ep03/ep03/visualizations/big-fund-timeline.html">
+    <div class="viz-icon" style="background:var(--c4)">&#x1F3E6;</div>
+    <div><div class="viz-title">China Big Fund Timeline</div><div class="viz-desc">EP03 — Government semiconductor investment phases</div></div>
+  </a>
+  <a class="viz-link" href="ep03/ep03/visualizations/china-infrastructure.html">
+    <div class="viz-icon" style="background:var(--c4)">&#x1F3D7;</div>
+    <div><div class="viz-title">China AI Infrastructure</div><div class="viz-desc">EP03 — Domestic compute and chip ecosystem</div></div>
+  </a>
+  <a class="viz-link" href="ep03/ep03/visualizations/humanoid-price.html">
+    <div class="viz-icon" style="background:var(--c4)">&#x1F916;</div>
+    <div><div class="viz-title">Humanoid Robot Price Curve</div><div class="viz-desc">EP03 — Cost trajectory for humanoid robots</div></div>
+  </a>
+  <a class="viz-link" href="ep03/ep03/visualizations/moe-architecture.html">
+    <div class="viz-icon" style="background:var(--c4)">&#x1F9E0;</div>
+    <div><div class="viz-title">Mixture of Experts</div><div class="viz-desc">EP03 — MoE architecture diagram</div></div>
+  </a>
+  <a class="viz-link" href="ep03/ep03/visualizations/training-cost.html">
+    <div class="viz-icon" style="background:var(--c4)">&#x1F4B8;</div>
+    <div><div class="viz-title">Training Cost Trends</div><div class="viz-desc">EP03 — Model training cost over time</div></div>
+  </a>
+  <a class="viz-link" href="ep03/ep03/visualizations/vc-divergence.html">
+    <div class="viz-icon" style="background:var(--c4)">&#x1F4C9;</div>
+    <div><div class="viz-title">VC Divergence</div><div class="viz-desc">EP03 — US vs China venture capital investment paths</div></div>
+  </a>
+  <a class="viz-link" href="ep06/adoption-funnel.html">
+    <div class="viz-icon" style="background:var(--c2)">&#x1F4E5;</div>
+    <div><div class="viz-title">Agent Adoption Funnel</div><div class="viz-desc">EP06 — Enterprise AI agent adoption stages</div></div>
+  </a>
+  <a class="viz-link" href="ep06/autonomy-spectrum.html">
+    <div class="viz-icon" style="background:var(--c2)">&#x1F3AF;</div>
+    <div><div class="viz-title">Autonomy Spectrum</div><div class="viz-desc">EP06 — From copilot to fully autonomous agents</div></div>
+  </a>
+  <a class="viz-link" href="ep06/react-pattern-animated.html">
+    <div class="viz-icon" style="background:var(--c2)">&#x1F504;</div>
+    <div><div class="viz-title">ReAct Pattern</div><div class="viz-desc">EP06 — Animated Reason + Act loop</div></div>
+  </a>
+  <a class="viz-link" href="ep06/mcp-architecture.html">
+    <div class="viz-icon" style="background:var(--c2)">&#x1F517;</div>
+    <div><div class="viz-title">MCP Architecture</div><div class="viz-desc">EP06 — Model Context Protocol diagram</div></div>
+  </a>
+  <a class="viz-link" href="ep06/threat-injection.html">
+    <div class="viz-icon" style="background:var(--c2)">&#x1F6E1;</div>
+    <div><div class="viz-title">Threat &amp; Injection</div><div class="viz-desc">EP06 — AI agent security threat model</div></div>
+  </a>
+  <a class="viz-link" href="ep06/react_comparison_report.html">
+    <div class="viz-icon" style="background:var(--c2)">&#x1F4DD;</div>
+    <div><div class="viz-title">ReAct Comparison Report</div><div class="viz-desc">EP06 — Reasoning pattern benchmarks</div></div>
+  </a>
+  <a class="viz-link" href="ep06/advanced_reasoning_report.html">
+    <div class="viz-icon" style="background:var(--c2)">&#x1F9EA;</div>
+    <div><div class="viz-title">Advanced Reasoning Report</div><div class="viz-desc">EP06 — Chain-of-thought and tree-of-thought analysis</div></div>
+  </a>
+  <a class="viz-link" href="ep07/ep07/agi-dashboard.html">
+    <div class="viz-icon" style="background:var(--c10)">&#x231A;</div>
+    <div><div class="viz-title">AGI Dashboard</div><div class="viz-desc">EP07 — AGI readiness clock and capability tracker</div></div>
+  </a>
+</div>
+</section>
+
+<section>
+<h2>The Narrative Arc</h2>
+<table class="arc-table">
+<tr><th>Episode</th><th>Role</th><th>Emotional Beat</th></tr>
+<tr><td>EP01</td><td>Setup</td><td>"Holy shit, this is fast"</td></tr>
+<tr><td>EP02</td><td>Stakes</td><td>"The money being bet is staggering"</td></tr>
+<tr><td>EP03</td><td>Conflict</td><td>"This is a global competition"</td></tr>
+<tr><td>EP04</td><td>Personal</td><td>"This affects YOUR job"</td></tr>
+<tr><td>EP05</td><td>Resolution</td><td>"Here's where it's going"</td></tr>
+<tr><td>EP06</td><td>Tactical</td><td>"Here's how to build and govern agents"</td></tr>
+<tr><td>EP07</td><td>Big Picture</td><td>"What happens when AI matches humans?"</td></tr>
+</table>
+</section>
+
+<footer>State of AI 2025 — Ship AI Podcast by Manav Gupta</footer>
+</div></body></html>
