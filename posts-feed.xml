@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-04-01T16:45:05+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">What I Found Inside Claude Code’s 513K Lines of Source Code</title><link href="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/" rel="alternate" type="text/html" title="What I Found Inside Claude Code’s 513K Lines of Source Code" /><published>2026-04-01T00:00:00+00:00</published><updated>2026-04-01T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/"><![CDATA[<p>I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-04-01T17:58:39+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">What I Found Inside Claude Code’s 513K Lines of Source Code</title><link href="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/" rel="alternate" type="text/html" title="What I Found Inside Claude Code’s 513K Lines of Source Code" /><published>2026-04-01T00:00:00+00:00</published><updated>2026-04-01T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/"><![CDATA[<p>I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.</p>
 
 <h2 id="why-read-the-source">Why Read the Source?</h2>
 
@@ -53,7 +53,7 @@
 
 <h2 id="architecture--directory-structure">Architecture &amp; Directory Structure</h2>
 
-<p><img src="/shipai/assets/images/diagrams/01-architecture-overview.svg" alt="Claude Code — High-Level Architecture" /></p>
+<p><img src="/shipai/assets/images/diagrams/01-architecture-overview.png" alt="Claude Code — High-Level Architecture" /></p>
 
 <p>The <code class="language-plaintext highlighter-rouge">src/</code> directory is organized by function, not by feature. The biggest directories: <code class="language-plaintext highlighter-rouge">utils/</code> (564 files — permissions, bash AST parser, sandbox, model routing, telemetry), <code class="language-plaintext highlighter-rouge">components/</code> (389 files — Ink terminal UI), <code class="language-plaintext highlighter-rouge">commands/</code> (207 files — 84 slash commands, 24+ internal-only), <code class="language-plaintext highlighter-rouge">tools/</code> (184 files — 43 tool implementations), and <code class="language-plaintext highlighter-rouge">services/</code> (130 files — API client, MCP protocol, streaming executor, analytics).</p>
 
@@ -61,7 +61,7 @@
 
 <h2 id="the-query-loop-where-the-magic-happens">The Query Loop: Where the Magic Happens</h2>
 
-<p><img src="/shipai/assets/images/diagrams/03-query-loop.svg" alt="The Query Loop" /></p>
+<p><img src="/shipai/assets/images/diagrams/03-query-loop.png" alt="The Query Loop" /></p>
 
 <p>At the heart of Claude Code is an async generator in <code class="language-plaintext highlighter-rouge">query.ts</code> — 1,729 lines. The REPL consumes streaming events via <code class="language-plaintext highlighter-rouge">for await</code>.</p>
 
@@ -80,7 +80,7 @@
 
 <h2 id="43-tools--more-than-you-think">43 Tools — More Than You Think</h2>
 
-<p><img src="/shipai/assets/images/diagrams/04-tool-execution.svg" alt="StreamingToolExecutor Pipeline" /></p>
+<p><img src="/shipai/assets/images/diagrams/04-tool-execution.png" alt="StreamingToolExecutor Pipeline" /></p>
 
 <p>Every tool implements a 30+ method interface: <code class="language-plaintext highlighter-rouge">isConcurrencySafe()</code>, <code class="language-plaintext highlighter-rouge">isReadOnly()</code>, <code class="language-plaintext highlighter-rouge">isDestructive()</code>, <code class="language-plaintext highlighter-rouge">checkPermissions()</code>. Fail-closed defaults.</p>
 
@@ -94,7 +94,7 @@
 
 <h2 id="the-permission-model-is-deeply-engineered">The Permission Model Is Deeply Engineered</h2>
 
-<p><img src="/shipai/assets/images/diagrams/05-permission-layers.svg" alt="3-Layer Permission Model" /></p>
+<p><img src="/shipai/assets/images/diagrams/05-permission-layers.png" alt="3-Layer Permission Model" /></p>
 
 <p>The permission system has three layers:</p>
 
@@ -114,7 +114,7 @@
 
 <h2 id="context-management--autocompact">Context Management &amp; Autocompact</h2>
 
-<p><img src="/shipai/assets/images/diagrams/06-token-budget.svg" alt="Token Budget Distribution" /></p>
+<p><img src="/shipai/assets/images/diagrams/06-token-budget.png" alt="Token Budget Distribution" /></p>
 
 <p>Claude Code uses hybrid token counting — walks messages backwards to find last API usage data, then estimates new messages at character/4 with 4/3x padding. The autocompact threshold triggers at ~167K tokens (200K window minus 20K reserved minus 13K buffer).</p>
 
@@ -132,7 +132,7 @@
 
 <h2 id="the-subagent-swarm">The Subagent Swarm</h2>
 
-<p><img src="/shipai/assets/images/diagrams/10-subagent-topology.svg" alt="3 Levels of Agent Parallelism" /></p>
+<p><img src="/shipai/assets/images/diagrams/10-subagent-topology.png" alt="3 Levels of Agent Parallelism" /></p>
 
 <p>3 levels of parallelism: <strong>subagents</strong> (in-process, max 200 turns), <strong>fork subagents</strong> (byte-identical prefix for cache hits), and <strong>swarm teams</strong> (leader + teammates, file-based mailbox, 500ms permission poll).</p>
 
@@ -144,7 +144,7 @@
 
 <h2 id="memory-more-than-chat-history">Memory: More Than Chat History</h2>
 
-<p><img src="/shipai/assets/images/diagrams/07-memory-system.svg" alt="Memory System — 3-Layer Architecture" /></p>
+<p><img src="/shipai/assets/images/diagrams/07-memory-system.png" alt="Memory System — 3-Layer Architecture" /></p>
 
 <p>MEMORY.md is NOT a store — it’s a <strong>pointer index</strong>. Max 200 lines / 25KB. Each line: <code class="language-plaintext highlighter-rouge">- [Title](file.md) — one-line hook</code>.</p>
 
@@ -162,7 +162,7 @@
 
 <h2 id="security-6-layer-defense-stack">Security: 6-Layer Defense Stack</h2>
 
-<p><img src="/shipai/assets/images/diagrams/08-security-stack.svg" alt="6-Layer Defense-in-Depth" /></p>
+<p><img src="/shipai/assets/images/diagrams/08-security-stack.png" alt="6-Layer Defense-in-Depth" /></p>
 
 <p>Each layer is independent — compromising one doesn’t defeat the others.</p>
 
@@ -183,7 +183,7 @@
 
 <h2 id="the-speculation-system">The Speculation System</h2>
 
-<p><img src="/shipai/assets/images/diagrams/09-speculation.svg" alt="Speculation System" /></p>
+<p><img src="/shipai/assets/images/diagrams/09-speculation.png" alt="Speculation System" /></p>
 
 <p>While you’re reading Claude’s response, a background system <strong>pre-computes the next turn</strong>. Uses an overlay filesystem for safety.</p>
 
