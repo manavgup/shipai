@@ -262,7 +262,7 @@
 
 <p>Every AI company ships demos. Few ship source code you can actually read. Claude Code is different — it’s distributed as a CLI tool, and its TypeScript source is accessible. I wanted to understand not just <em>what</em> it does, but <em>how</em> it’s built. The architecture decisions reveal more about the state of AI engineering than any product announcement.</p>
 
-<p>This article is a companion to the <a href="/shipai/deep-dives/claude-code/">20-page interactive deep dive</a> — click through for code excerpts, detailed tables, and page-by-page analysis.</p>
+<p>This article is a companion to the <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/">20-page interactive deep dive</a> — click through for code excerpts, detailed tables, and page-by-page analysis.</p>
 
 <h2 id="the-stack-bun-ink-zustand">The Stack: Bun, Ink, Zustand</h2>
 
@@ -307,19 +307,19 @@
   </tbody>
 </table>
 
-<p>For the full technical breakdown, see the <a href="/shipai/deep-dives/claude-code/01-overview.html">Overview &amp; Stack</a> companion page.</p>
+<p>For the full technical breakdown, see the <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/01-overview.html">Overview &amp; Stack</a> companion page.</p>
 
 <h2 id="architecture--directory-structure">Architecture &amp; Directory Structure</h2>
 
-<p><img src="/shipai/assets/images/diagrams/01-architecture-overview.png" alt="Claude Code — High-Level Architecture" /></p>
+<p><img src="https://manavgup.github.io/shipai/assets/images/diagrams/01-architecture-overview.png" alt="Claude Code — High-Level Architecture" /></p>
 
 <p>The <code class="language-plaintext highlighter-rouge">src/</code> directory is organized by function, not by feature. The biggest directories: <code class="language-plaintext highlighter-rouge">utils/</code> (564 files — permissions, bash AST parser, sandbox, model routing, telemetry), <code class="language-plaintext highlighter-rouge">components/</code> (389 files — Ink terminal UI), <code class="language-plaintext highlighter-rouge">commands/</code> (207 files — 84 slash commands, 24+ internal-only), <code class="language-plaintext highlighter-rouge">tools/</code> (184 files — 43 tool implementations), and <code class="language-plaintext highlighter-rouge">services/</code> (130 files — API client, MCP protocol, streaming executor, analytics).</p>
 
-<p>See the <a href="/shipai/deep-dives/claude-code/02-architecture.html">Architecture &amp; Boot</a> page for the full directory map.</p>
+<p>See the <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/02-architecture.html">Architecture &amp; Boot</a> page for the full directory map.</p>
 
 <h2 id="the-query-loop-where-the-magic-happens">The Query Loop: Where the Magic Happens</h2>
 
-<p><img src="/shipai/assets/images/diagrams/03-query-loop.png" alt="The Query Loop" /></p>
+<p><img src="https://manavgup.github.io/shipai/assets/images/diagrams/03-query-loop.png" alt="The Query Loop" /></p>
 
 <p>At the heart of Claude Code is an async generator in <code class="language-plaintext highlighter-rouge">query.ts</code> — 1,729 lines. The REPL consumes streaming events via <code class="language-plaintext highlighter-rouge">for await</code>.</p>
 
@@ -334,11 +334,11 @@
 
 <p>After each turn: auto-compact check, memory extraction via forked subagent, speculation (pre-computes next response), and autoDream (background memory consolidation after 24h + 5 sessions).</p>
 
-<p>The <a href="/shipai/deep-dives/claude-code/03-query-loop.html">Query Loop deep dive</a> walks through each stage with code excerpts.</p>
+<p>The <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/03-query-loop.html">Query Loop deep dive</a> walks through each stage with code excerpts.</p>
 
 <h2 id="43-tools--more-than-you-think">43 Tools — More Than You Think</h2>
 
-<p><img src="/shipai/assets/images/diagrams/04-tool-execution.png" alt="StreamingToolExecutor Pipeline" /></p>
+<p><img src="https://manavgup.github.io/shipai/assets/images/diagrams/04-tool-execution.png" alt="StreamingToolExecutor Pipeline" /></p>
 
 <p>Every tool implements a 30+ method interface: <code class="language-plaintext highlighter-rouge">isConcurrencySafe()</code>, <code class="language-plaintext highlighter-rouge">isReadOnly()</code>, <code class="language-plaintext highlighter-rouge">isDestructive()</code>, <code class="language-plaintext highlighter-rouge">checkPermissions()</code>. Fail-closed defaults.</p>
 
@@ -348,11 +348,11 @@
 
 <p><strong>Fork Cache:</strong> Fork subagents inherit byte-identical message history — only the directive differs. Shared prefix = prompt cache hit across all forks.</p>
 
-<p>The <a href="/shipai/deep-dives/claude-code/04-tool-catalog.html">Tool Catalog</a> page has the full list with categories and descriptions.</p>
+<p>The <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/04-tool-catalog.html">Tool Catalog</a> page has the full list with categories and descriptions.</p>
 
 <h2 id="the-permission-model-is-deeply-engineered">The Permission Model Is Deeply Engineered</h2>
 
-<p><img src="/shipai/assets/images/diagrams/05-permission-layers.png" alt="3-Layer Permission Model" /></p>
+<p><img src="https://manavgup.github.io/shipai/assets/images/diagrams/05-permission-layers.png" alt="3-Layer Permission Model" /></p>
 
 <p>The permission system has three layers:</p>
 
@@ -368,11 +368,11 @@
 
 <p><strong>Bash AST Analysis:</strong> 24+ validators via tree-sitter parsing detect <code class="language-plaintext highlighter-rouge">rm -rf</code>, fork bombs, <code class="language-plaintext highlighter-rouge">curl|bash</code>, sudo, TTY injection, Unicode bypass, IFS injection, and more.</p>
 
-<p>See the full <a href="/shipai/deep-dives/claude-code/05-permissions.html">Permissions</a> and <a href="/shipai/deep-dives/claude-code/10-security.html">Security</a> pages for details.</p>
+<p>See the full <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/05-permissions.html">Permissions</a> and <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/10-security.html">Security</a> pages for details.</p>
 
 <h2 id="context-management--autocompact">Context Management &amp; Autocompact</h2>
 
-<p><img src="/shipai/assets/images/diagrams/06-token-budget.png" alt="Token Budget Distribution" /></p>
+<p><img src="https://manavgup.github.io/shipai/assets/images/diagrams/06-token-budget.png" alt="Token Budget Distribution" /></p>
 
 <p>Claude Code uses hybrid token counting — walks messages backwards to find last API usage data, then estimates new messages at character/4 with 4/3x padding. The autocompact threshold triggers at ~167K tokens (200K window minus 20K reserved minus 13K buffer).</p>
 
@@ -386,11 +386,11 @@
 
 <p>Circuit breaker: after 3 consecutive autocompact failures, stops attempting for the rest of the session.</p>
 
-<p>See the <a href="/shipai/deep-dives/claude-code/06-context-autocompact.html">Context &amp; Autocompact</a> page for the threshold math and strategy details.</p>
+<p>See the <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/06-context-autocompact.html">Context &amp; Autocompact</a> page for the threshold math and strategy details.</p>
 
 <h2 id="the-subagent-swarm">The Subagent Swarm</h2>
 
-<p><img src="/shipai/assets/images/diagrams/10-subagent-topology.png" alt="3 Levels of Agent Parallelism" /></p>
+<p><img src="https://manavgup.github.io/shipai/assets/images/diagrams/10-subagent-topology.png" alt="3 Levels of Agent Parallelism" /></p>
 
 <p>3 levels of parallelism: <strong>subagents</strong> (in-process, max 200 turns), <strong>fork subagents</strong> (byte-identical prefix for cache hits), and <strong>swarm teams</strong> (leader + teammates, file-based mailbox, 500ms permission poll).</p>
 
@@ -398,11 +398,11 @@
 
 <p><strong>Swarm backends:</strong> In-Process (AsyncLocalStorage), Tmux (30/70 pane split), iTerm2 (vertical split tabs).</p>
 
-<p>The <a href="/shipai/deep-dives/claude-code/08-subagents-swarm.html">Subagents &amp; Swarm</a> page has the full topology.</p>
+<p>The <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/08-subagents-swarm.html">Subagents &amp; Swarm</a> page has the full topology.</p>
 
 <h2 id="memory-more-than-chat-history">Memory: More Than Chat History</h2>
 
-<p><img src="/shipai/assets/images/diagrams/07-memory-system.png" alt="Memory System — 3-Layer Architecture" /></p>
+<p><img src="https://manavgup.github.io/shipai/assets/images/diagrams/07-memory-system.png" alt="Memory System — 3-Layer Architecture" /></p>
 
 <p>MEMORY.md is NOT a store — it’s a <strong>pointer index</strong>. Max 200 lines / 25KB. Each line: <code class="language-plaintext highlighter-rouge">- [Title](file.md) — one-line hook</code>.</p>
 
@@ -416,11 +416,11 @@
 
 <p><strong>autoDream:</strong> Fires after ≥24h + ≥5 sessions. 4 phases: Orient → Gather Signal → Consolidate → Prune &amp; Index. PID-based lock with 60min stale guard.</p>
 
-<p>See the <a href="/shipai/deep-dives/claude-code/09-memory.html">Memory System</a> page for the full architecture.</p>
+<p>See the <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/09-memory.html">Memory System</a> page for the full architecture.</p>
 
 <h2 id="security-6-layer-defense-stack">Security: 6-Layer Defense Stack</h2>
 
-<p><img src="/shipai/assets/images/diagrams/08-security-stack.png" alt="6-Layer Defense-in-Depth" /></p>
+<p><img src="https://manavgup.github.io/shipai/assets/images/diagrams/08-security-stack.png" alt="6-Layer Defense-in-Depth" /></p>
 
 <p>Each layer is independent — compromising one doesn’t defeat the others.</p>
 
@@ -437,11 +437,11 @@
 
 <p><strong>Server-side killswitches</strong> can remotely disable bypassPermissions and the ML classifier.</p>
 
-<p>See the <a href="/shipai/deep-dives/claude-code/10-security.html">Security</a> page for the complete defense stack.</p>
+<p>See the <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/10-security.html">Security</a> page for the complete defense stack.</p>
 
 <h2 id="the-speculation-system">The Speculation System</h2>
 
-<p><img src="/shipai/assets/images/diagrams/09-speculation.png" alt="Speculation System" /></p>
+<p><img src="https://manavgup.github.io/shipai/assets/images/diagrams/09-speculation.png" alt="Speculation System" /></p>
 
 <p>While you’re reading Claude’s response, a background system <strong>pre-computes the next turn</strong>. Uses an overlay filesystem for safety.</p>
 
@@ -449,7 +449,7 @@
 
 <p><strong>Pipelined:</strong> When Spec 1 completes, Spec 2 starts immediately for the NEXT turn — two steps ahead. Real API calls = real token cost.</p>
 
-<p>See the <a href="/shipai/deep-dives/claude-code/14-speculation.html">Speculation</a> page for the state machine details.</p>
+<p>See the <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/14-speculation.html">Speculation</a> page for the state machine details.</p>
 
 <h2 id="architecture-critique">Architecture Critique</h2>
 
@@ -494,7 +494,7 @@
 
 <p><strong>What’s good:</strong> Strong TypeScript types, modular tool system (30-method interface), memoization, separated query logic in QueryEngine.ts.</p>
 
-<p>See the <a href="/shipai/deep-dives/claude-code/13-architecture-critique.html">Architecture Critique</a> page for the full SOLID scorecard.</p>
+<p>See the <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/13-architecture-critique.html">Architecture Critique</a> page for the full SOLID scorecard.</p>
 
 <h2 id="the-easter-eggs">The Easter Eggs</h2>
 
@@ -504,7 +504,7 @@
 
 <p><strong>200+ spinner verbs:</strong> Clauding, Beboppin’, Boondoggling, Combobulating, Flibbertigibbeting, Hyperspacing, Lollygagging, Moonwalking, Quantumizing, Razzle-dazzling, Spelunking, Tomfoolering… and 183 more.</p>
 
-<p>The <a href="/shipai/deep-dives/claude-code/20-easter-eggs.html">Easter Eggs &amp; Evolution</a> page has the full collection.</p>
+<p>The <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/20-easter-eggs.html">Easter Eggs &amp; Evolution</a> page has the full collection.</p>
 
 <h2 id="what-this-tells-us-about-ai-engineering">What This Tells Us About AI Engineering</h2>
 
@@ -514,7 +514,7 @@
 
 <p>What’s most fascinating is what the source reveals about where the product is going: coordinator mode for multi-agent orchestration, pipelined speculation that thinks two steps ahead, team memory sync with conflict resolution, computer use with native macOS screen control, voice mode, and a buddy system with loot-box-style rarity tiers.</p>
 
-<p>This is the first episode of a new <strong>Deep Dives</strong> series on Ship AI. If you prefer the video walkthrough, <a href="/shipai/episodes/claude-code-under-the-covers/">watch the episode</a>. The full 20-page companion deck is at <a href="/shipai/deep-dives/claude-code/">/deep-dives/claude-code/</a>.</p>
+<p>This is the first episode of a new <strong>Deep Dives</strong> series on Ship AI. If you prefer the video walkthrough, <a href="https://manavgup.github.io/shipai/episodes/claude-code-under-the-covers/">watch the episode</a>. The full 20-page companion deck is at <a href="https://manavgup.github.io/shipai/deep-dives/claude-code/">/deep-dives/claude-code/</a>.</p>
 
         </div>
 
