@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FDF8F4"/><stop offset="100%" stop-color="#F5EDE6"/></linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#2563EB"/></linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#7C3AED"/></linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EF4444"/><stop offset="100%" stop-color="#DC2626"/></linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#0891B2"/></linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EC4899"/><stop offset="100%" stop-color="#DB2777"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/></filter>
+  </defs>
+  <rect width="900" height="620" fill="url(#bg1)" rx="12"/>
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" font-size="18" font-weight="700" fill="#1E293B">Claude Code — High-Level Architecture</text>
+  <text x="450" y="56" text-anchor="middle" font-size="11" fill="#94A3B8">1,902 files · 513K lines TypeScript · Bun runtime</text>
+
+  <!-- User Input Layer -->
+  <rect x="30" y="75" width="840" height="50" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="450" y="97" text-anchor="middle" font-size="11" font-weight="600" fill="#64748B">USER INPUT</text>
+  <text x="120" y="113" text-anchor="middle" font-size="10" fill="#94A3B8">CLI Terminal</text>
+  <text x="300" y="113" text-anchor="middle" font-size="10" fill="#94A3B8">VS Code Extension</text>
+  <text x="480" y="113" text-anchor="middle" font-size="10" fill="#94A3B8">JetBrains Plugin</text>
+  <text x="640" y="113" text-anchor="middle" font-size="10" fill="#94A3B8">Desktop App</text>
+  <text x="790" y="113" text-anchor="middle" font-size="10" fill="#94A3B8">claude.ai/code</text>
+
+  <!-- Arrow -->
+  <path d="M450 125 L450 145" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <defs><marker id="arrowGray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#94A3B8"/></marker></defs>
+
+  <!-- Core System -->
+  <rect x="30" y="148" width="840" height="200" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="50" y="170" font-size="12" font-weight="700" fill="#1E293B">CORE SYSTEM</text>
+
+  <!-- main.tsx -->
+  <rect x="50" y="182" width="130" height="56" rx="8" fill="url(#red)" filter="url(#shadow)"/>
+  <text x="115" y="206" text-anchor="middle" font-size="11" font-weight="600" fill="white">main.tsx</text>
+  <text x="115" y="220" text-anchor="middle" font-size="9" fill="#FEE2E2">4,684 lines · entry</text>
+
+  <!-- Query Loop -->
+  <rect x="200" y="182" width="130" height="56" rx="8" fill="url(#blue)" filter="url(#shadow)"/>
+  <text x="265" y="206" text-anchor="middle" font-size="11" font-weight="600" fill="white">Query Loop</text>
+  <text x="265" y="220" text-anchor="middle" font-size="9" fill="#DBEAFE">query.ts · 1,729 lines</text>
+
+  <!-- Tool System -->
+  <rect x="350" y="182" width="130" height="56" rx="8" fill="url(#purple)" filter="url(#shadow)"/>
+  <text x="415" y="206" text-anchor="middle" font-size="11" font-weight="600" fill="white">43 Tools</text>
+  <text x="415" y="220" text-anchor="middle" font-size="9" fill="#EDE9FE">184 files · streaming</text>
+
+  <!-- Permissions -->
+  <rect x="500" y="182" width="130" height="56" rx="8" fill="url(#orange)" filter="url(#shadow)"/>
+  <text x="565" y="206" text-anchor="middle" font-size="11" font-weight="600" fill="white">Permissions</text>
+  <text x="565" y="220" text-anchor="middle" font-size="9" fill="#FEF3C7">3 layers · 24 validators</text>
+
+  <!-- Memory -->
+  <rect x="650" y="182" width="130" height="56" rx="8" fill="url(#cyan)" filter="url(#shadow)"/>
+  <text x="715" y="206" text-anchor="middle" font-size="11" font-weight="600" fill="white">Memory</text>
+  <text x="715" y="220" text-anchor="middle" font-size="9" fill="#CFFAFE">MEMORY.md + topics</text>
+
+  <!-- Second row -->
+  <!-- Ink UI -->
+  <rect x="50" y="252" width="130" height="56" rx="8" fill="url(#purple)" filter="url(#shadow)"/>
+  <text x="115" y="276" text-anchor="middle" font-size="11" font-weight="600" fill="white">Ink UI</text>
+  <text x="115" y="290" text-anchor="middle" font-size="9" fill="#EDE9FE">389 components · Yoga</text>
+
+  <!-- State -->
+  <rect x="200" y="252" width="130" height="56" rx="8" fill="url(#green)" filter="url(#shadow)"/>
+  <text x="265" y="276" text-anchor="middle" font-size="11" font-weight="600" fill="white">State</text>
+  <text x="265" y="290" text-anchor="middle" font-size="9" fill="#D1FAE5">Zustand + Bootstrap</text>
+
+  <!-- Agents -->
+  <rect x="350" y="252" width="130" height="56" rx="8" fill="url(#orange)" filter="url(#shadow)"/>
+  <text x="415" y="276" text-anchor="middle" font-size="11" font-weight="600" fill="white">Agents</text>
+  <text x="415" y="290" text-anchor="middle" font-size="9" fill="#FEF3C7">Sub · Fork · Swarm</text>
+
+  <!-- Security -->
+  <rect x="500" y="252" width="130" height="56" rx="8" fill="url(#pink)" filter="url(#shadow)"/>
+  <text x="565" y="276" text-anchor="middle" font-size="11" font-weight="600" fill="white">Security</text>
+  <text x="565" y="290" text-anchor="middle" font-size="9" fill="#FCE7F3">6 layers · AST parse</text>
+
+  <!-- Extensions -->
+  <rect x="650" y="252" width="130" height="56" rx="8" fill="url(#green)" filter="url(#shadow)"/>
+  <text x="715" y="276" text-anchor="middle" font-size="11" font-weight="600" fill="white">Extensions</text>
+  <text x="715" y="290" text-anchor="middle" font-size="9" fill="#D1FAE5">MCP · Skills · Hooks</text>
+
+  <!-- Connecting lines within core -->
+  <line x1="180" y1="210" x2="200" y2="210" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="330" y1="210" x2="350" y2="210" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="480" y1="210" x2="500" y2="210" stroke="#CBD5E1" stroke-width="1"/>
+  <line x1="630" y1="210" x2="650" y2="210" stroke="#CBD5E1" stroke-width="1"/>
+
+  <!-- Arrow down -->
+  <path d="M450 348 L450 370" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+
+  <!-- API Layer -->
+  <rect x="30" y="373" width="840" height="95" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="50" y="395" font-size="12" font-weight="700" fill="#1E293B">API LAYER</text>
+  <text x="175" y="395" font-size="10" fill="#94A3B8">Anthropic SDK · Streaming SSE · Prompt Cache · Retry + Fallback</text>
+
+  <!-- 4 Providers -->
+  <rect x="50" y="408" width="185" height="44" rx="6" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="142" y="428" text-anchor="middle" font-size="11" font-weight="600" fill="#2563EB">Anthropic Direct</text>
+  <text x="142" y="443" text-anchor="middle" font-size="9" fill="#60A5FA">OAuth · Full features</text>
+
+  <rect x="250" y="408" width="185" height="44" rx="6" fill="#FFF7ED" stroke="#FED7AA" stroke-width="1"/>
+  <text x="342" y="428" text-anchor="middle" font-size="11" font-weight="600" fill="#D97706">AWS Bedrock</text>
+  <text x="342" y="443" text-anchor="middle" font-size="9" fill="#FBBF24">IAM · STS · VPC</text>
+
+  <rect x="450" y="408" width="185" height="44" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
+  <text x="542" y="428" text-anchor="middle" font-size="11" font-weight="600" fill="#059669">Google Vertex</text>
+  <text x="542" y="443" text-anchor="middle" font-size="9" fill="#34D399">GoogleAuth · GCP</text>
+
+  <rect x="650" y="408" width="185" height="44" rx="6" fill="#FDF4FF" stroke="#E9D5FF" stroke-width="1"/>
+  <text x="742" y="428" text-anchor="middle" font-size="11" font-weight="600" fill="#7C3AED">Azure Foundry</text>
+  <text x="742" y="443" text-anchor="middle" font-size="9" fill="#A78BFA">Azure AD · Managed ID</text>
+
+  <!-- Arrow down -->
+  <path d="M450 468 L450 488" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+
+  <!-- Claude Model -->
+  <rect x="250" y="491" width="400" height="50" rx="25" fill="url(#blue)" filter="url(#shadow)"/>
+  <text x="450" y="514" text-anchor="middle" font-size="14" font-weight="700" fill="white">Claude (Opus 4.6 / Sonnet 4.6 / Haiku 4.5)</text>
+  <text x="450" y="530" text-anchor="middle" font-size="10" fill="#DBEAFE">Same model — different infrastructure wrappers</text>
+
+  <!-- Side labels -->
+  <rect x="30" y="500" width="90" height="34" rx="6" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="75" y="514" text-anchor="middle" font-size="9" font-weight="600" fill="#475569">MCP Servers</text>
+  <text x="75" y="526" text-anchor="middle" font-size="8" fill="#94A3B8">6 transports</text>
+
+  <rect x="135" y="500" width="100" height="34" rx="6" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="185" y="514" text-anchor="middle" font-size="9" font-weight="600" fill="#475569">Telemetry</text>
+  <text x="185" y="526" text-anchor="middle" font-size="8" fill="#94A3B8">3-layer pipeline</text>
+
+  <rect x="665" y="500" width="100" height="34" rx="6" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="715" y="514" text-anchor="middle" font-size="9" font-weight="600" fill="#475569">Team Sync</text>
+  <text x="715" y="526" text-anchor="middle" font-size="8" fill="#94A3B8">SHA-256 delta</text>
+
+  <rect x="775" y="500" width="95" height="34" rx="6" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="822" y="514" text-anchor="middle" font-size="9" font-weight="600" fill="#475569">Sandbox</text>
+  <text x="822" y="526" text-anchor="middle" font-size="8" fill="#94A3B8">macOS native</text>
+
+  <!-- Footer stats -->
+  <rect x="30" y="555" width="195" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="127" y="575" text-anchor="middle" font-size="20" font-weight="700" fill="#3B82F6">1,902</text>
+  <text x="127" y="593" text-anchor="middle" font-size="10" fill="#94A3B8">Source Files</text>
+
+  <rect x="245" y="555" width="145" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="317" y="575" text-anchor="middle" font-size="20" font-weight="700" fill="#8B5CF6">43</text>
+  <text x="317" y="593" text-anchor="middle" font-size="10" fill="#94A3B8">Built-in Tools</text>
+
+  <rect x="410" y="555" width="145" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="482" y="575" text-anchor="middle" font-size="20" font-weight="700" fill="#10B981">84</text>
+  <text x="482" y="593" text-anchor="middle" font-size="10" fill="#94A3B8">Slash Commands</text>
+
+  <rect x="575" y="555" width="145" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="647" y="575" text-anchor="middle" font-size="20" font-weight="700" fill="#F59E0B">170+</text>
+  <text x="647" y="593" text-anchor="middle" font-size="10" fill="#94A3B8">Env Variables</text>
+
+  <rect x="740" y="555" width="130" height="50" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="805" y="575" text-anchor="middle" font-size="20" font-weight="700" fill="#EF4444">26</text>
+  <text x="805" y="593" text-anchor="middle" font-size="10" fill="#94A3B8">Feature Flags</text>
+</svg>

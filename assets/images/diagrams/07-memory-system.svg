@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg7" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FDF8F4"/><stop offset="100%" stop-color="#F5EDE6"/></linearGradient>
+    <filter id="sh7"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+    <marker id="arr7" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#64748B"/></marker>
+    <marker id="arr7c" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#06B6D4"/></marker>
+  </defs>
+  <rect width="900" height="520" fill="url(#bg7)" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#1E293B">Memory System — 3-Layer Pointer Architecture</text>
+  <text x="450" y="50" text-anchor="middle" font-size="11" fill="#94A3B8">MEMORY.md is an INDEX, not a store. Topic files are auto-surfaced by Sonnet.</text>
+
+  <!-- WRITE SIDE -->
+  <text x="130" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#64748B">WRITE PATHS</text>
+
+  <rect x="40" y="90" width="180" height="40" rx="8" fill="#3B82F6" filter="url(#sh7)"/>
+  <text x="130" y="112" text-anchor="middle" font-size="11" font-weight="600" fill="white">Manual Save</text>
+  <text x="130" y="124" text-anchor="middle" font-size="8" fill="#BFDBFE">User: "remember this"</text>
+
+  <rect x="40" y="190" width="180" height="40" rx="8" fill="#8B5CF6" filter="url(#sh7)"/>
+  <text x="130" y="212" text-anchor="middle" font-size="11" font-weight="600" fill="white">extractMemories</text>
+  <text x="130" y="224" text-anchor="middle" font-size="8" fill="#EDE9FE">Per-turn (forked agent)</text>
+
+  <rect x="40" y="290" width="180" height="40" rx="8" fill="#F59E0B" filter="url(#sh7)"/>
+  <text x="130" y="312" text-anchor="middle" font-size="11" font-weight="600" fill="white">autoDream</text>
+  <text x="130" y="324" text-anchor="middle" font-size="8" fill="#FEF3C7">24h + 5 sessions</text>
+
+  <!-- STORAGE (center) -->
+  <text x="450" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#64748B">STORAGE</text>
+
+  <!-- Layer 1 - MEMORY.md -->
+  <rect x="280" y="88" width="340" height="48" rx="10" fill="#06B6D4" filter="url(#sh7)"/>
+  <text x="310" y="110" font-size="13" font-weight="700" fill="white">MEMORY.md</text>
+  <text x="310" y="126" font-size="9" fill="#CFFAFE">Pointer index · 200 lines max · 25KB max · Always in system prompt</text>
+  <rect x="555" y="96" width="55" height="20" rx="4" fill="white" opacity="0.2"/>
+  <text x="582" y="110" text-anchor="middle" font-size="9" font-weight="700" fill="white">Layer 1</text>
+
+  <!-- Layer 2 - Topic files -->
+  <rect x="280" y="148" width="340" height="80" rx="10" fill="white" stroke="#06B6D4" stroke-width="2" filter="url(#sh7)"/>
+  <text x="300" y="172" font-size="13" font-weight="700" fill="#0E7490">Topic Files (*.md)</text>
+  <text x="300" y="190" font-size="10" fill="#475569">YAML frontmatter: name, description, type</text>
+  <text x="300" y="206" font-size="10" fill="#475569">Up to 5 surfaced per turn by Sonnet</text>
+  <text x="300" y="220" font-size="9" fill="#94A3B8">user_role.md, feedback_testing.md, project_freeze.md...</text>
+  <rect x="555" y="156" width="55" height="20" rx="4" fill="#06B6D4"/>
+  <text x="582" y="170" text-anchor="middle" font-size="9" font-weight="700" fill="white">Layer 2</text>
+
+  <!-- Layer 3 - Transcripts -->
+  <rect x="280" y="240" width="340" height="60" rx="10" fill="white" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#sh7)"/>
+  <text x="300" y="264" font-size="13" font-weight="700" fill="#475569">Transcripts (.jsonl)</text>
+  <text x="300" y="282" font-size="10" fill="#64748B">Grep-only — never fully read. Narrow terms only.</text>
+  <text x="300" y="296" font-size="9" fill="#94A3B8">Large files. Only targeted search allowed.</text>
+  <rect x="555" y="248" width="55" height="20" rx="4" fill="#94A3B8"/>
+  <text x="582" y="262" text-anchor="middle" font-size="9" font-weight="700" fill="white">Layer 3</text>
+
+  <!-- Arrows write side -->
+  <path d="M220 110 L278 110" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr7)"/>
+  <path d="M220 210 L275 185" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr7)"/>
+  <path d="M220 310 L275 270" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr7)"/>
+
+  <!-- READ SIDE -->
+  <text x="770" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#64748B">READ PATHS</text>
+
+  <rect x="680" y="90" width="180" height="40" rx="8" fill="#06B6D4" filter="url(#sh7)"/>
+  <text x="770" y="112" text-anchor="middle" font-size="11" font-weight="600" fill="white">System Prompt</text>
+  <text x="770" y="124" text-anchor="middle" font-size="8" fill="#CFFAFE">Always injected every turn</text>
+
+  <rect x="680" y="160" width="180" height="55" rx="8" fill="white" stroke="#8B5CF6" stroke-width="1.5" filter="url(#sh7)"/>
+  <text x="770" y="182" text-anchor="middle" font-size="11" font-weight="600" fill="#5B21B6">Sonnet Selection</text>
+  <text x="770" y="197" text-anchor="middle" font-size="9" fill="#7C3AED">sideQuery() → up to 5 files</text>
+  <text x="770" y="210" text-anchor="middle" font-size="8" fill="#94A3B8">Injected as attachments</text>
+
+  <rect x="680" y="250" width="180" height="40" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="770" y="272" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">Targeted Grep</text>
+  <text x="770" y="284" text-anchor="middle" font-size="8" fill="#94A3B8">Narrow terms only</text>
+
+  <!-- Arrows read side -->
+  <path d="M620 112 L678 110" stroke="#06B6D4" stroke-width="1.5" marker-end="url(#arr7c)"/>
+  <path d="M620 188 L678 188" stroke="#8B5CF6" stroke-width="1.5" marker-end="url(#arr7)"/>
+  <path d="M620 270 L678 270" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr7)"/>
+
+  <!-- autoDream detail -->
+  <rect x="50" y="350" width="800" height="60" rx="10" fill="white" stroke="#F59E0B" stroke-width="1.5" filter="url(#sh7)"/>
+  <text x="70" y="372" font-size="12" font-weight="700" fill="#D97706">autoDream — Background Consolidation</text>
+  <text x="70" y="390" font-size="10" fill="#475569">Fires after >=24h + >=5 sessions. PID-based lock with 60min stale guard.</text>
+  <!-- 4 phases -->
+  <rect x="480" y="358" width="80" height="22" rx="6" fill="#FEF3C7"/>
+  <text x="520" y="373" text-anchor="middle" font-size="9" font-weight="600" fill="#92400E">Orient</text>
+  <rect x="565" y="358" width="80" height="22" rx="6" fill="#FDE68A"/>
+  <text x="605" y="373" text-anchor="middle" font-size="9" font-weight="600" fill="#92400E">Gather</text>
+  <rect x="650" y="358" width="90" height="22" rx="6" fill="#FCD34D"/>
+  <text x="695" y="373" text-anchor="middle" font-size="9" font-weight="600" fill="#78350F">Consolidate</text>
+  <rect x="745" y="358" width="80" height="22" rx="6" fill="#FBBF24"/>
+  <text x="785" y="373" text-anchor="middle" font-size="9" font-weight="600" fill="#78350F">Prune</text>
+
+  <!-- 4 memory types -->
+  <text x="450" y="432" text-anchor="middle" font-size="12" font-weight="700" fill="#1E293B">4 Memory Types</text>
+  <rect x="50" y="445" width="190" height="60" rx="8" fill="white" stroke="#3B82F6" stroke-width="1.5" filter="url(#sh7)"/>
+  <rect x="50" y="445" width="190" height="6" rx="3" fill="#3B82F6"/>
+  <text x="145" y="467" text-anchor="middle" font-size="12" font-weight="600" fill="#1E40AF">user</text>
+  <text x="145" y="483" text-anchor="middle" font-size="9" fill="#64748B">Role, goals, preferences</text>
+  <text x="145" y="497" text-anchor="middle" font-size="8" fill="#94A3B8">Tailors responses to expertise</text>
+
+  <rect x="260" y="445" width="190" height="60" rx="8" fill="white" stroke="#EF4444" stroke-width="1.5" filter="url(#sh7)"/>
+  <rect x="260" y="445" width="190" height="6" rx="3" fill="#EF4444"/>
+  <text x="355" y="467" text-anchor="middle" font-size="12" font-weight="600" fill="#DC2626">feedback</text>
+  <text x="355" y="483" text-anchor="middle" font-size="9" fill="#64748B">Corrections + confirmations</text>
+  <text x="355" y="497" text-anchor="middle" font-size="8" fill="#94A3B8">Why + How to apply</text>
+
+  <rect x="470" y="445" width="190" height="60" rx="8" fill="white" stroke="#8B5CF6" stroke-width="1.5" filter="url(#sh7)"/>
+  <rect x="470" y="445" width="190" height="6" rx="3" fill="#8B5CF6"/>
+  <text x="565" y="467" text-anchor="middle" font-size="12" font-weight="600" fill="#7C3AED">project</text>
+  <text x="565" y="483" text-anchor="middle" font-size="9" fill="#64748B">Work, goals, deadlines</text>
+  <text x="565" y="497" text-anchor="middle" font-size="8" fill="#94A3B8">Relative → absolute dates</text>
+
+  <rect x="680" y="445" width="190" height="60" rx="8" fill="white" stroke="#06B6D4" stroke-width="1.5" filter="url(#sh7)"/>
+  <rect x="680" y="445" width="190" height="6" rx="3" fill="#06B6D4"/>
+  <text x="775" y="467" text-anchor="middle" font-size="12" font-weight="600" fill="#0E7490">reference</text>
+  <text x="775" y="483" text-anchor="middle" font-size="9" fill="#64748B">External system pointers</text>
+  <text x="775" y="497" text-anchor="middle" font-size="8" fill="#94A3B8">Linear, Grafana, Slack...</text>
+</svg>

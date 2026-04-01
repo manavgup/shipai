@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 350" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FDF8F4"/><stop offset="100%" stop-color="#F5EDE6"/></linearGradient>
+    <filter id="sh4"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+    <marker id="arr4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#64748B"/></marker>
+  </defs>
+  <rect width="900" height="350" fill="url(#bg4)" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#1E293B">StreamingToolExecutor — Tool Execution Pipeline</text>
+
+  <!-- API Stream -->
+  <rect x="40" y="55" width="160" height="50" rx="8" fill="#3B82F6" filter="url(#sh4)"/>
+  <text x="120" y="77" text-anchor="middle" font-size="12" font-weight="600" fill="white">API SSE Stream</text>
+  <text x="120" y="93" text-anchor="middle" font-size="9" fill="#DBEAFE">tokens arriving...</text>
+
+  <path d="M200 80 L240 80" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+  <!-- Queue -->
+  <rect x="245" y="55" width="140" height="50" rx="8" fill="#F59E0B" filter="url(#sh4)"/>
+  <text x="315" y="77" text-anchor="middle" font-size="12" font-weight="600" fill="white">tool_use Queue</text>
+  <text x="315" y="93" text-anchor="middle" font-size="9" fill="#FEF3C7">as blocks arrive</text>
+
+  <!-- Branch -->
+  <path d="M385 80 L430 80" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+  <!-- Permission Check -->
+  <rect x="435" y="55" width="140" height="50" rx="8" fill="#8B5CF6" filter="url(#sh4)"/>
+  <text x="505" y="77" text-anchor="middle" font-size="12" font-weight="600" fill="white">canUseTool()</text>
+  <text x="505" y="93" text-anchor="middle" font-size="9" fill="#EDE9FE">permission check</text>
+
+  <!-- Fork into parallel vs sequential -->
+  <path d="M575 70 L630 45" stroke="#10B981" stroke-width="1.5" marker-end="url(#arr4)"/>
+  <path d="M575 90 L630 115" stroke="#EF4444" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+  <!-- Parallel track -->
+  <rect x="635" y="22" width="230" height="50" rx="8" fill="#D1FAE5" stroke="#10B981" stroke-width="1.5" filter="url(#sh4)"/>
+  <text x="750" y="42" text-anchor="middle" font-size="11" font-weight="600" fill="#065F46">Concurrent (max 10 parallel)</text>
+  <text x="750" y="58" text-anchor="middle" font-size="9" fill="#059669">Read, Glob, Grep, WebFetch, LSP...</text>
+
+  <!-- Sequential track -->
+  <rect x="635" y="92" width="230" height="50" rx="8" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5" filter="url(#sh4)"/>
+  <text x="750" y="112" text-anchor="middle" font-size="11" font-weight="600" fill="#991B1B">Exclusive (sequential)</text>
+  <text x="750" y="128" text-anchor="middle" font-size="9" fill="#DC2626">Bash, Edit, Write, Agent</text>
+
+  <!-- Sibling Abort section -->
+  <rect x="40" y="160" width="820" height="80" rx="10" fill="white" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="6,3" filter="url(#sh4)"/>
+  <text x="60" y="183" font-size="13" font-weight="700" fill="#DC2626">Sibling Abort Pattern</text>
+  <text x="60" y="202" font-size="11" fill="#475569">When Bash errors → siblingAbortController.abort() cancels all parallel siblings instantly.</text>
+  <text x="60" y="218" font-size="11" fill="#475569">Parent query continues — only siblings killed. AbortController is a child of the main controller.</text>
+  <!-- Visual -->
+  <rect x="600" y="170" width="65" height="28" rx="6" fill="#FEE2E2"/>
+  <text x="632" y="188" text-anchor="middle" font-size="9" font-weight="600" fill="#DC2626">Bash</text>
+  <text x="632" y="199" text-anchor="middle" font-size="7" fill="#EF4444">ERROR</text>
+  <path d="M670 184 L695 175" stroke="#EF4444" stroke-width="1.5"/>
+  <path d="M670 184 L695 184" stroke="#EF4444" stroke-width="1.5"/>
+  <path d="M670 184 L695 193" stroke="#EF4444" stroke-width="1.5"/>
+  <rect x="700" y="165" width="50" height="18" rx="4" fill="#FEE2E2"/>
+  <text x="725" y="177" text-anchor="middle" font-size="8" fill="#DC2626">Read</text>
+  <text x="755" y="177" font-size="8" fill="#DC2626">abort()</text>
+  <rect x="700" y="175" width="50" height="18" rx="4" fill="#FEE2E2" opacity="0.6"/>
+  <text x="725" y="187" text-anchor="middle" font-size="8" fill="#DC2626">Glob</text>
+  <text x="755" y="187" font-size="8" fill="#DC2626">abort()</text>
+  <rect x="700" y="185" width="50" height="18" rx="4" fill="#FEE2E2" opacity="0.3"/>
+  <text x="725" y="197" text-anchor="middle" font-size="8" fill="#DC2626">Grep</text>
+  <text x="755" y="197" font-size="8" fill="#DC2626">abort()</text>
+
+  <!-- Fork Cache section -->
+  <rect x="40" y="255" width="820" height="80" rx="10" fill="white" stroke="#3B82F6" stroke-width="1.5" filter="url(#sh4)"/>
+  <text x="60" y="278" font-size="13" font-weight="700" fill="#2563EB">Fork Cache Sharing</text>
+  <text x="60" y="297" font-size="11" fill="#475569">Forks inherit byte-identical message history → prompt cache hit across all children. Only the directive differs.</text>
+
+  <!-- Fork visual -->
+  <rect x="520" y="262" width="120" height="30" rx="6" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="580" y="281" text-anchor="middle" font-size="10" font-weight="600" fill="#1E40AF">Parent Context</text>
+  <path d="M580 292 L520 312" stroke="#3B82F6" stroke-width="1.5"/>
+  <path d="M580 292 L580 312" stroke="#3B82F6" stroke-width="1.5"/>
+  <path d="M580 292 L640 312" stroke="#3B82F6" stroke-width="1.5"/>
+  <path d="M580 292 L700 312" stroke="#3B82F6" stroke-width="1.5"/>
+  <rect x="495" y="312" width="50" height="20" rx="4" fill="#3B82F6"/>
+  <text x="520" y="326" text-anchor="middle" font-size="8" font-weight="600" fill="white">Fork 1</text>
+  <rect x="555" y="312" width="50" height="20" rx="4" fill="#3B82F6"/>
+  <text x="580" y="326" text-anchor="middle" font-size="8" font-weight="600" fill="white">Fork 2</text>
+  <rect x="615" y="312" width="50" height="20" rx="4" fill="#3B82F6"/>
+  <text x="640" y="326" text-anchor="middle" font-size="8" font-weight="600" fill="white">Fork 3</text>
+  <rect x="675" y="312" width="50" height="20" rx="4" fill="#3B82F6"/>
+  <text x="700" y="326" text-anchor="middle" font-size="8" font-weight="600" fill="white">Fork N</text>
+  <text x="790" y="325" font-size="9" fill="#3B82F6" font-weight="600">cache hit!</text>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FDF8F4"/><stop offset="100%" stop-color="#F5EDE6"/></linearGradient>
+    <filter id="sh5"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+    <marker id="arr5" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#64748B"/></marker>
+  </defs>
+  <rect width="900" height="420" fill="url(#bg5)" rx="12"/>
+  <text x="450" y="35" text-anchor="middle" font-size="18" font-weight="700" fill="#1E293B">3-Layer Permission Model</text>
+
+  <!-- Layer 1 - Tool Registry Filter -->
+  <rect x="60" y="60" width="780" height="80" rx="10" fill="white" stroke="#EF4444" stroke-width="2" filter="url(#sh5)"/>
+  <rect x="60" y="60" width="780" height="10" rx="10" fill="#EF4444"/>
+  <rect x="60" y="60" width="780" height="5" fill="#EF4444"/>
+  <circle cx="100" cy="100" r="18" fill="#EF4444"/>
+  <text x="100" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="white">1</text>
+  <text x="130" y="95" font-size="14" font-weight="700" fill="#1E293B">Tool Registry Filter</text>
+  <text x="130" y="114" font-size="11" fill="#475569">filterToolsByDenyRules() removes denied tools before Claude sees them.</text>
+  <text x="130" y="130" font-size="11" fill="#94A3B8">Claude cannot call what it cannot see. Tools removed from schema entirely.</text>
+  <rect x="640" y="85" width="180" height="36" rx="6" fill="#FEE2E2" stroke="#FECACA" stroke-width="1"/>
+  <text x="730" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#991B1B">Invisible to model</text>
+  <text x="730" y="116" text-anchor="middle" font-size="9" fill="#DC2626">denied tools stripped</text>
+
+  <path d="M450 140 L450 158" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+  <!-- Layer 2 - Per-Call Check -->
+  <rect x="60" y="162" width="780" height="80" rx="10" fill="white" stroke="#F59E0B" stroke-width="2" filter="url(#sh5)"/>
+  <rect x="60" y="162" width="780" height="10" rx="10" fill="#F59E0B"/>
+  <rect x="60" y="162" width="780" height="5" fill="#F59E0B"/>
+  <circle cx="100" cy="202" r="18" fill="#F59E0B"/>
+  <text x="100" y="207" text-anchor="middle" font-size="13" font-weight="700" fill="white">2</text>
+  <text x="130" y="197" font-size="14" font-weight="700" fill="#1E293B">Per-Call Permission Check</text>
+  <text x="130" y="216" font-size="11" fill="#475569">canUseTool() validates tool name + arguments + working directory against rules.</text>
+  <text x="130" y="232" font-size="11" fill="#94A3B8">8-source priority: Policy → User → Project → Local → CLI → cliArg → command → session</text>
+  <rect x="640" y="188" width="180" height="36" rx="6" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1"/>
+  <text x="730" y="207" text-anchor="middle" font-size="10" font-weight="600" fill="#92400E">allow / deny / ask</text>
+  <text x="730" y="219" text-anchor="middle" font-size="9" fill="#D97706">per invocation</text>
+
+  <path d="M450 242 L450 260" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+  <!-- Layer 3 - User Prompt -->
+  <rect x="60" y="264" width="780" height="80" rx="10" fill="white" stroke="#10B981" stroke-width="2" filter="url(#sh5)"/>
+  <rect x="60" y="264" width="780" height="10" rx="10" fill="#10B981"/>
+  <rect x="60" y="264" width="780" height="5" fill="#10B981"/>
+  <circle cx="100" cy="304" r="18" fill="#10B981"/>
+  <text x="100" y="309" text-anchor="middle" font-size="13" font-weight="700" fill="white">3</text>
+  <text x="130" y="299" font-size="14" font-weight="700" fill="#1E293B">Interactive User Prompt</text>
+  <text x="130" y="318" font-size="11" fill="#475569">If no rule matches: user is prompted with "allow once", "allow always", or "deny".</text>
+  <text x="130" y="334" font-size="11" fill="#94A3B8">Response becomes a session-level rule for subsequent identical calls.</text>
+  <!-- Buttons -->
+  <rect x="620" y="290" width="80" height="26" rx="6" fill="#D1FAE5" stroke="#10B981" stroke-width="1"/>
+  <text x="660" y="307" text-anchor="middle" font-size="9" font-weight="600" fill="#065F46">Allow once</text>
+  <rect x="710" y="290" width="80" height="26" rx="6" fill="#D1FAE5" stroke="#10B981" stroke-width="1"/>
+  <text x="750" y="307" text-anchor="middle" font-size="9" font-weight="600" fill="#065F46">Always</text>
+  <rect x="620" y="320" width="80" height="18" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1"/>
+  <text x="660" y="333" text-anchor="middle" font-size="9" font-weight="600" fill="#991B1B">Deny</text>
+
+  <!-- Bash Safety callout -->
+  <rect x="60" y="360" width="780" height="48" rx="8" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1" filter="url(#sh5)"/>
+  <text x="80" y="382" font-size="12" font-weight="700" fill="#BE123C">+ Bash AST Analysis</text>
+  <text x="250" y="382" font-size="11" fill="#475569">24+ validators via tree-sitter AST parsing: rm -rf, fork bombs, curl|bash, sudo, TTY injection,</text>
+  <text x="250" y="398" font-size="11" fill="#475569">Unicode bypass, IFS injection, brace expansion, zsh-specific (16 patterns), jq system(), git commit injection</text>
+</svg>

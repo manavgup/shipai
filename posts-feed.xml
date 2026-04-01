@@ -1,103 +1,262 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-04-01T16:08:16+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">What I Found Inside Claude Code’s 513K Lines of Source Code</title><link href="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/" rel="alternate" type="text/html" title="What I Found Inside Claude Code’s 513K Lines of Source Code" /><published>2026-04-01T00:00:00+00:00</published><updated>2026-04-01T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/"><![CDATA[<p>I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-04-01T16:45:05+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">What I Found Inside Claude Code’s 513K Lines of Source Code</title><link href="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/" rel="alternate" type="text/html" title="What I Found Inside Claude Code’s 513K Lines of Source Code" /><published>2026-04-01T00:00:00+00:00</published><updated>2026-04-01T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/"><![CDATA[<p>I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.</p>
 
 <h2 id="why-read-the-source">Why Read the Source?</h2>
 
 <p>Every AI company ships demos. Few ship source code you can actually read. Claude Code is different — it’s distributed as a CLI tool, and its TypeScript source is accessible. I wanted to understand not just <em>what</em> it does, but <em>how</em> it’s built. The architecture decisions reveal more about the state of AI engineering than any product announcement.</p>
 
+<p>This article is a companion to the <a href="/shipai/deep-dives/claude-code/">20-page interactive deep dive</a> — click through for code excerpts, detailed tables, and page-by-page analysis.</p>
+
 <h2 id="the-stack-bun-ink-zustand">The Stack: Bun, Ink, Zustand</h2>
 
-<p>The first surprise: Claude Code doesn’t run on Node.js. It uses <a href="https://bun.sh/">Bun</a>, the newer JavaScript runtime built on the JavaScriptCore engine. The terminal UI is built with <a href="https://github.com/vadimdemedes/ink">Ink</a> — essentially React for the terminal. State management uses Zustand, a lightweight alternative to Redux. This stack choice tells you something about the team’s priorities: performance and developer experience over ecosystem maturity.</p>
+<p>The first surprise: Claude Code doesn’t run on Node.js. It uses <strong>Bun</strong>, the newer JavaScript runtime built on the JavaScriptCore engine. The terminal UI is built with <strong>Ink</strong> — a heavily customized fork with a custom React reconciler, Yoga WASM flexbox layout, double-buffered ANSI rendering, and mouse tracking. 389 component files, 96 files in the Ink fork alone. State management uses <strong>Zustand</strong> with Immer for React-integrated UI state.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Source files</td>
+      <td>1,902</td>
+    </tr>
+    <tr>
+      <td>Lines of code</td>
+      <td>~513,000</td>
+    </tr>
+    <tr>
+      <td>Built-in tools</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <td>Slash commands</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <td>Environment variables</td>
+      <td>170+</td>
+    </tr>
+    <tr>
+      <td>React hooks</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <td>UI components</td>
+      <td>144 (in 389 files)</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>For the full technical breakdown, see the <a href="/shipai/deep-dives/claude-code/01-overview.html">Overview &amp; Stack</a> companion page.</p>
 
+<h2 id="architecture--directory-structure">Architecture &amp; Directory Structure</h2>
+
+<p><img src="/shipai/assets/images/diagrams/01-architecture-overview.svg" alt="Claude Code — High-Level Architecture" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">src/</code> directory is organized by function, not by feature. The biggest directories: <code class="language-plaintext highlighter-rouge">utils/</code> (564 files — permissions, bash AST parser, sandbox, model routing, telemetry), <code class="language-plaintext highlighter-rouge">components/</code> (389 files — Ink terminal UI), <code class="language-plaintext highlighter-rouge">commands/</code> (207 files — 84 slash commands, 24+ internal-only), <code class="language-plaintext highlighter-rouge">tools/</code> (184 files — 43 tool implementations), and <code class="language-plaintext highlighter-rouge">services/</code> (130 files — API client, MCP protocol, streaming executor, analytics).</p>
+
+<p>See the <a href="/shipai/deep-dives/claude-code/02-architecture.html">Architecture &amp; Boot</a> page for the full directory map.</p>
+
 <h2 id="the-query-loop-where-the-magic-happens">The Query Loop: Where the Magic Happens</h2>
 
-<p>At the heart of Claude Code is an async generator that orchestrates every single interaction. When you type a message, it flows through a 6-step pipeline:</p>
+<p><img src="/shipai/assets/images/diagrams/03-query-loop.svg" alt="The Query Loop" /></p>
+
+<p>At the heart of Claude Code is an async generator in <code class="language-plaintext highlighter-rouge">query.ts</code> — 1,729 lines. The REPL consumes streaming events via <code class="language-plaintext highlighter-rouge">for await</code>.</p>
 
 <ol>
-  <li><strong>Input processing</strong> — your message is parsed, context is assembled</li>
-  <li><strong>Tool planning</strong> — the model decides which tools to invoke</li>
-  <li><strong>Tool execution</strong> — tools run with streaming output and sibling-abort capability</li>
-  <li><strong>Continuation decision</strong> — should the agent keep going or stop?</li>
-  <li><strong>Response generation</strong> — the final output is composed</li>
-  <li><strong>Post-sampling hooks</strong> — interceptors that can modify behavior after each step</li>
+  <li><strong>User sends message</strong> — <code class="language-plaintext highlighter-rouge">createUserMessage()</code> wraps text in Anthropic format</li>
+  <li><strong>Compaction phase</strong> — four strategies checked: snip, microcompact, autocompact (at ~167K tokens), context collapse</li>
+  <li><strong>System prompt assembled</strong> from 10+ sources with <code class="language-plaintext highlighter-rouge">cache_control</code> markers</li>
+  <li><strong>Stream to Claude API via SSE</strong> — tokens parsed incrementally, rendered in real-time</li>
+  <li><strong>Tool execution starts BEFORE stream ends</strong> — <code class="language-plaintext highlighter-rouge">StreamingToolExecutor</code> queues tool_use blocks as they arrive. Concurrent-safe tools run in parallel (max 10)</li>
+  <li><strong>Continue, retry, or return</strong> — tool_use loops back, prompt too long triggers compact, max tokens increases budget, 529 falls back to another model, end_turn returns</li>
 </ol>
 
-<p>This isn’t a simple request-response loop. It’s a state machine that can recurse, branch, and self-correct. The <a href="/shipai/deep-dives/claude-code/03-query-loop.html">Query Loop deep dive</a> walks through each stage with code excerpts.</p>
+<p>After each turn: auto-compact check, memory extraction via forked subagent, speculation (pre-computes next response), and autoDream (background memory consolidation after 24h + 5 sessions).</p>
+
+<p>The <a href="/shipai/deep-dives/claude-code/03-query-loop.html">Query Loop deep dive</a> walks through each stage with code excerpts.</p>
 
 <h2 id="43-tools--more-than-you-think">43 Tools — More Than You Think</h2>
 
-<p>I expected maybe 15-20 tools. The actual count is 43. They span file I/O (Read, Write, Edit, Glob, Grep), shell execution (Bash with full AST analysis), web access (WebFetch, WebSearch), notebook editing, MCP server integration, and agent orchestration.</p>
+<p><img src="/shipai/assets/images/diagrams/04-tool-execution.svg" alt="StreamingToolExecutor Pipeline" /></p>
 
-<p>What’s remarkable isn’t the number — it’s the execution model. Each tool runs through a streaming executor that supports <strong>sibling abort</strong>: if Claude Code spawns multiple tool calls in parallel and one returns a definitive answer, it can cancel the others. This is the kind of optimization that separates a polished agent from a prototype.</p>
+<p>Every tool implements a 30+ method interface: <code class="language-plaintext highlighter-rouge">isConcurrencySafe()</code>, <code class="language-plaintext highlighter-rouge">isReadOnly()</code>, <code class="language-plaintext highlighter-rouge">isDestructive()</code>, <code class="language-plaintext highlighter-rouge">checkPermissions()</code>. Fail-closed defaults.</p>
+
+<p><strong>File Operations:</strong> Read, Edit, Write, Glob, Grep, NotebookEdit. <strong>Execution:</strong> Bash, PowerShell. <strong>Search:</strong> WebFetch, WebSearch, ToolSearch. <strong>Agents:</strong> Agent, SendMessage, TaskCreate/Get/List/Update/Stop/Output, Plan modes, Worktree. <strong>MCP:</strong> MCPTool, ListMcpResources, ReadMcpResource, McpAuth. <strong>System:</strong> AskUser, TodoWrite, Skill, RemoteTrigger, Cron, Config, LSP, Brief.</p>
+
+<p><strong>Sibling Abort:</strong> When Bash errors, <code class="language-plaintext highlighter-rouge">siblingAbortController.abort()</code> cancels all parallel siblings instantly. Parent query continues.</p>
+
+<p><strong>Fork Cache:</strong> Fork subagents inherit byte-identical message history — only the directive differs. Shared prefix = prompt cache hit across all forks.</p>
 
 <p>The <a href="/shipai/deep-dives/claude-code/04-tool-catalog.html">Tool Catalog</a> page has the full list with categories and descriptions.</p>
 
 <h2 id="the-permission-model-is-deeply-engineered">The Permission Model Is Deeply Engineered</h2>
 
-<p>This is where Claude Code gets genuinely impressive from a safety perspective. The permission system has three layers:</p>
+<p><img src="/shipai/assets/images/diagrams/05-permission-layers.svg" alt="3-Layer Permission Model" /></p>
+
+<p>The permission system has three layers:</p>
 
 <ul>
-  <li><strong>Tool level</strong>: each tool declares what permissions it needs</li>
-  <li><strong>Mode level</strong>: 7 modes from fully automatic to fully manual</li>
-  <li><strong>Rule level</strong>: 8 different sources of permission rules, including project-level CLAUDE.md files</li>
+  <li><strong>Layer 1 — Tool Registry Filter:</strong> <code class="language-plaintext highlighter-rouge">filterToolsByDenyRules()</code> removes denied tools before Claude sees them. Claude cannot call what it cannot see.</li>
+  <li><strong>Layer 2 — Per-Call Check:</strong> <code class="language-plaintext highlighter-rouge">canUseTool()</code> validates tool name, arguments, and working directory against allow/deny/ask rules.</li>
+  <li><strong>Layer 3 — Interactive Prompt:</strong> If no rule matches: “allow once”, “allow always”, or “deny.” Response becomes a session-level rule.</li>
 </ul>
 
-<p>The Bash tool is the most interesting case. Before executing any shell command, Claude Code parses it into an AST (Abstract Syntax Tree) and runs it through <strong>24 separate validators</strong>. Commands like <code class="language-plaintext highlighter-rouge">rm -rf /</code>, <code class="language-plaintext highlighter-rouge">curl | bash</code>, or <code class="language-plaintext highlighter-rouge">git push --force</code> are caught before they ever touch your system.</p>
+<p><strong>7 operating modes</strong> range from <code class="language-plaintext highlighter-rouge">default</code> (prompt for risky tools only) through <code class="language-plaintext highlighter-rouge">acceptEdits</code> (auto-allow file edits), <code class="language-plaintext highlighter-rouge">plan</code> (read-only), <code class="language-plaintext highlighter-rouge">auto</code> (ML classifier decides), to <code class="language-plaintext highlighter-rouge">bypassPermissions</code>.</p>
+
+<p><strong>8-source rule priority:</strong> Policy → User → Project → Local → CLI flag → cliArg → command → session.</p>
+
+<p><strong>Bash AST Analysis:</strong> 24+ validators via tree-sitter parsing detect <code class="language-plaintext highlighter-rouge">rm -rf</code>, fork bombs, <code class="language-plaintext highlighter-rouge">curl|bash</code>, sudo, TTY injection, Unicode bypass, IFS injection, and more.</p>
 
 <p>See the full <a href="/shipai/deep-dives/claude-code/05-permissions.html">Permissions</a> and <a href="/shipai/deep-dives/claude-code/10-security.html">Security</a> pages for details.</p>
 
+<h2 id="context-management--autocompact">Context Management &amp; Autocompact</h2>
+
+<p><img src="/shipai/assets/images/diagrams/06-token-budget.svg" alt="Token Budget Distribution" /></p>
+
+<p>Claude Code uses hybrid token counting — walks messages backwards to find last API usage data, then estimates new messages at character/4 with 4/3x padding. The autocompact threshold triggers at ~167K tokens (200K window minus 20K reserved minus 13K buffer).</p>
+
+<p><strong>4 compaction strategies:</strong></p>
+<ol>
+  <li><strong>Snip</strong> — drop old messages entirely, no API call</li>
+  <li><strong>Microcompact</strong> — clear tool result content (time-based, cached, or compactable tools)</li>
+  <li><strong>Autocompact</strong> — Claude summarizes the conversation, frees ~40-60% of context</li>
+  <li><strong>Context Collapse</strong> — fold multiple messages into summaries</li>
+</ol>
+
+<p>Circuit breaker: after 3 consecutive autocompact failures, stops attempting for the rest of the session.</p>
+
+<p>See the <a href="/shipai/deep-dives/claude-code/06-context-autocompact.html">Context &amp; Autocompact</a> page for the threshold math and strategy details.</p>
+
 <h2 id="the-subagent-swarm">The Subagent Swarm</h2>
 
-<p>When Claude Code encounters a complex task — say, “find all files that reference this function and update them” — it doesn’t handle everything sequentially. It spawns <strong>subagents</strong>: specialized workers that run in parallel, each with their own context window and tool access.</p>
+<p><img src="/shipai/assets/images/diagrams/10-subagent-topology.svg" alt="3 Levels of Agent Parallelism" /></p>
 
-<p>There are 6 agent types, from general-purpose researchers to code explorers and plan architects. Each follows a 7-step lifecycle (init → configure → prompt → execute → collect → merge → return) and uses fork mechanics that share cache across siblings for efficiency.</p>
+<p>3 levels of parallelism: <strong>subagents</strong> (in-process, max 200 turns), <strong>fork subagents</strong> (byte-identical prefix for cache hits), and <strong>swarm teams</strong> (leader + teammates, file-based mailbox, 500ms permission poll).</p>
 
-<p>This is architecturally similar to how a senior developer delegates tasks to a team — and it explains why Claude Code can handle large-scale refactors that would overwhelm a single-context-window approach.</p>
+<p><strong>The fork trick:</strong> <code class="language-plaintext highlighter-rouge">buildForkedMessages()</code> creates byte-identical prefixes with synthetic tool_result placeholders. Only the per-child directive differs. All forks share prompt cache — this is why Claude Code can cheaply spin up multiple parallel workers.</p>
+
+<p><strong>Swarm backends:</strong> In-Process (AsyncLocalStorage), Tmux (30/70 pane split), iTerm2 (vertical split tabs).</p>
 
 <p>The <a href="/shipai/deep-dives/claude-code/08-subagents-swarm.html">Subagents &amp; Swarm</a> page has the full topology.</p>
 
 <h2 id="memory-more-than-chat-history">Memory: More Than Chat History</h2>
 
-<p>Claude Code’s memory system is built around <code class="language-plaintext highlighter-rouge">MEMORY.md</code> — a file that acts as a pointer index to categorized memory files. There are four types:</p>
+<p><img src="/shipai/assets/images/diagrams/07-memory-system.svg" alt="Memory System — 3-Layer Architecture" /></p>
+
+<p>MEMORY.md is NOT a store — it’s a <strong>pointer index</strong>. Max 200 lines / 25KB. Each line: <code class="language-plaintext highlighter-rouge">- [Title](file.md) — one-line hook</code>.</p>
 
 <ul>
-  <li><strong>User</strong> — who you are, your preferences, your expertise</li>
-  <li><strong>Feedback</strong> — corrections you’ve given that should persist</li>
-  <li><strong>Project</strong> — context about ongoing work, deadlines, goals</li>
-  <li><strong>Reference</strong> — pointers to external systems (Jira boards, Slack channels, dashboards)</li>
+  <li><strong>Layer 1:</strong> MEMORY.md — always in system prompt</li>
+  <li><strong>Layer 2:</strong> Topic files (*.md) — up to 5 auto-surfaced by Sonnet per turn as attachments</li>
+  <li><strong>Layer 3:</strong> Transcripts (.jsonl) — grep-only, never fully read</li>
 </ul>
 
-<p>The system uses Sonnet for memory operations (cheaper than Opus for routine reads/writes) and includes an “autoDream” feature that proactively saves observations about the project as it works.</p>
+<p><strong>4 types:</strong> user (role/preferences), feedback (corrections + confirmations), project (work/deadlines), reference (external system pointers).</p>
+
+<p><strong>autoDream:</strong> Fires after ≥24h + ≥5 sessions. 4 phases: Orient → Gather Signal → Consolidate → Prune &amp; Index. PID-based lock with 60min stale guard.</p>
 
 <p>See the <a href="/shipai/deep-dives/claude-code/09-memory.html">Memory System</a> page for the full architecture.</p>
 
-<h2 id="security-6-layers-deep">Security: 6 Layers Deep</h2>
+<h2 id="security-6-layer-defense-stack">Security: 6-Layer Defense Stack</h2>
 
-<p>Beyond the permission model, Claude Code has a comprehensive security architecture:</p>
+<p><img src="/shipai/assets/images/diagrams/08-security-stack.svg" alt="6-Layer Defense-in-Depth" /></p>
 
-<ol>
-  <li><strong>Bash AST validators</strong> — 24 validators that parse commands before execution</li>
-  <li><strong>ML prompt injection classifier</strong> — detects adversarial inputs</li>
-  <li><strong>Never-bypassable gates</strong> — permission checks that even the AI itself cannot override</li>
-  <li><strong>Sandbox modes</strong> — container and network isolation options</li>
-  <li><strong>Secret scanning</strong> — prevents accidental exposure of credentials</li>
-  <li><strong>Audit logging</strong> — every tool invocation is recorded</li>
-</ol>
+<p>Each layer is independent — compromising one doesn’t defeat the others.</p>
 
-<p>This multi-layered approach reflects a mature understanding of AI safety in practice — not just theoretical alignment, but concrete engineering safeguards.</p>
+<ul>
+  <li><strong>Layer 0:</strong> Authentication — OAuth 2.0 + PKCE, macOS Keychain (90-day), JWT refresh (5min)</li>
+  <li><strong>Layer 1:</strong> Permission Modes — 7 modes from default to bypassPermissions</li>
+  <li><strong>Layer 2:</strong> Permission Rules — 8-source priority chain with pattern matching</li>
+  <li><strong>Layer 3:</strong> Tool-Level Checks — 24+ bash validators, tree-sitter AST + regex</li>
+  <li><strong>Layer 4:</strong> Pre/Post Tool Hooks — PreToolUse CAN block, 15s timeout</li>
+  <li><strong>Layer 5:</strong> Sandboxing — macOS native, network allowlist, filesystem restrictions</li>
+</ul>
+
+<p><strong>Never-bypassable protections:</strong> <code class="language-plaintext highlighter-rouge">.git/</code> directory protection (handles path escapes, NTFS 8.3, case-insensitive), symlink attack prevention, dangerous file protection (.gitconfig, .bashrc, .zshrc, .mcp.json), and policy sandbox restrictions that cannot be overridden.</p>
+
+<p><strong>Server-side killswitches</strong> can remotely disable bypassPermissions and the ML classifier.</p>
+
+<p>See the <a href="/shipai/deep-dives/claude-code/10-security.html">Security</a> page for the complete defense stack.</p>
+
+<h2 id="the-speculation-system">The Speculation System</h2>
+
+<p><img src="/shipai/assets/images/diagrams/09-speculation.svg" alt="Speculation System" /></p>
+
+<p>While you’re reading Claude’s response, a background system <strong>pre-computes the next turn</strong>. Uses an overlay filesystem for safety.</p>
+
+<p>A suggestion appears → overlay filesystem created → forked agent runs with REAL API calls → tool calls intercepted (read-only allowed, writes redirected to overlay, bash checked, others denied). <strong>Accept:</strong> copy overlay files to real filesystem, inject messages, appears instant. <strong>Abort:</strong> delete overlay, zero impact.</p>
+
+<p><strong>Pipelined:</strong> When Spec 1 completes, Spec 2 starts immediately for the NEXT turn — two steps ahead. Real API calls = real token cost.</p>
+
+<p>See the <a href="/shipai/deep-dives/claude-code/14-speculation.html">Speculation</a> page for the state machine details.</p>
+
+<h2 id="architecture-critique">Architecture Critique</h2>
+
+<p><code class="language-plaintext highlighter-rouge">main.tsx</code> is <strong>4,684 lines</strong> with <strong>187 imports</strong> in the first 210 lines. It serves as entry point AND orchestration — CLI parsing, init, feature flags, MCP config, session management, tool orchestration.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Principle</th>
+      <th>Status</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Single Responsibility</td>
+      <td>Fail</td>
+      <td>main.tsx has 6+ responsibilities</td>
+    </tr>
+    <tr>
+      <td>Open/Closed</td>
+      <td>Fail</td>
+      <td>God object knows everything</td>
+    </tr>
+    <tr>
+      <td>Dependency Inversion</td>
+      <td>Fail</td>
+      <td>187 concrete imports</td>
+    </tr>
+    <tr>
+      <td>Testability</td>
+      <td>Fail</td>
+      <td>Side effects block unit tests</td>
+    </tr>
+    <tr>
+      <td>Modularity</td>
+      <td>Partial</td>
+      <td>Good tool system, poor boundaries</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>What’s good:</strong> Strong TypeScript types, modular tool system (30-method interface), memoization, separated query logic in QueryEngine.ts.</p>
+
+<p>See the <a href="/shipai/deep-dives/claude-code/13-architecture-critique.html">Architecture Critique</a> page for the full SOLID scorecard.</p>
 
 <h2 id="the-easter-eggs">The Easter Eggs</h2>
 
-<p>Because no deep codebase review is complete without them: Claude Code contains over 200 spinner verbs (the messages shown while it’s thinking), a Buddy companion system with 18 procedurally generated species (including a 1% shiny variant), codenames for internal projects, and a Chrome integration that’s quietly being built.</p>
+<p>18 buddy species across 5 rarity tiers. <strong>Common (60%):</strong> duck, blob, cat, penguin, snail, rabbit. <strong>Epic (4%):</strong> capybara, robot. <strong>Legendary (1%):</strong> chonk. Deterministic from <code class="language-plaintext highlighter-rouge">hash(userId)</code>. 1% shiny modifier.</p>
+
+<p>Internal codenames: TENGU (project name), CHICAGO (computer use), KAIROS (assistant mode), AMBER QUARTZ (voice kill-switch), CHOMP (prompt suggestion system).</p>
+
+<p><strong>200+ spinner verbs:</strong> Clauding, Beboppin’, Boondoggling, Combobulating, Flibbertigibbeting, Hyperspacing, Lollygagging, Moonwalking, Quantumizing, Razzle-dazzling, Spelunking, Tomfoolering… and 183 more.</p>
 
 <p>The <a href="/shipai/deep-dives/claude-code/20-easter-eggs.html">Easter Eggs &amp; Evolution</a> page has the full collection.</p>
 
 <h2 id="what-this-tells-us-about-ai-engineering">What This Tells Us About AI Engineering</h2>
 
-<p>Reading Claude Code’s source confirmed something I’ve been saying on this podcast: the gap between “AI demo” and “AI product” is enormous. Building a reliable AI agent requires serious engineering in permissions, memory, context management, tool execution, and safety. The teams that figure this out will define the next decade of software development.</p>
+<p>Claude Code is a genuinely sophisticated piece of software. The streaming tool executor that starts work before the API response completes, the copy-on-write speculation system, the 3-layer memory architecture with Sonnet-powered relevance ranking, the 6-layer defense stack with tree-sitter AST analysis — these are not trivial engineering achievements.</p>
 
-<p>This is the first episode of a new <strong>Deep Dives</strong> series on Ship AI, where we go beyond the headlines and into the engineering. If you prefer the video walkthrough, <a href="/shipai/episodes/claude-code-under-the-covers/">watch the episode</a>. The full 20-page companion deck is available at <a href="/shipai/deep-dives/claude-code/">/deep-dives/claude-code/</a>.</p>]]></content><author><name>Manav Gupta</name></author><category term="blog" /><category term="claude-code" /><category term="ai-agents" /><category term="deep-dive" /><category term="source-code" /><summary type="html"><![CDATA[I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://manavgup.github.io/shipai/assets/images/og/post-claude-code-under-the-covers.png" /><media:content medium="image" url="https://manavgup.github.io/shipai/assets/images/og/post-claude-code-under-the-covers.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">AI Governance in the Age of Agents</title><link href="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/" rel="alternate" type="text/html" title="AI Governance in the Age of Agents" /><published>2026-03-17T00:00:00+00:00</published><updated>2026-03-17T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/"><![CDATA[<p>We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility to govern them. This article explores what it really means to direct, monitor, and manage AI in a world of agents: the frameworks, the risks, the lifecycle models, and the tooling capabilities every enterprise needs to think about.</p>
+<p>But the codebase also reveals the tension inherent in building at startup speed. A 4,684-line god object with 187 imports. Feature flag sprawl. Global mutable state. The architecture critique writes itself.</p>
+
+<p>What’s most fascinating is what the source reveals about where the product is going: coordinator mode for multi-agent orchestration, pipelined speculation that thinks two steps ahead, team memory sync with conflict resolution, computer use with native macOS screen control, voice mode, and a buddy system with loot-box-style rarity tiers.</p>
+
+<p>This is the first episode of a new <strong>Deep Dives</strong> series on Ship AI. If you prefer the video walkthrough, <a href="/shipai/episodes/claude-code-under-the-covers/">watch the episode</a>. The full 20-page companion deck is at <a href="/shipai/deep-dives/claude-code/">/deep-dives/claude-code/</a>.</p>]]></content><author><name>Manav Gupta</name></author><category term="blog" /><category term="claude-code" /><category term="ai-agents" /><category term="deep-dive" /><category term="source-code" /><summary type="html"><![CDATA[I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://manavgup.github.io/shipai/assets/images/og/post-claude-code-under-the-covers.png" /><media:content medium="image" url="https://manavgup.github.io/shipai/assets/images/og/post-claude-code-under-the-covers.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">AI Governance in the Age of Agents</title><link href="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/" rel="alternate" type="text/html" title="AI Governance in the Age of Agents" /><published>2026-03-17T00:00:00+00:00</published><updated>2026-03-17T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/03/17/ai-governance-age-of-agents/"><![CDATA[<p>We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility to govern them. This article explores what it really means to direct, monitor, and manage AI in a world of agents: the frameworks, the risks, the lifecycle models, and the tooling capabilities every enterprise needs to think about.</p>
 
 <h2 id="what-is-ai-governance">What Is AI Governance?</h2>
 

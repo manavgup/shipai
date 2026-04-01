@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg10" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FDF8F4"/><stop offset="100%" stop-color="#F5EDE6"/></linearGradient>
+    <filter id="sh10"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+    <marker id="arr10" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#64748B"/></marker>
+  </defs>
+  <rect width="900" height="440" fill="url(#bg10)" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#1E293B">3 Levels of Agent Parallelism</text>
+
+  <!-- Level 1 - Subagents -->
+  <rect x="30" y="55" width="270" height="370" rx="10" fill="white" stroke="#3B82F6" stroke-width="2" filter="url(#sh10)"/>
+  <rect x="30" y="55" width="270" height="32" rx="10" fill="#3B82F6"/>
+  <rect x="30" y="77" width="270" height="10" fill="#3B82F6"/>
+  <text x="165" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="white">Level 1 — Subagents</text>
+  <text x="165" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">In-process, no fork</text>
+
+  <!-- Parent -->
+  <rect x="90" y="120" width="140" height="40" rx="8" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="160" y="144" text-anchor="middle" font-size="11" font-weight="600" fill="#1E40AF">Parent Agent</text>
+
+  <path d="M160 160 L160 180" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arr10)"/>
+
+  <!-- Subagent -->
+  <rect x="70" y="185" width="180" height="40" rx="8" fill="#3B82F6" filter="url(#sh10)"/>
+  <text x="160" y="209" text-anchor="middle" font-size="11" font-weight="600" fill="white">Subagent</text>
+
+  <!-- Properties -->
+  <text x="50" y="245" font-size="9" fill="#475569">- Cloned context + tools</text>
+  <text x="50" y="260" font-size="9" fill="#475569">- File cache inherited</text>
+  <text x="50" y="275" font-size="9" fill="#475569">- MCP servers initialized</text>
+  <text x="50" y="290" font-size="9" fill="#475569">- Sync or async execution</text>
+  <text x="50" y="305" font-size="9" fill="#475569">- Max 200 turns</text>
+
+  <!-- Built-in types -->
+  <text x="50" y="330" font-size="9" font-weight="600" fill="#1E293B">Built-in types:</text>
+  <rect x="50" y="338" width="70" height="18" rx="4" fill="#DBEAFE"/>
+  <text x="85" y="351" text-anchor="middle" font-size="8" font-weight="600" fill="#1E40AF">Explore</text>
+  <rect x="125" y="338" width="50" height="18" rx="4" fill="#DBEAFE"/>
+  <text x="150" y="351" text-anchor="middle" font-size="8" font-weight="600" fill="#1E40AF">Plan</text>
+  <rect x="180" y="338" width="100" height="18" rx="4" fill="#DBEAFE"/>
+  <text x="230" y="351" text-anchor="middle" font-size="8" font-weight="600" fill="#1E40AF">General Purpose</text>
+  <rect x="50" y="360" width="55" height="18" rx="4" fill="#DBEAFE"/>
+  <text x="77" y="373" text-anchor="middle" font-size="8" font-weight="600" fill="#1E40AF">Guide</text>
+  <rect x="110" y="360" width="60" height="18" rx="4" fill="#DBEAFE"/>
+  <text x="140" y="373" text-anchor="middle" font-size="8" font-weight="600" fill="#1E40AF">Verify</text>
+  <rect x="175" y="360" width="70" height="18" rx="4" fill="#DBEAFE"/>
+  <text x="210" y="373" text-anchor="middle" font-size="8" font-weight="600" fill="#1E40AF">Statusline</text>
+
+  <!-- Level 2 - Forks -->
+  <rect x="315" y="55" width="270" height="370" rx="10" fill="white" stroke="#8B5CF6" stroke-width="2" filter="url(#sh10)"/>
+  <rect x="315" y="55" width="270" height="32" rx="10" fill="#8B5CF6"/>
+  <rect x="315" y="77" width="270" height="10" fill="#8B5CF6"/>
+  <text x="450" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="white">Level 2 — Fork Subagents</text>
+  <text x="450" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">Cache-optimized parallel</text>
+
+  <!-- Parent -->
+  <rect x="375" y="120" width="150" height="40" rx="8" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="1.5"/>
+  <text x="450" y="144" text-anchor="middle" font-size="11" font-weight="600" fill="#5B21B6">Parent Context</text>
+
+  <!-- Fork lines -->
+  <path d="M420 160 L380 180" stroke="#8B5CF6" stroke-width="1.5"/>
+  <path d="M450 160 L450 180" stroke="#8B5CF6" stroke-width="1.5"/>
+  <path d="M480 160 L520 180" stroke="#8B5CF6" stroke-width="1.5"/>
+
+  <!-- Forks -->
+  <rect x="345" y="183" width="70" height="35" rx="6" fill="#8B5CF6" filter="url(#sh10)"/>
+  <text x="380" y="204" text-anchor="middle" font-size="9" font-weight="600" fill="white">Fork 1</text>
+  <rect x="420" y="183" width="60" height="35" rx="6" fill="#8B5CF6" filter="url(#sh10)"/>
+  <text x="450" y="204" text-anchor="middle" font-size="9" font-weight="600" fill="white">Fork 2</text>
+  <rect x="485" y="183" width="70" height="35" rx="6" fill="#8B5CF6" filter="url(#sh10)"/>
+  <text x="520" y="204" text-anchor="middle" font-size="9" font-weight="600" fill="white">Fork 3</text>
+
+  <!-- Cache hit -->
+  <rect x="370" y="228" width="160" height="24" rx="12" fill="#D1FAE5" stroke="#10B981" stroke-width="1"/>
+  <text x="450" y="244" text-anchor="middle" font-size="10" font-weight="700" fill="#065F46">Prompt cache HIT</text>
+
+  <!-- Properties -->
+  <text x="335" y="270" font-size="9" fill="#475569">- Byte-identical prefix</text>
+  <text x="335" y="285" font-size="9" fill="#475569">- Only directive differs</text>
+  <text x="335" y="300" font-size="9" fill="#475569">- Synthetic tool_result placeholders</text>
+  <text x="335" y="315" font-size="9" fill="#475569">- buildForkedMessages()</text>
+  <text x="335" y="330" font-size="9" fill="#475569">- FORK_BOILERPLATE_TAG guard</text>
+  <text x="335" y="345" font-size="9" fill="#475569">- No recursive forking</text>
+
+  <!-- Key insight -->
+  <rect x="335" y="360" width="230" height="40" rx="6" fill="#ECFDF5" stroke="#10B981" stroke-width="1"/>
+  <text x="450" y="377" text-anchor="middle" font-size="9" font-weight="600" fill="#065F46">Shared prefix = reduced cost</text>
+  <text x="450" y="392" text-anchor="middle" font-size="9" fill="#059669">All forks share prompt cache</text>
+
+  <!-- Level 3 - Swarm -->
+  <rect x="600" y="55" width="270" height="370" rx="10" fill="white" stroke="#F59E0B" stroke-width="2" filter="url(#sh10)"/>
+  <rect x="600" y="55" width="270" height="32" rx="10" fill="#F59E0B"/>
+  <rect x="600" y="77" width="270" height="10" fill="#F59E0B"/>
+  <text x="735" y="76" text-anchor="middle" font-size="13" font-weight="700" fill="white">Level 3 — Swarm Teams</text>
+  <text x="735" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#1E293B">Multi-agent + mailbox</text>
+
+  <!-- Leader -->
+  <rect x="670" y="120" width="130" height="40" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="735" y="140" text-anchor="middle" font-size="11" font-weight="600" fill="#92400E">Leader</text>
+  <text x="735" y="155" text-anchor="middle" font-size="8" fill="#D97706">creates team, approves</text>
+
+  <!-- Teammates -->
+  <path d="M700 160 L660 183" stroke="#F59E0B" stroke-width="1.5"/>
+  <path d="M735 160 L735 183" stroke="#F59E0B" stroke-width="1.5"/>
+  <path d="M770 160 L810 183" stroke="#F59E0B" stroke-width="1.5"/>
+
+  <rect x="620" y="186" width="80" height="35" rx="6" fill="#F59E0B" filter="url(#sh10)"/>
+  <text x="660" y="207" text-anchor="middle" font-size="9" font-weight="600" fill="white">Agent A</text>
+  <rect x="705" y="186" width="60" height="35" rx="6" fill="#F59E0B" filter="url(#sh10)"/>
+  <text x="735" y="207" text-anchor="middle" font-size="9" font-weight="600" fill="white">Agent B</text>
+  <rect x="770" y="186" width="80" height="35" rx="6" fill="#F59E0B" filter="url(#sh10)"/>
+  <text x="810" y="207" text-anchor="middle" font-size="9" font-weight="600" fill="white">Agent C</text>
+
+  <!-- Mailbox -->
+  <rect x="645" y="232" width="180" height="24" rx="4" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1"/>
+  <text x="735" y="248" text-anchor="middle" font-size="9" font-weight="600" fill="#92400E">File-based mailbox</text>
+
+  <!-- Properties -->
+  <text x="620" y="275" font-size="9" fill="#475569">- File-based mailbox comms</text>
+  <text x="620" y="290" font-size="9" fill="#475569">- Permission sync (500ms poll)</text>
+  <text x="620" y="305" font-size="9" fill="#475569">- Idle notifications</text>
+  <text x="620" y="320" font-size="9" fill="#475569">- ~/.claude/teams/&lt;name&gt;/</text>
+
+  <!-- Backends -->
+  <text x="620" y="345" font-size="9" font-weight="600" fill="#1E293B">3 Backends:</text>
+  <rect x="620" y="353" width="75" height="18" rx="4" fill="#FEF3C7"/>
+  <text x="657" y="366" text-anchor="middle" font-size="8" font-weight="600" fill="#92400E">In-Process</text>
+  <rect x="700" y="353" width="55" height="18" rx="4" fill="#FEF3C7"/>
+  <text x="727" y="366" text-anchor="middle" font-size="8" font-weight="600" fill="#92400E">Tmux</text>
+  <rect x="760" y="353" width="55" height="18" rx="4" fill="#FEF3C7"/>
+  <text x="787" y="366" text-anchor="middle" font-size="8" font-weight="600" fill="#92400E">iTerm2</text>
+
+  <rect x="620" y="380" width="230" height="30" rx="6" fill="#FFF7ED" stroke="#FB923C" stroke-width="1"/>
+  <text x="735" y="399" text-anchor="middle" font-size="9" fill="#9A3412">Leader approves permissions, team auto-coordinates</text>
+</svg>

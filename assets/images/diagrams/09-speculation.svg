@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg9" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FDF8F4"/><stop offset="100%" stop-color="#F5EDE6"/></linearGradient>
+    <filter id="sh9"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+    <marker id="arr9" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#64748B"/></marker>
+    <marker id="arr9g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#10B981"/></marker>
+    <marker id="arr9r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#EF4444"/></marker>
+  </defs>
+  <rect width="900" height="520" fill="url(#bg9)" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#1E293B">Speculation System — Pre-Compute While You Read</text>
+  <text x="450" y="50" text-anchor="middle" font-size="11" fill="#94A3B8">Overlay filesystem isolation · Real API calls · Copy-on-write safety · ANT-only</text>
+
+  <!-- Timeline -->
+  <!-- User reading -->
+  <rect x="50" y="70" width="350" height="40" rx="8" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="225" y="92" text-anchor="middle" font-size="11" font-weight="600" fill="#1E40AF">User reading Claude's response...</text>
+
+  <!-- Speculation running -->
+  <rect x="410" y="70" width="440" height="40" rx="8" fill="#CCFBF1" stroke="#14B8A6" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <text x="630" y="87" text-anchor="middle" font-size="11" font-weight="600" fill="#0F766E">Background: Speculation pre-computing next turn</text>
+  <text x="630" y="102" text-anchor="middle" font-size="9" fill="#5EEAD4">Real API calls · Real tokens · Overlay filesystem</text>
+
+  <!-- Flow -->
+  <path d="M450 115 L450 135" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr9)"/>
+
+  <!-- Step 1 -->
+  <rect x="50" y="138" width="240" height="50" rx="8" fill="#14B8A6" filter="url(#sh9)"/>
+  <circle cx="72" cy="163" r="13" fill="white" opacity="0.2"/>
+  <text x="72" y="167" text-anchor="middle" font-size="10" font-weight="700" fill="white">1</text>
+  <text x="92" y="158" font-size="11" font-weight="600" fill="white">CHOMP suggestion</text>
+  <text x="92" y="174" font-size="9" fill="#CCFBF1">After 2+ assistant turns</text>
+
+  <path d="M290 163 L310 163" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr9)"/>
+
+  <!-- Step 2 -->
+  <rect x="315" y="138" width="260" height="50" rx="8" fill="#14B8A6" filter="url(#sh9)"/>
+  <circle cx="337" cy="163" r="13" fill="white" opacity="0.2"/>
+  <text x="337" y="167" text-anchor="middle" font-size="10" font-weight="700" fill="white">2</text>
+  <text x="357" y="158" font-size="11" font-weight="600" fill="white">Create overlay filesystem</text>
+  <text x="357" y="174" font-size="9" fill="#CCFBF1">~/.claude/tmp/speculation/[PID]/[uuid]/</text>
+
+  <path d="M575 163 L595 163" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr9)"/>
+
+  <!-- Step 3 -->
+  <rect x="600" y="138" width="260" height="50" rx="8" fill="#14B8A6" filter="url(#sh9)"/>
+  <circle cx="622" cy="163" r="13" fill="white" opacity="0.2"/>
+  <text x="622" y="167" text-anchor="middle" font-size="10" font-weight="700" fill="white">3</text>
+  <text x="642" y="158" font-size="11" font-weight="600" fill="white">Forked agent runs</text>
+  <text x="642" y="174" font-size="9" fill="#CCFBF1">Real Claude API calls (costs tokens)</text>
+
+  <path d="M450 188 L450 208" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr9)"/>
+
+  <!-- Tool interception -->
+  <rect x="50" y="212" width="800" height="120" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5" filter="url(#sh9)"/>
+  <text x="70" y="234" font-size="13" font-weight="700" fill="#1E293B">Tool Call Interception</text>
+
+  <!-- 4 categories -->
+  <rect x="70" y="245" width="170" height="70" rx="6" fill="#D1FAE5" stroke="#10B981" stroke-width="1"/>
+  <text x="155" y="264" text-anchor="middle" font-size="10" font-weight="600" fill="#065F46">Read-only → Allowed</text>
+  <text x="155" y="280" text-anchor="middle" font-size="9" fill="#059669">Read, Glob, Grep, LSP</text>
+  <text x="155" y="294" text-anchor="middle" font-size="9" fill="#059669">ToolSearch, TaskGet</text>
+  <text x="155" y="308" text-anchor="middle" font-size="8" fill="#94A3B8">Against REAL filesystem</text>
+
+  <rect x="255" y="245" width="190" height="70" rx="6" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1"/>
+  <text x="350" y="264" text-anchor="middle" font-size="10" font-weight="600" fill="#92400E">Write → Overlay</text>
+  <text x="350" y="280" text-anchor="middle" font-size="9" fill="#D97706">Edit, Write, NotebookEdit</text>
+  <text x="350" y="294" text-anchor="middle" font-size="9" fill="#D97706">Copy-on-write to /tmp</text>
+  <text x="350" y="308" text-anchor="middle" font-size="8" fill="#94A3B8">Real files UNTOUCHED</text>
+
+  <rect x="460" y="245" width="170" height="70" rx="6" fill="#FFF7ED" stroke="#FB923C" stroke-width="1"/>
+  <text x="545" y="264" text-anchor="middle" font-size="10" font-weight="600" fill="#9A3412">Bash → Check</text>
+  <text x="545" y="280" text-anchor="middle" font-size="9" fill="#EA580C">Read-only validated</text>
+  <text x="545" y="294" text-anchor="middle" font-size="9" fill="#EA580C">(ls, cat, git log OK)</text>
+  <text x="545" y="308" text-anchor="middle" font-size="8" fill="#94A3B8">Abort if not safe</text>
+
+  <rect x="645" y="245" width="185" height="70" rx="6" fill="#FEE2E2" stroke="#EF4444" stroke-width="1"/>
+  <text x="737" y="264" text-anchor="middle" font-size="10" font-weight="600" fill="#991B1B">Other → Denied</text>
+  <text x="737" y="280" text-anchor="middle" font-size="9" fill="#DC2626">WebSearch, Agent, MCP</text>
+  <text x="737" y="294" text-anchor="middle" font-size="9" fill="#DC2626">WebFetch, etc.</text>
+  <text x="737" y="308" text-anchor="middle" font-size="8" fill="#94A3B8">Speculation aborts</text>
+
+  <!-- Accept / Abort -->
+  <path d="M300 340 L300 370" stroke="#10B981" stroke-width="2" marker-end="url(#arr9g)"/>
+  <path d="M600 340 L600 370" stroke="#EF4444" stroke-width="2" marker-end="url(#arr9r)"/>
+
+  <!-- Accept flow -->
+  <rect x="70" y="375" width="430" height="90" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2" filter="url(#sh9)"/>
+  <text x="90" y="397" font-size="13" font-weight="700" fill="#065F46">User Accepts Suggestion</text>
+  <text x="90" y="416" font-size="10" fill="#047857">1. Abort speculation if still running</text>
+  <text x="90" y="432" font-size="10" fill="#047857">2. Copy overlay files → real filesystem</text>
+  <text x="90" y="448" font-size="10" fill="#047857">3. Inject messages into conversation → appears instant</text>
+  <rect x="370" y="385" width="115" height="24" rx="12" fill="#10B981"/>
+  <text x="427" y="401" text-anchor="middle" font-size="10" font-weight="700" fill="white">0ms latency!</text>
+
+  <!-- Abort flow -->
+  <rect x="520" y="375" width="330" height="90" rx="10" fill="#FFF1F2" stroke="#EF4444" stroke-width="2" filter="url(#sh9)"/>
+  <text x="540" y="397" font-size="13" font-weight="700" fill="#991B1B">User Types Something Else</text>
+  <text x="540" y="416" font-size="10" fill="#DC2626">1. abortSpeculation() fires</text>
+  <text x="540" y="432" font-size="10" fill="#DC2626">2. Delete overlay → all changes gone</text>
+  <text x="540" y="448" font-size="10" fill="#DC2626">3. Zero impact on conversation</text>
+  <rect x="720" y="385" width="115" height="24" rx="12" fill="#EF4444"/>
+  <text x="777" y="401" text-anchor="middle" font-size="10" font-weight="700" fill="white">Clean abort</text>
+
+  <!-- Pipeline note -->
+  <rect x="50" y="480" width="800" height="30" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="450" y="499" text-anchor="middle" font-size="10" fill="#475569">Pipelined: When Spec 1 completes fully, Spec 2 starts for the NEXT turn — pre-computing two steps ahead. Real API calls = real cost.</text>
+</svg>

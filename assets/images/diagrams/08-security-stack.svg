@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg8" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FDF8F4"/><stop offset="100%" stop-color="#F5EDE6"/></linearGradient>
+    <filter id="sh8"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/></filter>
+  </defs>
+  <rect width="900" height="480" fill="url(#bg8)" rx="12"/>
+  <text x="450" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#1E293B">Security — 6-Layer Defense-in-Depth Stack</text>
+  <text x="450" y="50" text-anchor="middle" font-size="11" fill="#94A3B8">Each layer is independent — compromising one doesn't defeat the others</text>
+
+  <!-- Layer 5 (top) - Sandboxing -->
+  <rect x="50" y="65" width="800" height="56" rx="8" fill="#1E293B" filter="url(#sh8)"/>
+  <rect x="50" y="65" width="6" height="56" rx="3" fill="#EF4444"/>
+  <text x="80" y="87" font-size="10" font-weight="700" fill="#EF4444">LAYER 5</text>
+  <text x="145" y="87" font-size="13" font-weight="700" fill="white">Sandboxing</text>
+  <text x="80" y="107" font-size="10" fill="#94A3B8">macOS native sandbox · Network domain allowlist · Filesystem restrictions · Policy allowManagedDomainsOnly cannot be overridden</text>
+
+  <!-- Layer 4 - Hooks -->
+  <rect x="75" y="128" width="750" height="56" rx="8" fill="#374151" filter="url(#sh8)"/>
+  <rect x="75" y="128" width="6" height="56" rx="3" fill="#F59E0B"/>
+  <text x="105" y="150" font-size="10" font-weight="700" fill="#F59E0B">LAYER 4</text>
+  <text x="170" y="150" font-size="13" font-weight="700" fill="white">Pre/Post Tool Use Hooks</text>
+  <text x="105" y="170" font-size="10" fill="#94A3B8">User-configured shell commands · PreToolUse CAN block execution · 15s timeout · 20 hook events</text>
+
+  <!-- Layer 3 - Tool-Level Checks -->
+  <rect x="100" y="191" width="700" height="56" rx="8" fill="#475569" filter="url(#sh8)"/>
+  <rect x="100" y="191" width="6" height="56" rx="3" fill="#EC4899"/>
+  <text x="130" y="213" font-size="10" font-weight="700" fill="#EC4899">LAYER 3</text>
+  <text x="195" y="213" font-size="13" font-weight="700" fill="white">Tool-Level Checks — 24+ Bash Validators</text>
+  <text x="130" y="233" font-size="10" fill="#CBD5E1">Tree-sitter AST + regex fallback · rm -rf, fork bombs, curl|bash, sudo, Unicode bypass, IFS injection</text>
+
+  <!-- Layer 2 - Permission Rules -->
+  <rect x="125" y="254" width="650" height="56" rx="8" fill="#64748B" filter="url(#sh8)"/>
+  <rect x="125" y="254" width="6" height="56" rx="3" fill="#8B5CF6"/>
+  <text x="155" y="276" font-size="10" font-weight="700" fill="#A78BFA">LAYER 2</text>
+  <text x="220" y="276" font-size="13" font-weight="700" fill="white">Permission Rules</text>
+  <text x="155" y="296" font-size="10" fill="#CBD5E1">8-source priority: Policy → User → Project → Local → CLI → cliArg → command → session</text>
+
+  <!-- Layer 1 - Permission Modes -->
+  <rect x="150" y="317" width="600" height="56" rx="8" fill="#94A3B8" filter="url(#sh8)"/>
+  <rect x="150" y="317" width="6" height="56" rx="3" fill="#3B82F6"/>
+  <text x="180" y="339" font-size="10" font-weight="700" fill="#DBEAFE">LAYER 1</text>
+  <text x="245" y="339" font-size="13" font-weight="700" fill="white">Permission Modes</text>
+  <text x="180" y="359" font-size="10" fill="#E2E8F0">default · acceptEdits · plan · auto (ML) · bypassPermissions · dontAsk · bubble</text>
+
+  <!-- Layer 0 - Authentication -->
+  <rect x="175" y="380" width="550" height="56" rx="8" fill="#CBD5E1" filter="url(#sh8)"/>
+  <rect x="175" y="380" width="6" height="56" rx="3" fill="#06B6D4"/>
+  <text x="205" y="402" font-size="10" font-weight="700" fill="#0E7490">LAYER 0</text>
+  <text x="270" y="402" font-size="13" font-weight="700" fill="#1E293B">Authentication</text>
+  <text x="205" y="422" font-size="10" fill="#475569">OAuth 2.0 + PKCE · macOS Keychain (90-day) · JWT refresh (5min) · Session ingress tokens</text>
+
+  <!-- Never Bypassable -->
+  <rect x="50" y="448" width="800" height="24" rx="4" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1"/>
+  <text x="450" y="464" text-anchor="middle" font-size="10" font-weight="600" fill="#BE123C">NEVER BYPASSABLE: .git/ protection · Symlink attacks · Dangerous files (.bashrc, .gitconfig) · Policy sandbox</text>
+</svg>
