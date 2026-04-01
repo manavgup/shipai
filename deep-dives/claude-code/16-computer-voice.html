@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>16 — Computer Use & Voice · Inside Claude Code</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page">
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="15-buddy.html">&larr; 15</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn curr" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="17-telemetry.html">17 &rarr;</a>
+</nav>
+<div class="hero-sm">
+  <div class="eyebrow"><span class="enum">16 / 20</span><span class="pill pill-pink">Computer Use &amp; Voice</span><span class="source">CHICAGO_MCP · src/voice/</span></div>
+  <h1>Screen control. <span style="color:var(--c7)">Voice</span> input.</h1>
+  <p class="subtitle"><strong>Computer Use</strong>: Native macOS screen capture + input control via Rust/Swift bindings. <strong>Voice</strong>: SoX recording → streaming STT via claude.ai. Both feature-gated with emergency kill-switches.</p>
+</div>
+<section>
+  <h2>Computer Use — "Chicago MCP"</h2>
+  <div class="qflow">
+    <div class="qf-step"><div class="qf-icon qi-red" style="font-size:8px">SC</div><div class="qf-body"><div class="qf-title">Screenshots</div><div class="qf-desc"><code>@ant/computer-use-swift</code> — SCContentFilter, NSWorkspace, TCC privacy detection. Terminal exempted from capture.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-purple" style="font-size:8px">IO</div><div class="qf-body"><div class="qf-title">Mouse &amp; Keyboard</div><div class="qf-desc"><code>@ant/computer-use-input</code> (Rust/enigo) — clicks, typing, app detection. Clipboard via pbcopy/pbpaste.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-gray" style="font-size:8px">ID</div><div class="qf-body"><div class="qf-title">CLI Host Detection</div><div class="qf-desc">Sentinel: <code>com.anthropic.claude-code.cli-no-window</code> — CLI has no window to click through. Darwin-only (macOS).</div></div></div>
+  </div>
+</section>
+<section>
+  <h2>Voice Mode — "Amber Quartz"</h2>
+  <div class="qflow">
+    <div class="qf-step"><div class="qf-icon qi-blue">1</div><div class="qf-body"><div class="qf-title">Preflight</div><div class="qf-desc">Anthropic OAuth required. Kill-switch: <code>tengu_amber_quartz_disabled</code>. SoX + mic permissions verified.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-green">2</div><div class="qf-body"><div class="qf-title">Hold-to-talk recording</div><div class="qf-desc">SoX captures audio. Language auto-detected (fallback English). Space bar default (customizable).</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-cyan">3</div><div class="qf-body"><div class="qf-title">Streaming STT</div><div class="qf-desc">Audio streamed to claude.ai <code>voice_stream</code> endpoint. Not available on Bedrock/Vertex/Foundry.</div></div></div>
+  </div>
+</section>
+<footer>Inside Claude Code — Source Review · Page 16 of 20</footer>
+</div></body></html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 — CLI & Hidden Internals · Inside Claude Code</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page">
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="11-extensions.html">&larr; 11</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn curr" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="13-architecture-critique.html">13 &rarr;</a>
+</nav>
+<div class="hero-sm">
+  <div class="eyebrow"><span class="enum">12 / 20</span><span class="pill pill-indigo">CLI &amp; Hidden Internals</span><span class="source">src/commands/ · src/entrypoints/</span></div>
+  <h1><span style="color:var(--c8)">84</span> commands. 170+ env vars. 26 feature flags.</h1>
+  <p class="subtitle"><strong>24+ internal commands</strong> stripped from external builds. <strong>26 feature flags</strong> via Bun dead code elimination. Settings cascade from org policy to CLI flags.</p>
+</div>
+<div class="stat-row">
+  <div class="stat-card sc-purple"><div class="stat-val v-purple">84</div><div class="stat-desc"><strong>Slash commands</strong></div></div>
+  <div class="stat-card sc-purple"><div class="stat-val v-purple">170+</div><div class="stat-desc"><strong>Env variables</strong></div></div>
+  <div class="stat-card sc-purple"><div class="stat-val v-purple">26</div><div class="stat-desc"><strong>Feature flags</strong></div></div>
+  <div class="stat-card sc-purple"><div class="stat-val v-purple">24+</div><div class="stat-desc"><strong>Internal-only</strong> commands stripped</div></div>
+</div>
+<section>
+  <h2>Public Commands</h2>
+  <div class="two-col" style="grid-template-columns:repeat(3,1fr)">
+    <div class="card"><h4>Core</h4><p>/help /exit /clear /status /cost /compact /summary /copy</p></div>
+    <div class="card"><h4>Config</h4><p>/model /fast /effort /config /permissions /hooks /mcp /plugin /vim /theme /color /keybindings /statusline /sandbox-toggle /privacy-settings /output-style</p></div>
+    <div class="card"><h4>Development</h4><p>/plan /tasks /branch /diff /review /rename /context /files /add-dir</p></div>
+    <div class="card"><h4>AI Features</h4><p>/skills /memory /agents /voice /buddy /advisor /stickers /btw /thinkback /thinkback-play /passes</p></div>
+    <div class="card"><h4>Integration</h4><p>/desktop /mobile /chrome /ide /install-github-app /install-slack-app /teleport</p></div>
+    <div class="card"><h4>Session</h4><p>/resume /rewind /tag /export /share /session /login /logout /usage /upgrade /release-notes /feedback /doctor /rate-limit-options</p></div>
+  </div>
+</section>
+<section>
+  <h2>Internal-Only Commands <span class="tag">ANT-only — stripped from external builds</span></h2>
+  <div class="tool-pills">
+    <span class="tool-pill tp-red">/ant-trace</span><span class="tool-pill tp-red">/autofix-pr</span><span class="tool-pill tp-red">/backfill-sessions</span><span class="tool-pill tp-red">/break-cache</span><span class="tool-pill tp-red">/bughunter</span><span class="tool-pill tp-red">/ctx_viz</span><span class="tool-pill tp-red">/debug-tool-call</span><span class="tool-pill tp-red">/env</span><span class="tool-pill tp-red">/good-claude</span><span class="tool-pill tp-red">/heapdump</span><span class="tool-pill tp-red">/init-verifiers</span><span class="tool-pill tp-red">/insights</span><span class="tool-pill tp-red">/issue</span><span class="tool-pill tp-red">/mock-limits</span><span class="tool-pill tp-red">/oauth-refresh</span><span class="tool-pill tp-red">/onboarding</span><span class="tool-pill tp-red">/perf-issue</span><span class="tool-pill tp-red">/reset-limits</span><span class="tool-pill tp-red">/share</span><span class="tool-pill tp-red">/ultraplan</span><span class="tool-pill tp-red">/teleport</span><span class="tool-pill tp-red">/subscribe-pr</span><span class="tool-pill tp-red">/agents-platform</span><span class="tool-pill tp-red">/summary</span>
+  </div>
+</section>
+<section>
+  <h2>Feature Flags <span class="tag">Bun feature() — dead code elimination</span></h2>
+  <div class="tool-pills">
+    <span class="tool-pill tp-purple">BRIDGE_MODE</span><span class="tool-pill tp-purple">KAIROS</span><span class="tool-pill tp-purple">VOICE_MODE</span><span class="tool-pill tp-purple">TRANSCRIPT_CLASSIFIER</span><span class="tool-pill tp-purple">FORK_SUBAGENT</span><span class="tool-pill tp-purple">COORDINATOR_MODE</span><span class="tool-pill tp-purple">BUDDY</span><span class="tool-pill tp-green">MCP_SKILLS <span style="opacity:.6">ext</span></span><span class="tool-pill tp-purple">CHICAGO_MCP</span><span class="tool-pill tp-purple">CONTEXT_COLLAPSE</span><span class="tool-pill tp-purple">DAEMON</span><span class="tool-pill tp-purple">ULTRAPLAN</span><span class="tool-pill tp-purple">TORCH</span><span class="tool-pill tp-purple">UDS_INBOX</span><span class="tool-pill tp-purple">HISTORY_SNIP</span><span class="tool-pill tp-purple">DIRECT_CONNECT</span><span class="tool-pill tp-purple">ABLATION_BASELINE</span><span class="tool-pill tp-purple">DUMP_SYSTEM_PROMPT</span><span class="tool-pill tp-purple">WORKFLOW_SCRIPTS</span><span class="tool-pill tp-purple">CCR_REMOTE_SETUP</span><span class="tool-pill tp-purple">BASH_CLASSIFIER</span><span class="tool-pill tp-purple">PROACTIVE</span><span class="tool-pill tp-purple">KAIROS_BRIEF</span><span class="tool-pill tp-purple">KAIROS_GITHUB_WEBHOOKS</span><span class="tool-pill tp-purple">BREAK_CACHE_COMMAND</span><span class="tool-pill tp-purple">EXPERIMENTAL_SKILL_SEARCH</span>
+  </div>
+</section>
+<section>
+  <h2>Key Environment Variables</h2>
+  <table>
+    <tr><th>Category</th><th>Variables</th></tr>
+    <tr><td>API</td><td><code>ANTHROPIC_API_KEY</code>, <code>ANTHROPIC_BASE_URL</code>, <code>ANTHROPIC_MODEL</code></td></tr>
+    <tr><td>Providers</td><td><code>CLAUDE_CODE_USE_BEDROCK</code>, <code>CLAUDE_CODE_USE_VERTEX</code>, <code>CLAUDE_CODE_USE_FOUNDRY</code></td></tr>
+    <tr><td>Features</td><td><code>CLAUDE_CODE_SIMPLE</code>, <code>DISABLE_FAST_MODE</code>, <code>CLAUDE_CODE_DISABLE_THINKING</code></td></tr>
+    <tr><td>Limits</td><td><code>CLAUDE_CODE_MAX_CONTEXT_TOKENS</code>, <code>CLAUDE_CODE_MAX_OUTPUT_TOKENS</code>, <code>CLAUDE_CODE_MAX_RETRIES</code></td></tr>
+    <tr><td>Sandbox</td><td><code>CLAUDE_CODE_FORCE_SANDBOX</code>, <code>DISABLE_PROMPT_CACHING</code></td></tr>
+    <tr><td>Agents</td><td><code>CLAUDE_CODE_AGENT_ID</code>, <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</code></td></tr>
+    <tr><td>Debug</td><td><code>CLAUDE_CODE_DEBUG_LOG_LEVEL</code>, <code>CLAUDE_CODE_PROFILE_STARTUP</code>, <code>CLAUDE_CODE_UNATTENDED_RETRY</code></td></tr>
+    <tr><td>Remote</td><td><code>CLAUDE_CODE_REMOTE</code>, <code>CLAUDE_CODE_REMOTE_SESSION_ID</code></td></tr>
+  </table>
+</section>
+<section>
+  <h2>Settings Cascade</h2>
+  <div class="fh"><div class="fn r">Policy (org)</div><div class="fa">→</div><div class="fn">User</div><div class="fa">→</div><div class="fn">Project</div><div class="fa">→</div><div class="fn">Local</div><div class="fa">→</div><div class="fn">CLI flag</div></div>
+</section>
+<footer>Inside Claude Code — Source Review · Page 12 of 20</footer>
+</div></body></html>

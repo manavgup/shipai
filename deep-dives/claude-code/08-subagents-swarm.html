@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>08 — Subagents & Swarm · Inside Claude Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="07-api-providers.html">&larr; 07</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn curr" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="09-memory.html">09 &rarr;</a>
+</nav>
+
+<div class="hero-sm">
+  <div class="eyebrow">
+    <span class="enum">08 / 20</span>
+    <span class="pill pill-orange">Subagents & Swarm</span>
+    <span class="source">src/tools/AgentTool/ · src/utils/swarm/</span>
+  </div>
+  <h1>3 levels. Forks share <span style="color:var(--c5)">prompt cache</span>.</h1>
+  <p class="subtitle">Subagents are <strong>in-process</strong> — no forking, no subprocess. The parent's conversation context is cloned, tools are resolved per-agent, and results return inline. Fork subagents go further: <strong>byte-identical message history</strong> ensures prompt cache hits across all children.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card sc-orange"><div class="stat-val v-orange">3</div><div class="stat-desc"><strong>Agent levels</strong> — subagent, fork, swarm team</div></div>
+  <div class="stat-card sc-orange"><div class="stat-val v-orange">200</div><div class="stat-desc"><strong>Max turns</strong> for general-purpose subagent</div></div>
+  <div class="stat-card sc-orange"><div class="stat-val v-orange">8</div><div class="stat-desc"><strong>Colors</strong> in agent palette</div></div>
+</div>
+
+<!-- SUBAGENT LIFECYCLE -->
+<section>
+  <h2>Subagent Lifecycle — Step by Step</h2>
+  <p class="section-desc">What happens when <code>AgentTool.call({ prompt, subagent_type })</code> is invoked.</p>
+
+  <div class="qflow">
+    <div class="qf-step">
+      <div class="qf-icon qi-orange">1</div>
+      <div class="qf-body">
+        <div class="qf-title">Resolution — which agent type?</div>
+        <div class="qf-desc">Checks <code>isForkSubagentEnabled()</code>. Routes to FORK_AGENT or resolves named agent from registry (Explore, Plan, general-purpose, etc.). Validates agent exists and passes permission rules.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-orange">2</div>
+      <div class="qf-body">
+        <div class="qf-title">Tool pool assembled</div>
+        <div class="qf-desc"><code>resolveAgentTools()</code> applies 3 filtering layers: (a) remove ALL_AGENT_DISALLOWED_TOOLS, (b) remove CUSTOM_AGENT_DISALLOWED_TOOLS for custom agents, (c) filter non-async tools if async agent. Wildcard <code>['*']</code> means all filtered tools. Fork path sets <code>useExactTools: true</code> for byte-identical API prefix.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-purple">3</div>
+      <div class="qf-body">
+        <div class="qf-title">System prompt built</div>
+        <div class="qf-desc"><strong>Fork path:</strong> inherits parent's <code>renderedSystemPrompt</code> (cached bytes) to prevent GrowthBook divergence that would bust prompt cache. <strong>Normal path:</strong> calls <code>selectedAgent.getSystemPrompt()</code> for agent-specific instructions.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-purple">4</div>
+      <div class="qf-body">
+        <div class="qf-title">MCP servers initialized (if agent defines them)</div>
+        <div class="qf-desc">Agents can define MCP servers in frontmatter. <strong>Inline definitions:</strong> agent-owned, cleaned up on exit. <strong>Referenced definitions:</strong> shared via memoization. Plugin-only mode respects admin-trusted sources only.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">5</div>
+      <div class="qf-body">
+        <div class="qf-title">File state cache cloned</div>
+        <div class="qf-desc"><code>cloneFileStateCache()</code> gives the agent its own read cache (LRU). Parent's cached file reads are inherited — prevents redundant disk I/O.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">6</div>
+      <div class="qf-body">
+        <div class="qf-title">Agent runs — sync or async</div>
+        <div class="qf-desc"><strong>Sync:</strong> wraps in <code>runWithAgentContext()</code> for analytics attribution. Executes <code>runAgent()</code> inline, blocks until completion. <strong>Async:</strong> registers via <code>registerAsyncAgent()</code>, spawns in detached closure, returns <code>async_launched</code> immediately.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-green">7</div>
+      <div class="qf-body">
+        <div class="qf-title">Cleanup & return</div>
+        <div class="qf-desc">Transcript recorded to <code>.claude/sessions/&lt;id&gt;/sidechain/&lt;agentId&gt;/</code>. Invoked skills and dump state cleared. Analytics event logged (<code>tengu_agent_tool_completed</code>). Result text extracted and returned to parent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORK CACHE SHARING -->
+<section>
+  <h2>Fork Subagents — Cache-Optimized Parallelism</h2>
+  <p class="section-desc"><code>buildForkedMessages()</code> creates messages where every fork shares an <strong>identical byte prefix</strong> — only the final directive differs. This maximizes prompt cache hits.</p>
+
+  <div class="card" style="border-top:3px solid var(--c1)">
+    <h4>How fork messages are built</h4>
+    <ol style="margin:8px 0;padding-left:16px;font-size:12px;color:var(--mu);line-height:1.6">
+      <li><strong>Clone parent's assistant message</strong> — all tool_use blocks, thinking, text</li>
+      <li>Generate <strong>synthetic tool_result blocks</strong> for every tool_use — all identical: <code>"Fork started — processing in background"</code></li>
+      <li>Append <strong>per-child directive</strong> in final text block with fork rules</li>
+      <li>Result: all forks have <strong>byte-identical prefix</strong>; only the directive text differs</li>
+    </ol>
+  </div>
+
+  <div class="flow" style="margin-top:16px">
+    <div class="fn hi" style="max-width:480px"><b>Parent conversation</b> — system prompt + user messages + assistant tool_use blocks</div>
+    <div class="fa">↓ buildForkedMessages()</div>
+    <div class="fb">
+      <div class="fn g">Fork 1<br><span style="font-size:10px;color:var(--mu)">identical prefix + task A</span></div>
+      <div class="fn g">Fork 2<br><span style="font-size:10px;color:var(--mu)">identical prefix + task B</span></div>
+      <div class="fn g">Fork 3<br><span style="font-size:10px;color:var(--mu)">identical prefix + task C</span></div>
+    </div>
+    <div class="fa">↓</div>
+    <div class="fn" style="max-width:480px;border-color:var(--c1)"><b>Prompt cache hit</b> — shared prefix is byte-identical across all forks</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c5)"></div>
+    <div><strong>Fork rules injected:</strong> (1) You ARE the fork, not the main agent. (2) Do NOT spawn sub-agents. (3) Use tools directly, silently. (4) Commit changes before reporting. (5) Report structured facts in &lt;500 words. Guard: <code>FORK_BOILERPLATE_TAG</code> prevents recursive forking.</div>
+  </div>
+</section>
+
+<!-- BUILT-IN AGENTS -->
+<section>
+  <h2>Built-in Agent Types</h2>
+  <table>
+    <tr><th>Agent</th><th>Tools</th><th>Max Turns</th><th>Model</th><th>Use Case</th></tr>
+    <tr><td><strong>General Purpose</strong></td><td>All (*)</td><td>200</td><td>Inherited</td><td>Complex multi-step tasks</td></tr>
+    <tr><td><strong>Explore</strong></td><td>Read-only (no Edit/Write/Agent)</td><td>50</td><td>Configurable</td><td>Codebase research</td></tr>
+    <tr><td><strong>Plan</strong></td><td>Read-only (no Edit/Write/Agent)</td><td>50</td><td>Configurable</td><td>Architecture design</td></tr>
+    <tr><td><strong>Claude Code Guide</strong></td><td>Glob, Grep, Read, WebFetch, WebSearch</td><td>30</td><td>Inherited</td><td>Documentation Q&A</td></tr>
+    <tr><td><strong>Statusline Setup</strong></td><td>Read, Edit</td><td>10</td><td>Inherited</td><td>Status line config</td></tr>
+    <tr><td><strong>Verification</strong></td><td>Configurable</td><td>20</td><td>Inherited</td><td>Result verification</td></tr>
+  </table>
+</section>
+
+<!-- SWARM TEAMS -->
+<section>
+  <h2>Swarm Teams (Level 3)</h2>
+  <p class="section-desc">Leader + multiple teammates. File-based mailbox communication. Permissions routed through leader's UI.</p>
+
+  <div class="two-col">
+    <div class="card" style="border-top:3px solid var(--c4)">
+      <h4>Team Topology</h4>
+      <p><strong>Leader</strong> creates team via TeamCreateTool, spawns teammates, approves permissions, receives idle notifications. Deterministic agent ID: <code>formatAgentId("lead", teamName)</code>.</p>
+      <p style="margin-top:6px"><strong>Teammates</strong> get assigned names, colors, prompts. Run in-process (AsyncLocalStorage), tmux panes, or iTerm tabs. File at <code>~/.claude/teams/&lt;name&gt;/team.json</code>.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--c6)">
+      <h4>Permission Sync</h4>
+      <p>Teammate writes <code>SwarmPermissionRequest</code> to <code>permissions/pending/</code>. Leader polls every <strong>500ms</strong>, shows UI dialog. Response moved to <code>resolved/</code>. "Always allow" rules propagate to teammate's context.</p>
+      <p style="margin-top:6px"><strong>Idle notification:</strong> On Stop hook, teammate marks itself as idle in team config, sends idle notification to leader's mailbox with last peer DM summary.</p>
+    </div>
+  </div>
+
+  <h3>Backend Comparison</h3>
+  <table>
+    <tr><th>Backend</th><th>Availability</th><th>Isolation</th><th>Termination</th><th>Overhead</th></tr>
+    <tr><td><strong>In-Process</strong></td><td>Always (default)</td><td>AsyncLocalStorage</td><td>AbortController</td><td>Zero fork</td></tr>
+    <tr><td><strong>Tmux</strong></td><td>If installed</td><td>Separate pane (30/70 split)</td><td>Kill pane</td><td>Shell init 200ms</td></tr>
+    <tr><td><strong>iTerm2</strong></td><td>If in iTerm + it2 CLI</td><td>Separate tab (vertical split)</td><td>Kill pane</td><td>Process fork</td></tr>
+  </table>
+</section>
+
+<!-- AGENT MEMORY -->
+<section>
+  <h2>Agent Memory</h2>
+  <p class="section-desc">Three scopes for agent-specific persistent knowledge.</p>
+  <table>
+    <tr><th>Scope</th><th>Path</th><th>VCS</th></tr>
+    <tr><td>User</td><td><code>~/.claude/agent-memory/&lt;type&gt;/</code></td><td>Not committed</td></tr>
+    <tr><td>Project</td><td><code>.claude/agent-memory/&lt;type&gt;/</code></td><td>Committable</td></tr>
+    <tr><td>Local</td><td><code>.claude/agent-memory-local/&lt;type&gt;/</code></td><td>Not committed</td></tr>
+    <tr><td>Remote</td><td><code>$CLAUDE_CODE_REMOTE_MEMORY_DIR/&lt;project&gt;/&lt;type&gt;/</code></td><td>Remote mount</td></tr>
+  </table>
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c5)"></div>
+    <div><strong>Memory snapshots:</strong> Before spawning, <code>checkAgentMemorySnapshot()</code> checks if a newer snapshot exists. If so, pulls fresh context before the agent starts — ensures agents don't work with stale knowledge.</div>
+  </div>
+</section>
+
+<footer>Inside Claude Code — Source Review · Page 08 of 20 · Verified against source 2026-03-31</footer>
+</div>
+</body>
+</html>

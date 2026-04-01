@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-300">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code — Under the Covers — Ship AI</title>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Claude Code — Under the Covers | Ship AI</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Claude Code — Under the Covers" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A source-code-level review of Anthropic’s Claude Code — 1,902 files, 513K lines of TypeScript. We trace the query loop, catalog all 43 tools, dissect the 3-layer permission model, map the subagent swarm, and uncover easter eggs hidden in the codebase." />
+<meta property="og:description" content="A source-code-level review of Anthropic’s Claude Code — 1,902 files, 513K lines of TypeScript. We trace the query loop, catalog all 43 tools, dissect the 3-layer permission model, map the subagent swarm, and uncover easter eggs hidden in the codebase." />
+<link rel="canonical" href="https://manavgup.github.io/shipai/episodes/claude-code-under-the-covers/" />
+<meta property="og:url" content="https://manavgup.github.io/shipai/episodes/claude-code-under-the-covers/" />
+<meta property="og:site_name" content="Ship AI" />
+<meta property="og:image" content="https://manavgup.github.io/shipai/assets/images/og/claude-code-under-the-covers.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://manavgup.github.io/shipai/assets/images/og/claude-code-under-the-covers.png" />
+<meta property="twitter:title" content="Claude Code — Under the Covers" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-04-01T00:00:00+00:00","datePublished":"2026-04-01T00:00:00+00:00","description":"A source-code-level review of Anthropic’s Claude Code — 1,902 files, 513K lines of TypeScript. We trace the query loop, catalog all 43 tools, dissect the 3-layer permission model, map the subagent swarm, and uncover easter eggs hidden in the codebase.","headline":"Claude Code — Under the Covers","image":"https://manavgup.github.io/shipai/assets/images/og/claude-code-under-the-covers.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://manavgup.github.io/shipai/episodes/claude-code-under-the-covers/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://manavgup.github.io/shipai/assets/images/og/default.png"}},"url":"https://manavgup.github.io/shipai/episodes/claude-code-under-the-covers/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+// Apply dark mode before render to prevent flash of wrong theme
+(function() {
+  var saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+</script>
+<link rel="icon" type="image/svg+xml" href="/shipai/assets/images/favicon.svg">
+<link rel="apple-touch-icon" href="/shipai/assets/images/logo.jpg">
+<link rel="manifest" href="/shipai/manifest.json">
+<meta name="theme-color" content="#1e40af">
+
+<!-- Preconnect to external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="dns-prefetch" href="https://www.youtube.com">
+<link rel="dns-prefetch" href="https://i.ytimg.com">
+<link rel="dns-prefetch" href="https://img.youtube.com">
+
+<!-- Preload Google Fonts CSS, then load as stylesheet (non-render-blocking) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"></noscript>
+
+<link rel="stylesheet" href="/shipai/assets/css/main.css">
+<link rel="alternate" type="application/atom+xml" title="Ship AI" href="/shipai/feed.xml">
+
+</head>
+<body class="bg-cream dark:bg-ink font-sans text-ink dark:text-gray-200 transition-colors duration-300">
+  <!-- Skip to main content link for keyboard users -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg">
+    Skip to main content
+  </a>
+
+  <nav id="main-nav" aria-label="Main navigation" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI - home" width="36" height="36" decoding="async" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
+      <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
+    </a>
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
+      
+        <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
+      
+        <a href="/shipai/state-of-ai/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Slides</a>
+      
+        <a href="/shipai/about/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">About</a>
+      
+    </div>
+    <div class="flex items-center gap-2">
+      <!-- Dark mode toggle -->
+      <button id="theme-toggle" class="p-2 rounded-lg text-ink/60 dark:text-gray-400 hover:text-ink dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08] transition-colors" aria-label="Toggle dark mode">
+        <!-- Sun icon (shown in dark mode) -->
+        <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+        </svg>
+      </button>
+      <!-- Mobile hamburger -->
+      <button id="mobile-toggle" class="md:hidden p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-cream dark:bg-ink border-t border-black/5 dark:border-white/5 px-6 py-4 space-y-3" role="menu">
+    
+      <a href="/shipai/episodes/" role="menuitem" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" role="menuitem" class="block text-sm font-medium py-1">Clips</a>
+    
+      <a href="/shipai/blog/" role="menuitem" class="block text-sm font-medium py-1">Blog</a>
+    
+      <a href="/shipai/state-of-ai/" role="menuitem" class="block text-sm font-medium py-1">Slides</a>
+    
+      <a href="/shipai/about/" role="menuitem" class="block text-sm font-medium py-1">About</a>
+    
+  </div>
+</nav>
+
+<script>
+(function() {
+  // Dark mode toggle
+  var themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      var isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  }
+
+  // Mobile menu toggle
+  var toggle = document.getElementById('mobile-toggle');
+  var menu = document.getElementById('mobile-menu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', function() {
+    var isHidden = menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isHidden ? 'Close menu' : 'Open menu');
+  });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      toggle.focus();
+    }
+  });
+})();
+</script>
+
+
+  <main id="main-content" class="pt-16">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastEpisode",
+  "name": "Claude Code — Under the Covers",
+  "description": "A source-code-level review of Anthropic's Claude Code — 1,902 files, 513K lines of TypeScript. We trace the query loop, catalog all 43 tools, dissect the 3-layer permission model, map the subagent swarm, and uncover easter eggs hidden in the codebase.",
+  "datePublished": "2026-04-01T00:00:00+00:00",
+  "duration": "30 min",
+  "episodeNumber": 1,
+  "url": "https://manavgup.github.io/shipai/episodes/claude-code-under-the-covers/",
+  "image": "https://manavgup.github.io/shipai/assets/images/og/claude-code-under-the-covers.png",
+  "partOfSeries": {
+    "@type": "PodcastSeries",
+    "name": "Ship AI",
+    "url": "https://manavgup.github.io/shipai/",
+    "description": "A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta."
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Manav Gupta"
+  }
+}
+</script>
+
+<section class="pt-12 pb-20">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-muted dark:text-gray-500 mb-8">
+      <a href="/shipai/" class="hover:text-ink dark:hover:text-white transition-colors">Home</a>
+      <span class="text-black/20 dark:text-white/20">/</span>
+      <a href="/shipai/episodes/" class="hover:text-ink dark:hover:text-white transition-colors">Episodes</a>
+      <span class="text-black/20 dark:text-white/20">/</span>
+      <span class="text-ink dark:text-gray-200 font-medium">Claude Code — Under the Covers</span>
+    </nav>
+
+    <!-- Episode header -->
+    <div class="mb-8">
+      
+
+  <div class="flex items-center gap-2">
+    <span class="text-[11px] font-semibold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/40 px-2 py-0.5 rounded-badge">Deep Dive</span>
+    <span class="text-xs text-muted dark:text-gray-400">EP 1</span>
+  </div>
+
+
+      <h1 class="font-serif text-4xl md:text-5xl font-bold tracking-tight mt-3 mb-4">Claude Code — Under the Covers</h1>
+      <div class="flex items-center gap-4 text-sm text-muted dark:text-gray-500">
+        <span>April 1, 2026</span>
+        
+          <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+          <span>30 min</span>
+        
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+        <span>Hosted by Manav Gupta</span>
+      </div>
+    </div>
+
+    <!-- Video embed -->
+    
+      
+      <div class="mb-8 rounded-2xl overflow-hidden shadow-lg">
+        <div class="aspect-video">
+          <iframe src="https://www.youtube.com/embed/gPoTy5mGYMQ"
+                  title="Claude Code — Under the Covers"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                  class="w-full h-full"></iframe>
+        </div>
+      </div>
+    
+
+    <!-- Platform buttons + slides -->
+    <div class="flex flex-wrap gap-3 mb-10">
+      
+        
+
+
+  <div class="flex flex-wrap gap-3">
+    
+    
+    
+      <a href="https://www.youtube.com/watch?v=gPoTy5mGYMQ" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white dark:bg-dark-card border border-black/8 dark:border-white/[0.08] rounded-badge px-5 py-2.5 text-sm font-medium hover:border-black/15 dark:hover:border-white/[0.15] hover:-translate-y-0.5 hover:shadow-md transition-all">
+        <svg class="w-4 h-4 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        YouTube
+      </a>
+    
+  </div>
+
+
+      
+      
+        <a href="/shipai/deep-dives/claude-code/" class="inline-flex items-center gap-2 bg-accent-light dark:bg-blue-900/40 border border-accent/10 dark:border-blue-700/30 rounded-badge px-5 py-2.5 text-sm font-semibold text-accent dark:text-blue-400 hover:-translate-y-0.5 hover:shadow-md transition-all">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          View Slides
+        </a>
+      
+    </div>
+
+    <!-- About This Episode -->
+    <div class="prose-shipai mb-12">
+      <p>A source-code-level review of Anthropic’s Claude Code — 1,902 files, 513K lines of TypeScript. This episode takes you inside the codebase to understand how one of the most capable AI coding agents actually works under the hood.</p>
+
+<h2 id="what-we-covered">What We Covered</h2>
+
+<p>This is the first episode of the <strong>Deep Dives</strong> series, where we go beyond product demos and into actual source code. Claude Code is Anthropic’s CLI-based coding agent — and its internals reveal fascinating engineering decisions about how to build reliable, safe, and extensible AI tooling.</p>
+
+<h3 id="the-stack">The Stack</h3>
+
+<p>Claude Code runs on Bun (not Node), renders its terminal UI with Ink (React for the terminal), and manages state with Zustand. It supports 4 API providers, 6 MCP transport types, and has a modular architecture split across dozens of subsystems.</p>
+
+<h3 id="the-query-loop">The Query Loop</h3>
+
+<p>At the heart of Claude Code is an async generator that orchestrates every interaction. Each query passes through a 6-step flow: user input processing, tool planning, tool execution, continuation decisions, and response generation — with post-sampling hooks that can intercept and modify behavior at every stage.</p>
+
+<h3 id="43-tools">43 Tools</h3>
+
+<p>The tool catalog is extensive — from file read/write and glob/grep search to shell execution, web fetching, notebook editing, and MCP server integration. Each tool runs through a streaming executor with sibling-abort capability, meaning one tool can cancel another if it gets a better result first.</p>
+
+<h3 id="permission-model">Permission Model</h3>
+
+<p>Safety is deeply engineered. The 3-layer permission model (tool → mode → rules) draws from 8 different rule sources and includes bash AST analysis that actually parses shell commands before deciding whether to allow execution. There are 7 permission modes ranging from fully automatic to fully manual.</p>
+
+<h3 id="subagent-swarm">Subagent Swarm</h3>
+
+<p>When Claude Code needs to parallelize work, it spawns subagents — specialized workers with their own context windows and tool access. There are 6 agent types, each with a 7-step lifecycle and fork mechanics that share cache for efficiency.</p>
+
+<h3 id="memory--security">Memory &amp; Security</h3>
+
+<p>The memory system uses MEMORY.md as a pointer index with 4 distinct memory types. Security spans 6 layers including 24 bash validators, an ML classifier for detecting prompt injection, and permission gates that cannot be bypassed — even by the AI itself.</p>
+
+<h3 id="and-more">And More</h3>
+
+<p>We also explored context autocompaction, the speculation system, the Buddy companion (18 species with rarity tiers!), computer use and voice mode, telemetry, team memory sync, and over 200 spinner verbs hidden as easter eggs.</p>
+
+    </div>
+
+    <!-- Key Takeaways -->
+    
+    <div class="mb-12">
+      <h2 class="font-serif text-2xl font-bold mb-6">Key Takeaways</h2>
+      <div class="space-y-4">
+        
+          <div class="flex gap-4 p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08]">
+            <div class="font-serif text-3xl font-bold text-accent/20 shrink-0 w-10">1</div>
+            <p class="text-ink/80 dark:text-gray-300 leading-relaxed">Claude Code is 513K lines of TypeScript across 1,902 files — built on Bun, rendered with Ink (React for terminals), state managed by Zustand.</p>
+          </div>
+        
+          <div class="flex gap-4 p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08]">
+            <div class="font-serif text-3xl font-bold text-accent/20 shrink-0 w-10">2</div>
+            <p class="text-ink/80 dark:text-gray-300 leading-relaxed">The core query loop is an async generator with a 6-step flow: user input → tool planning → execution → continuation decision → response, with post-sampling hooks at every stage.</p>
+          </div>
+        
+          <div class="flex gap-4 p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08]">
+            <div class="font-serif text-3xl font-bold text-accent/20 shrink-0 w-10">3</div>
+            <p class="text-ink/80 dark:text-gray-300 leading-relaxed">43 built-in tools span file I/O, search, shell execution, web access, MCP, and notebook editing — each with a streaming executor and sibling-abort capability.</p>
+          </div>
+        
+          <div class="flex gap-4 p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08]">
+            <div class="font-serif text-3xl font-bold text-accent/20 shrink-0 w-10">4</div>
+            <p class="text-ink/80 dark:text-gray-300 leading-relaxed">Permissions use a 3-layer model (tool → mode → rules) with 7 modes and 8 rule sources, including bash AST analysis that parses shell commands before execution.</p>
+          </div>
+        
+          <div class="flex gap-4 p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08]">
+            <div class="font-serif text-3xl font-bold text-accent/20 shrink-0 w-10">5</div>
+            <p class="text-ink/80 dark:text-gray-300 leading-relaxed">Subagents run as a swarm — 6 agent types with a 7-step lifecycle, fork mechanics, and shared cache. The Agent tool itself spawns specialized subprocess workers.</p>
+          </div>
+        
+          <div class="flex gap-4 p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08]">
+            <div class="font-serif text-3xl font-bold text-accent/20 shrink-0 w-10">6</div>
+            <p class="text-ink/80 dark:text-gray-300 leading-relaxed">The memory system uses MEMORY.md as a pointer index with 4 memory types (user, feedback, project, reference), Sonnet model selection, and an autoDream feature.</p>
+          </div>
+        
+          <div class="flex gap-4 p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08]">
+            <div class="font-serif text-3xl font-bold text-accent/20 shrink-0 w-10">7</div>
+            <p class="text-ink/80 dark:text-gray-300 leading-relaxed">Security has 6 layers of defense including 24 bash validators, an ML classifier for prompt injection, and a never-bypassable permission gate.</p>
+          </div>
+        
+      </div>
+    </div>
+    
+
+    <!-- Interactive Resources -->
+    
+    <div class="mb-12">
+      <h2 class="font-serif text-2xl font-bold mb-6">Interactive Resources</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        
+          <a href="/shipai/deep-dives/claude-code/01-overview.html" target="_blank" class="group p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] hover:border-accent/20 hover:shadow-md transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-lg bg-accent-light dark:bg-blue-900/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-accent dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-semibold text-sm group-hover:text-accent transition-colors">Overview & Stack</h3>
+            </div>
+          </a>
+        
+          <a href="/shipai/deep-dives/claude-code/02-architecture.html" target="_blank" class="group p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] hover:border-accent/20 hover:shadow-md transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-lg bg-accent-light dark:bg-blue-900/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-accent dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-semibold text-sm group-hover:text-accent transition-colors">Architecture & Boot</h3>
+            </div>
+          </a>
+        
+          <a href="/shipai/deep-dives/claude-code/03-query-loop.html" target="_blank" class="group p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] hover:border-accent/20 hover:shadow-md transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-lg bg-accent-light dark:bg-blue-900/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-accent dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-semibold text-sm group-hover:text-accent transition-colors">Query Loop</h3>
+            </div>
+          </a>
+        
+          <a href="/shipai/deep-dives/claude-code/04-tool-catalog.html" target="_blank" class="group p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] hover:border-accent/20 hover:shadow-md transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-lg bg-accent-light dark:bg-blue-900/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-accent dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-semibold text-sm group-hover:text-accent transition-colors">Tool Catalog (43 Tools)</h3>
+            </div>
+          </a>
+        
+          <a href="/shipai/deep-dives/claude-code/05-permissions.html" target="_blank" class="group p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] hover:border-accent/20 hover:shadow-md transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-lg bg-accent-light dark:bg-blue-900/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-accent dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-semibold text-sm group-hover:text-accent transition-colors">Permissions Model</h3>
+            </div>
+          </a>
+        
+          <a href="/shipai/deep-dives/claude-code/10-security.html" target="_blank" class="group p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] hover:border-accent/20 hover:shadow-md transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-lg bg-accent-light dark:bg-blue-900/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-accent dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-semibold text-sm group-hover:text-accent transition-colors">Security (6-Layer Defense)</h3>
+            </div>
+          </a>
+        
+          <a href="/shipai/deep-dives/claude-code/08-subagents-swarm.html" target="_blank" class="group p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] hover:border-accent/20 hover:shadow-md transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-lg bg-accent-light dark:bg-blue-900/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-accent dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-semibold text-sm group-hover:text-accent transition-colors">Subagents & Swarm</h3>
+            </div>
+          </a>
+        
+          <a href="/shipai/deep-dives/claude-code/09-memory.html" target="_blank" class="group p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] hover:border-accent/20 hover:shadow-md transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-lg bg-accent-light dark:bg-blue-900/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-accent dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-semibold text-sm group-hover:text-accent transition-colors">Memory System</h3>
+            </div>
+          </a>
+        
+          <a href="/shipai/deep-dives/claude-code/20-easter-eggs.html" target="_blank" class="group p-5 bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] hover:border-accent/20 hover:shadow-md transition-all">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-9 h-9 rounded-lg bg-accent-light dark:bg-blue-900/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-accent dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="font-semibold text-sm group-hover:text-accent transition-colors">Easter Eggs & Evolution</h3>
+            </div>
+          </a>
+        
+      </div>
+    </div>
+    
+
+    <!-- Transcript -->
+    
+
+    <!-- Clips & Highlights -->
+    
+    
+
+    <!-- More from This Series -->
+    
+    
+    
+  </div>
+</section>
+
+  </main>
+
+  <footer class="bg-ink text-white/80 py-16" role="contentinfo">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2.5 mb-4">
+          <img src="/shipai/assets/images/logo.jpg" alt="" loading="lazy" decoding="async" width="36" height="36" class="w-9 h-9 rounded-lg">
+          <span class="font-serif font-bold text-lg text-white">Ship AI</span>
+        </div>
+        <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
+      </div>
+      <!-- Quick Links -->
+      <nav aria-label="Footer navigation">
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Quick Links</h4>
+        <div class="space-y-2.5">
+          
+            <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
+          
+            <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
+          
+            <a href="/shipai/state-of-ai/" class="block text-sm hover:text-white transition-colors">Slides</a>
+          
+            <a href="/shipai/about/" class="block text-sm hover:text-white transition-colors">About</a>
+          
+        </div>
+      </nav>
+      <!-- Series -->
+      <div>
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Series</h4>
+        <div class="space-y-2.5">
+          <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">State of AI 2025</a>
+          <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Guest Conversations</a>
+        </div>
+      </div>
+      <!-- Listen On -->
+      <div>
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Listen On</h4>
+        <div class="space-y-2.5">
+          
+            <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></span>
+              Spotify
+            </a>
+          
+            <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399zM12 6.528c3.03 0 5.496 2.458 5.496 5.496 0 1.632-.576 2.832-1.392 3.744-.468.516-1.008.924-1.536 1.26-.312.192-.612.36-.876.48a3.6 3.6 0 01-.456.18c-.072.024-.144.024-.168.024h-.024l-.048-.024c-.048-.024-.048-.048-.072-.072-.024-.048-.024-.072-.024-.12 0-.072.024-.12.048-.168.048-.048.096-.072.144-.096a5.56 5.56 0 00.408-.192c.264-.144.564-.336.84-.552.492-.384.936-.84 1.272-1.392.336-.552.552-1.2.552-2.064 0-2.376-1.92-4.296-4.296-4.296-2.376 0-4.296 1.92-4.296 4.296 0 .864.216 1.512.552 2.064.336.552.78 1.008 1.272 1.392.276.216.576.408.84.552.12.072.264.144.408.192.048.024.096.048.144.096.024.048.048.096.048.168 0 .048 0 .072-.024.12-.024.024-.024.048-.072.072l-.048.024h-.024c-.024 0-.096 0-.168-.024a3.6 3.6 0 01-.456-.18 8.5 8.5 0 01-.876-.48c-.528-.336-1.068-.744-1.536-1.26C6.576 14.856 6 13.656 6 12.024 6 8.986 8.462 6.528 12 6.528zm-.024 3.168c1.296 0 2.352 1.056 2.352 2.352 0 .672-.168 1.2-.48 1.632-.312.408-.72.72-1.176.96a.132.132 0 01-.048.024.12.12 0 01-.072-.024.12.12 0 01-.024-.072c0-.048.024-.072.048-.096.408-.216.744-.48.984-.816.264-.36.384-.792.384-1.296v-.312c0-1.104-.864-1.968-1.968-1.968s-1.968.864-1.968 1.968v.312c0 .504.12.936.384 1.296.24.336.576.6.984.816.024.024.048.048.048.096a.12.12 0 01-.024.072.12.12 0 01-.072.024.132.132 0 01-.048-.024 3.36 3.36 0 01-1.176-.96c-.312-.432-.48-.96-.48-1.632 0-1.296 1.056-2.352 2.352-2.352zM12 13.2a.792.792 0 01.792.792v3.48c0 .12-.024.24-.072.348l-.696 1.632a.132.132 0 01-.048.048.084.084 0 01-.048 0 .084.084 0 01-.048 0 .132.132 0 01-.048-.048l-.696-1.632A.816.816 0 0111.064 17.472v-3.48A.792.792 0 0112 13.2z"/></svg></span>
+              Apple Podcasts
+            </a>
+          
+            <a href="https://www.youtube.com/playlist?list=PLF0cewATp-wl_xK1rbE2bX2YcRVlZKUhM" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span>
+              YouTube
+            </a>
+          
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <span class="text-xs text-white/30">&copy; 2026 Ship AI. All rights reserved.</span>
+      <a href="/shipai/feed.xml" class="text-xs text-white/30 hover:text-white/60 transition-colors">RSS Feed</a>
+    </div>
+  </div>
+</footer>
+
+
+  <script>
+  // Sticky nav scroll effect — runs immediately (affects above-fold UX)
+  (function() {
+    var nav = document.getElementById('main-nav');
+    if (!nav) return;
+    var scrolled = false;
+    window.addEventListener('scroll', function() {
+      var shouldBeScrolled = window.scrollY > 60;
+      if (shouldBeScrolled !== scrolled) {
+        scrolled = shouldBeScrolled;
+        if (scrolled) { nav.classList.add('nav-scrolled'); }
+        else { nav.classList.remove('nav-scrolled'); }
+      }
+    }, { passive: true });
+  })();
+
+  // Scroll fade-in animations — deferred to avoid blocking first paint
+  // Respects prefers-reduced-motion: animations are skipped entirely
+  (function() {
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initObserver() {
+      if (prefersReducedMotion) {
+        // If user prefers reduced motion, make all elements visible without animation
+        document.querySelectorAll('.observe').forEach(function(el) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.observe').forEach(function(el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+        observer.observe(el);
+      });
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initObserver);
+    } else {
+      setTimeout(initObserver, 1);
+    }
+  })();
+  </script>
+</body>
+</html>

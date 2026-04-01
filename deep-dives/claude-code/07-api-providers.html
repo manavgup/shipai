@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07 — API & Providers · Inside Claude Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="06-context-autocompact.html">&larr; 06</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn curr" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="08-subagents-swarm.html">08 &rarr;</a>
+</nav>
+
+<div class="hero-sm">
+  <div class="eyebrow">
+    <span class="enum">07 / 20</span>
+    <span class="pill pill-green">API Layer & Providers</span>
+    <span class="source">src/services/api/client.ts · src/utils/model/providers.ts</span>
+  </div>
+  <h1><span style="color:var(--c3)">4 providers</span>. Same Claude, different infrastructure.</h1>
+  <p class="subtitle">Claude Code talks to the same Claude model through <strong>4 cloud providers</strong> — not different models, but different <strong>infrastructure wrappers</strong>. Enterprise customers route through their own cloud for data residency, compliance, and billing integration. Each has its own credential flow, region config, and feature limitations.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card sc-green"><div class="stat-val v-green">4</div><div class="stat-desc"><strong>Providers</strong> — same model, different infrastructure</div></div>
+  <div class="stat-card sc-green"><div class="stat-val v-green">10</div><div class="stat-desc"><strong>Max retries</strong> — exponential backoff (500ms base)</div></div>
+  <div class="stat-card sc-green"><div class="stat-val v-green">1h</div><div class="stat-desc"><strong>Prompt cache TTL</strong> — for subscribers</div></div>
+</div>
+
+<!-- WHY 4 PROVIDERS -->
+<section>
+  <h2>Why 4 Providers Exist</h2>
+  <p class="section-desc">It's not about different models. It's about <strong>where the API call lands</strong> — which cloud, which region, whose billing, whose compliance boundary.</p>
+
+  <div class="two-col">
+    <div class="card" style="border-top:3px solid var(--c1)">
+      <h4>Anthropic Direct (firstParty)</h4>
+      <p><strong>Use when:</strong> You want full feature parity, team memory sync, prompt caching, and are comfortable with API key management or Claude.ai OAuth.</p>
+      <p style="margin-top:6px"><strong>Auth:</strong> <code>ANTHROPIC_API_KEY</code> or OAuth tokens (Claude.ai subscribers).<br>
+      <strong>Features:</strong> Full — team memory sync, prompt cache, batch API, custom headers, client request ID tracking.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--c5)">
+      <h4>AWS Bedrock</h4>
+      <p><strong>Use when:</strong> Your org standardizes on AWS, needs data to stay in VPC, has IAM/organization setup, pre-existing AWS billing.</p>
+      <p style="margin-top:6px"><strong>Auth:</strong> AWS IAM default credential chain or <code>AWS_BEARER_TOKEN_BEDROCK</code>. Per-model region overrides (<code>ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION</code>).<br>
+      <strong>Missing:</strong> Team memory sync, client request IDs.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--c4)">
+      <h4>Google Vertex AI</h4>
+      <p><strong>Use when:</strong> Your org standardizes on GCP, needs model-specific region affinity, has GCP managed identity.</p>
+      <p style="margin-top:6px"><strong>Auth:</strong> GCP Application Default Credentials via GoogleAuth. Per-model region overrides (<code>VERTEX_REGION_CLAUDE_3_5_HAIKU</code>, etc.).<br>
+      <strong>Missing:</strong> Team memory sync. 12s metadata server timeout risk if project ID not set.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--c9)">
+      <h4>Azure Foundry</h4>
+      <p><strong>Use when:</strong> Your org standardizes on Azure, needs Azure AD integration, managed identity compliance.</p>
+      <p style="margin-top:6px"><strong>Auth:</strong> <code>ANTHROPIC_FOUNDRY_API_KEY</code> OR Azure AD (<code>DefaultAzureCredential</code> → <code>getBearerTokenProvider</code>).<br>
+      <strong>Missing:</strong> Team memory sync, likely limited prompt cache + batch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE MATRIX -->
+<section>
+  <h2>Feature Matrix</h2>
+  <table>
+    <tr><th>Feature</th><th>Anthropic</th><th>Bedrock</th><th>Vertex</th><th>Foundry</th></tr>
+    <tr><td><strong>Team Memory Sync</strong></td><td style="color:var(--c3)">✓ OAuth</td><td style="color:var(--c2)">✕</td><td style="color:var(--c2)">✕</td><td style="color:var(--c2)">✕</td></tr>
+    <tr><td><strong>Prompt Cache</strong></td><td style="color:var(--c3)">✓</td><td style="color:var(--c3)">✓</td><td style="color:var(--c3)">✓</td><td style="color:var(--mu)">?</td></tr>
+    <tr><td><strong>Custom Headers</strong></td><td style="color:var(--c3)">✓</td><td style="color:var(--mu)">ignored</td><td style="color:var(--mu)">ignored</td><td style="color:var(--mu)">ignored</td></tr>
+    <tr><td><strong>Client Request ID</strong></td><td style="color:var(--c3)">✓</td><td style="color:var(--c2)">✕</td><td style="color:var(--c2)">✕</td><td style="color:var(--c2)">✕</td></tr>
+    <tr><td><strong>Telemetry (Datadog)</strong></td><td style="color:var(--c3)">✓</td><td style="color:var(--c2)">disabled</td><td style="color:var(--c2)">disabled</td><td style="color:var(--c2)">disabled</td></tr>
+    <tr><td><strong>Data Residency</strong></td><td>Anthropic CDN</td><td>AWS region</td><td>GCP region</td><td>Azure region</td></tr>
+  </table>
+</section>
+
+<!-- RETRY STRATEGY -->
+<section>
+  <h2>Retry Strategy</h2>
+  <p class="section-desc">10 max retries with exponential backoff. Separate handling for 529 overloaded (3 max, then fallback model). Background queries bail immediately on 529 to prevent retry amplification.</p>
+
+  <table>
+    <tr><th>Error</th><th>Strategy</th><th>Max</th></tr>
+    <tr><td>401 token expired</td><td>OAuth refresh → retry</td><td>1</td></tr>
+    <tr><td>403 token revoked</td><td>OAuth refresh → retry</td><td>1</td></tr>
+    <tr><td>429 rate limited</td><td>Backoff with <code>retry-after</code> header</td><td>10</td></tr>
+    <tr><td>529 overloaded (foreground)</td><td>Backoff → fallback model after 3</td><td>3</td></tr>
+    <tr><td>529 overloaded (background)</td><td>Bail immediately — no retry</td><td>0</td></tr>
+    <tr><td>ECONNRESET / EPIPE</td><td>Disable keep-alive → retry</td><td>1</td></tr>
+    <tr><td>Prompt too long</td><td>Autocompact → retry</td><td>1</td></tr>
+    <tr><td>Max output tokens</td><td>Increase limit (floor 3K, buffer 1K) → retry</td><td>3</td></tr>
+    <tr><td>Bedrock auth error</td><td>Refresh AWS credentials → retry</td><td>1</td></tr>
+    <tr><td>Vertex auth error</td><td>Refresh GCP credentials → retry</td><td>1</td></tr>
+  </table>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c5)"></div>
+    <div><strong>Backoff formula:</strong> <code>min(500ms × 2^(attempt-1), 32s) + random(0, 25% of base)</code>. Server-specified <code>retry-after</code> header overrides the calculation. Unattended mode (<code>CLAUDE_CODE_UNATTENDED_RETRY</code>) retries forever with 5min max backoff.</div>
+  </div>
+</section>
+
+<!-- FAST MODE -->
+<section>
+  <h2>Fast Mode</h2>
+  <p class="section-desc">Same model (Opus 4.6), faster output. NOT a model switch. Has cooldown and permanent-disable states.</p>
+
+  <div class="fh">
+    <div class="fn g"><b>ENABLED</b></div>
+    <div class="fa">→ <span style="font-size:9px;color:var(--mu)">429</span> →</div>
+    <div class="fn a"><b>COOLDOWN</b><br><span style="font-size:10px;color:var(--mu)">10 minutes</span></div>
+    <div class="fa">→</div>
+    <div class="fn g"><b>ENABLED</b></div>
+  </div>
+  <div style="text-align:center;margin-top:8px">
+    <div class="fn r" style="display:inline-block"><b>PERMANENTLY DISABLED</b><br><span style="font-size:10px;color:var(--mu)">overage-disabled header or API rejects param</span></div>
+  </div>
+</section>
+
+<footer>Inside Claude Code — Source Review · Page 07 of 20 · Verified against source 2026-03-31</footer>
+</div>
+</body>
+</html>

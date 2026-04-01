@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inside Claude Code — Podcast Notes</title><link rel="stylesheet" href="style.css">
+<style>.idx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:20px 0}
+.idx-card{background:var(--white);border:1.5px solid var(--rule);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);transition:.2s;text-decoration:none;color:var(--ink);display:block}
+.idx-card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 4px 32px rgba(0,0,0,.1);text-decoration:none}
+.idx-num{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;margin-bottom:4px}
+.idx-title{font-size:14px;font-weight:600;margin-bottom:4px}
+.idx-desc{font-size:11px;color:var(--mu);line-height:1.45}
+</style></head>
+<body><div class="page">
+<div class="hero-sm" style="margin-bottom:24px">
+  <h1>Inside <span style="color:var(--c1)">Claude Code</span></h1>
+  <p class="subtitle">20-page deep dive into Anthropic's AI coding agent — from source code. <strong>1,902 files, 513K lines of TypeScript.</strong> Click any page to dive in.</p>
+</div>
+
+<div class="idx-grid">
+  <a class="idx-card" href="01-overview.html" style="border-top:3px solid var(--c1)"><div class="idx-num" style="color:var(--c1)">01</div><div class="idx-title">Overview &amp; Stack</div><div class="idx-desc">Bun runtime, Ink UI, Zustand state, 4 providers, 6 MCP transports, directory map</div></a>
+  <a class="idx-card" href="02-architecture.html" style="border-top:3px solid var(--c2)"><div class="idx-num" style="color:var(--c2)">02</div><div class="idx-title">Architecture &amp; Boot</div><div class="idx-desc">System flow, core loop, rendering pipeline, state layers, boot sequence, src/ folder structure, feature gates</div></a>
+  <a class="idx-card" href="03-query-loop.html" style="border-top:3px solid var(--c3)"><div class="idx-num" style="color:var(--c3)">03</div><div class="idx-title">Query Loop</div><div class="idx-desc">Async generator, 6-step flow, continuation decisions, post-sampling hooks</div></a>
+  <a class="idx-card" href="04-tool-catalog.html" style="border-top:3px solid var(--c4)"><div class="idx-num" style="color:var(--c4)">04</div><div class="idx-title">Tool Catalog</div><div class="idx-desc">43 tools, streaming executor, sibling abort, fork cache sharing</div></a>
+  <a class="idx-card" href="05-permissions.html" style="border-top:3px solid var(--c5)"><div class="idx-num" style="color:var(--c5)">05</div><div class="idx-title">Permissions</div><div class="idx-desc">3-layer model, 7 modes, 8 rule sources, bash AST analysis</div></a>
+  <a class="idx-card" href="06-context-autocompact.html" style="border-top:3px solid var(--c6)"><div class="idx-num" style="color:var(--c6)">06</div><div class="idx-title">Context &amp; Autocompact</div><div class="idx-desc">167K threshold, hybrid token counting, 4 strategies, circuit breaker</div></a>
+  <a class="idx-card" href="07-api-providers.html" style="border-top:3px solid var(--c3)"><div class="idx-num" style="color:var(--c3)">07</div><div class="idx-title">API &amp; Providers</div><div class="idx-desc">Why 4 providers, feature matrix, retry strategy, fast mode states</div></a>
+  <a class="idx-card" href="08-subagents-swarm.html" style="border-top:3px solid var(--c5)"><div class="idx-num" style="color:var(--c5)">08</div><div class="idx-title">Subagents &amp; Swarm</div><div class="idx-desc">7-step lifecycle, fork mechanics, 6 agent types, team topology, backends</div></a>
+  <a class="idx-card" href="09-memory.html" style="border-top:3px solid var(--c6)"><div class="idx-num" style="color:var(--c6)">09</div><div class="idx-title">Memory System</div><div class="idx-desc">MEMORY.md as pointer index, Sonnet selection, 4 types, autoDream</div></a>
+  <a class="idx-card" href="10-security.html" style="border-top:3px solid var(--c7)"><div class="idx-num" style="color:var(--c7)">10</div><div class="idx-title">Security</div><div class="idx-desc">6-layer defense, 24 bash validators, ML classifier, never-bypassable</div></a>
+  <a class="idx-card" href="11-extensions.html" style="border-top:3px solid var(--c9)"><div class="idx-num" style="color:var(--c9)">11</div><div class="idx-title">Extensions</div><div class="idx-desc">Priority order, MCP/Skills/Agents/Hooks/Plugins/CLAUDE.md</div></a>
+  <a class="idx-card" href="12-cli-hidden.html" style="border-top:3px solid var(--c8)"><div class="idx-num" style="color:var(--c8)">12</div><div class="idx-title">CLI &amp; Hidden Internals</div><div class="idx-desc">84 commands, 24+ internal, 170+ env vars, 26 feature flags</div></a>
+  <a class="idx-card" href="13-architecture-critique.html" style="border-top:3px solid var(--c2)"><div class="idx-num" style="color:var(--c2)">13</div><div class="idx-title">Architecture Critique</div><div class="idx-desc">God object, SOLID scorecard, 4,684-line main.tsx, 187 imports</div></a>
+  <a class="idx-card" href="14-speculation.html" style="border-top:3px solid var(--c9)"><div class="idx-num" style="color:var(--c9)">14</div><div class="idx-title">Speculation System</div><div class="idx-desc">Overlay filesystem, pre-computed turns, pipelined speculation, state machine</div></a>
+  <a class="idx-card" href="15-buddy.html" style="border-top:3px solid var(--c10)"><div class="idx-num" style="color:var(--c10)">15</div><div class="idx-title">Buddy Companion</div><div class="idx-desc">18 species, rarity tiers, stats, hats, shiny 1%, procedural generation</div></a>
+  <a class="idx-card" href="16-computer-voice.html" style="border-top:3px solid var(--c7)"><div class="idx-num" style="color:var(--c7)">16</div><div class="idx-title">Computer Use &amp; Voice</div><div class="idx-desc">Chicago MCP (Rust/Swift), voice mode (SoX → STT), kill-switches</div></a>
+  <a class="idx-card" href="17-telemetry.html" style="border-top:3px solid var(--c4)"><div class="idx-num" style="color:var(--c4)">17</div><div class="idx-title">Telemetry</div><div class="idx-desc">3-layer pipeline, PII never-type trick, GrowthBook, Datadog</div></a>
+  <a class="idx-card" href="18-team-sync.html" style="border-top:3px solid var(--c1)"><div class="idx-num" style="color:var(--c1)">18</div><div class="idx-title">Team Memory Sync</div><div class="idx-desc">Delta upload, SHA-256 hashing, secret scanning, conflict resolution</div></a>
+  <a class="idx-card" href="19-coordinator-deeplinks.html" style="border-top:3px solid var(--c6)"><div class="idx-num" style="color:var(--c6)">19</div><div class="idx-title">Coordinator &amp; Deep Links</div><div class="idx-desc">Worker orchestration, scratchpads, claude-cli:// URIs</div></a>
+  <a class="idx-card" href="20-easter-eggs.html" style="border-top:3px solid var(--c10)"><div class="idx-num" style="color:var(--c10)">20</div><div class="idx-title">Easter Eggs &amp; Evolution</div><div class="idx-desc">200+ spinner verbs, codenames, model migrations, Chrome integration</div></a>
+</div>
+
+<footer>Inside Claude Code — Source Review · 20 pages · Verified against source 2026-03-31</footer>
+</div></body></html>

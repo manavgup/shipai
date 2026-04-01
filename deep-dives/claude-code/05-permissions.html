@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>05 — Permissions · Inside Claude Code</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page">
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="04-tool-catalog.html">&larr; 04</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn curr" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="06-context-autocompact.html">06 &rarr;</a>
+</nav>
+<div class="hero-sm">
+  <div class="eyebrow"><span class="enum">05 / 20</span><span class="pill pill-orange">Permissions</span><span class="source">src/utils/permissions/</span></div>
+  <h1><span style="color:var(--c5)">3-layer</span> permission model.</h1>
+  <p class="subtitle">Tool Registry Filter removes denied tools <strong>before Claude sees them</strong>. Per-call check validates args + working directory. If no rule matches, user prompted. <strong>Bash AST analysis</strong> detects rm -rf, fork bombs, curl|bash, sudo escalation.</p>
+</div>
+<div class="stat-row">
+  <div class="stat-card sc-orange"><div class="stat-val v-orange">3</div><div class="stat-desc"><strong>Layers</strong> — filter, check, prompt</div></div>
+  <div class="stat-card sc-orange"><div class="stat-val v-orange">24+</div><div class="stat-desc"><strong>Bash validators</strong> — AST-level</div></div>
+  <div class="stat-card sc-orange"><div class="stat-val v-orange">8</div><div class="stat-desc"><strong>Rule sources</strong> in priority chain</div></div>
+</div>
+<section>
+  <h2>3-Layer Model</h2>
+  <div class="ls">
+    <div class="ly y3"><span class="ln">1</span><strong>Tool Registry Filter</strong> — <code>filterToolsByDenyRules()</code> removes denied tools before Claude sees them. Claude cannot call what it cannot see.</div>
+    <div class="ly y2"><span class="ln">2</span><strong>Per-call Permission Check</strong> — <code>canUseTool()</code> validates tool name, arguments, working directory against allow/deny/ask rules.</div>
+    <div class="ly y1"><span class="ln">3</span><strong>Interactive User Prompt</strong> — If no rule matches: "allow once", "allow always", or "deny". Response becomes a session-level rule.</div>
+  </div>
+</section>
+<section>
+  <h2>Operating Modes</h2>
+  <table>
+    <tr><th>Mode</th><th>Behavior</th></tr>
+    <tr><td><strong>default</strong></td><td>Prompt for risky tools only</td></tr>
+    <tr><td><strong>acceptEdits</strong></td><td>Auto-allow file edits; prompt for shell</td></tr>
+    <tr><td><strong>plan</strong></td><td>Read-only — requires approval before execution</td></tr>
+    <tr><td><strong>auto</strong></td><td>ML classifier decides <span class="tag">ANT internal-only</span></td></tr>
+    <tr><td><strong>bypassPermissions</strong></td><td>Skip all checks (dangerous — killswitch available)</td></tr>
+    <tr><td><strong>dontAsk</strong></td><td>Never prompt, auto-deny unsafe operations</td></tr>
+    <tr><td><strong>bubble</strong></td><td>Fork subagent — prompts surface to parent UI</td></tr>
+  </table>
+</section>
+<section>
+  <h2>Rule Priority (8 Sources)</h2>
+  <div class="qflow">
+    <div class="qf-step"><div class="qf-icon qi-red">1</div><div class="qf-body"><div class="qf-title">policySettings</div><div class="qf-desc">Organization policy (managed-settings.json) — highest priority, cannot be overridden</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-orange">2</div><div class="qf-body"><div class="qf-title">userSettings</div><div class="qf-desc">~/.claude/settings.json</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-orange">3</div><div class="qf-body"><div class="qf-title">projectSettings</div><div class="qf-desc">.claude/settings.json (repo-level)</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-orange">4</div><div class="qf-body"><div class="qf-title">localSettings</div><div class="qf-desc">.claude/settings.local.json (not committed)</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-blue">5</div><div class="qf-body"><div class="qf-title">flagSettings</div><div class="qf-desc">--settings CLI flag</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-blue">6</div><div class="qf-body"><div class="qf-title">cliArg</div><div class="qf-desc">Command-line arguments</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-gray">7</div><div class="qf-body"><div class="qf-title">command</div><div class="qf-desc">User response to permission prompt</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-gray">8</div><div class="qf-body"><div class="qf-title">session</div><div class="qf-desc">Runtime modifications — lowest priority</div></div></div>
+  </div>
+</section>
+<section>
+  <h2>Bash Safety — AST Analysis</h2>
+  <div class="callout"><div class="callout-dot" style="background:var(--c2)"></div><div><code>rm -rf /</code>, fork bombs, <code>curl | bash</code>, sudo escalation, TTY injection, history manipulation — all rejected <strong>before</strong> <code>canUseTool()</code> via tree-sitter AST parsing with regex fallback. Max 50 subcommands per compound command (prevents CPU exhaustion).</div></div>
+  <p style="font-size:12px;color:var(--mu)">See <a href="10-security.html">slide 10 — Security</a> for the full 24+ validator breakdown.</p>
+</section>
+<footer>Inside Claude Code — Source Review · Page 05 of 20</footer>
+</div></body></html>

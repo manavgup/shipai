@@ -172,7 +172,8 @@
 
     <!-- Featured post (latest) — uses blog-card component in horizontal variant -->
     
-    <div class="mb-12 blog-item" data-tags="ai-governance agentic-ai enterprise-ai eu-ai-act compliance" data-title="ai governance in the age of agents" data-excerpt="we are entering an era defined not just by ai models, but by ai agents — autonomous systems that perceive, reason, and act in the world. as these capabilities expand, so too does the responsibility to govern them.">
+    <div class="mb-12 blog-item" data-tags="claude-code ai-agents deep-dive source-code" data-title="what i found inside claude code's 513k lines of source code" data-excerpt="i spent the last week reading the source code of claude code — anthropic’s ai coding agent. all 1,902 files. all 513,000 lines of typescript. what i found was a masterclass in building reliable, safe, and extensible ai tooling. here’s the breakdown.
+">
       
 
 
@@ -185,8 +186,8 @@
 <article class="bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] overflow-hidden shadow-card card-hover md:flex">
   <div class="md:w-2/5 flex-shrink-0">
     
-      <a href="/shipai/blog/2026/03/17/ai-governance-age-of-agents/" class="block h-full">
-        <img src="/shipai/assets/images/og/post-ai-governance-age-of-agents.png" alt="AI Governance in the Age of Agents" loading="lazy" decoding="async" width="400" height="267" class="w-full h-full aspect-[3/2] md:aspect-auto object-cover" />
+      <a href="/shipai/blog/2026/04/01/claude-code-under-the-covers/" class="block h-full">
+        <img src="/shipai/assets/images/og/post-claude-code-under-the-covers.png" alt="What I Found Inside Claude Code's 513K Lines of Source Code" loading="lazy" decoding="async" width="400" height="267" class="w-full h-full aspect-[3/2] md:aspect-auto object-cover" />
       </a>
     
   </div>
@@ -197,29 +198,31 @@
       </div>
     
     <h3 class="font-serif font-bold text-xl md:text-2xl leading-snug">
-      <a href="/shipai/blog/2026/03/17/ai-governance-age-of-agents/" class="hover:text-accent transition-colors">AI Governance in the Age of Agents</a>
+      <a href="/shipai/blog/2026/04/01/claude-code-under-the-covers/" class="hover:text-accent transition-colors">What I Found Inside Claude Code's 513K Lines of Source Code</a>
     </h3>
-    <p class="text-sm text-muted dark:text-gray-400 leading-relaxed mt-3 line-clamp-3">We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility to govern them.</p>
+    <p class="text-sm text-muted dark:text-gray-400 leading-relaxed mt-3 line-clamp-3">I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.
+</p>
     
     <div class="flex flex-wrap gap-1.5 mt-4">
       
-        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">ai-governance</span>
+        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">claude-code</span>
       
-        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">agentic-ai</span>
+        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">ai-agents</span>
       
-        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">enterprise-ai</span>
+        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">deep-dive</span>
       
-        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">eu-ai-act</span>
-      
-        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">compliance</span>
+        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">source-code</span>
       
     </div>
     
     <div class="flex items-center gap-2 mt-4 text-xs text-muted dark:text-gray-500">
       
-      <span>Mar 17, 2026</span>
+        <span class="font-medium text-ink/70 dark:text-gray-300">Manav Gupta</span>
+        <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+      
+      <span>Apr 1, 2026</span>
       <span class="w-1 h-1 rounded-full bg-muted/40"></span>
-      <span>9 min read</span>
+      <span>4 min read</span>
     </div>
   </div>
 </article>
@@ -246,6 +249,11 @@
           <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
         </button>
         
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="ai-agents" onclick="filterPosts(this)">
+          Ai agents
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
         <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="ai-governance" onclick="filterPosts(this)">
           Ai governance
           <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
@@ -261,8 +269,18 @@
           <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
         </button>
         
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="claude-code" onclick="filterPosts(this)">
+          Claude code
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
         <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="compliance" onclick="filterPosts(this)">
           Compliance
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="deep-dive" onclick="filterPosts(this)">
+          Deep dive
           <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
         </button>
         
@@ -291,6 +309,11 @@
           <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
         </button>
         
+        <button class="filter-tab text-sm font-medium text-muted pb-1 relative" data-filter="source-code" onclick="filterPosts(this)">
+          Source code
+          <span class="absolute bottom-[-2px] left-0 w-0 h-[2px] bg-accent transition-all duration-300"></span>
+        </button>
+        
       </div>
       <div class="relative">
         <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
@@ -302,6 +325,59 @@
     
     
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5" id="posts-grid">
+      
+        <div class="blog-item" data-tags="ai-governance agentic-ai enterprise-ai eu-ai-act compliance" data-title="ai governance in the age of agents" data-excerpt="we are entering an era defined not just by ai models, but by ai agents — autonomous systems that perceive, reason, and act in the world. as these capabilities expand, so too does the responsibility to govern them.">
+          
+
+
+
+
+
+
+
+
+<article class="bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] overflow-hidden shadow-card card-hover flex flex-col">
+  
+    <a href="/shipai/blog/2026/03/17/ai-governance-age-of-agents/" class="block">
+      <div class="aspect-video overflow-hidden">
+        <img src="/shipai/assets/images/og/post-ai-governance-age-of-agents.png" alt="AI Governance in the Age of Agents" loading="lazy" decoding="async" width="640" height="360" class="w-full h-full object-cover" />
+      </div>
+    </a>
+  
+  <div class="p-5 flex flex-col flex-1">
+    
+      <div class="mb-2">
+        <span class="text-xs font-semibold text-accent dark:text-blue-400 bg-accent-light dark:bg-blue-900/40 px-2.5 py-1 rounded-badge">Blog</span>
+      </div>
+    
+    <h3 class="font-serif font-semibold text-[1.05rem] leading-snug">
+      <a href="/shipai/blog/2026/03/17/ai-governance-age-of-agents/" class="hover:text-accent transition-colors">AI Governance in the Age of Agents</a>
+    </h3>
+    <p class="text-sm text-muted dark:text-gray-400 leading-relaxed mt-2 line-clamp-3">We are entering an era defined not just by AI models, but by AI agents — autonomous systems that perceive, reason, and act in the world. As these capabilities expand, so too does the responsibility...</p>
+    
+    <div class="flex flex-wrap gap-1.5 mt-3">
+      
+        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">ai-governance</span>
+      
+        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">agentic-ai</span>
+      
+        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">enterprise-ai</span>
+      
+        <span class="text-[10px] font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2 py-0.5 rounded-badge">eu-ai-act</span>
+      
+    </div>
+    
+    <div class="flex items-center gap-2 mt-auto pt-4 text-xs text-muted dark:text-gray-500">
+      
+      <span>Mar 17, 2026</span>
+      <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+      <span>9 min read</span>
+    </div>
+  </div>
+</article>
+
+
+        </div>
       
         <div class="blog-item" data-tags="ai-workforce enterprise-ai productivity" data-title="ai is changing work, not replacing workers" data-excerpt="episode 4 of ship ai was the hardest one to make. not because the data was difficult to find – there’s more research on ai and labor markets than on almost any other ai topic right now. it was hard because the data tells a story that defies the two dominant narratives. ai is neither the job-destr...">
           

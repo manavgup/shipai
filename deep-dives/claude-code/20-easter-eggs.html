@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>20 — Easter Eggs & Evolution · Inside Claude Code</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page">
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="19-coordinator-deeplinks.html">&larr; 19</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn curr" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  
+</nav>
+<div class="hero-sm">
+  <div class="eyebrow"><span class="enum">20 / 20</span><span class="pill pill-amber">Easter Eggs &amp; Evolution</span><span class="source">src/constants/ · src/migrations/</span></div>
+  <h1>200+ <span style="color:var(--c10)">spinner verbs</span>. Codenames. Chrome integration.</h1>
+  <p class="subtitle">The codebase is full of personality — creative loading messages, a model migration chain revealing product evolution, custom output styles, and a Chrome browser integration for authenticated sites.</p>
+</div>
+<section>
+  <h2>Spinner Verbs — 200+ Loading Messages</h2>
+  <div class="tool-pills">
+    <span class="tool-pill tp-blue">Clauding</span><span class="tool-pill tp-purple">Beboppin'</span><span class="tool-pill tp-green">Boondoggling</span><span class="tool-pill tp-orange">Combobulating</span><span class="tool-pill tp-red">Discombobulating</span><span class="tool-pill tp-cyan">Flibbertigibbeting</span><span class="tool-pill tp-blue">Gitifying</span><span class="tool-pill tp-purple">Hyperspacing</span><span class="tool-pill tp-green">Lollygagging</span><span class="tool-pill tp-orange">Moonwalking</span><span class="tool-pill tp-red">Noodling</span><span class="tool-pill tp-cyan">Photosynthesizing</span><span class="tool-pill tp-blue">Quantumizing</span><span class="tool-pill tp-purple">Razzle-dazzling</span><span class="tool-pill tp-green">Shenaniganing</span><span class="tool-pill tp-orange">Spelunking</span><span class="tool-pill tp-red">Tomfoolering</span><span class="tool-pill tp-gray">...183 more</span>
+  </div>
+  <h3>Turn Completion</h3>
+  <div class="tool-pills">
+    <span class="tool-pill tp-green">Baked</span><span class="tool-pill tp-green">Brewed</span><span class="tool-pill tp-green">Churned</span><span class="tool-pill tp-green">Cogitated</span><span class="tool-pill tp-green">Cooked</span><span class="tool-pill tp-green">Crunched</span><span class="tool-pill tp-green">Sautéed</span><span class="tool-pill tp-green">Worked</span>
+  </div>
+  <p style="font-size:11px;color:var(--mu)">Format: "[Verb] for [duration]" — e.g. "Sautéed for 4.2s"</p>
+</section>
+<section>
+  <h2>Internal Codenames</h2>
+  <table>
+    <tr><th>Codename</th><th>Meaning</th><th>Notes</th></tr>
+    <tr><td style="font-weight:600;color:var(--c1)">TENGU</td><td>Project name</td><td>100+ GrowthBook gates prefixed <code>tengu_</code></td></tr>
+    <tr><td style="font-weight:600;color:var(--c2)">CHICAGO</td><td>Computer use MCP</td><td>macOS native screen control</td></tr>
+    <tr><td style="font-weight:600;color:var(--c4)">KAIROS</td><td>Assistant mode</td><td>Also KAIROS_BRIEF, KAIROS_CHANNELS</td></tr>
+    <tr><td style="font-weight:600;color:var(--c3)">FENNEC</td><td>Deprecated Opus alias</td><td>Migrated: fennec-latest → opus</td></tr>
+    <tr><td style="font-weight:600;color:var(--c5)">CAPYBARA</td><td>Buddy species</td><td>Hex-encoded to evade string scanning</td></tr>
+    <tr><td style="font-weight:600;color:var(--c6)">AMBER QUARTZ</td><td>Voice kill-switch</td><td><code>tengu_amber_quartz_disabled</code></td></tr>
+    <tr><td style="font-weight:600;color:var(--c7)">CHOMP</td><td>Prompt suggestion</td><td><code>tengu_chomp_inflection</code></td></tr>
+  </table>
+</section>
+<section>
+  <h2>Model Evolution (via migrations)</h2>
+  <div class="timeline">
+    <div class="tl-item dot-orange"><div class="tl-title">Fennec → Opus</div><div class="tl-desc">"Fennec" was a deprecated Opus alias. fennec-latest → opus, fennec-fast-latest → opus[1m] + fast mode.</div></div>
+    <div class="tl-item dot-blue"><div class="tl-title">Sonnet 4.5 → Sonnet 4.6</div><div class="tl-desc">Model upgrade with settings auto-update.</div></div>
+    <div class="tl-item dot-purple"><div class="tl-title">Opus → Opus 1M</div><div class="tl-desc">Context window expansion 200K → 1M tokens.</div></div>
+    <div class="tl-item dot-green"><div class="tl-title">Pro → Opus default</div><div class="tl-desc">Pro plan users switched from Sonnet to Opus as default.</div></div>
+    <div class="tl-item dot-cyan"><div class="tl-title">REPL bridge → Remote Control</div><div class="tl-desc">Architecture rename for clarity.</div></div>
+  </div>
+</section>
+<section>
+  <h2>Chrome Integration</h2>
+  <div class="card" style="border-left:4px solid var(--c6)">
+    <h4>claude-in-chrome</h4>
+    <ul style="padding-left:16px"><li>Uses your <strong>real authenticated browser</strong> (OAuth, logged-in sites)</li><li>GIF recording, console debugging, tab management, DOM interaction</li><li>vs WebBrowser: WebBrowser = dev (local servers, JS eval); Chrome = user's real sessions</li><li>JS alerts blocked (hang the extension) — recommends console.log debugging</li></ul>
+  </div>
+</section>
+<section>
+  <h2>Custom Output Styles</h2>
+  <p style="font-size:12px;color:var(--mu)">Drop <code>.md</code> files in <code>~/.claude/output-styles/</code>. Frontmatter: name, description, keep-coding-instructions. Project styles in <code>.claude/output-styles/</code> override user styles. Built-in: default, Explanatory, Learning.</p>
+</section>
+<footer>Inside Claude Code — Source Review · Page 20 of 20</footer>
+</div></body></html>

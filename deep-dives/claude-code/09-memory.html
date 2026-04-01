@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>09 — Memory System · Inside Claude Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="08-subagents-swarm.html">&larr; 08</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn curr" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="10-security.html">10 &rarr;</a>
+</nav>
+
+<div class="hero-sm">
+  <div class="eyebrow">
+    <span class="enum">09 / 20</span>
+    <span class="pill pill-cyan">Memory System</span>
+    <span class="source">src/memdir/ · src/services/autoDream/ · src/services/extractMemories/</span>
+  </div>
+  <h1>MEMORY.md is a <span style="color:var(--c6)">pointer index</span>.</h1>
+  <p class="subtitle">It's NOT a memory store — it's an <strong>index of one-line pointers</strong> to topic files. Truncated at 200 lines / 25KB. Topic files are auto-surfaced by <strong>Sonnet</strong> (not FileReadTool). Session transcripts are <strong>grep-only</strong>. Background consolidation via autoDream fires after 24h + 5 sessions.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card sc-cyan"><div class="stat-val v-cyan">200</div><div class="stat-desc"><strong>Max lines</strong> in MEMORY.md (pointer index)</div></div>
+  <div class="stat-card sc-cyan"><div class="stat-val v-cyan">25KB</div><div class="stat-desc"><strong>Max bytes</strong> — truncated at line AND byte boundary</div></div>
+  <div class="stat-card sc-cyan"><div class="stat-val v-cyan">5</div><div class="stat-desc"><strong>Topic files</strong> auto-surfaced by Sonnet per turn</div></div>
+  <div class="stat-card sc-cyan"><div class="stat-val v-cyan">4</div><div class="stat-desc"><strong>Memory types</strong> — user, feedback, project, reference</div></div>
+</div>
+
+<!-- POINTER ARCHITECTURE -->
+<section>
+  <h2>MEMORY.md — The Pointer Index</h2>
+  <p class="section-desc">MEMORY.md is always injected into the system prompt. But it contains <strong>no actual memory content</strong> — just one-line pointers to topic files.</p>
+
+  <div class="two-col">
+    <div class="card" style="border-top:3px solid var(--c1)">
+      <h4>What MEMORY.md looks like</h4>
+      <pre style="font-family:'DM Mono',monospace;font-size:10px;background:var(--bg);padding:12px;border-radius:6px;line-height:1.5;overflow-x:auto;margin-top:8px">- [User role](user_role.md) — data scientist focused on observability
+- [Testing preferences](feedback_testing.md) — use real DB, not mocks
+- [Merge freeze](project_freeze.md) — starts 2026-03-05 for mobile release
+- [Bug tracker](reference_linear.md) — pipeline bugs in Linear "INGEST"</pre>
+      <p style="margin-top:8px;font-size:11px;color:var(--mu)">Each line: <code>- [Title](file.md) — one-line hook</code><br>Max ~150 chars per line. Lines after 200 truncated. Warning appended if truncated.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--c3)">
+      <h4>Two-step save process</h4>
+      <ol style="margin:8px 0;padding-left:16px;font-size:12px;color:var(--mu);line-height:1.6">
+        <li><strong>Step 1:</strong> Write memory to its own file (e.g., <code>feedback_testing.md</code>) with YAML frontmatter: name, description, type</li>
+        <li><strong>Step 2:</strong> Add a one-line pointer to MEMORY.md</li>
+      </ol>
+      <p style="margin-top:8px;font-size:11px;color:var(--mu)"><strong>Never</strong> write memory content directly into MEMORY.md. It's an index, not a store.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c2)"></div>
+    <div><strong>Truncation:</strong> Enforced at both line (200) AND byte (25,000) boundaries. Line truncate first, then byte-truncate at last newline before 25KB. If truncated, warning appended: <em>"Only part of it was loaded. Keep entries under ~150 chars; move detail into topic files."</em></div>
+  </div>
+</section>
+
+<!-- 3 LAYERS -->
+<section>
+  <h2>3-Layer Storage Architecture</h2>
+
+  <div class="mem">
+    <div class="mh">Write Paths</div>
+    <div class="mh" style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0">~/.claude/projects/.../memory/</div>
+    <div class="mh">Read Paths</div>
+
+    <div class="mn wr">Manual write<div class="dt">User request</div></div>
+    <div class="mn l1">MEMORY.md<div class="dt">Layer 1 — always in system prompt</div></div>
+    <div class="mn rd">System prompt<div class="dt">Injected every turn</div></div>
+
+    <div class="ma">→</div><div></div><div class="ma">← <span class="al">always</span></div>
+
+    <div class="mn wr">autoDream<div class="dt">Background (24h+5 sessions)</div></div>
+    <div class="mn l2">Topic files (*.md)<div class="dt">Layer 2 — Sonnet-selected</div></div>
+    <div class="mn rd">Sonnet selection<div class="dt">Up to 5, as attachments</div></div>
+
+    <div class="ma" style="opacity:.5">- - →</div><div></div><div class="ma">← <span class="al">if relevant</span></div>
+
+    <div class="mn wr">extractMemories<div class="dt">Per-turn (forked agent)</div></div>
+    <div class="mn l3">Transcripts (.jsonl)<div class="dt">Layer 3 — grep-only, never fully read</div></div>
+    <div class="mn" style="background:#374151;color:#D1D5DB;border-radius:6px;padding:6px 8px;font-size:10px">Targeted grep<div class="dt">Narrow terms only</div></div>
+
+    <div class="ma" style="opacity:.5">- - →</div><div></div><div class="ma">← <span class="al">grep only</span></div>
+
+    <div></div>
+    <div class="mn lk">consolidationLock.ts — PID-based race protection, 60min stale guard</div>
+    <div></div>
+  </div>
+</section>
+
+<!-- SONNET SELECTION -->
+<section>
+  <h2>How Sonnet Selects Relevant Memories</h2>
+  <p class="section-desc">Not FileReadTool — an automatic background system using Sonnet as a relevance ranker.</p>
+
+  <div class="qflow">
+    <div class="qf-step">
+      <div class="qf-icon qi-cyan">1</div>
+      <div class="qf-body">
+        <div class="qf-title">Scan memory directory</div>
+        <div class="qf-desc"><code>memoryScan.ts</code> reads up to 200 <code>.md</code> files (excluding MEMORY.md). Extracts: filename, mtime, frontmatter description (first 30 lines), type. Sorted newest first.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-purple">2</div>
+      <div class="qf-body">
+        <div class="qf-title">Sonnet side-query with formatted manifest</div>
+        <div class="qf-desc">Calls <code>sideQuery()</code> with Sonnet model. Input: user's current query + formatted manifest (<code>[type] filename (timestamp): description</code>). System prompt: "Select memories you are CERTAIN will be helpful. Filter out recently-used tool docs."</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-green">3</div>
+      <div class="qf-body">
+        <div class="qf-title">JSON response → up to 5 files</div>
+        <div class="qf-desc">Sonnet returns <code>{ selected_memories: string[] }</code> (max 256 tokens). Already-surfaced memories filtered out. Results: up to 5 <code>{path, mtimeMs}</code> entries.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">4</div>
+      <div class="qf-body">
+        <div class="qf-title">Injected as attachments (not tool calls)</div>
+        <div class="qf-desc"><code>readMemoriesForSurfacing()</code> loads file contents. Injected as <code>relevant_memories</code> attachments — the model sees them in context without any FileReadTool call. Fully automatic.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 MEMORY TYPES -->
+<section>
+  <h2>4 Memory Types</h2>
+  <div class="two-col">
+    <div class="card" style="border-left:4px solid var(--c1)">
+      <h4>user</h4>
+      <p>Role, goals, knowledge, preferences. "User is a data scientist focused on observability." Tailors responses to expertise level.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--c2)">
+      <h4>feedback</h4>
+      <p>What to do/avoid based on corrections AND confirmations. "Use real DB, not mocks — burned last quarter." Includes <strong>Why</strong> + <strong>How to apply</strong>.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--c4)">
+      <h4>project</h4>
+      <p>Ongoing work, goals, deadlines, incidents. "Merge freeze starts 2026-03-05 for mobile release." Converts relative dates to absolute.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--c6)">
+      <h4>reference</h4>
+      <p>Pointers to external systems. "Pipeline bugs tracked in Linear INGEST project." "Oncall dashboard at grafana.internal/d/api-latency."</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c9)"></div>
+    <div><strong>Frontmatter format:</strong> Each topic file has YAML frontmatter: <code>name</code>, <code>description</code> (used by Sonnet selector — be specific), <code>type</code> (user/feedback/project/reference). The description is what Sonnet reads to decide relevance — vague descriptions = never surfaced.</div>
+  </div>
+</section>
+
+<!-- AUTODREAM -->
+<section>
+  <h2>autoDream — Background Consolidation</h2>
+  <p class="section-desc">Fires after ≥24h since last consolidation AND ≥5 sessions. Runs as a forked subagent via <code>runForkedAgent()</code>.</p>
+
+  <div class="phases">
+    <div class="ph q1">Phase 1<div class="pdt">Orient</div></div>
+    <div class="ph q2">Phase 2<div class="pdt">Gather signal</div></div>
+    <div class="ph q3">Phase 3<div class="pdt">Consolidate</div></div>
+    <div class="ph q4">Phase 4<div class="pdt">Prune & index</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <h4>Phase 1 — Orient</h4>
+      <p><code>ls</code> memory directory, read MEMORY.md, skim topic files, review daily logs if assistant-mode.</p>
+    </div>
+    <div class="card">
+      <h4>Phase 2 — Gather Signal</h4>
+      <p>Priority 1: Daily logs. Priority 2: Drifted existing memories. Priority 3: Transcript grep with narrow terms (large JSONL — never read whole files).</p>
+    </div>
+    <div class="card">
+      <h4>Phase 3 — Consolidate</h4>
+      <p>Write/update memory files. Merge signal into existing. Convert relative → absolute dates. Delete contradicted facts.</p>
+    </div>
+    <div class="card">
+      <h4>Phase 4 — Prune & Index</h4>
+      <p>Update MEMORY.md pointers. Remove stale entries. Demote verbose entries. Add new memory pointers. Resolve contradictions.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c5)"></div>
+    <div><strong>Consolidation lock:</strong> <code>.consolidate-lock</code> file in memory dir containing PID. Stale guard at 60 minutes (prevents dead process holding lock forever). On failure, <code>rollbackConsolidationLock()</code> rewinds mtime so next session retries.</div>
+  </div>
+</section>
+
+<!-- WHAT NOT TO SAVE -->
+<section>
+  <h2>What NOT to Save</h2>
+  <div class="card" style="border-left:4px solid var(--c2)">
+    <ul style="padding-left:16px;font-size:12px;color:var(--mu);line-height:1.6">
+      <li>Code patterns, architecture, file paths — derivable from reading the project</li>
+      <li>Git history, recent changes — <code>git log</code> / <code>git blame</code> are authoritative</li>
+      <li>Debugging solutions — the fix is in the code, commit message has context</li>
+      <li>Anything already in CLAUDE.md files</li>
+      <li>Ephemeral task details — use tasks, not memory</li>
+    </ul>
+  </div>
+</section>
+
+<footer>Inside Claude Code — Source Review · Page 09 of 20 · Verified against source 2026-03-31</footer>
+</div>
+</body>
+</html>

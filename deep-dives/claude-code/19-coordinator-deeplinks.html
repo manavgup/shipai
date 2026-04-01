@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>19 — Coordinator & Deep Links · Inside Claude Code</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page">
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="18-team-sync.html">&larr; 18</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn curr" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="20-easter-eggs.html">20 &rarr;</a>
+</nav>
+<div class="hero-sm">
+  <div class="eyebrow"><span class="enum">19 / 20</span><span class="pill pill-cyan">Coordinator &amp; Deep Links</span><span class="source">src/coordinator/ · src/utils/deepLink/</span></div>
+  <h1>Orchestrate workers. Launch via <span style="color:var(--c6)">URI</span>.</h1>
+  <p class="subtitle"><strong>Coordinator mode</strong> is distinct from swarm — workers get shared scratchpads, XML task notifications, and constrained tool sets. <strong>Deep links</strong> launch Claude Code from any app via <code>claude-cli://</code> URIs.</p>
+</div>
+<section>
+  <h2>Coordinator Mode (vs Swarm)</h2>
+  <div class="qflow">
+    <div class="qf-step"><div class="qf-icon qi-cyan">C</div><div class="qf-body"><div class="qf-title">Coordinator spawns workers via Agent tool</div><div class="qf-desc">Workers get full tool set OR simplified (Bash, Read, Edit). MCP server list passed to each worker.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-green">S</div><div class="qf-body"><div class="qf-title">Shared scratchpad directory</div><div class="qf-desc">Gated by <code>tengu_scratch</code>. Durable cross-worker knowledge. Workers read/write without permission prompts.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-purple">N</div><div class="qf-body"><div class="qf-title">Async results via XML notifications</div><div class="qf-desc"><code>&lt;task-notification&gt;</code> blocks in system prompt. Coordinator explains orchestration role.</div></div></div>
+  </div>
+</section>
+<section>
+  <h2>Deep Link Protocol</h2>
+  <div class="card" style="border-top:3px solid var(--c6)">
+    <h4 style="font-family:'DM Mono',monospace;color:var(--c6)">claude-cli://open?q=...&amp;cwd=...&amp;repo=...</h4>
+    <table style="margin-top:10px">
+      <tr><th>Param</th><th>Max</th><th>Purpose</th></tr>
+      <tr><td><code>q</code></td><td>5,000 chars</td><td>Pre-fill prompt</td></tr>
+      <tr><td><code>cwd</code></td><td>4,096 chars</td><td>Working directory (absolute)</td></tr>
+      <tr><td><code>repo</code></td><td>owner/repo</td><td>Repository slug</td></tr>
+    </table>
+    <p style="margin-top:10px;font-size:11px;color:var(--mu)"><strong>Security:</strong> Unicode sanitization (blocks ASCII control chars). No truncation (rejects oversized — truncation changes meaning). Shell-escaped at point of use. Windows cmd.exe 8,191 char hard limit.</p>
+  </div>
+</section>
+<footer>Inside Claude Code — Source Review · Page 19 of 20</footer>
+</div></body></html>

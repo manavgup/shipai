@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>04 — Tool Catalog · Inside Claude Code</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page">
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="03-query-loop.html">&larr; 03</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn curr" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="05-permissions.html">05 &rarr;</a>
+</nav>
+<div class="hero-sm">
+  <div class="eyebrow"><span class="enum">04 / 20</span><span class="pill pill-purple">Tool Catalog</span><span class="source">src/tools/ — 43+ tools, 184 files</span></div>
+  <h1><span style="color:var(--c4)">43</span> tools. 30-method interface. Streaming execution.</h1>
+  <p class="subtitle">Every tool implements <code>isConcurrencySafe()</code>, <code>isReadOnly()</code>, <code>isDestructive()</code>, <code>checkPermissions()</code>, plus rendering methods. Fail-closed defaults. The <strong>StreamingToolExecutor</strong> starts tools while the API is still streaming.</p>
+</div>
+<div class="stat-row">
+  <div class="stat-card sc-purple"><div class="stat-val v-purple">43</div><div class="stat-desc"><strong>Built-in</strong> + feature-gated experimentals</div></div>
+  <div class="stat-card sc-purple"><div class="stat-val v-purple">30+</div><div class="stat-desc"><strong>Methods</strong> per tool interface</div></div>
+  <div class="stat-card sc-purple"><div class="stat-val v-purple">10</div><div class="stat-desc"><strong>Max parallel</strong> concurrent-safe tools</div></div>
+</div>
+<section>
+  <h2>All Tools by Category</h2>
+  <h3>File Operations</h3>
+  <div class="tool-pills"><span class="tool-pill tp-blue">Read</span><span class="tool-pill tp-blue">Edit</span><span class="tool-pill tp-blue">Write</span><span class="tool-pill tp-blue">Glob</span><span class="tool-pill tp-blue">Grep</span><span class="tool-pill tp-blue">NotebookEdit</span></div>
+  <h3>Execution</h3>
+  <div class="tool-pills"><span class="tool-pill tp-red">Bash</span><span class="tool-pill tp-red">PowerShell</span></div>
+  <h3>Search &amp; Fetch</h3>
+  <div class="tool-pills"><span class="tool-pill tp-green">WebFetch</span><span class="tool-pill tp-green">WebSearch</span><span class="tool-pill tp-green">ToolSearch</span></div>
+  <h3>Agents &amp; Planning</h3>
+  <div class="tool-pills"><span class="tool-pill tp-purple">Agent</span><span class="tool-pill tp-purple">SendMessage</span><span class="tool-pill tp-purple">TaskCreate</span><span class="tool-pill tp-purple">TaskGet</span><span class="tool-pill tp-purple">TaskList</span><span class="tool-pill tp-purple">TaskUpdate</span><span class="tool-pill tp-purple">TaskStop</span><span class="tool-pill tp-purple">TaskOutput</span><span class="tool-pill tp-purple">EnterPlanMode</span><span class="tool-pill tp-purple">ExitPlanMode</span><span class="tool-pill tp-purple">EnterWorktree</span><span class="tool-pill tp-purple">ExitWorktree</span></div>
+  <h3>MCP</h3>
+  <div class="tool-pills"><span class="tool-pill tp-orange">MCPTool</span><span class="tool-pill tp-orange">ListMcpResources</span><span class="tool-pill tp-orange">ReadMcpResource</span><span class="tool-pill tp-orange">McpAuth</span></div>
+  <h3>System &amp; Utility</h3>
+  <div class="tool-pills"><span class="tool-pill tp-cyan">AskUser</span><span class="tool-pill tp-cyan">TodoWrite</span><span class="tool-pill tp-cyan">Skill</span><span class="tool-pill tp-cyan">RemoteTrigger</span><span class="tool-pill tp-cyan">CronCreate</span><span class="tool-pill tp-cyan">CronDelete</span><span class="tool-pill tp-cyan">CronList</span><span class="tool-pill tp-cyan">Config</span><span class="tool-pill tp-cyan">LSP</span><span class="tool-pill tp-cyan">Brief</span></div>
+  <h3>Feature-Gated / Experimental <span class="tag">GrowthBook</span></h3>
+  <div class="tool-pills"><span class="tool-pill tp-gray">Sleep</span><span class="tool-pill tp-gray">WebBrowser</span><span class="tool-pill tp-gray">TerminalCapture</span><span class="tool-pill tp-gray">Monitor</span><span class="tool-pill tp-gray">Workflow</span><span class="tool-pill tp-gray">CtxInspect</span><span class="tool-pill tp-gray">SnipOverflow</span><span class="tool-pill tp-gray">TestVerify</span><span class="tool-pill tp-gray">PlanExecution</span><span class="tool-pill tp-gray">ListPeers</span></div>
+</section>
+<section>
+  <h2>Streaming Execution</h2>
+  <div class="fh"><div class="fn hi">API streams</div><div class="fa">→</div><div class="fn">tool_use → queue</div><div class="fa">→</div><div class="fn g">Parallel (safe)</div><div class="fn a">Sequential (exclusive)</div><div class="fa">→</div><div class="fn">Result</div></div>
+  <div class="two-col">
+    <div class="card" style="border-left:4px solid var(--c3)"><h4>Concurrent-Safe</h4><p>FileRead, Glob, Grep, WebFetch, WebSearch, ToolSearch, TaskGet, TaskList</p></div>
+    <div class="card" style="border-left:4px solid var(--c2)"><h4>Exclusive</h4><p>Bash, FileEdit, FileWrite, Agent, NotebookEdit</p></div>
+  </div>
+</section>
+<section>
+  <h2>Sibling Abort</h2>
+  <div class="card" style="border-left:4px solid var(--c2);background:#FFFBFA">
+    <p>When <strong>Bash errors</strong>, <code>siblingAbortController.abort()</code> cancels all parallel siblings instantly. The parent query continues — only siblings are killed. AbortController is a <strong>child</strong> of the main controller.</p>
+  </div>
+</section>
+<section>
+  <h2>Fork: Cache-Optimized Parallelism</h2>
+  <div class="card" style="border-left:4px solid var(--c1);background:#FAFBFF">
+    <p>Forks inherit <strong>identical message history</strong> with placeholder tool results. Only the directive differs — shared prefix = <strong>prompt cache hit</strong>.</p>
+    <div class="fh"><div class="fn hi">Parent</div><div class="fa">→</div><div class="fn g">Fork 1</div><div class="fn g">Fork 2</div><div class="fn g">Fork 3</div></div>
+  </div>
+</section>
+<footer>Inside Claude Code — Source Review · Page 04 of 20</footer>
+</div></body></html>

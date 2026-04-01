@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13 — Architecture Critique · Inside Claude Code</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page">
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="12-cli-hidden.html">&larr; 12</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn curr" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="14-speculation.html">14 &rarr;</a>
+</nav>
+<div class="hero-sm">
+  <div class="eyebrow"><span class="enum">13 / 20</span><span class="pill pill-red">Architecture Critique</span><span class="source">Severity: HIGH</span></div>
+  <h1>main.tsx is <span style="color:var(--c2)">4,684</span> lines. That's a god object.</h1>
+  <p class="subtitle">Monolithic architecture with significant tech debt. main.tsx serves as entry point AND orchestration — CLI parsing, init, feature flags, MCP config, session management, tool orchestration, command handlers. <strong>187 imports in the first 210 lines. 61 feature() calls.</strong></p>
+</div>
+<div class="stat-row">
+  <div class="stat-card sc-red"><div class="stat-val v-red">4,684</div><div class="stat-desc"><strong>Lines</strong> in main.tsx</div></div>
+  <div class="stat-card sc-red"><div class="stat-val v-red">187</div><div class="stat-desc"><strong>Imports</strong> in first 210 lines</div></div>
+  <div class="stat-card sc-red"><div class="stat-val v-red">61</div><div class="stat-desc"><strong>feature()</strong> calls</div></div>
+  <div class="stat-card sc-red"><div class="stat-val v-red">2,800+</div><div class="stat-desc"><strong>Lines</strong> in main action handler</div></div>
+</div>
+<section>
+  <h2>Critical Issues — Verified Against Source</h2>
+  <div class="qflow">
+    <div class="qf-step"><div class="qf-icon qi-red">!</div><div class="qf-body"><div class="qf-title">Top-Level Side Effects (lines 12-20)</div><div class="qf-desc"><code>profileCheckpoint()</code>, <code>startMdmRawRead()</code>, <code>startKeychainPrefetch()</code> execute during module evaluation. Makes module untestable, creates hidden dependencies.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-red">!</div><div class="qf-body"><div class="qf-title">God Object</div><div class="qf-desc">CLI parsing + business logic + infrastructure + presentation + configuration in one file. Violates SRP, Open/Closed, Dependency Inversion.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-red">!</div><div class="qf-body"><div class="qf-title">Deeply Nested Action Handlers</div><div class="qf-desc">Main action handler: 2,800+ lines with deeply nested conditionals. Impossible to test individual branches.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-orange">⚠</div><div class="qf-body"><div class="qf-title">Global Mutable State</div><div class="qf-desc"><code>bootstrap/state.ts</code>: 150+ fields in a global singleton. No clear ownership. Mutable state scattered across modules.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-orange">⚠</div><div class="qf-body"><div class="qf-title">Feature Flag Sprawl</div><div class="qf-desc">61 <code>feature()</code> calls in main.tsx alone. No centralized management. Code paths difficult to trace.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-orange">⚠</div><div class="qf-body"><div class="qf-title">Scattered Initialization</div><div class="qf-desc">Setup across main.tsx (4,684), setup.ts (477, 9 params), init.ts, QueryEngine.ts (1,295). No clear sequence.</div></div></div>
+  </div>
+</section>
+<section>
+  <h2>SOLID Scorecard</h2>
+  <table>
+    <tr><th>Principle</th><th>Status</th><th>Evidence</th></tr>
+    <tr><td>Single Responsibility</td><td style="color:var(--c2)">❌</td><td>main.tsx has 6+ responsibilities</td></tr>
+    <tr><td>Open/Closed</td><td style="color:var(--c2)">❌</td><td>God object knows everything</td></tr>
+    <tr><td>Dependency Inversion</td><td style="color:var(--c2)">❌</td><td>187 concrete imports</td></tr>
+    <tr><td>Separation of Concerns</td><td style="color:var(--c2)">❌</td><td>CLI + logic + infra + UI mixed</td></tr>
+    <tr><td>Testability</td><td style="color:var(--c2)">❌</td><td>Side effects block unit tests</td></tr>
+    <tr><td>Modularity</td><td style="color:var(--c5)">⚠️</td><td>Good tool system, poor boundaries</td></tr>
+  </table>
+</section>
+<section>
+  <h2>What's Good</h2>
+  <div class="card" style="border-left:4px solid var(--c3)">
+    <ul style="padding-left:16px"><li><strong>Strong TypeScript types</strong> — well-defined interfaces (Tool.ts, Task.ts)</li><li><strong>Modular tool system</strong> — clean 30-method interface, builder pattern</li><li><strong>Memoization</strong> — getCommands(), getSystemContext(), getUserContext()</li><li><strong>Separated query logic</strong> — QueryEngine.ts and query.ts encapsulate the loop</li></ul>
+  </div>
+</section>
+<footer>Inside Claude Code — Source Review · Page 13 of 20</footer>
+</div></body></html>

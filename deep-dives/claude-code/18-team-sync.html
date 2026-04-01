@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>18 — Team Memory Sync · Inside Claude Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="17-telemetry.html">&larr; 17</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn curr" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="19-coordinator-deeplinks.html">19 &rarr;</a>
+</nav>
+
+<div class="hero-sm">
+  <div class="eyebrow">
+    <span class="enum">18 / 20</span>
+    <span class="pill pill-blue">Team Memory Sync</span>
+    <span class="source">src/services/teamMemorySync/index.ts · secretScanner.ts</span>
+  </div>
+  <h1>Shared repo memory. <span style="color:var(--c1)">Delta upload</span>. Secret scanning.</h1>
+  <p class="subtitle">Per-repo shared knowledge synced across all org members via <code>/api/claude_code/team_memory</code>. Uses <strong>SHA-256 content hashing</strong> for delta-only uploads. Files with detected secrets are <strong>silently skipped</strong>. Server always wins on pull; local wins on push. ETag-based optimistic locking.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card sc-blue"><div class="stat-val v-blue">250KB</div><div class="stat-desc"><strong>Max entry</strong> — per memory file</div></div>
+  <div class="stat-card sc-blue"><div class="stat-val v-blue">200KB</div><div class="stat-desc"><strong>Max PUT body</strong> — larger batches split</div></div>
+  <div class="stat-card sc-blue"><div class="stat-val v-blue">30+</div><div class="stat-desc"><strong>Secret rules</strong> — gitleaks-based patterns</div></div>
+  <div class="stat-card sc-blue"><div class="stat-val v-blue">2</div><div class="stat-desc"><strong>Max conflict retries</strong> (3 total attempts)</div></div>
+</div>
+
+<!-- API CONTRACT -->
+<section>
+  <h2>API Contract</h2>
+  <table>
+    <tr><th>Method</th><th>Endpoint</th><th>Purpose</th></tr>
+    <tr><td><code>GET</code></td><td><code>/api/claude_code/team_memory?repo={owner/repo}</code></td><td>Pull all data (includes entry checksums)</td></tr>
+    <tr><td><code>GET</code></td><td><code>...?repo={owner/repo}&view=hashes</code></td><td>Metadata + checksums only (no bodies — cheap probe)</td></tr>
+    <tr><td><code>PUT</code></td><td><code>/api/claude_code/team_memory?repo={owner/repo}</code></td><td>Upload entries (upsert semantics)</td></tr>
+  </table>
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c1)"></div>
+    <div><strong>Auth required:</strong> First-party OAuth only with <code>CLAUDE_AI_INFERENCE_SCOPE</code> + <code>CLAUDE_AI_PROFILE_SCOPE</code>. Unavailable on Bedrock, Vertex, Foundry. Repo identity from git remote: <code>owner/repo</code>.</div>
+  </div>
+</section>
+
+<!-- DELTA UPLOAD -->
+<section>
+  <h2>Delta Upload — Hash Comparison</h2>
+  <p class="section-desc">Only changed files are uploaded. SHA-256 content hashing determines what's different.</p>
+
+  <div class="qflow">
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">1</div>
+      <div class="qf-body">
+        <div class="qf-title">Pull server checksums</div>
+        <div class="qf-desc">GET returns <code>entryChecksums: Map&lt;key, "sha256:&lt;hex&gt;"&gt;</code>. Stored in <code>state.serverChecksums</code>.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">2</div>
+      <div class="qf-body">
+        <div class="qf-title">Compute local hashes</div>
+        <div class="qf-desc"><code>hashContent(content) = 'sha256:' + createHash('sha256').update(content, 'utf8').digest('hex')</code></div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-purple">3</div>
+      <div class="qf-body">
+        <div class="qf-title">Delta = keys where hashes differ</div>
+        <div class="qf-desc">Only include keys where <code>serverChecksums.get(key) !== localHash</code>. Unchanged files skipped entirely.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-green">4</div>
+      <div class="qf-body">
+        <div class="qf-title">Batch into 200KB PUT requests</div>
+        <div class="qf-desc">Greedy bin-packing into MAX_PUT_BODY_BYTES chunks. Sorted keys for deterministic batches (ETag stability). Each batch is independent PUT.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECRET SCANNING -->
+<section>
+  <h2>Secret Scanning</h2>
+  <p class="section-desc">30+ high-confidence gitleaks rules run BEFORE upload. Files with detected secrets are silently skipped — never uploaded.</p>
+
+  <div class="two-col">
+    <div class="card" style="border-left:4px solid var(--c2)">
+      <h4>What's scanned for</h4>
+      <ul style="padding-left:16px;font-size:12px;color:var(--mu);line-height:1.6">
+        <li>Cloud API keys (AWS, GCP, Azure)</li>
+        <li>GitHub / GitLab tokens</li>
+        <li>AI API keys (Anthropic, OpenAI)</li>
+        <li>Slack / Discord tokens</li>
+        <li>Private keys (RSA, SSH, PGP)</li>
+        <li>Database connection strings</li>
+        <li>JWT secrets and bearer tokens</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid var(--c3)">
+      <h4>How it works</h4>
+      <p><code>scanForSecrets(content)</code> runs compiled regex rules. Deduped by rule ID. Returns <code>{ ruleId, label }</code> matches.</p>
+      <p style="margin-top:6px"><strong>Secret VALUE never logged</strong> — only label + rule ID + file path. Compliant with PSR M22174.</p>
+      <p style="margin-top:6px">Files with matches: <strong>skipped entirely</strong> (not uploaded, no partial redaction).</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONFLICT RESOLUTION -->
+<section>
+  <h2>Conflict Resolution</h2>
+  <p class="section-desc">Optimistic locking via ETags. On conflict (412), cheap probe + recompute delta + retry.</p>
+
+  <div class="qflow">
+    <div class="qf-step">
+      <div class="qf-icon qi-orange">1</div>
+      <div class="qf-body">
+        <div class="qf-title">PUT with If-Match: "{etag}"</div>
+        <div class="qf-desc">Optimistic lock — expects server state matches our last known ETag.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-red">2</div>
+      <div class="qf-body">
+        <div class="qf-title">412 Precondition Failed — teammate pushed first</div>
+        <div class="qf-desc">Another team member's concurrent push changed server state.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">3</div>
+      <div class="qf-body">
+        <div class="qf-title">Cheap probe: GET ?view=hashes</div>
+        <div class="qf-desc">Fetch only checksums (no bodies) — fast. Refresh <code>serverChecksums</code> with teammate's changes.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-purple">4</div>
+      <div class="qf-body">
+        <div class="qf-title">Recompute delta — only truly different keys remain</div>
+        <div class="qf-desc">Keys that matched teammate's version naturally excluded. Only our unique changes sent.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-green">5</div>
+      <div class="qf-body">
+        <div class="qf-title">Retry PUT — max 2 conflict retries (3 total)</div>
+        <div class="qf-desc">Each batch carries updated ETag from previous response. Semantics: <strong>local wins for changed keys</strong>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYNC SEMANTICS -->
+<section>
+  <h2>Sync Semantics</h2>
+  <div class="two-col">
+    <div class="card" style="border-top:3px solid var(--c1)">
+      <h4>Pull (server → local)</h4>
+      <ul style="padding-left:16px;font-size:12px;color:var(--mu);line-height:1.6">
+        <li><strong>Server always wins</strong> — remote entries overwrite local</li>
+        <li>New server keys create local files</li>
+        <li><strong>Deletions don't propagate</strong> — if you delete locally, pull restores from server</li>
+        <li>404 = no data exists yet (first-time repo)</li>
+        <li>If-None-Match ETag for conditional GET (304 = no changes)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--c3)">
+      <h4>Push (local → server)</h4>
+      <ul style="padding-left:16px;font-size:12px;color:var(--mu);line-height:1.6">
+        <li><strong>Local wins for changed keys</strong> — your edits overwrite server version</li>
+        <li>Delta-only: unchanged files not sent</li>
+        <li>Secret-scanned files silently skipped</li>
+        <li>Batched into ≤200KB PUTs</li>
+        <li>If-Match ETag for optimistic locking</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c4)"></div>
+    <div><strong>Bidirectional sync:</strong> <code>syncTeamMemory()</code> runs pull first (full, skip ETag cache), writes remote entries to local, then pushes local with conflict resolution. Returns <code>{ success, filesPulled, filesPushed, error }</code>.</div>
+  </div>
+</section>
+
+<!-- SETTINGS SYNC -->
+<section>
+  <h2>Settings Sync (Separate System)</h2>
+  <p class="section-desc">User settings (not project/local/policy) uploaded to <code>/api/claude_code/user_settings</code>. 500KB max. Incremental — only changed entries. Used by CCR to sync config before plugin installation.</p>
+
+  <table>
+    <tr><th>Aspect</th><th>Team Memory</th><th>Settings Sync</th></tr>
+    <tr><td>Scope</td><td>Per-repo (git remote)</td><td>Per-user (global)</td></tr>
+    <tr><td>Direction</td><td>Bidirectional (pull + push)</td><td>Upload only (CLI → cloud)</td></tr>
+    <tr><td>Max size</td><td>250KB per entry</td><td>500KB per file</td></tr>
+    <tr><td>Secret scanning</td><td>Yes (30+ rules)</td><td>No</td></tr>
+    <tr><td>Availability</td><td>First-party OAuth only</td><td>First-party OAuth only</td></tr>
+  </table>
+</section>
+
+<footer>Inside Claude Code — Source Review · Page 18 of 20 · Verified against source 2026-03-31</footer>
+</div>
+</body>
+</html>

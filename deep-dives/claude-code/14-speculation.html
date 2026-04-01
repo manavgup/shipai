@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14 — Speculation System · Inside Claude Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="13-architecture-critique.html">&larr; 13</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn curr" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="15-buddy.html">15 &rarr;</a>
+</nav>
+
+<div class="hero-sm">
+  <div class="eyebrow">
+    <span class="enum">14 / 20</span>
+    <span class="pill pill-teal">Speculation System</span>
+    <span class="source">src/services/PromptSuggestion/speculation.ts (992 lines)</span>
+  </div>
+  <h1>It thinks <span style="color:var(--c9)">while you think</span>.</h1>
+  <p class="subtitle">While you're reading Claude's response, a <strong>background speculation system</strong> is already pre-computing the next turn. It uses an overlay filesystem so speculative work can't damage real files. When you accept the suggestion, the pre-computed result is injected instantly — saving seconds per turn.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card sc-teal"><div class="stat-val v-teal">992</div><div class="stat-desc"><strong>Lines</strong> — speculation.ts is a substantial system</div></div>
+  <div class="stat-card sc-teal"><div class="stat-val v-teal">20</div><div class="stat-desc"><strong>Max turns</strong> per speculation session</div></div>
+  <div class="stat-card sc-teal"><div class="stat-val v-teal">100</div><div class="stat-desc"><strong>Max messages</strong> generated speculatively</div></div>
+  <div class="stat-card sc-teal"><div class="stat-val v-teal">/tmp</div><div class="stat-desc"><strong>Overlay FS</strong> — isolated write sandbox</div></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section>
+  <h2>How Speculation Works — Step by Step</h2>
+  <p class="section-desc">The system triggers when a <strong>prompt suggestion</strong> appears (after 2+ assistant turns). It forks a background agent to pre-compute what would happen if the user accepts that suggestion — running real API calls against the real Claude model.</p>
+
+  <div class="qflow">
+    <div class="qf-step">
+      <div class="qf-icon qi-teal">1</div>
+      <div class="qf-body">
+        <div class="qf-title">Prompt suggestion appears</div>
+        <div class="qf-desc">After 2+ assistant turns, the CHOMP system (<code>tengu_chomp_inflection</code>) generates a suggested next prompt. Suppressed during: permission prompts, plan mode, rate limits, elicitation.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-teal">2</div>
+      <div class="qf-body">
+        <div class="qf-title">Speculation starts — overlay filesystem created</div>
+        <div class="qf-desc">A unique overlay directory is created at <code>~/.claude/tmp/speculation/[PID]/[8-char-uuid]/</code>. All file writes will be redirected here. A fresh <code>AbortController</code> (child of the main one) is created for instant cancellation.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-purple">3</div>
+      <div class="qf-body">
+        <div class="qf-title">Forked agent runs — real API calls</div>
+        <div class="qf-desc">Calls <code>runForkedAgent()</code> with the suggestion as prompt. This makes <strong>actual Claude API calls</strong> (not mocks) — costs real tokens. The agent inherits the current conversation context via cache-safe params for prompt cache hits.</div>
+      </div>
+    </div>
+    <div class="qf-arrow">↓ tool interception</div>
+    <div class="qf-step">
+      <div class="qf-icon qi-green">4</div>
+      <div class="qf-body">
+        <div class="qf-title">Tool calls intercepted by permission layer</div>
+        <div class="qf-desc">Every tool call passes through a custom <code>canUseTool</code> interceptor that enforces speculation-safe constraints (see next section).</div>
+      </div>
+    </div>
+    <div class="qf-branch">
+      <div class="qf-step">
+        <div class="qf-icon qi-green" style="width:20px;height:20px;font-size:9px">R</div>
+        <div class="qf-body">
+          <div class="qf-title">Read-only tools → allowed directly</div>
+          <div class="qf-desc">Read, Glob, Grep, LSP, ToolSearch, TaskGet, TaskList run against real filesystem.</div>
+        </div>
+      </div>
+      <div class="qf-step">
+        <div class="qf-icon qi-orange" style="width:20px;height:20px;font-size:9px">W</div>
+        <div class="qf-body">
+          <div class="qf-title">Write tools → redirected to overlay</div>
+          <div class="qf-desc">Edit, Write, NotebookEdit: original file copied to overlay first (copy-on-write), then write targets overlay path. Subsequent reads of that file also redirect to overlay.</div>
+        </div>
+      </div>
+      <div class="qf-step">
+        <div class="qf-icon qi-red" style="width:20px;height:20px;font-size:9px">!</div>
+        <div class="qf-body">
+          <div class="qf-title">Bash → read-only check, abort if not safe</div>
+          <div class="qf-desc"><code>checkReadOnlyConstraints()</code> validates command is safe (ls, cat, git log). If not, speculation pauses at a <strong>bash boundary</strong>.</div>
+        </div>
+      </div>
+      <div class="qf-step">
+        <div class="qf-icon qi-gray" style="width:20px;height:20px;font-size:9px">✕</div>
+        <div class="qf-body">
+          <div class="qf-title">All other tools → denied</div>
+          <div class="qf-desc">WebSearch, WebFetch, Agent, MCP, etc. — speculation aborts at a <strong>denied_tool boundary</strong>.</div>
+        </div>
+      </div>
+    </div>
+    <div class="qf-arrow">↓ completion or boundary</div>
+    <div class="qf-step">
+      <div class="qf-icon qi-cyan">5</div>
+      <div class="qf-body">
+        <div class="qf-title">Speculation reaches a boundary or completes</div>
+        <div class="qf-desc">Four possible outcomes tracked in <code>CompletionBoundary</code>:
+          <strong>complete</strong> (full response with token count),
+          <strong>bash</strong> (paused at unsafe command),
+          <strong>edit</strong> (paused at file write needing permission),
+          <strong>denied_tool</strong> (unsupported tool encountered).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERLAY FILESYSTEM -->
+<section>
+  <h2>Overlay Filesystem — Copy-on-Write Isolation</h2>
+  <p class="section-desc">The key safety mechanism. All speculative writes go to an isolated temp directory. If speculation is aborted, the overlay is deleted — zero impact on real files.</p>
+
+  <div class="two-col">
+    <div class="card" style="border-top:3px solid var(--c9)">
+      <h4>Write Interception</h4>
+      <p>When a write tool (Edit, Write, NotebookEdit) targets <code>src/foo.ts</code>:</p>
+      <ol style="margin:8px 0;padding-left:16px">
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">Check if file already in overlay's <code>writtenPaths</code> set</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">If not: <strong>copy original</strong> from <code>cwd/src/foo.ts</code> to <code>overlay/src/foo.ts</code></li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">Add to <code>writtenPaths</code> set</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px"><strong>Rewrite input path</strong> to point to overlay copy</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">Tool writes to overlay — real file untouched</li>
+      </ol>
+    </div>
+    <div class="card" style="border-top:3px solid var(--c3)">
+      <h4>Read Redirection</h4>
+      <p>When a read tool targets a file that was previously written:</p>
+      <ol style="margin:8px 0;padding-left:16px">
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">Check <code>writtenPaths</code> set for the relative path</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">If present: <strong>rewrite read path</strong> to overlay copy</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">If not: read from real filesystem (unchanged)</li>
+      </ol>
+      <p style="margin-top:8px">This means speculative edits are <strong>self-consistent</strong> — a Read after a speculative Write sees the speculated content, not the original.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c9)"></div>
+    <div><strong>Overlay path:</strong> <code>~/.claude/tmp/speculation/[PID]/[8-char-uuid]/</code> — cleaned up with 3 retries, 100ms delay each. Directory created with <code>mkdir -p</code> at speculation start.</div>
+  </div>
+</section>
+
+<!-- ACCEPTANCE & ABORT -->
+<section>
+  <h2>Accept vs Abort</h2>
+
+  <div class="two-col">
+    <div class="card" style="border-left:4px solid var(--c3)">
+      <h4>User accepts suggestion</h4>
+      <ol style="margin:8px 0;padding-left:16px">
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">Abort speculation (if still running)</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px"><strong>Copy modified files from overlay → real filesystem</strong></li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">Delete overlay directory</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">Filter speculated messages: strip thinking blocks, orphaned tool calls, interrupt messages</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px"><strong>Inject messages into conversation</strong> — appears instant to user</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">Extract file reads from speculated messages → merge into file cache</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">If speculation completed fully: no further API call needed</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">If speculation hit boundary: continue with normal query loop</li>
+      </ol>
+    </div>
+    <div class="card" style="border-left:4px solid var(--c2)">
+      <h4>User types something else</h4>
+      <ol style="margin:8px 0;padding-left:16px">
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px"><code>abortSpeculation()</code> fires immediately</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">AbortController signals forked agent to stop</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px"><strong>Delete overlay directory</strong> — all speculative changes gone</li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">Log analytics event: <code>tengu_speculation</code> with outcome <code>"aborted"</code></li>
+        <li style="font-size:12px;color:var(--mu);margin-bottom:4px">State → idle. Zero impact on conversation.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINED SPECULATION -->
+<section>
+  <h2>Pipelined Speculation — Two Steps Ahead</h2>
+  <p class="section-desc">When the first speculation completes fully (no boundary hit), the system immediately starts a <strong>second speculation</strong> for the NEXT turn — pre-computing two steps ahead.</p>
+
+  <div class="flow">
+    <div class="fn hi" style="max-width:500px"><b>Speculation 1</b> — user's current suggestion</div>
+    <div class="fa">↓ completes (boundary.type = 'complete')</div>
+    <div class="fn g" style="max-width:500px"><b>Pipelined Speculation 2</b> — next suggestion, runs in background while user decides on Spec 1</div>
+    <div class="fa">↓ user accepts Spec 1</div>
+    <div class="fn" style="max-width:500px">Spec 2 result <b>already ready</b> — inject immediately for the turn after</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c4)"></div>
+    <div><strong>Cost implication:</strong> Speculative API calls are <strong>real API calls</strong> counted against usage. This is not free — it trades token cost for latency reduction. Anthropic internal users see feedback: <em>"Speculated 3 tool uses · 1,247 tokens · +2.3s saved (4.7s this session)"</em></div>
+  </div>
+</section>
+
+<!-- PERMISSION INTERACTION -->
+<section>
+  <h2>Permission Mode Interaction</h2>
+  <p class="section-desc">Speculation's write behavior depends on the user's permission mode.</p>
+
+  <table>
+    <tr><th>Mode</th><th>Write tools during speculation</th><th>Effect</th></tr>
+    <tr><td><code>acceptEdits</code></td><td>Allowed (via overlay)</td><td>Full speculation with file edits</td></tr>
+    <tr><td><code>bypassPermissions</code></td><td>Allowed (via overlay)</td><td>Full speculation with file edits</td></tr>
+    <tr><td><code>default</code></td><td>Blocked — hits boundary</td><td>Speculation pauses at first edit, user must approve</td></tr>
+    <tr><td><code>plan</code></td><td>Blocked — hits boundary</td><td>Speculation pauses at first edit</td></tr>
+  </table>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c5)"></div>
+    <div><strong>Currently ANT-only:</strong> <code>isSpeculationEnabled()</code> checks <code>process.env.USER_TYPE === 'ant'</code>. External users don't have speculation yet. Toggleable via <code>speculationEnabled</code> in global config.</div>
+  </div>
+</section>
+
+<!-- STATE MACHINE -->
+<section>
+  <h2>State Machine</h2>
+
+  <div class="flow">
+    <div class="fn" style="max-width:500px"><b>idle</b> — no speculation running</div>
+    <div class="fa">↓ prompt suggestion + startSpeculation()</div>
+    <div class="fn hi" style="max-width:500px"><b>active</b> — id, abort(), messagesRef, writtenPathsRef, boundary, startTime, toolUseCount, isPipelined, contextRef</div>
+    <div class="fb" style="margin-top:6px">
+      <div>
+        <div class="fa">↓ user types</div>
+        <div class="fn r">abortSpeculation() → cleanup → <b>idle</b></div>
+      </div>
+      <div>
+        <div class="fa">↓ user accepts</div>
+        <div class="fn g">acceptSpeculation() → copy files → inject messages → <b>idle</b></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Active State Fields</h3>
+  <table>
+    <tr><th>Field</th><th>Type</th><th>Purpose</th></tr>
+    <tr><td><code>id</code></td><td>string (8 chars)</td><td>Unique speculation session ID</td></tr>
+    <tr><td><code>abort</code></td><td>() => void</td><td>Kill switch — signals forked agent to stop</td></tr>
+    <tr><td><code>messagesRef</code></td><td>Mutable ref</td><td>Accumulates generated messages in real-time</td></tr>
+    <tr><td><code>writtenPathsRef</code></td><td>Set&lt;string&gt;</td><td>Relative paths written to overlay</td></tr>
+    <tr><td><code>boundary</code></td><td>CompletionBoundary | null</td><td>What stopped speculation (complete, bash, edit, denied_tool)</td></tr>
+    <tr><td><code>isPipelined</code></td><td>boolean</td><td>Second-order speculation flag</td></tr>
+    <tr><td><code>pipelinedSuggestion</code></td><td>object | null</td><td>Next-turn suggestion for pipelined spec</td></tr>
+  </table>
+</section>
+
+<!-- ANALYTICS -->
+<section>
+  <h2>Analytics</h2>
+  <p class="section-desc">Every speculation logs a <code>tengu_speculation</code> event with outcome, duration, tools executed, boundary type, and message count.</p>
+
+  <table>
+    <tr><th>Metric</th><th>Description</th></tr>
+    <tr><td><code>speculation_id</code></td><td>8-char UUID</td></tr>
+    <tr><td><code>outcome</code></td><td>accepted / aborted / error</td></tr>
+    <tr><td><code>duration_ms</code></td><td>How long speculation ran</td></tr>
+    <tr><td><code>tools_executed</code></td><td>Count of successful tool calls</td></tr>
+    <tr><td><code>boundary_type</code></td><td>complete / bash / edit / denied_tool / null</td></tr>
+    <tr><td><code>is_pipelined</code></td><td>Whether this was a second-order speculation</td></tr>
+  </table>
+</section>
+
+<footer>Inside Claude Code — Source Review · Page 14 of 20 · Verified against source 2026-03-31</footer>
+
+</div>
+</body>
+</html>

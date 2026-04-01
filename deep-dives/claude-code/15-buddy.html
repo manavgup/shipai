@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 — Buddy System · Inside Claude Code</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page">
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="14-speculation.html">&larr; 14</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn curr" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="16-computer-voice.html">16 &rarr;</a>
+</nav>
+<div class="hero-sm">
+  <div class="eyebrow"><span class="enum">15 / 20</span><span class="pill pill-amber">Buddy System</span><span class="source">src/buddy/ — 18 species</span></div>
+  <h1>Your AI has a <span style="color:var(--c10)">pet</span>.</h1>
+  <p class="subtitle">Procedurally-generated companion sprites with <strong>18 species</strong>, rarity tiers, stats, hats, and a 1% shiny modifier. Deterministic per user — same person always gets the same creature. 3-frame idle animations with blink and speech bubbles.</p>
+</div>
+<div class="stat-row">
+  <div class="stat-card sc-orange"><div class="stat-val v-orange">18</div><div class="stat-desc"><strong>Species</strong> — duck to dragon to "chonk"</div></div>
+  <div class="stat-card sc-orange"><div class="stat-val v-orange">1%</div><div class="stat-desc"><strong>Shiny</strong> chance</div></div>
+  <div class="stat-card sc-orange"><div class="stat-val v-orange">500ms</div><div class="stat-desc"><strong>Animation tick</strong> — 3-frame idle</div></div>
+</div>
+<section>
+  <h2>Species by Rarity</h2>
+  <h3>Common (60%)</h3>
+  <div class="tool-pills"><span class="tool-pill tp-green">duck</span><span class="tool-pill tp-green">blob</span><span class="tool-pill tp-green">cat</span><span class="tool-pill tp-green">penguin</span><span class="tool-pill tp-green">snail</span><span class="tool-pill tp-green">rabbit</span></div>
+  <h3>Uncommon (25%)</h3>
+  <div class="tool-pills"><span class="tool-pill tp-blue">goose</span><span class="tool-pill tp-blue">owl</span><span class="tool-pill tp-blue">turtle</span><span class="tool-pill tp-blue">ghost</span><span class="tool-pill tp-blue">cactus</span><span class="tool-pill tp-blue">mushroom</span></div>
+  <h3>Rare (10%) · Epic (4%) · Legendary (1%)</h3>
+  <div class="tool-pills"><span class="tool-pill tp-purple">dragon</span><span class="tool-pill tp-purple">octopus</span><span class="tool-pill tp-purple">axolotl</span><span class="tool-pill tp-orange">capybara</span><span class="tool-pill tp-orange">robot</span><span class="tool-pill tp-red">chonk</span></div>
+</section>
+<section>
+  <h2>Companion Traits</h2>
+  <table>
+    <tr><th>System</th><th>Details</th></tr>
+    <tr><td>Generation</td><td>Deterministic from <code>hash(userId)</code> + salt <code>'friend-2026-401'</code></td></tr>
+    <tr><td>Stats</td><td>DEBUGGING, PATIENCE, CHAOS, WISDOM, SNARK (1-100 each)</td></tr>
+    <tr><td>Hats</td><td>crown, tophat, propeller, halo, wizard, beanie, tinyduck</td></tr>
+    <tr><td>Eyes</td><td><code>· ✦ × ◉ @ °</code></td></tr>
+    <tr><td>Shiny</td><td>1% chance for special appearance modifier</td></tr>
+    <tr><td>Animation</td><td>3-frame idle (500ms tick), blink, speech bubbles, pet hearts</td></tr>
+    <tr><td>Persistence</td><td>"Soul" (name/personality) persists; "bones" (appearance) regenerate from hash every session</td></tr>
+  </table>
+</section>
+<footer>Inside Claude Code — Source Review · Page 15 of 20</footer>
+</div></body></html>

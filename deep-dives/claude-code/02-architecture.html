@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02 — Architecture · Inside Claude Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="01-overview.html">&larr; 01</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn curr" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="03-query-loop.html">03 &rarr;</a>
+</nav>
+
+<div class="hero-sm">
+  <div class="eyebrow">
+    <span class="enum">02 / 20</span>
+    <span class="pill pill-red">Architecture</span>
+    <span class="source">1,902 files · 35 directories · 513K lines</span>
+  </div>
+  <h1><span style="color:var(--c2)">2,000+</span> files. 35 directories. One <span style="color:var(--c3)">async generator</span> at the core.</h1>
+  <p class="subtitle">The codebase is organized by function: tools, services, components, utilities. The system boots in <strong>~200ms</strong> by overlapping I/O with module loading. The conversation loop is an <strong>async generator</strong>. Tools execute <strong>while the API response is still streaming</strong>.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card sc-red"><div class="stat-val v-red">1,902</div><div class="stat-desc"><strong>Source files</strong> — TypeScript &amp; TSX</div></div>
+  <div class="stat-card sc-red"><div class="stat-val v-red">35</div><div class="stat-desc"><strong>Top-level dirs</strong> in src/</div></div>
+  <div class="stat-card sc-red"><div class="stat-val v-red">~200ms</div><div class="stat-desc"><strong>Boot time</strong> — parallel I/O</div></div>
+  <div class="stat-card sc-red"><div class="stat-val v-red">1,729</div><div class="stat-desc"><strong>Lines</strong> in query.ts</div></div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: FOLDER STRUCTURE -->
+<!-- ============================================================ -->
+<section>
+  <h2>01 — Folder Structure</h2>
+  <p class="section-desc">The <code>src/</code> directory organized by function. Every top-level directory with file counts from the actual source.</p>
+
+  <table>
+    <tr><th>Directory</th><th>Files</th><th>What's Inside</th></tr>
+    <tr><td><code>utils/</code></td><td><strong>564</strong></td><td>Permissions (24 files), bash AST parser, sandbox adapter, model routing, settings, git ops, swarm backends (tmux/iTerm/in-process), computer use, deep links, memory, telemetry, suggestions</td></tr>
+    <tr><td><code>components/</code></td><td><strong>389</strong></td><td>Ink terminal UI — messages, permission dialogs, settings panels, diff viewer, task list, team management, design system, prompt input</td></tr>
+    <tr><td><code>commands/</code></td><td><strong>207</strong></td><td>84 slash commands each in own dir — /help, /plan, /review, /buddy, /voice. 24+ internal-only stripped from external builds</td></tr>
+    <tr><td><code>tools/</code></td><td><strong>184</strong></td><td>43 tool implementations — Bash, FileEdit, FileRead, FileWrite, Glob, Grep, Agent, MCP, WebFetch, Skill, Task*, Team*, Cron*, Plan, Worktree, LSP</td></tr>
+    <tr><td><code>services/</code></td><td><strong>130</strong></td><td>API client (multi-provider), MCP protocol (24 files), StreamingToolExecutor, compaction, analytics, OAuth, plugins, policy limits, prompt suggestion, memory extraction, autoDream, team memory sync</td></tr>
+    <tr><td><code>hooks/</code></td><td><strong>104</strong></td><td>React hooks — useStream, useTools, tool permissions, notifications. 20 hook events (Setup → Stop)</td></tr>
+    <tr><td><code>ink/</code></td><td><strong>96</strong></td><td>Custom Ink fork — React reconciler, Yoga WASM flexbox, ANSI parser/optimizer, DOM, frame rendering, double-buffering, terminal I/O, events, hit testing, selection</td></tr>
+    <tr><td><code>bridge/</code></td><td><strong>31</strong></td><td>IDE/remote — OAuth, JWT refresh, trusted devices, WebSocket, SSE, session management, keepalive</td></tr>
+    <tr><td><code>constants/</code></td><td><strong>21</strong></td><td>Prompts, system prompt sections, API limits, spinner verbs, cyber risk instructions, OAuth scopes</td></tr>
+    <tr><td><code>skills/</code></td><td><strong>20</strong></td><td>19 bundled skills — /schedule, /loop, /claude-api, /simplify, /ship, /investigate. Plus loading infra</td></tr>
+    <tr><td><code>cli/</code></td><td><strong>19</strong></td><td>CLI entry (cli.tsx 39KB), headless/print mode (212KB), transport handlers</td></tr>
+    <tr><td><code>keybindings/</code></td><td><strong>14</strong></td><td>Custom keyboard shortcuts — schema, parser, resolver, validator, chord bindings, defaults</td></tr>
+    <tr><td><code>tasks/</code></td><td><strong>12</strong></td><td>Task runners — RemoteAgent, InProcessTeammate, LocalAgent, LocalShell, DreamTask</td></tr>
+    <tr><td><code>migrations/</code></td><td><strong>11</strong></td><td>Model renames (Fennec→Opus, Sonnet 4.5→4.6), settings migrations, consent tracking</td></tr>
+    <tr><td><code>types/</code></td><td><strong>11</strong></td><td>Permission types, hook types, command types, plugin types, generated protobuf</td></tr>
+    <tr><td><code>context/</code></td><td><strong>9</strong></td><td>React contexts — prompt overlay, FPS metrics, mailbox, notifications, stats, modal, voice</td></tr>
+    <tr><td><code>memdir/</code></td><td><strong>8</strong></td><td>Memory system — MEMORY.md loader, 4 memory types, scan, relevance scoring, team memory prompts</td></tr>
+    <tr><td><code>entrypoints/</code></td><td><strong>8</strong></td><td>CLI bootstrap, SDK entry, MCP server entry, init sequence, sandbox types</td></tr>
+    <tr><td><code>buddy/</code></td><td><strong>6</strong></td><td>Companion sprite — 18 species, procedural generation, animation, sprites</td></tr>
+    <tr><td><code>state/</code></td><td><strong>6</strong></td><td>Zustand store, AppState types, store factory, snapshots</td></tr>
+    <tr><td><code>vim/</code></td><td><strong>5</strong></td><td>Full vim mode — motions, operators, 11 text objects, state machine, dot-repeat</td></tr>
+    <tr><td><code>query/</code></td><td><strong>4</strong></td><td>Core loop — token budget, stop hooks, config, dependencies</td></tr>
+    <tr><td><code>native-ts/</code></td><td><strong>4</strong></td><td>Native bindings — color-diff, file-index, yoga-layout (WASM)</td></tr>
+    <tr><td><code>remote/</code></td><td><strong>4</strong></td><td>Remote session management, WebSocket, SDK adapter, permission bridge</td></tr>
+    <tr><td><code>screens/</code></td><td><strong>3</strong></td><td>REPL.tsx (896KB), ResumeConversation.tsx (60KB), Doctor.tsx (73KB)</td></tr>
+    <tr><td><code>server/</code></td><td><strong>3</strong></td><td>Direct connect sessions, connection manager</td></tr>
+    <tr><td><code>plugins/</code></td><td><strong>2</strong></td><td>Plugin loading, built-in plugin registry</td></tr>
+    <tr><td><code>upstreamproxy/</code></td><td><strong>2</strong></td><td>Upstream proxy + relay for CCR mTLS</td></tr>
+    <tr><td><code>coordinator/</code></td><td><strong>1</strong></td><td>Coordinator mode — worker orchestration with shared scratchpad</td></tr>
+    <tr><td><code>voice/</code></td><td><strong>1</strong></td><td>Voice mode enablement (SoX + mic + OAuth + kill-switch)</td></tr>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: BOOT SEQUENCE -->
+<!-- ============================================================ -->
+<section>
+  <h2>02 — Boot Sequence</h2>
+  <p class="section-desc">What happens when you type <code>claude</code> — a 3-phase pipeline that overlaps I/O with module loading. Side effects fire <strong>before 187 imports resolve</strong>.</p>
+
+  <h3>Phase 1 — CLI Fast-Path (&lt;50ms)</h3>
+  <div class="timeline">
+    <div class="tl-item dot-blue"><div class="tl-num">01</div><div class="tl-title">cli.tsx loads</div><div class="tl-desc"><code>--version</code> exits immediately. <code>--daemon-worker</code>, <code>--chrome-native-host</code>, <code>--computer-use-mcp</code> route to handlers. Zero module evaluation.</div></div>
+    <div class="tl-item dot-blue"><div class="tl-num">02</div><div class="tl-title">Feature flags (compile-time)</div><div class="tl-desc">Bun's <code>feature()</code> eliminates code at build time. 26 flags — external builds strip all ANT-only code. Binary is measurably smaller.</div></div>
+  </div>
+
+  <h3>Phase 2 — Initialization (Parallel I/O, ~200ms)</h3>
+  <div class="timeline">
+    <div class="tl-item dot-orange"><div class="tl-num">03</div><div class="tl-title">Parallel prefetch (lines 12-20 of main.tsx)</div><div class="tl-desc"><code>startMdmRawRead()</code> spawns plutil/reg query (~135ms). <code>startKeychainPrefetch()</code> fires two keychain reads (~65ms). Both overlap with 187 imports resolving.</div></div>
+    <div class="tl-item dot-red"><div class="tl-num">04</div><div class="tl-title">Auth validated</div><div class="tl-desc">OAuth from <code>~/.claude/auth.json</code> or <code>ANTHROPIC_API_KEY</code>. Provider detection: Bedrock/Vertex/Foundry env vars.</div></div>
+    <div class="tl-item dot-purple"><div class="tl-num">05</div><div class="tl-title">Config cascade + GrowthBook</div><div class="tl-desc">Policy → User → Project → Local → CLI. CLAUDE.md walks dir tree. 100+ <code>tengu_*</code> gates fetched async (disk-cached).</div></div>
+  </div>
+
+  <h3>Phase 3 — REPL Setup</h3>
+  <div class="timeline">
+    <div class="tl-item dot-green"><div class="tl-num">06</div><div class="tl-title">setCwd → hooks → worktree → tools → MCP</div><div class="tl-desc"><strong>setCwd() MUST be first</strong>. Hooks config frozen. 43 tools loaded. MCP servers connected in parallel.</div></div>
+    <div class="tl-item dot-cyan"><div class="tl-num">07</div><div class="tl-title">System prompt from 10+ sources</div><div class="tl-desc">Role, tool schemas, CLAUDE.md, MEMORY.md, memories, git context, OS info, MCP instructions, hooks, tips.</div></div>
+    <div class="tl-item dot-cyan"><div class="tl-num">08</div><div class="tl-title">Ink renders → loop idles</div><div class="tl-desc">React reconciler + Yoga WASM. Double-buffered. Background tasks started. Idle.</div></div>
+  </div>
+
+  <div class="flow" style="margin-top:12px">
+    <div class="fn" style="max-width:400px"><b>getIsNonInteractiveSession()</b></div>
+    <div class="fa">↓</div>
+    <div class="fb">
+      <div class="fn r" style="max-width:180px"><b>runHeadless()</b><br><span style="font-size:10px;color:var(--mu)">JSON to stdout</span></div>
+      <div class="fn g" style="max-width:180px"><b>launchRepl()</b><br><span style="font-size:10px;color:var(--mu)">Trust → REPL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: QUERY LOOP -->
+<!-- ============================================================ -->
+<section>
+  <h2>03 — Query Loop — The Core Cycle</h2>
+  <p class="section-desc">The conversation loop (<code>query.ts</code>, 1,729 lines) is an <strong>async generator</strong>. The REPL consumes events via <code>for await</code>.</p>
+
+  <div class="qflow">
+    <div class="qf-step"><div class="qf-icon" style="background:var(--c5)">1</div><div class="qf-body"><div class="qf-title">Compaction</div><div class="qf-desc">4 strategies: snip, microcompact, autocompact (at ~167K tokens), context collapse. <a href="06-context-autocompact.html">Deep dive →</a></div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-blue">2</div><div class="qf-body"><div class="qf-title">API Call (streaming)</div><div class="qf-desc">System prompt from 10+ sources. Prompt caching with cache_control. Tokens rendered in real-time.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-green">3</div><div class="qf-body"><div class="qf-title">Tool Execution — starts BEFORE stream ends</div><div class="qf-desc">StreamingToolExecutor queues tool_use blocks as they arrive. Concurrent-safe tools parallel (max 10). Sibling abort on Bash errors.</div></div></div>
+    <div class="qf-arrow">↓ continuation</div>
+    <div class="qf-step"><div class="qf-icon qi-purple">4</div><div class="qf-body"><div class="qf-title">Continue, Retry, or Return</div><div class="qf-desc"><strong>tool_use → loop.</strong> Prompt too long → compact. Max tokens → increase (max 3). Capacity → fallback model. End turn → return.</div></div></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-dot" style="background:var(--c3)"></div>
+    <div><strong>Post-sampling hooks:</strong> auto-compact check, memory extraction (forked agent every turn), prompt suggestion (CHOMP), speculation (pre-compute next turn), auto-dream (24h + 5 sessions). <a href="03-query-loop.html">Full deep dive →</a></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: RENDERING PIPELINE -->
+<!-- ============================================================ -->
+<section>
+  <h2>04 — Rendering Pipeline</h2>
+  <p class="section-desc">The <code>src/ink/</code> directory (96 files) is a heavily modified Ink fork — not a thin wrapper.</p>
+
+  <div class="fh">
+    <div class="fn">React Components<br><span style="font-size:10px;color:var(--mu)">389 files</span></div>
+    <div class="fa">→</div>
+    <div class="fn">Custom Reconciler<br><span style="font-size:10px;color:var(--mu)">reconciler.ts</span></div>
+    <div class="fa">→</div>
+    <div class="fn">Custom DOM<br><span style="font-size:10px;color:var(--mu)">dom.ts</span></div>
+    <div class="fa">→</div>
+    <div class="fn hi">Yoga (WASM)<br><span style="font-size:10px;color:var(--mu)">Flexbox</span></div>
+    <div class="fa">→</div>
+    <div class="fn">Frame Buffer<br><span style="font-size:10px;color:var(--mu)">Double-buffered</span></div>
+    <div class="fa">→</div>
+    <div class="fn g">Terminal<br><span style="font-size:10px;color:var(--mu)">ANSI</span></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <h4>What the Ink fork adds</h4>
+      <ul style="padding-left:16px"><li>Custom React reconciler for terminal DOM</li><li>Yoga WASM flexbox layout engine</li><li>Double-buffered ANSI rendering</li><li>ANSI parser + optimizer pools</li><li>Hit testing + text selection + search highlighting</li><li>Mouse tracking (mode-1003)</li><li>Alternate screen mode</li></ul>
+    </div>
+    <div class="card">
+      <h4>3 Screens</h4>
+      <ul style="padding-left:16px"><li><strong>REPL.tsx</strong> — main screen (896KB)</li><li><strong>ResumeConversation.tsx</strong> — session resume (60KB)</li><li><strong>Doctor.tsx</strong> — diagnostics (73KB)</li></ul>
+      <h4 style="margin-top:12px">Key Primitives</h4>
+      <ul style="padding-left:16px"><li>Box, Text, Button, ScrollBox, Link, RawAnsi</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: STATE ARCHITECTURE -->
+<!-- ============================================================ -->
+<section>
+  <h2>05 — State Architecture</h2>
+  <p class="section-desc">Two-layer system: a global singleton for process-lifetime data, and a Zustand store for React-integrated UI state.</p>
+
+  <div class="two-col">
+    <div class="card" style="border-top:3px solid var(--c1)">
+      <h4>Bootstrap State <span class="tag">global singleton</span></h4>
+      <p><strong>150+ fields</strong> surviving the entire process:</p>
+      <ul style="padding-left:16px;font-size:11px;color:var(--mu);line-height:1.6">
+        <li><code>originalCwd</code>, <code>projectRoot</code></li>
+        <li><code>totalCostUSD</code>, <code>totalAPIDuration</code>, <code>totalToolDuration</code></li>
+        <li><code>modelUsage</code> — per-model token accounting</li>
+        <li><code>sessionId</code>, <code>agentColorMap</code></li>
+        <li><code>lastAPIRequest</code> — debugging (sans messages)</li>
+        <li><code>cachedClaudeMdContent</code> — for auto-mode classifier</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top:3px solid var(--c3)">
+      <h4>App State <span class="tag">Zustand + React Context</span></h4>
+      <p><strong>Immutable</strong> (DeepImmutable):</p>
+      <ul style="padding-left:16px;font-size:11px;color:var(--mu);line-height:1.5">
+        <li>mainLoopModel, fastMode, effortValue</li>
+        <li>toolPermissionContext (mode + rules)</li>
+        <li>replBridgeEnabled/Connected</li>
+      </ul>
+      <p style="margin-top:6px"><strong>Mutable</strong>:</p>
+      <ul style="padding-left:16px;font-size:11px;color:var(--mu);line-height:1.5">
+        <li>messages[], MCP connections, tasks, plugins</li>
+        <li>notifications, swarm context, speculation state</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: FEATURE GATES -->
+<!-- ============================================================ -->
+<section>
+  <h2>06 — Feature Gate System</h2>
+  <p class="section-desc">Bun's <code>feature()</code> enables <strong>compile-time dead code elimination</strong>. Not runtime checks — code is physically absent from the binary.</p>
+
+  <div class="two-col">
+    <div class="card" style="border-left:4px solid var(--c4)">
+      <h4>How it works</h4>
+      <p><code>if (feature('COORDINATOR_MODE')) { ... }</code> — the entire block is removed from the external binary at build time. 26 flags total, almost all ANT-only. External builds are measurably smaller.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--c3)">
+      <h4>What it means</h4>
+      <p>The source you're reading includes ~26 features that <strong>don't exist in the binary you download</strong>. Coordinator mode, ML classifier, voice, computer use, buddy. Internal and external are architecturally different products.</p>
+    </div>
+  </div>
+</section>
+
+<footer>Inside Claude Code — Source Review · Page 02 of 20 · Verified against source 2026-03-31</footer>
+</div>
+</body>
+</html>

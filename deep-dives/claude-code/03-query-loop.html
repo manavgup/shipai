@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>03 — Query Loop · Inside Claude Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="02-architecture.html">&larr; 02</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn curr" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="04-tool-catalog.html">04 &rarr;</a>
+</nav>
+
+<div class="hero-sm">
+  <div class="eyebrow">
+    <span class="enum">03 / 20</span>
+    <span class="pill pill-green">Query Loop</span>
+    <span class="source">src/query.ts (1,729 lines) — async generator</span>
+  </div>
+  <h1>Input → API → Tools → <span style="color:var(--c3)">Loop</span>.</h1>
+  <p class="subtitle">The conversation loop is an <strong>async generator</strong> — the REPL consumes streaming events via <code>for await</code>. Tools start executing <strong>while the API response is still streaming</strong>. Post-sampling hooks run compaction, memory extraction, and optional dream mode.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card sc-green"><div class="stat-val v-green">1,729</div><div class="stat-desc"><strong>Lines</strong> in query.ts — the heart of the system</div></div>
+  <div class="stat-card sc-green"><div class="stat-val v-green">async*</div><div class="stat-desc"><strong>Generator</strong> — yields StreamEvent, Message, Terminal</div></div>
+  <div class="stat-card sc-green"><div class="stat-val v-green">Ctrl+C</div><div class="stat-desc"><strong>Interrupt</strong> — aborts tools, preserves conversation</div></div>
+</div>
+
+<!-- CORE CYCLE -->
+<section>
+  <h2>The Core Cycle</h2>
+  <p class="section-desc">Every turn follows this exact sequence. The loop continues as long as the model returns <code>tool_use</code> blocks.</p>
+
+  <div class="qflow">
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">1</div>
+      <div class="qf-body">
+        <div class="qf-title">User sends message</div>
+        <div class="qf-desc">Keyboard input or piped stdin. <code>createUserMessage()</code> wraps text in Anthropic format. Appended to conversation history (in-memory array). Attachments (images, PDFs) encoded as base64 content blocks.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">2</div>
+      <div class="qf-body">
+        <div class="qf-title">Compaction phase</div>
+        <div class="qf-desc">Before the API call, four strategies checked in order: <strong>snip</strong> (drop old messages entirely), <strong>microcompact</strong> (clear tool result content, cache-aware), <strong>autocompact</strong> (Claude summarizes conversation if tokens &gt; threshold), <strong>context collapse</strong> (fold multiple messages). See <a href="06-context-autocompact.html">slide 06</a> for deep dive.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">3</div>
+      <div class="qf-body">
+        <div class="qf-title">System prompt assembled</div>
+        <div class="qf-desc">Built from 10+ sources: role definition, tool schemas (with cache_control markers), CLAUDE.md files, MEMORY.md index, relevant memory files (Sonnet-selected), git context (branch, 5 commits, status ≤2000 chars), OS info, MCP instructions, hooks documentation, tips.</div>
+      </div>
+    </div>
+    <div class="qf-arrow">↓ streaming request</div>
+    <div class="qf-step">
+      <div class="qf-icon qi-purple">4</div>
+      <div class="qf-body">
+        <div class="qf-title">Stream to Claude API via SSE</div>
+        <div class="qf-desc">Anthropic SDK sends <code>BetaMessageStreamParams</code> with system blocks (cache_control), messages, tools, thinking config, beta headers. Response tokens parsed incrementally, rendered to terminal in real-time. <strong>Fallback on 529</strong>: if FallbackTriggeredError, switch model and retry.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-orange">5</div>
+      <div class="qf-body">
+        <div class="qf-title">Tool execution — starts BEFORE stream ends</div>
+        <div class="qf-desc"><code>StreamingToolExecutor</code> queues tool_use blocks as they arrive in the stream. Concurrent-safe tools (Read, Glob, Grep, etc.) start immediately in parallel (max 10). Non-concurrent tools (Bash, Edit, Write) wait for exclusive access.</div>
+      </div>
+    </div>
+    <div class="qf-branch">
+      <div class="qf-step">
+        <div class="qf-icon qi-green" style="width:22px;height:22px;font-size:9px">✓</div>
+        <div class="qf-body">
+          <div class="qf-title">Permission check → Pre-hooks → Execute → Post-hooks → Yield result</div>
+          <div class="qf-desc"><code>canUseTool()</code> checks allow/deny rules. PreToolUse hooks can intercept. Tool runs. PostToolUse hooks can modify result. Result yielded as <code>tool_result</code> message.</div>
+        </div>
+      </div>
+    </div>
+    <div class="qf-arrow">↓ continuation decision</div>
+    <div class="qf-step">
+      <div class="qf-icon qi-cyan">6</div>
+      <div class="qf-body">
+        <div class="qf-title">Continue, retry, or return</div>
+        <div class="qf-desc">Decision tree based on stop_reason and error state (see below).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTINUATION DECISION -->
+<section>
+  <h2>Continuation Decision Tree</h2>
+
+  <table>
+    <tr><th>Condition</th><th>Action</th><th>Max</th></tr>
+    <tr><td>tool_use blocks present</td><td><strong>Loop</strong> — run tools, send results, call API again</td><td>maxTurns</td></tr>
+    <tr><td>Prompt too long</td><td>Trigger autocompact → retry</td><td>1</td></tr>
+    <tr><td>Max output tokens exceeded</td><td>Increase token limit → retry (floor 3000, safety buffer 1000)</td><td>3</td></tr>
+    <tr><td>Media size error</td><td>Reactive compact → retry</td><td>1</td></tr>
+    <tr><td>529 capacity error</td><td>Backoff → retry (or fallback model after 3)</td><td>3</td></tr>
+    <tr><td>max_turns reached</td><td>Return <code>{ reason: 'max_turns_exceeded' }</code></td><td>—</td></tr>
+    <tr><td>end_turn (no tool_use)</td><td>Return <code>{ reason: 'end_turn' }</code></td><td>—</td></tr>
+  </table>
+</section>
+
+<!-- POST-SAMPLING -->
+<section>
+  <h2>Post-Sampling Hooks</h2>
+  <p class="section-desc">After the model's final response (no more tool calls), background work fires:</p>
+
+  <div class="qflow">
+    <div class="qf-step">
+      <div class="qf-icon qi-gray">A</div>
+      <div class="qf-body">
+        <div class="qf-title">Auto-compact check</div>
+        <div class="qf-desc">If context approaching threshold (effectiveWindow - 13K buffer), schedules compaction for next turn.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-gray">B</div>
+      <div class="qf-body">
+        <div class="qf-title">Memory extraction (extractMemories)</div>
+        <div class="qf-desc">Forked subagent analyzes the conversation and saves relevant memories. Fires every turn (gated by <code>tengu_bramble_lintel</code>, default: 1 = every turn).</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-gray">C</div>
+      <div class="qf-body">
+        <div class="qf-title">Prompt suggestion + speculation</div>
+        <div class="qf-desc">After 2+ turns, CHOMP generates next prompt suggestion. If speculation enabled (ANT-only), begins pre-computing the response. See <a href="14-speculation.html">slide 14</a>.</div>
+      </div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-gray">D</div>
+      <div class="qf-body">
+        <div class="qf-title">Auto-dream (if eligible)</div>
+        <div class="qf-desc">If ≥24h since last consolidation AND ≥5 sessions, autoDream fires for background memory consolidation. See <a href="09-memory.html">slide 09</a>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RENDERING PIPELINE -->
+<section>
+  <h2>Rendering Pipeline</h2>
+  <p class="section-desc">How streaming tokens become terminal pixels.</p>
+  <div class="fh">
+    <div class="fn">React Components<br><span style="font-size:10px;color:var(--mu)">389 component files</span></div>
+    <div class="fa">→</div>
+    <div class="fn">Custom DOM<br><span style="font-size:10px;color:var(--mu)">ink/dom.ts</span></div>
+    <div class="fa">→</div>
+    <div class="fn hi">Yoga WASM<br><span style="font-size:10px;color:var(--mu)">Flexbox layout</span></div>
+    <div class="fa">→</div>
+    <div class="fn">Frame Buffer<br><span style="font-size:10px;color:var(--mu)">Double-buffered</span></div>
+    <div class="fa">→</div>
+    <div class="fn g">Terminal<br><span style="font-size:10px;color:var(--mu)">ANSI + mouse</span></div>
+  </div>
+</section>
+
+<footer>Inside Claude Code — Source Review · Page 03 of 20 · Verified against source 2026-03-31</footer>
+</div>
+</body>
+</html>

@@ -128,6 +128,16 @@
     "date": "Mar 31, 2026",
     "duration": "46 min",
     "description": "Alex LaPlante is VP of Cash Management Technology at RBC, former Interim Head of Borealis AI, co-author in Harvard Business Review, and a member of Canada's federal AI Strategy Task Force. In this ..."
+  },
+  
+  {
+    "title": "Claude Code — Under the Covers",
+    "url": "/shipai/episodes/claude-code-under-the-covers/",
+    "series": "deep-dives",
+    "episode_number": 1,
+    "date": "Apr 1, 2026",
+    "duration": "30 min",
+    "description": "A source-code-level review of Anthropic's Claude Code — 1,902 files, 513K lines of TypeScript. We trace the query loop, catalog all 43 tools, dissect the 3-layer permission model, map the subagent ..."
   }
   
 ]

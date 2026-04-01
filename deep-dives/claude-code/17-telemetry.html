@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>17 — Telemetry · Inside Claude Code</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page">
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="16-computer-voice.html">&larr; 16</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn curr" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="18-team-sync.html">18 &rarr;</a>
+</nav>
+<div class="hero-sm">
+  <div class="eyebrow"><span class="enum">17 / 20</span><span class="pill pill-purple">Telemetry</span><span class="source">src/services/analytics/ · src/utils/telemetry/</span></div>
+  <h1><span style="color:var(--c4)">3-layer</span> analytics pipeline.</h1>
+  <p class="subtitle">GrowthBook for feature flags, first-party event logging via OpenTelemetry, Datadog for metrics. PII handling enforced at <strong>compile time</strong> via a <code>never</code> type trick. MCP tool names redacted. File paths NEVER logged.</p>
+</div>
+<div class="stat-row">
+  <div class="stat-card sc-purple"><div class="stat-val v-purple">3</div><div class="stat-desc"><strong>Collection layers</strong></div></div>
+  <div class="stat-card sc-purple"><div class="stat-val v-purple">never</div><div class="stat-desc"><strong>Type trick</strong> forces PII verification at compile time</div></div>
+</div>
+<section>
+  <h2>Three-Layer Architecture</h2>
+  <div class="ls">
+    <div class="ly y3"><span class="ln">1</span><strong>GrowthBook</strong> — Feature gates + experiment exposure. Sends: UUID, device ID, platform, subscription type, rate limit tier, version, user type. Disk-cached for offline starts.</div>
+    <div class="ly y2"><span class="ln">2</span><strong>First-Party Events</strong> — OpenTelemetry → <code>/api/event_logging/batch</code>. Dynamic sampling via <code>tengu_event_sampling_config</code>. Failed events → <code>~/.claude/telemetry/</code> JSONL with quadratic backoff. Retries without auth on 401.</div>
+    <div class="ly y1"><span class="ln">3</span><strong>Datadog</strong> — Metrics only. Disabled for 3P (Bedrock/Vertex/Foundry). Scoped via <code>CLAUDE_AI_INFERENCE_SCOPE</code> OAuth.</div>
+  </div>
+</section>
+<section>
+  <h2>PII Protection</h2>
+  <div class="card" style="border-left:4px solid var(--c4)">
+    <p><strong>Type-level enforcement:</strong> <code>AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS = never</code> — compile error if you pass unchecked data. Impossible to accidentally log PII.</p>
+    <p style="margin-top:6px"><strong>MCP tool names → <code>'mcp_tool'</code></strong> (redacted — reveals user-specific MCP config). Built-in tool names always logged.</p>
+    <p style="margin-top:6px"><strong>File paths NEVER logged.</strong> Disabled in: test env, 3P cloud, "no-telemetry" privacy level.</p>
+  </div>
+</section>
+<footer>Inside Claude Code — Source Review · Page 17 of 20</footer>
+</div></body></html>

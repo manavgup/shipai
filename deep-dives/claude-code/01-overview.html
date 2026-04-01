@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 — Overview · Inside Claude Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  
+  <a class="pn curr" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="02-architecture.html">02 &rarr;</a>
+</nav>
+
+<div class="hero-sm">
+  <div class="eyebrow">
+    <span class="enum">01 / 20</span>
+    <span class="pill pill-blue">Overview</span>
+    <span class="source">Source Review · March 2026</span>
+  </div>
+  <h1>Claude Code is <span style="color:var(--c1)">513K lines</span> of TypeScript.</h1>
+  <p class="subtitle">The complete source for Anthropic's AI coding agent — the CLI, desktop app, VS Code &amp; JetBrains extensions, and claude.ai/code. Runs on <strong>Bun</strong> (not Node), renders with a custom <strong>React-for-terminal</strong> fork, talks to <strong>4 cloud providers</strong>.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card sc-blue"><div class="stat-val v-blue">1,902</div><div class="stat-desc"><strong>Source files</strong> — TypeScript &amp; TSX</div></div>
+  <div class="stat-card sc-blue"><div class="stat-val v-blue">43</div><div class="stat-desc"><strong>Built-in tools</strong> — plus feature-gated experimentals</div></div>
+  <div class="stat-card sc-blue"><div class="stat-val v-blue">84</div><div class="stat-desc"><strong>Slash commands</strong> — /help to /ultraplan</div></div>
+  <div class="stat-card sc-blue"><div class="stat-val v-blue">170+</div><div class="stat-desc"><strong>Env variables</strong> — control every aspect</div></div>
+</div>
+
+<section>
+  <h2>Technology Stack</h2>
+  <div class="qflow">
+    <div class="qf-step"><div class="qf-icon qi-blue" style="font-size:8px">RT</div><div class="qf-body"><div class="qf-title">Bun Runtime</div><div class="qf-desc"><code>feature()</code> gates for compile-time dead code elimination between internal/external builds. 26 flags strip ANT-only code.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-purple" style="font-size:8px">UI</div><div class="qf-body"><div class="qf-title">Ink — React for the Terminal</div><div class="qf-desc">Heavily customized fork with Yoga WASM flexbox engine, custom React reconciler, double-buffered ANSI rendering. 389 component files.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-green" style="font-size:8px">ST</div><div class="qf-body"><div class="qf-title">Zustand + React Context</div><div class="qf-desc">150+ field Bootstrap State (global singleton) + App State (Zustand store with immer). Two-layer architecture.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-orange" style="font-size:8px">API</div><div class="qf-body"><div class="qf-title">Anthropic SDK — 4 Providers</div><div class="qf-desc">First-party, AWS Bedrock (STS), Google Vertex (GoogleAuth), Azure Foundry (AD). Same model, different infrastructure.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-red" style="font-size:7px">SB</div><div class="qf-body"><div class="qf-title">macOS Native Sandbox</div><div class="qf-desc"><code>@anthropic-ai/sandbox-runtime</code> — network domain allowlist, filesystem restrictions. Policy-controlled.</div></div></div>
+    <div class="qf-step"><div class="qf-icon qi-cyan" style="font-size:7px">MCP</div><div class="qf-body"><div class="qf-title">6 MCP Transports</div><div class="qf-desc">stdio, SSE, HTTP, WebSocket, SDK Control, In-Process — 24 integration files in services/mcp/.</div></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>Directory Map</h2>
+  <div class="tool-pills">
+    <span class="tool-pill tp-blue">main.tsx <span style="opacity:.5">4,683 lines</span></span>
+    <span class="tool-pill tp-blue">query/ <span style="opacity:.5">loop</span></span>
+    <span class="tool-pill tp-blue">tools/ <span style="opacity:.5">43 tools</span></span>
+    <span class="tool-pill tp-blue">services/api/ <span style="opacity:.5">client</span></span>
+    <span class="tool-pill tp-purple">ink/ <span style="opacity:.5">renderer</span></span>
+    <span class="tool-pill tp-purple">components/ <span style="opacity:.5">144</span></span>
+    <span class="tool-pill tp-purple">hooks/ <span style="opacity:.5">85</span></span>
+    <span class="tool-pill tp-purple">state/ <span style="opacity:.5">Zustand</span></span>
+    <span class="tool-pill tp-green">memdir/ <span style="opacity:.5">memory</span></span>
+    <span class="tool-pill tp-green">services/compact/ <span style="opacity:.5">context</span></span>
+    <span class="tool-pill tp-green">skills/ <span style="opacity:.5">19 bundled</span></span>
+    <span class="tool-pill tp-green">utils/swarm/ <span style="opacity:.5">teams</span></span>
+    <span class="tool-pill tp-orange">bridge/ <span style="opacity:.5">IDE/remote</span></span>
+    <span class="tool-pill tp-orange">commands/ <span style="opacity:.5">84</span></span>
+    <span class="tool-pill tp-orange">utils/permissions/ <span style="opacity:.5">5 layers</span></span>
+    <span class="tool-pill tp-orange">services/mcp/ <span style="opacity:.5">24 files</span></span>
+    <span class="tool-pill tp-gray">buddy/ <span style="opacity:.5">companion</span></span>
+    <span class="tool-pill tp-gray">vim/ <span style="opacity:.5">full vim mode</span></span>
+    <span class="tool-pill tp-gray">voice/ <span style="opacity:.5">voice input</span></span>
+  </div>
+</section>
+
+<section>
+  <h2>Key Numbers</h2>
+  <div class="two-col" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card"><h4>2,000+</h4><p>Source files</p></div>
+    <div class="card"><h4>43</h4><p>Built-in tools</p></div>
+    <div class="card"><h4>100+</h4><p>CLI commands</p></div>
+    <div class="card"><h4>39</h4><p>Service modules</p></div>
+    <div class="card"><h4>85</h4><p>React hooks</p></div>
+    <div class="card"><h4>144</h4><p>UI components</p></div>
+    <div class="card"><h4>24</h4><p>MCP files</p></div>
+    <div class="card"><h4>564</h4><p>Utility files</p></div>
+  </div>
+</section>
+
+<footer>Inside Claude Code — Source Review · Page 01 of 20 · Verified against source 2026-03-31</footer>
+</div>
+</body>
+</html>

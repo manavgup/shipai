@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 — Security · Inside Claude Code</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+<nav class="topnav">
+  <a class="home" href="index.html">Index</a>
+  <span class="sep">|</span>
+  <a class="arrow" href="09-memory.html">&larr; 09</a>
+  <a class="pn" href="01-overview.html" title="Overview">01</a> <a class="pn" href="02-architecture.html" title="Architecture">02</a> <a class="pn" href="03-query-loop.html" title="Query Loop">03</a> <a class="pn" href="04-tool-catalog.html" title="Tools">04</a> <a class="pn" href="05-permissions.html" title="Permissions">05</a> <a class="pn" href="06-context-autocompact.html" title="Autocompact">06</a> <a class="pn" href="07-api-providers.html" title="API">07</a> <a class="pn" href="08-subagents-swarm.html" title="Agents">08</a> <a class="pn" href="09-memory.html" title="Memory">09</a> <a class="pn curr" href="10-security.html" title="Security">10</a> <a class="pn" href="11-extensions.html" title="Extensions">11</a> <a class="pn" href="12-cli-hidden.html" title="CLI">12</a> <a class="pn" href="13-architecture-critique.html" title="Critique">13</a> <a class="pn" href="14-speculation.html" title="Speculation">14</a> <a class="pn" href="15-buddy.html" title="Buddy">15</a> <a class="pn" href="16-computer-voice.html" title="Voice">16</a> <a class="pn" href="17-telemetry.html" title="Telemetry">17</a> <a class="pn" href="18-team-sync.html" title="Team Sync">18</a> <a class="pn" href="19-coordinator-deeplinks.html" title="Coordinator">19</a> <a class="pn" href="20-easter-eggs.html" title="Easter Eggs">20</a>
+  <a class="arrow" href="11-extensions.html">11 &rarr;</a>
+</nav>
+
+<div class="hero-sm">
+  <div class="eyebrow">
+    <span class="enum">10 / 20</span>
+    <span class="pill pill-pink">Security — 5-Layer Defense</span>
+    <span class="source">src/tools/BashTool/bashSecurity.ts (2,592 lines)</span>
+  </div>
+  <h1><span style="color:var(--c7)">6 layers</span>. 24 bash validators. Some <span style="color:var(--c2)">never bypass</span>.</h1>
+  <p class="subtitle">Each layer is independent — compromising one doesn't defeat the others. The bash security system uses <strong>tree-sitter AST analysis</strong> with regex fallback. An <strong>ML classifier</strong> (internal-only) adds context-aware decisions. Server-side <strong>killswitches</strong> can remotely disable bypass/auto mode.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card sc-pink"><div class="stat-val v-pink">2,592</div><div class="stat-desc"><strong>Lines</strong> in bashSecurity.ts alone</div></div>
+  <div class="stat-card sc-pink"><div class="stat-val v-pink">24+</div><div class="stat-desc"><strong>Validators</strong> — each catches a specific attack class</div></div>
+  <div class="stat-card sc-pink"><div class="stat-val v-pink">50</div><div class="stat-desc"><strong>Max subcommands</strong> parsed per compound command</div></div>
+  <div class="stat-card sc-pink"><div class="stat-val v-pink">5</div><div class="stat-desc"><strong>Never-bypassable</strong> protections</div></div>
+</div>
+
+<!-- DEFENSE STACK -->
+<section>
+  <h2>Defense-in-Depth Stack</h2>
+  <div class="ls">
+    <div class="ly y5"><span class="ln">5</span><strong>Sandboxing</strong> — <code>@anthropic-ai/sandbox-runtime</code> macOS native sandbox. Network domain allowlist. Filesystem read/write restrictions. Ripgrep path deny patterns. Policy <code>allowManagedDomainsOnly</code> cannot be overridden.</div>
+    <div class="ly y4"><span class="ln">4</span><strong>Pre/Post Tool Use Hooks</strong> — User-configured shell commands in settings.json. Run before/after any tool call. Can intercept, transform output, trigger alerts. 15s default timeout. <strong>Cannot block execution</strong> (PostToolUse only) — but PreToolUse hooks CAN block.</div>
+    <div class="ly y3"><span class="ln">3</span><strong>Tool-Level Checks</strong> — 24+ bash validators (tree-sitter AST + regex fallback). PowerShell AST analysis. Path validation (symlinks, traversal, Windows UNC). Destructive command detection (rm -rf, DROP TABLE, kubectl delete). Max 50 subcommands per compound command.</div>
+    <div class="ly y2"><span class="ln">2</span><strong>Permission Rules</strong> — 8-source priority: Policy → User → Project → Local → CLI → cliArg → command → session. Pattern matching: <code>Bash(git *)</code>, <code>Write(**/.env)</code>. Allow/deny/ask per tool+pattern.</div>
+    <div class="ly y1"><span class="ln">1</span><strong>Permission Modes</strong> — default (prompt), acceptEdits (auto-allow files), bypassPermissions (skip all), plan (read-only), dontAsk (auto-deny), auto (ML classifier, ANT-only), bubble (fork → parent).</div>
+    <div class="ly y0"><span class="ln">0</span><strong>Authentication</strong> — OAuth 2.0 + PKCE to claude.ai. Trusted device tokens in macOS Keychain (90-day expiry). JWT proactive refresh (5min before expiry). Session ingress tokens (env var → file descriptor → well-known path).</div>
+  </div>
+</section>
+
+<!-- BASH VALIDATORS DETAIL -->
+<section>
+  <h2>Bash Validators — What They Catch</h2>
+  <p class="section-desc">Each validator targets a specific attack vector. Tree-sitter AST parsing when available; regex fallback when not. If unsure, defaults to <code>'ask'</code> (safe default).</p>
+
+  <table>
+    <tr><th>Category</th><th>Validators</th><th>Example Attacks Blocked</th></tr>
+    <tr><td><strong>Injection</strong></td><td>COMMAND_SUBSTITUTION, SHELL_METACHARACTERS, NEWLINES</td><td><code>$(rm -rf /)</code>, unquoted <code>$</code> / backticks, <code>\n</code> injection</td></tr>
+    <tr><td><strong>Variable abuse</strong></td><td>DANGEROUS_VARIABLES, IFS_INJECTION</td><td><code>IFS=/ cmd</code>, <code>LD_PRELOAD</code>, <code>BASH_ENV</code> manipulation</td></tr>
+    <tr><td><strong>Obfuscation</strong></td><td>OBFUSCATED_FLAGS, BACKSLASH_ESCAPED_OPERATORS/WHITESPACE</td><td><code>- -rf</code> (space in flags), <code>\;</code> / <code>\|</code> (escape desync)</td></tr>
+    <tr><td><strong>Unicode</strong></td><td>UNICODE_WHITESPACE, CONTROL_CHARACTERS</td><td>U+2003 em-space (zsh parsing bypass), invisible 0x00-0x1F bytes</td></tr>
+    <tr><td><strong>Quoting</strong></td><td>COMMENT_QUOTE_DESYNC, QUOTED_NEWLINE, MID_WORD_HASH</td><td>Unclosed quotes hiding code, newlines in <code>"..."</code>, <code>#</code> comment desync</td></tr>
+    <tr><td><strong>Expansion</strong></td><td>BRACE_EXPANSION, HEREDOC_EXPANSION</td><td><code>{a,b}</code> near metacharacters, heredoc with <code>$()</code> expansion</td></tr>
+    <tr><td><strong>Zsh-specific</strong></td><td>ZSH_DANGEROUS_COMMANDS (16 patterns)</td><td><code>zmodload</code>, <code>sysopen</code>, <code>sysread</code>, <code>ztcp</code>, <code>mapfile</code>, <code>emulate</code></td></tr>
+    <tr><td><strong>Data exfil</strong></td><td>JQ_SYSTEM_FUNCTION, JQ_FILE_ARGUMENTS, PROC_ENVIRON_ACCESS</td><td>jq <code>@base64d</code>+system(), jq file args, <code>/proc/self/environ</code></td></tr>
+    <tr><td><strong>Git</strong></td><td>GIT_COMMIT_SUBSTITUTION</td><td>Code injection via git commit message <code>$(cmd)</code></td></tr>
+    <tr><td><strong>Structural</strong></td><td>INCOMPLETE_COMMANDS, MALFORMED_TOKEN_INJECTION</td><td>Fragments, broken shell-quoting bypasses</td></tr>
+  </table>
+</section>
+
+<!-- ML CLASSIFIER -->
+<section>
+  <h2>ML Classifier (ANT-Only)</h2>
+  <p class="section-desc">A context-aware classifier that can approve <code>rm /tmp/test</code> but deny <code>rm /root/secret</code> — understands intent, not just patterns.</p>
+
+  <div class="two-col">
+    <div class="card" style="border-top:3px solid var(--c4)">
+      <h4>How it works</h4>
+      <p>Takes: command text + CWD + behavior descriptions (deny/ask/allow). Returns: <code>{ matches, confidence: high|medium|low, reason, matchedDescription }</code>. Two-stage: Fast initial pass + Thinking reasoning if needed. Tracks API tokens for analytics.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--c2)">
+      <h4>External build: stubbed</h4>
+      <p><code>isClassifierPermissionsEnabled()</code> returns <code>false</code>. All functions return <code>{ matches: false, confidence: 'high', reason: 'disabled' }</code>. External users rely on pattern-based validators only. Feature gate: <code>TRANSCRIPT_CLASSIFIER</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEVER BYPASSABLE -->
+<section>
+  <h2>Never Bypassable — Hardcoded Protections</h2>
+  <div class="card" style="border-left:4px solid var(--c2)">
+    <ul style="padding-left:16px;font-size:12px;color:var(--mu);line-height:1.8">
+      <li><strong>.git/ directory protection</strong> — blocks writes to hooks/, HEAD, objects/, refs/. Handles path escapes (<code>..\HEAD</code>), NTFS 8.3 short names (GIT~1), case-insensitive on Windows.</li>
+      <li><strong>Symlink attack prevention</strong> — checks permissions on BOTH original path AND resolved path. <code>symlink /tmp/safe → /etc/shadow</code> caught because resolved path is checked.</li>
+      <li><strong>Dangerous files</strong> — .gitconfig, .gitmodules, .bashrc, .bash_profile, .zshrc, .zprofile, .profile, .ripgreprc, .mcp.json, .claude.json. <code>checkEditableInternalPath</code> runs BEFORE working dir check.</li>
+      <li><strong>Dangerous directories</strong> — .git/, .vscode/, .idea/, .claude/</li>
+      <li><strong>Policy sandbox restrictions</strong> — <code>allowManagedDomainsOnly</code> cannot be overridden by user rules or bypassPermissions mode.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- KILLSWITCHES -->
+<section>
+  <h2>Server-Side Killswitches</h2>
+  <table>
+    <tr><th>Gate</th><th>Effect</th></tr>
+    <tr><td><code>tengu_sessions_elevated_auth_enforcement</code></td><td>Disables <code>bypassPermissions</code> mode entirely. Checked on startup. Reverts to 'default' if flipped.</td></tr>
+    <tr><td><code>tengu_auto_mode_config</code></td><td>Disables <code>auto</code> mode (ML classifier). Checked on model/fast-mode change. Can also disable fast mode via <code>disableFastMode</code> circuit breaker.</td></tr>
+  </table>
+</section>
+
+<!-- OAUTH FLOW -->
+<section>
+  <h2>OAuth 2.0 + PKCE Authentication</h2>
+  <div class="qflow">
+    <div class="qf-step">
+      <div class="qf-icon qi-blue">1</div>
+      <div class="qf-body"><div class="qf-title">Generate PKCE pair</div><div class="qf-desc"><code>code_verifier</code> (crypto random) + <code>code_challenge = SHA256(verifier)</code></div></div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-purple">2</div>
+      <div class="qf-body"><div class="qf-title">Redirect to /authorize</div><div class="qf-desc"><code>code_challenge</code> + <code>method=S256</code> sent to claude.ai</div></div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-orange">3</div>
+      <div class="qf-body"><div class="qf-title">User authenticates in browser</div><div class="qf-desc">auth_code returned via redirect</div></div>
+    </div>
+    <div class="qf-step">
+      <div class="qf-icon qi-green">4</div>
+      <div class="qf-body"><div class="qf-title">Exchange code + verifier → tokens</div><div class="qf-desc">access_token + refresh_token. Stored in macOS Keychain (or encrypted file).</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>Inside Claude Code — Source Review · Page 10 of 20 · Verified against source 2026-03-31</footer>
+</div>
+</body>
+</html>
