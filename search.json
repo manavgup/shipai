@@ -114,16 +114,6 @@
     "title": "Responsible AI by Design | Alex LaPlante, RBC",
     "url": "/shipai/episodes/responsible-ai-by-design-alex-laplante-rbc/",
     "series": "state-of-ai",
-    "episode_number": 0,
-    "date": "Mar 27, 2026",
-    "duration": "45 min",
-    "description": "Alex LaPlante is VP of Cash Management Technology at RBC, former Interim Head of Borealis AI, co-author in Harvard Business Review, and a member of Canada's federal AI Strategy Task Force. In this ..."
-  },
-  
-  {
-    "title": "Responsible AI by Design | Alex LaPlante, RBC",
-    "url": "/shipai/episodes/responsible-ai-by-design-alex-laplante-rbc/",
-    "series": "state-of-ai",
     "episode_number": 8,
     "date": "Mar 31, 2026",
     "duration": "46 min",
@@ -138,6 +128,16 @@
     "date": "Apr 1, 2026",
     "duration": "30 min",
     "description": "A source-code-level review of Anthropic's Claude Code — 1,902 files, 513K lines of TypeScript. We trace the query loop, catalog all 43 tools, dissect the 3-layer permission model, map the subagent ..."
+  },
+  
+  {
+    "title": "Logan Kelly | Governing AI Agents",
+    "url": "/shipai/episodes/logan-kelly-governing-ai-agents/",
+    "series": "state-of-ai",
+    "episode_number": 0,
+    "date": "Apr 7, 2026",
+    "duration": "45 min",
+    "description": "AI Governance Isn't an Afterthought — It's a Kill SwitchLogan Kelly, founder of Waxel, built AI agents for sales automation, shipped them to production, and immediately realized he had no control o..."
   }
   
 ]
