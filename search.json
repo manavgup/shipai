@@ -138,6 +138,16 @@
     "date": "Apr 7, 2026",
     "duration": "45 min",
     "description": "AI Governance Isn't an Afterthought — It's a Kill SwitchLogan Kelly, founder of Waxel, built AI agents for sales automation, shipped them to production, and immediately realized he had no control o..."
+  },
+  
+  {
+    "title": "Alex Seymour & Kyle Sava | From Demo to Production: What Actually Breaks",
+    "url": "/shipai/episodes/alex-seymour-kyle-sava-from-demo-to-production-what-actually-breaks/",
+    "series": "state-of-ai",
+    "episode_number": 9,
+    "date": "Apr 14, 2026",
+    "duration": "56 min",
+    "description": "Alex Seymour is a contributor to IBM's open-source agent infrastructure (BAI framework, Agent Stack, and the Relay project), exploring what it takes to build general-purpose agentic systems at ente..."
   }
   
 ]
