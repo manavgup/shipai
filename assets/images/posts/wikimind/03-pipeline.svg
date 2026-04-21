@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 780">
+  <defs>
+    <marker id="a" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#6366f1"/>
+    </marker>
+    <marker id="a-blue" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#3b82f6"/>
+    </marker>
+    <marker id="a-violet" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#7c3aed"/>
+    </marker>
+    <filter id="s"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".06"/></filter>
+  </defs>
+  <style>
+    text{font-family:'Inter',system-ui,-apple-system,sans-serif}
+    .stage{rx:12;stroke-width:1.5}
+    .stitle{font-size:13px;font-weight:700;letter-spacing:.03em;dominant-baseline:central}
+    .src{rx:6;fill:#3b82f6}
+    .src-lbl{fill:#fff;font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+    .out{rx:6;fill:#dbeafe;stroke:#93c5fd;stroke-width:1}
+    .out-lbl{fill:#1e40af;font-size:12px;font-weight:500;text-anchor:middle;dominant-baseline:central}
+    .adapter{fill:#64748b;font-size:10px;font-weight:500;text-anchor:middle;dominant-baseline:central}
+    .src-conn{stroke:#3b82f6;stroke-width:1.2;fill:none;marker-end:url(#a-blue)}
+    .node{rx:8}
+    .node-lbl{fill:#fff;font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+    .node-sub{fill:rgba(255,255,255,.7);font-size:10px;text-anchor:middle;dominant-baseline:central}
+    .conn{stroke:#6366f1;stroke-width:1.4;fill:none;marker-end:url(#a)}
+    .conn-v{stroke:#7c3aed;stroke-width:1.4;fill:none;marker-end:url(#a-violet)}
+    .edge-lbl{fill:#64748b;font-size:10px;font-weight:500;text-anchor:middle;dominant-baseline:central}
+  </style>
+
+  <!-- ==================== STAGE 1: INGEST ==================== -->
+  <rect class="stage" x="20" y="16" width="520" height="218" fill="#eff6ff" stroke="#93c5fd" rx="12"/>
+  <text class="stitle" x="44" y="44" fill="#1e40af">1. INGEST</text>
+
+  <!-- Source → adapter → text rows (4 rows) -->
+  <!-- Row 1: URL → trafilatura → text -->
+  <rect class="src" x="44" y="66" width="96" height="34" rx="6"/>
+  <text class="src-lbl" x="92" y="83">URL</text>
+  <line class="src-conn" x1="140" y1="83" x2="346" y2="83"/>
+  <text class="adapter" x="243" y="74">trafilatura</text>
+  <rect class="out" x="348" y="66" width="80" height="34" rx="6"/>
+  <text class="out-lbl" x="388" y="83">text</text>
+
+  <!-- Row 2: PDF → docling-serve → text -->
+  <rect class="src" x="44" y="110" width="96" height="34" rx="6"/>
+  <text class="src-lbl" x="92" y="127">PDF</text>
+  <line class="src-conn" x1="140" y1="127" x2="346" y2="127"/>
+  <text class="adapter" x="243" y="118">docling-serve</text>
+  <rect class="out" x="348" y="110" width="80" height="34" rx="6"/>
+  <text class="out-lbl" x="388" y="127">text</text>
+
+  <!-- Row 3: YouTube → transcript-api → text -->
+  <rect class="src" x="44" y="154" width="96" height="34" rx="6"/>
+  <text class="src-lbl" x="92" y="171">YouTube</text>
+  <line class="src-conn" x1="140" y1="171" x2="346" y2="171"/>
+  <text class="adapter" x="243" y="162">transcript-api</text>
+  <rect class="out" x="348" y="154" width="80" height="34" rx="6"/>
+  <text class="out-lbl" x="388" y="171">text</text>
+
+  <!-- Row 4: Text → passthrough → text -->
+  <rect class="src" x="44" y="198" width="96" height="34" rx="6"/>
+  <text class="src-lbl" x="92" y="215">Text</text>
+  <line class="src-conn" x1="140" y1="215" x2="346" y2="215"/>
+  <text class="adapter" x="243" y="206">passthrough</text>
+  <rect class="out" x="348" y="198" width="80" height="34" rx="6"/>
+  <text class="out-lbl" x="388" y="215">text</text>
+
+  <!-- Arrow: Ingest → Compile -->
+  <line class="conn" x1="280" y1="234" x2="280" y2="276"/>
+  <text class="edge-lbl" x="280" y="258">extracted text + metadata</text>
+
+  <!-- ==================== STAGE 2: COMPILE ==================== -->
+  <rect class="stage" x="20" y="278" width="520" height="214" fill="#f5f3ff" stroke="#c4b5fd" rx="12"/>
+  <text class="stitle" x="44" y="306" fill="#5b21b6">2. COMPILE</text>
+
+  <!-- Source chunks → LLM Router -->
+  <g filter="url(#s)">
+    <rect class="node" x="195" y="322" width="170" height="40" fill="#818cf8" rx="8"/>
+  </g>
+  <text class="node-lbl" x="280" y="342">Source chunks</text>
+
+  <line class="conn" x1="280" y1="362" x2="280" y2="388"/>
+
+  <g filter="url(#s)">
+    <rect class="node" x="195" y="390" width="170" height="40" fill="#6366f1" rx="8"/>
+  </g>
+  <text class="node-lbl" x="280" y="410">LLM Router</text>
+
+  <line class="conn" x1="280" y1="430" x2="280" y2="456"/>
+
+  <!-- Structured wiki output (wider, 2-line) -->
+  <rect x="120" y="458" width="320" height="30" rx="6" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1"/>
+  <text fill="#3730a3" font-size="11px" font-weight="500" text-anchor="middle" dominant-baseline="central" x="280" y="473" font-family="Inter,system-ui,sans-serif">Structured wiki articles + citation chains</text>
+
+  <!-- Arrow: Compile → Query -->
+  <line class="conn" x1="280" y1="492" x2="280" y2="538"/>
+  <text class="edge-lbl" x="280" y="518">wiki articles + provenance</text>
+
+  <!-- ==================== STAGE 3: QUERY ==================== -->
+  <rect class="stage" x="20" y="540" width="520" height="224" fill="#faf5ff" stroke="#d8b4fe" rx="12"/>
+  <text class="stitle" x="44" y="568" fill="#6b21a8">3. QUERY</text>
+
+  <!-- User question → Q&A Agent → LLM Router → Answers -->
+  <g filter="url(#s)">
+    <rect class="node" x="195" y="584" width="170" height="40" fill="#a78bfa" rx="8"/>
+  </g>
+  <text class="node-lbl" x="280" y="604">User question</text>
+
+  <line class="conn-v" x1="280" y1="624" x2="280" y2="650"/>
+
+  <g filter="url(#s)">
+    <rect class="node" x="195" y="652" width="170" height="40" fill="#7c3aed" rx="8"/>
+  </g>
+  <text class="node-lbl" x="280" y="672">Q&amp;A Agent → LLM</text>
+
+  <line class="conn-v" x1="280" y1="692" x2="280" y2="718"/>
+
+  <!-- Answer output -->
+  <rect x="100" y="720" width="360" height="30" rx="6" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+  <text fill="#6b21a8" font-size="11px" font-weight="500" text-anchor="middle" dominant-baseline="central" x="280" y="735" font-family="Inter,system-ui,sans-serif">Answers with citations — filed back into wiki</text>
+</svg>

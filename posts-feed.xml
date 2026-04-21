@@ -1,4 +1,210 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-04-21T06:41:54+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">What I Found Inside Claude Code’s 513K Lines of Source Code</title><link href="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/" rel="alternate" type="text/html" title="What I Found Inside Claude Code’s 513K Lines of Source Code" /><published>2026-04-01T00:00:00+00:00</published><updated>2026-04-01T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/"><![CDATA[<p>I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://manavgup.github.io/shipai/posts-feed.xml" rel="self" type="application/atom+xml" /><link href="https://manavgup.github.io/shipai/" rel="alternate" type="text/html" /><updated>2026-04-21T20:34:05+00:00</updated><id>https://manavgup.github.io/shipai/posts-feed.xml</id><title type="html">Ship AI</title><subtitle>A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</subtitle><entry><title type="html">Building WikiMind: A Personal Knowledge OS Powered by LLMs</title><link href="https://manavgup.github.io/shipai/blog/2026/04/21/building-wikimind-personal-knowledge-os/" rel="alternate" type="text/html" title="Building WikiMind: A Personal Knowledge OS Powered by LLMs" /><published>2026-04-21T00:00:00+00:00</published><updated>2026-04-21T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/04/21/building-wikimind-personal-knowledge-os</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/04/21/building-wikimind-personal-knowledge-os/"><![CDATA[<p>I read a lot. Articles, PDFs, YouTube talks, research papers. The problem is that all of that knowledge lives in scattered bookmarks, half-finished highlights, and a vague sense that “I read something about that once.” I wanted a system that would <em>synthesize</em> everything I consume into a persistent, queryable knowledge base — something that gets smarter every time I feed it.</p>
+
+<p>That’s WikiMind. It’s not a note-taking app (you never write), not a chatbot (it builds something persistent), and not a RAG tool (the wiki is the product, not just a retrieval layer). It’s the synthesis layer that sits above everything you consume.</p>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/01-core-loop.svg" alt="Core loop: Feed → Compile → Query → Answer files back → Wiki gets smarter → Repeat" /></p>
+
+<p>In this post, I’ll walk through the architecture decisions that shaped WikiMind, with a deep dive into the migration that had the biggest impact on developer experience and deployment economics: extracting PDF processing into a sidecar service.</p>
+
+<h2 id="architecture-overview">Architecture Overview</h2>
+
+<p>WikiMind is split into two main pieces: a React + TypeScript frontend and a Python FastAPI backend. The frontend handles the reading experience — an inbox for incoming sources, a wiki explorer for compiled articles, and a conversational Q&amp;A view. The backend does the heavy lifting: ingesting sources, compiling them into structured wiki articles via LLM, and answering questions with full source attribution.</p>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/02-architecture-overview.svg" alt="Architecture overview: React frontend, FastAPI Gateway with services and LLM Router, docling-serve sidecar, and Redis" /></p>
+
+<p>The backend follows a strict layered pattern: route handlers are thin and delegate to service classes, which orchestrate the domain logic. The LLM Router sits at the center, providing a unified interface to multiple LLM providers. Background compilation runs through ARQ workers backed by Redis in production (and in-process asyncio for local dev so you don’t need to run Redis just to hack on features).</p>
+
+<h2 id="the-ingest-compile-query-pipeline">The Ingest, Compile, Query Pipeline</h2>
+
+<p>The core pipeline has three stages, and understanding the flow between them is key to understanding WikiMind.</p>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/03-pipeline.svg" alt="Ingest, Compile, Query pipeline: sources are extracted to text, compiled into wiki articles via LLM, and queried with citation-backed answers" /></p>
+
+<p><strong>Ingest</strong> is adapter-based. Each source type — URL, PDF, YouTube, plain text — has its own adapter that extracts clean text and metadata. URLs go through trafilatura (excellent at pulling article text from messy HTML). PDFs route to the docling-serve sidecar for structured extraction (headings, tables, multi-column layouts, OCR). YouTube videos use the transcript API. The adapters all produce the same output shape: extracted text with source metadata.</p>
+
+<p><strong>Compile</strong> is where the LLM does its work. The compiler takes ingested text and asks the LLM to either merge it into existing wiki articles or create new ones. This isn’t summarization — it’s synthesis. If you feed WikiMind three articles about the same topic, it doesn’t give you three summaries; it weaves them into a single coherent article with citation chains back to each original source. Every claim in the wiki knows where it came from.</p>
+
+<p><strong>Query</strong> closes the loop. The Q&amp;A agent takes natural language questions, retrieves relevant wiki articles, and generates answers with full source attribution. The clever part: answers themselves get filed back into the wiki, so the knowledge base literally gets smarter with every question you ask.</p>
+
+<h2 id="multi-provider-llm-strategy">Multi-Provider LLM Strategy</h2>
+
+<p>I didn’t want WikiMind locked to a single LLM provider. Model quality shifts fast, pricing changes, and sometimes you just want to run things locally. So the LLM Router supports four providers out of the box:</p>
+
+<ul>
+  <li><strong>Anthropic</strong> (Claude Sonnet 4.5) — the default for compilation, strong at structured synthesis</li>
+  <li><strong>OpenAI</strong> (GPT-4o) — solid general-purpose alternative</li>
+  <li><strong>Google</strong> (Gemini 2.0 Flash) — fast and cost-effective for lighter tasks</li>
+  <li><strong>Ollama</strong> (Llama 3.2) — fully local, no API keys, no data leaving your machine</li>
+</ul>
+
+<p>Providers auto-enable when their API key is detected. Drop <code class="language-plaintext highlighter-rouge">OPENAI_API_KEY=sk-...</code> into your <code class="language-plaintext highlighter-rouge">.env</code> and OpenAI lights up. No other configuration needed. The router handles fallback automatically — if your primary provider errors out or hits a rate limit, it falls through to the next available provider.</p>
+
+<p>Configuration is intentionally minimal for the common case (set one API key, go) but gives you full control when you want it: model selection per provider, fallback chain ordering, and monthly budget limits are all available in <code class="language-plaintext highlighter-rouge">.env</code>.</p>
+
+<h2 id="the-docling-serve-sidecar-story">The Docling-Serve Sidecar Story</h2>
+
+<p>This is the architectural change I’m most proud of, and the one with the most dramatic impact on both developer experience and production economics.</p>
+
+<h3 id="the-problem-a-3gb-monolith">The Problem: A 3GB Monolith</h3>
+
+<p>WikiMind uses Docling for PDF extraction because it’s excellent — it handles heading hierarchy, tables, OCR, and multi-column layouts far better than basic text extraction. But running Docling in-process meant bundling the entire ML stack into the main application image:</p>
+
+<ul>
+  <li>PyTorch CPU: ~1.7 GB</li>
+  <li>Docling + dependencies</li>
+  <li>Playwright + Chromium: ~500 MB (for HTML rendering)</li>
+  <li>RapidOCR models: ~200 MB</li>
+  <li>ONNX Runtime</li>
+</ul>
+
+<p>The result was a <strong>3 GB Docker image</strong>. CI builds took 12-14 minutes, flirting with the 15-minute timeout. Cold starts were 10-15 seconds. And worst of all, each gunicorn worker loaded the full ML model set into memory, consuming ~500 MB RSS per worker. On a 4 GB Fly.io VM, that meant running exactly <strong>one worker</strong> — a catastrophic limitation for a web service.</p>
+
+<h3 id="the-solution-http-sidecar">The Solution: HTTP Sidecar</h3>
+
+<p>The Docling maintainers (IBM) publish <a href="https://github.com/docling-project/docling-serve">docling-serve</a> — a standalone FastAPI service that wraps Docling behind an HTTP API. Instead of importing Docling directly, WikiMind just calls <code class="language-plaintext highlighter-rouge">POST /v1/convert/source</code> on the sidecar. The sidecar handles all the ML heavy lifting; the main app just sends a URL and gets back structured text.</p>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/04-sidecar-migration.svg" alt="Before and after: monolithic 3 GB container vs sidecar architecture with 400 MB main app and separate docling-serve" /></p>
+
+<h3 id="before-and-after">Before and After</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Before (in-process)</th>
+      <th>After (sidecar)</th>
+      <th>Improvement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Main image size</td>
+      <td>~3 GB</td>
+      <td>~400 MB</td>
+      <td><strong>7.5x smaller</strong></td>
+    </tr>
+    <tr>
+      <td>CI Docker build</td>
+      <td>12-14 min</td>
+      <td>2-3 min</td>
+      <td><strong>5x faster</strong></td>
+    </tr>
+    <tr>
+      <td>Cold start</td>
+      <td>10-15 s</td>
+      <td>2-3 s</td>
+      <td><strong>5x faster</strong></td>
+    </tr>
+    <tr>
+      <td>Workers per 4 GB VM</td>
+      <td>1</td>
+      <td>4-8</td>
+      <td><strong>4-8x more</strong></td>
+    </tr>
+    <tr>
+      <td>gunicorn timeout</td>
+      <td>120 s</td>
+      <td>30 s</td>
+      <td><strong>4x tighter</strong></td>
+    </tr>
+    <tr>
+      <td>PDF extraction latency</td>
+      <td>In-process</td>
+      <td>+~100 ms (network)</td>
+      <td>Negligible</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The key insight: the ~100 ms network hop per PDF request is completely negligible compared to the 5-30 seconds that Docling actually takes to extract a complex PDF. We traded imperceptible latency for a dramatically better deployment profile.</p>
+
+<h3 id="production-topology-on-flyio">Production Topology on Fly.io</h3>
+
+<p>In production, the sidecar runs as a separate Fly.io app on the internal network:</p>
+
+<ul>
+  <li><strong>wikimind</strong> (<code class="language-plaintext highlighter-rouge">fly.toml</code>): The main app. 1 GB RAM, shared CPU, auto-stop/start on connection count, 4 gunicorn workers.</li>
+  <li><strong>wikimind-docling</strong> (<code class="language-plaintext highlighter-rouge">fly.docling.toml</code>): The sidecar. 4 GB RAM, 2 shared CPUs, auto-stop/start on request count, internal-only (no public routing).</li>
+</ul>
+
+<p>The main app reaches the sidecar at <code class="language-plaintext highlighter-rouge">http://wikimind-docling.internal:5001</code>. Both apps have independent health checks and can scale independently. When nobody is using WikiMind, both machines stop. When a request comes in, the main app starts in 2-3 seconds. If that request involves a PDF, the sidecar starts on demand.</p>
+
+<h3 id="graceful-degradation">Graceful Degradation</h3>
+
+<p>Not every environment has (or needs) docling-serve running. WikiMind retains a pymupdf (fitz) fallback that does basic text extraction without structure. You get plain text instead of heading hierarchy and tables, but PDF ingestion still works. The sidecar is an enhancement, not a hard dependency.</p>
+
+<h2 id="deployment">Deployment</h2>
+
+<p>WikiMind supports three deployment modes, matching different stages of the project lifecycle.</p>
+
+<p><strong>Local dev</strong> uses <code class="language-plaintext highlighter-rouge">make dev</code> for a single-process uvicorn server with hot reload. Background jobs run in-process via asyncio. SQLite is the default database. No Docker, no Redis — just <code class="language-plaintext highlighter-rouge">pip install</code> and go.</p>
+
+<p><strong>Docker Compose</strong> brings up the full stack: gateway, ARQ worker, Redis, and docling-serve. A production-variant compose file (<code class="language-plaintext highlighter-rouge">docker-compose.prod.yml</code>) adds PostgreSQL and resource limits (CPU/RAM caps per service), mirroring cloud topology on a home server or staging box.</p>
+
+<p><strong>Fly.io</strong> handles cloud deployment and is where things get interesting.</p>
+
+<h3 id="flyio-production-topology">Fly.io Production Topology</h3>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/05-flyio-topology.svg" alt="Fly.io production topology: CI/CD pipeline, three Fly apps (wikimind, wikimind-docling, wikimind-db), internal networking, and secrets management" /></p>
+
+<p>The production stack runs as three independent Fly apps in the <code class="language-plaintext highlighter-rouge">ord</code> (Chicago) region:</p>
+
+<p><strong>wikimind</strong> is the public-facing app. It serves the FastAPI gateway and the compiled React SPA (baked into the Docker image at build time from the <code class="language-plaintext highlighter-rouge">frontend</code> multi-stage build). It runs on a shared-cpu-1x VM with 1 GB RAM and 4 gunicorn workers. A 1 GB persistent volume at <code class="language-plaintext highlighter-rouge">/home/wikimind/.wikimind</code> stores SQLite data for single-user deployments, though production uses the attached Postgres cluster. The app has connection-based concurrency limits (soft 25 / hard 50) and uses rolling deploys so there’s zero downtime on redeploy.</p>
+
+<p><strong>wikimind-docling</strong> is the PDF extraction sidecar. It’s internal-only — no public routing, reachable only at <code class="language-plaintext highlighter-rouge">http://wikimind-docling.internal:5001</code> on the Fly private network. It uses IBM’s pre-built <code class="language-plaintext highlighter-rouge">docling-serve-cpu</code> image directly from Quay.io, so we never build or maintain this image ourselves. It needs more resources (shared-cpu-2x, 4 GB RAM) because it loads PyTorch and OCR models into memory, but since it’s request-scoped (concurrency soft 5 / hard 10), it only spins up when someone actually ingests a PDF.</p>
+
+<p><strong>wikimind-db</strong> is a managed Fly Postgres 16 cluster. Fly auto-injects <code class="language-plaintext highlighter-rouge">DATABASE_URL</code> as a secret when you attach it to the main app. The entrypoint script runs Alembic migrations on startup, so schema changes ship with the code and apply automatically on deploy.</p>
+
+<h3 id="zero-cost-idle">Zero-Cost Idle</h3>
+
+<p>The most important configuration detail for a personal project: every machine is set to <code class="language-plaintext highlighter-rouge">auto_stop_machines = "stop"</code> with <code class="language-plaintext highlighter-rouge">min_machines_running = 0</code>. When nobody is using WikiMind, all three apps stop completely. Fly charges nothing for stopped machines. When a request comes in:</p>
+
+<ol>
+  <li>The Fly proxy receives the HTTPS request and starts the <code class="language-plaintext highlighter-rouge">wikimind</code> machine (~2-3 s cold start).</li>
+  <li>If the request involves PDF ingestion, the gateway calls <code class="language-plaintext highlighter-rouge">wikimind-docling.internal:5001</code>, which triggers that machine to start on demand.</li>
+  <li>Postgres stays running or starts via the same mechanism.</li>
+</ol>
+
+<p>This means WikiMind costs essentially nothing when idle — just the persistent volume storage (~$0.15/GB/month). During active use, you’re paying for the actual compute seconds consumed. For a personal knowledge base that gets fed a few articles a day, the monthly bill rounds to zero.</p>
+
+<h3 id="cicd-push-to-deploy">CI/CD: Push-to-Deploy</h3>
+
+<p>The deployment pipeline chains two GitHub Actions workflows:</p>
+
+<ol>
+  <li>
+    <p><strong>Docker workflow</strong> fires on push to <code class="language-plaintext highlighter-rouge">main</code>. It builds the multi-stage <code class="language-plaintext highlighter-rouge">prod</code> Docker image (which includes the compiled React frontend), runs a Trivy CVE scan (fails on unfixed CRITICAL/HIGH), and publishes multi-arch images (amd64 + arm64) to GHCR. A weekly Monday rebuild from scratch catches base-image bit-rot that layer caching hides day-to-day. There’s also a hard image size gate at 1200 MB — if a dependency accidentally pulls in PyTorch again, CI fails.</p>
+  </li>
+  <li>
+    <p><strong>Deploy workflow</strong> triggers when the Docker workflow succeeds. It deploys the docling-serve sidecar first (creating the app if it doesn’t exist), then deploys the main app using the freshly-published GHCR image. After deploy, it polls <code class="language-plaintext highlighter-rouge">https://wikimind.fly.dev/health</code> every 2 seconds for up to 60 seconds, failing the workflow if the health check doesn’t return <code class="language-plaintext highlighter-rouge">{"status": "ok"}</code>.</p>
+  </li>
+</ol>
+
+<p>The entire chain — code push to verified production deployment — takes about 5 minutes.</p>
+
+<h3 id="infrastructure-setup">Infrastructure Setup</h3>
+
+<p>First-time setup is handled by an idempotent bash script (<code class="language-plaintext highlighter-rouge">scripts/fly-setup.sh</code>) that creates the app, volume, Postgres cluster, configures secrets (API keys, JWT secret, OAuth credentials), and prints a deploy token for CI. It’s safe to re-run — each step checks whether the resource exists before creating it. The only manual steps are adding the <code class="language-plaintext highlighter-rouge">FLY_API_TOKEN</code> to GitHub secrets and configuring OAuth redirect URIs.</p>
+
+<h3 id="database-layer">Database Layer</h3>
+
+<p>The database story is intentionally layered: SQLite for single-device development, PostgreSQL for shared access across devices and cloud deployments. The same codebase and queries work on both, thanks to SQLModel’s abstraction over SQLAlchemy. The <code class="language-plaintext highlighter-rouge">docker-entrypoint.sh</code> checks whether <code class="language-plaintext highlighter-rouge">DATABASE_URL</code> points to Postgres and runs Alembic migrations accordingly — SQLite deployments skip migrations entirely since SQLModel handles table creation directly.</p>
+
+<h2 id="whats-next">What’s Next</h2>
+
+<p>WikiMind’s core pipeline — ingest, compile, query, file-back — is solid. Phase 2 is about making the knowledge base more navigable and more intelligent:</p>
+
+<ul>
+  <li><strong>Semantic search</strong> via ChromaDB and embeddings, so queries match on meaning rather than just keywords</li>
+  <li><strong>Knowledge graph view</strong> to visualize how sources and articles interconnect</li>
+  <li><strong>More source types</strong> — podcasts, Kindle highlights, RSS feeds</li>
+  <li><strong>Wiki health dashboard</strong> to surface stale articles, contradictions, and gaps in coverage</li>
+  <li><strong>Collaboration</strong> — shared wikis where a team feeds the same knowledge base</li>
+</ul>
+
+<p>The architecture was designed to support all of this. The adapter pattern makes new source types a single-file addition. The LLM Router means any of these features can leverage whichever model is best suited. And the sidecar pattern established with docling-serve gives us a template for extracting any future heavy-compute concern (like embedding generation) into its own scalable service.</p>
+
+<p>If you’re interested, the project is on GitHub. Set one API key, run <code class="language-plaintext highlighter-rouge">make dev</code>, and start feeding it.</p>]]></content><author><name>Manav Gupta</name></author><category term="blog" /><category term="wikimind" /><category term="python" /><category term="fastapi" /><category term="llm" /><category term="architecture" /><category term="docker" /><category term="fly-io" /><summary type="html"><![CDATA[A deep dive into WikiMind's architecture — from multi-provider LLM routing to the docling-serve sidecar migration that cut our Docker image from 3GB to 400MB.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://manavgup.github.io/shipai/assets/images/og/default.png" /><media:content medium="image" url="https://manavgup.github.io/shipai/assets/images/og/default.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What I Found Inside Claude Code’s 513K Lines of Source Code</title><link href="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/" rel="alternate" type="text/html" title="What I Found Inside Claude Code’s 513K Lines of Source Code" /><published>2026-04-01T00:00:00+00:00</published><updated>2026-04-01T00:00:00+00:00</updated><id>https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers</id><content type="html" xml:base="https://manavgup.github.io/shipai/blog/2026/04/01/claude-code-under-the-covers/"><![CDATA[<p>I spent the last week reading the source code of Claude Code — Anthropic’s AI coding agent. All 1,902 files. All 513,000 lines of TypeScript. What I found was a masterclass in building reliable, safe, and extensible AI tooling. Here’s the breakdown.</p>
 
 <h2 id="why-read-the-source">Why Read the Source?</h2>
 

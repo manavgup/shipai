@@ -148,6 +148,16 @@
     "date": "Apr 14, 2026",
     "duration": "56 min",
     "description": "Alex Seymour is a contributor to IBM's open-source agent infrastructure (BAI framework, Agent Stack, and the Relay project), exploring what it takes to build general-purpose agentic systems at ente..."
+  },
+  
+  {
+    "title": "John Capobianco | VibeOps, NetClaw & Network Automation",
+    "url": "/shipai/episodes/john-capobianco-vibeops-netclaw-network-automation/",
+    "series": "state-of-ai",
+    "episode_number": 10,
+    "date": "Apr 21, 2026",
+    "duration": "58 min",
+    "description": "John is Head of AI &amp; Developer Relations at Itential, a Google Developer Expert, former Cisco AI Technical Leader, former Senior Network Architect for the Parliament of Canada — and a fellow Ca..."
   }
   
 ]

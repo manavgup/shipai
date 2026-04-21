@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580">
+  <defs>
+    <marker id="a" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#6366f1"/>
+    </marker>
+    <marker id="a-dark" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#4f46e5"/>
+    </marker>
+    <filter id="s"><feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#3730a3" flood-opacity=".1"/></filter>
+    <filter id="s2"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".06"/></filter>
+  </defs>
+  <style>
+    text{font-family:'Inter',system-ui,-apple-system,sans-serif}
+    .container{rx:12;stroke-width:1.5}
+    .svc{fill:#4f46e5;rx:8}
+    .svc-lbl{fill:#fff;font-size:12px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+    .svc-sub{fill:rgba(255,255,255,.7);font-size:10px;font-weight:400;text-anchor:middle;dominant-baseline:central}
+    .title{font-size:13px;font-weight:700;letter-spacing:-.01em;dominant-baseline:central}
+    .subtitle{font-size:11px;font-weight:400;dominant-baseline:central}
+    .conn{stroke:#6366f1;stroke-width:1.4;fill:none;marker-end:url(#a)}
+    .conn-dash{stroke:#94a3b8;stroke-width:1.2;fill:none;stroke-dasharray:5 3;marker-end:url(#a)}
+    .edge-lbl{fill:#64748b;font-size:10px;font-weight:500;text-anchor:middle;dominant-baseline:central}
+    .provider{rx:6;fill:#e0e7ff;stroke:#c7d2fe;stroke-width:1}
+    .prov-lbl{fill:#3730a3;font-size:11px;font-weight:500;text-anchor:middle;dominant-baseline:central}
+    .ext{rx:10}
+    .ext-lbl{fill:#fff;font-size:12px;font-weight:600;text-anchor:middle}
+    .ext-sub{fill:rgba(255,255,255,.7);font-size:10px;font-weight:400;text-anchor:middle}
+  </style>
+
+  <!-- Frontend container -->
+  <g filter="url(#s)">
+    <rect class="container" x="60" y="16" width="600" height="68" fill="#6366f1" stroke="#4f46e5" rx="12"/>
+  </g>
+  <text class="title" x="360" y="42" fill="#fff" text-anchor="middle">React + Vite + TypeScript</text>
+  <text class="subtitle" x="360" y="62" fill="rgba(255,255,255,.7)" text-anchor="middle">TanStack Query  /  Zustand  /  Tailwind</text>
+
+  <!-- Arrow: Frontend → Gateway -->
+  <line class="conn" x1="360" y1="84" x2="360" y2="130"/>
+  <text class="edge-lbl" x="390" y="108">HTTP / REST</text>
+
+  <!-- Gateway container -->
+  <g filter="url(#s2)">
+    <rect class="container" x="60" y="132" width="600" height="320" fill="#f8fafc" stroke="#e2e8f0" rx="12"/>
+  </g>
+  <text class="title" x="360" y="158" fill="#1e293b" text-anchor="middle">FastAPI Gateway :7842</text>
+
+  <!-- Service boxes -->
+  <g filter="url(#s)">
+    <rect class="svc" x="82" y="178" width="125" height="54" rx="8"/>
+    <rect class="svc" x="222" y="178" width="125" height="54" rx="8"/>
+    <rect class="svc" x="362" y="178" width="125" height="54" rx="8"/>
+    <rect class="svc" x="502" y="178" width="125" height="54" rx="8"/>
+  </g>
+  <text class="svc-lbl" x="144" y="199">Ingest</text>
+  <text class="svc-sub" x="144" y="218">Service</text>
+  <text class="svc-lbl" x="284" y="199">Compiler</text>
+  <text class="svc-sub" x="284" y="218">Service</text>
+  <text class="svc-lbl" x="424" y="199">Q&amp;A</text>
+  <text class="svc-sub" x="424" y="218">Agent</text>
+  <text class="svc-lbl" x="564" y="199">Wiki</text>
+  <text class="svc-sub" x="564" y="218">Service</text>
+
+  <!-- Arrows: Compiler + Q&A → LLM Router -->
+  <line class="conn" x1="284" y1="232" x2="284" y2="278"/>
+  <line class="conn" x1="424" y1="232" x2="424" y2="278"/>
+
+  <!-- LLM Router container -->
+  <rect x="196" y="280" width="368" height="148" rx="10" fill="#f0f0ff" stroke="#c7d2fe" stroke-width="1"/>
+  <text class="title" x="380" y="304" fill="#3730a3" text-anchor="middle" font-size="12px">LLM Router</text>
+
+  <!-- Provider pills: 2x2 grid -->
+  <rect class="provider" x="212" y="318" width="162" height="34" rx="6"/>
+  <text class="prov-lbl" x="293" y="335">Anthropic</text>
+
+  <rect class="provider" x="390" y="318" width="162" height="34" rx="6"/>
+  <text class="prov-lbl" x="471" y="335">OpenAI</text>
+
+  <rect class="provider" x="212" y="364" width="162" height="34" rx="6"/>
+  <text class="prov-lbl" x="293" y="381">Google</text>
+
+  <rect class="provider" x="390" y="364" width="162" height="34" rx="6"/>
+  <text class="prov-lbl" x="471" y="381">Ollama</text>
+
+  <!-- Arrow: Ingest → docling-serve (exits gateway) -->
+  <path d="M144,232 L144,460 L160,496" stroke="#6366f1" stroke-width="1.4" fill="none" marker-end="url(#a)"/>
+  <text class="edge-lbl" x="100" y="472" text-anchor="start" transform="rotate(-4,100,472)">HTTP POST /v1/convert/source</text>
+
+  <!-- Arrow: Gateway → Redis (dotted) -->
+  <path d="M520,452 L520,496" class="conn-dash"/>
+
+  <!-- docling-serve -->
+  <g filter="url(#s)">
+    <rect class="ext" x="60" y="498" width="210" height="64" fill="#f59e0b" stroke="#d97706" stroke-width="1" rx="10"/>
+  </g>
+  <text class="ext-lbl" x="165" y="522">docling-serve</text>
+  <text class="ext-sub" x="165" y="540">PDF extraction sidecar</text>
+
+  <!-- Redis -->
+  <g filter="url(#s)">
+    <rect class="ext" x="420" y="498" width="210" height="64" fill="#ef4444" stroke="#dc2626" stroke-width="1" rx="10"/>
+  </g>
+  <text class="ext-lbl" x="525" y="522">Redis</text>
+  <text class="ext-sub" x="525" y="540">ARQ job queue</text>
+</svg>

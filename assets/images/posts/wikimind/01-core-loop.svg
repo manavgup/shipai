@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 856 148">
+  <defs>
+    <marker id="a" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#6366f1"/>
+    </marker>
+    <marker id="a-return" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#a5b4fc"/>
+    </marker>
+    <filter id="s"><feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#3730a3" flood-opacity=".12"/></filter>
+  </defs>
+  <style>
+    text{font-family:'Inter',system-ui,-apple-system,sans-serif}
+    .box{fill:#4f46e5;rx:10}
+    .lbl{fill:#fff;font-size:14px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+    .conn{stroke:#6366f1;stroke-width:1.6;fill:none;marker-end:url(#a)}
+    .ret{stroke:#a5b4fc;stroke-width:1.4;fill:none;stroke-dasharray:6 3;marker-end:url(#a-return)}
+    .rlbl{fill:#6366f1;font-size:11px;font-weight:600;letter-spacing:.06em;text-anchor:middle;dominant-baseline:central}
+  </style>
+
+  <!-- Box 1: Feed -->
+  <g filter="url(#s)"><rect class="box" x="20" y="24" width="88" height="48" rx="10"/></g>
+  <text class="lbl" x="64" y="48">Feed</text>
+
+  <!-- Box 2: Compile -->
+  <g filter="url(#s)"><rect class="box" x="150" y="24" width="110" height="48" rx="10"/></g>
+  <text class="lbl" x="205" y="48">Compile</text>
+
+  <!-- Box 3: Query -->
+  <g filter="url(#s)"><rect class="box" x="302" y="24" width="88" height="48" rx="10"/></g>
+  <text class="lbl" x="346" y="48">Query</text>
+
+  <!-- Box 4: Answer files back -->
+  <g filter="url(#s)"><rect class="box" x="432" y="24" width="178" height="48" rx="10"/></g>
+  <text class="lbl" x="521" y="48">Answer files back</text>
+
+  <!-- Box 5: Wiki gets smarter -->
+  <g filter="url(#s)"><rect class="box" x="652" y="24" width="184" height="48" rx="10"/></g>
+  <text class="lbl" x="744" y="48">Wiki gets smarter</text>
+
+  <!-- Forward arrows -->
+  <line class="conn" x1="108" y1="48" x2="148" y2="48"/>
+  <line class="conn" x1="260" y1="48" x2="300" y2="48"/>
+  <line class="conn" x1="390" y1="48" x2="430" y2="48"/>
+  <line class="conn" x1="610" y1="48" x2="650" y2="48"/>
+
+  <!-- Return arrow: curves from right of box 5, down, left, up to left of box 1 -->
+  <path class="ret" d="M744,72 L744,108 Q744,120 732,120 L124,120 Q64,120 64,108 L64,74"/>
+
+  <!-- Return label -->
+  <text class="rlbl" x="405" y="120">REPEAT</text>
+</svg>

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-300">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building WikiMind: A Personal Knowledge OS Powered by LLMs — Ship AI</title>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Building WikiMind: A Personal Knowledge OS Powered by LLMs | Ship AI</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Building WikiMind: A Personal Knowledge OS Powered by LLMs" />
+<meta name="author" content="Manav Gupta" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A deep dive into WikiMind’s architecture — from multi-provider LLM routing to the docling-serve sidecar migration that cut our Docker image from 3GB to 400MB." />
+<meta property="og:description" content="A deep dive into WikiMind’s architecture — from multi-provider LLM routing to the docling-serve sidecar migration that cut our Docker image from 3GB to 400MB." />
+<link rel="canonical" href="https://manavgup.github.io/shipai/blog/2026/04/21/building-wikimind-personal-knowledge-os/" />
+<meta property="og:url" content="https://manavgup.github.io/shipai/blog/2026/04/21/building-wikimind-personal-knowledge-os/" />
+<meta property="og:site_name" content="Ship AI" />
+<meta property="og:image" content="https://manavgup.github.io/shipai/assets/images/og/default.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://manavgup.github.io/shipai/assets/images/og/default.png" />
+<meta property="twitter:title" content="Building WikiMind: A Personal Knowledge OS Powered by LLMs" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Manav Gupta"},"dateModified":"2026-04-21T00:00:00+00:00","datePublished":"2026-04-21T00:00:00+00:00","description":"A deep dive into WikiMind’s architecture — from multi-provider LLM routing to the docling-serve sidecar migration that cut our Docker image from 3GB to 400MB.","headline":"Building WikiMind: A Personal Knowledge OS Powered by LLMs","image":"https://manavgup.github.io/shipai/assets/images/og/default.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://manavgup.github.io/shipai/blog/2026/04/21/building-wikimind-personal-knowledge-os/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://manavgup.github.io/shipai/assets/images/og/default.png"},"name":"Manav Gupta"},"url":"https://manavgup.github.io/shipai/blog/2026/04/21/building-wikimind-personal-knowledge-os/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script>
+// Apply dark mode before render to prevent flash of wrong theme
+(function() {
+  var saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+</script>
+<link rel="icon" type="image/svg+xml" href="/shipai/assets/images/favicon.svg">
+<link rel="apple-touch-icon" href="/shipai/assets/images/logo.jpg">
+<link rel="manifest" href="/shipai/manifest.json">
+<meta name="theme-color" content="#1e40af">
+
+<!-- Preconnect to external origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link rel="dns-prefetch" href="https://www.youtube.com">
+<link rel="dns-prefetch" href="https://i.ytimg.com">
+<link rel="dns-prefetch" href="https://img.youtube.com">
+
+<!-- Preload Google Fonts CSS, then load as stylesheet (non-render-blocking) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"></noscript>
+
+<link rel="stylesheet" href="/shipai/assets/css/main.css">
+<link rel="alternate" type="application/atom+xml" title="Ship AI" href="/shipai/feed.xml">
+
+</head>
+<body class="bg-cream dark:bg-ink font-sans text-ink dark:text-gray-200 transition-colors duration-300">
+  <!-- Skip to main content link for keyboard users -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg">
+    Skip to main content
+  </a>
+
+  <nav id="main-nav" aria-label="Main navigation" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/shipai/" class="flex items-center gap-2 group">
+      <img src="/shipai/assets/images/logo.jpg" alt="Ship AI - home" width="36" height="36" decoding="async" class="w-9 h-9 rounded-lg transition-transform duration-300 group-hover:scale-105">
+      <span class="font-serif font-bold text-xl tracking-tight">Ship AI</span>
+    </a>
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a href="/shipai/episodes/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Episodes</a>
+      
+        <a href="/shipai/clips/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Clips</a>
+      
+        <a href="/shipai/blog/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Blog</a>
+      
+        <a href="/shipai/state-of-ai/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">Slides</a>
+      
+        <a href="/shipai/about/" class="relative text-sm font-medium text-ink/70 dark:text-gray-400 hover:text-ink dark:hover:text-white transition-colors after:content-[''] after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 after:h-[1.5px] after:bg-accent after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full">About</a>
+      
+    </div>
+    <div class="flex items-center gap-2">
+      <!-- Dark mode toggle -->
+      <button id="theme-toggle" class="p-2 rounded-lg text-ink/60 dark:text-gray-400 hover:text-ink dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08] transition-colors" aria-label="Toggle dark mode">
+        <!-- Sun icon (shown in dark mode) -->
+        <svg class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg class="w-5 h-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+        </svg>
+      </button>
+      <!-- Mobile hamburger -->
+      <button id="mobile-toggle" class="md:hidden p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="w-5 h-5" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-cream dark:bg-ink border-t border-black/5 dark:border-white/5 px-6 py-4 space-y-3" role="menu">
+    
+      <a href="/shipai/episodes/" role="menuitem" class="block text-sm font-medium py-1">Episodes</a>
+    
+      <a href="/shipai/clips/" role="menuitem" class="block text-sm font-medium py-1">Clips</a>
+    
+      <a href="/shipai/blog/" role="menuitem" class="block text-sm font-medium py-1">Blog</a>
+    
+      <a href="/shipai/state-of-ai/" role="menuitem" class="block text-sm font-medium py-1">Slides</a>
+    
+      <a href="/shipai/about/" role="menuitem" class="block text-sm font-medium py-1">About</a>
+    
+  </div>
+</nav>
+
+<script>
+(function() {
+  // Dark mode toggle
+  var themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      var isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  }
+
+  // Mobile menu toggle
+  var toggle = document.getElementById('mobile-toggle');
+  var menu = document.getElementById('mobile-menu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', function() {
+    var isHidden = menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isHidden ? 'Close menu' : 'Open menu');
+  });
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      toggle.focus();
+    }
+  });
+})();
+</script>
+
+
+  <main id="main-content" class="pt-16">
+    
+
+
+
+<article>
+  <!-- Breadcrumb -->
+  <div class="max-w-4xl mx-auto px-6 pt-8">
+    <nav class="text-sm text-muted" aria-label="Breadcrumb">
+      <a href="/shipai/blog/" class="inline-flex items-center gap-1.5 hover:text-accent transition-colors group">
+        <svg class="w-4 h-4 text-muted group-hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Back to Blog
+      </a>
+    </nav>
+  </div>
+
+  <!-- Hero image -->
+  
+  <div class="max-w-4xl mx-auto px-6 mt-6">
+    <div class="rounded-card overflow-hidden shadow-card-hover">
+      <img src="/shipai/assets/images/og/default.png"
+           alt="Building WikiMind: A Personal Knowledge OS Powered by LLMs"
+           class="w-full h-auto object-cover max-h-[420px]"
+           loading="eager">
+    </div>
+  </div>
+  
+
+  <!-- Post header -->
+  <header class="max-w-3xl mx-auto px-6 mt-8 mb-8">
+    <!-- Tags -->
+    
+    <div class="flex flex-wrap gap-2 mb-5">
+      
+        <span class="text-xs font-semibold text-accent dark:text-blue-400 bg-accent-light dark:bg-blue-900/40 px-2.5 py-1 rounded-badge uppercase tracking-wide">blog</span>
+      
+      
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">wikimind</span>
+      
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">python</span>
+      
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">fastapi</span>
+      
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">llm</span>
+      
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">architecture</span>
+      
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">docker</span>
+      
+        <span class="text-xs font-medium text-muted dark:text-gray-400 bg-black/[0.04] dark:bg-white/[0.08] px-2.5 py-1 rounded-badge">fly-io</span>
+      
+    </div>
+    
+
+    <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink leading-tight">Building WikiMind: A Personal Knowledge OS Powered by LLMs</h1>
+
+    <!-- Author & meta row -->
+    <div class="flex items-center gap-4 mt-6">
+      <!-- Author avatar placeholder -->
+      
+      <div class="w-11 h-11 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0">
+        <span class="text-accent font-semibold text-sm">MG</span>
+      </div>
+      
+      <div class="flex flex-col">
+        
+        <span class="text-sm font-medium text-ink">Manav Gupta</span>
+        
+        <div class="flex items-center gap-2 text-sm text-muted">
+          <time datetime="2026-04-21T00:00:00+00:00">April 21, 2026</time>
+          <span class="w-1 h-1 rounded-full bg-muted/40"></span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+            8 min read
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Two-column layout: ToC sidebar + content -->
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="lg:grid lg:grid-cols-[1fr_260px] lg:gap-12">
+
+      <!-- Main content column -->
+      <div class="min-w-0">
+
+        <!-- Mobile ToC (collapsible) -->
+        <div class="lg:hidden mb-8" id="mobile-toc-wrapper">
+          <details class="bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] shadow-card">
+            <summary class="cursor-pointer px-5 py-3 font-serif font-semibold text-sm text-ink flex items-center justify-between select-none">
+              Table of Contents
+              <svg class="w-4 h-4 text-muted transition-transform details-open-rotate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </summary>
+            <nav class="px-5 pb-4" id="mobile-toc" aria-label="Table of contents"></nav>
+          </details>
+        </div>
+
+        <!-- Post body -->
+        <div class="prose-shipai" id="post-content">
+          <p>I read a lot. Articles, PDFs, YouTube talks, research papers. The problem is that all of that knowledge lives in scattered bookmarks, half-finished highlights, and a vague sense that “I read something about that once.” I wanted a system that would <em>synthesize</em> everything I consume into a persistent, queryable knowledge base — something that gets smarter every time I feed it.</p>
+
+<p>That’s WikiMind. It’s not a note-taking app (you never write), not a chatbot (it builds something persistent), and not a RAG tool (the wiki is the product, not just a retrieval layer). It’s the synthesis layer that sits above everything you consume.</p>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/01-core-loop.svg" alt="Core loop: Feed → Compile → Query → Answer files back → Wiki gets smarter → Repeat" /></p>
+
+<p>In this post, I’ll walk through the architecture decisions that shaped WikiMind, with a deep dive into the migration that had the biggest impact on developer experience and deployment economics: extracting PDF processing into a sidecar service.</p>
+
+<h2 id="architecture-overview">Architecture Overview</h2>
+
+<p>WikiMind is split into two main pieces: a React + TypeScript frontend and a Python FastAPI backend. The frontend handles the reading experience — an inbox for incoming sources, a wiki explorer for compiled articles, and a conversational Q&amp;A view. The backend does the heavy lifting: ingesting sources, compiling them into structured wiki articles via LLM, and answering questions with full source attribution.</p>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/02-architecture-overview.svg" alt="Architecture overview: React frontend, FastAPI Gateway with services and LLM Router, docling-serve sidecar, and Redis" /></p>
+
+<p>The backend follows a strict layered pattern: route handlers are thin and delegate to service classes, which orchestrate the domain logic. The LLM Router sits at the center, providing a unified interface to multiple LLM providers. Background compilation runs through ARQ workers backed by Redis in production (and in-process asyncio for local dev so you don’t need to run Redis just to hack on features).</p>
+
+<h2 id="the-ingest-compile-query-pipeline">The Ingest, Compile, Query Pipeline</h2>
+
+<p>The core pipeline has three stages, and understanding the flow between them is key to understanding WikiMind.</p>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/03-pipeline.svg" alt="Ingest, Compile, Query pipeline: sources are extracted to text, compiled into wiki articles via LLM, and queried with citation-backed answers" /></p>
+
+<p><strong>Ingest</strong> is adapter-based. Each source type — URL, PDF, YouTube, plain text — has its own adapter that extracts clean text and metadata. URLs go through trafilatura (excellent at pulling article text from messy HTML). PDFs route to the docling-serve sidecar for structured extraction (headings, tables, multi-column layouts, OCR). YouTube videos use the transcript API. The adapters all produce the same output shape: extracted text with source metadata.</p>
+
+<p><strong>Compile</strong> is where the LLM does its work. The compiler takes ingested text and asks the LLM to either merge it into existing wiki articles or create new ones. This isn’t summarization — it’s synthesis. If you feed WikiMind three articles about the same topic, it doesn’t give you three summaries; it weaves them into a single coherent article with citation chains back to each original source. Every claim in the wiki knows where it came from.</p>
+
+<p><strong>Query</strong> closes the loop. The Q&amp;A agent takes natural language questions, retrieves relevant wiki articles, and generates answers with full source attribution. The clever part: answers themselves get filed back into the wiki, so the knowledge base literally gets smarter with every question you ask.</p>
+
+<h2 id="multi-provider-llm-strategy">Multi-Provider LLM Strategy</h2>
+
+<p>I didn’t want WikiMind locked to a single LLM provider. Model quality shifts fast, pricing changes, and sometimes you just want to run things locally. So the LLM Router supports four providers out of the box:</p>
+
+<ul>
+  <li><strong>Anthropic</strong> (Claude Sonnet 4.5) — the default for compilation, strong at structured synthesis</li>
+  <li><strong>OpenAI</strong> (GPT-4o) — solid general-purpose alternative</li>
+  <li><strong>Google</strong> (Gemini 2.0 Flash) — fast and cost-effective for lighter tasks</li>
+  <li><strong>Ollama</strong> (Llama 3.2) — fully local, no API keys, no data leaving your machine</li>
+</ul>
+
+<p>Providers auto-enable when their API key is detected. Drop <code class="language-plaintext highlighter-rouge">OPENAI_API_KEY=sk-...</code> into your <code class="language-plaintext highlighter-rouge">.env</code> and OpenAI lights up. No other configuration needed. The router handles fallback automatically — if your primary provider errors out or hits a rate limit, it falls through to the next available provider.</p>
+
+<p>Configuration is intentionally minimal for the common case (set one API key, go) but gives you full control when you want it: model selection per provider, fallback chain ordering, and monthly budget limits are all available in <code class="language-plaintext highlighter-rouge">.env</code>.</p>
+
+<h2 id="the-docling-serve-sidecar-story">The Docling-Serve Sidecar Story</h2>
+
+<p>This is the architectural change I’m most proud of, and the one with the most dramatic impact on both developer experience and production economics.</p>
+
+<h3 id="the-problem-a-3gb-monolith">The Problem: A 3GB Monolith</h3>
+
+<p>WikiMind uses Docling for PDF extraction because it’s excellent — it handles heading hierarchy, tables, OCR, and multi-column layouts far better than basic text extraction. But running Docling in-process meant bundling the entire ML stack into the main application image:</p>
+
+<ul>
+  <li>PyTorch CPU: ~1.7 GB</li>
+  <li>Docling + dependencies</li>
+  <li>Playwright + Chromium: ~500 MB (for HTML rendering)</li>
+  <li>RapidOCR models: ~200 MB</li>
+  <li>ONNX Runtime</li>
+</ul>
+
+<p>The result was a <strong>3 GB Docker image</strong>. CI builds took 12-14 minutes, flirting with the 15-minute timeout. Cold starts were 10-15 seconds. And worst of all, each gunicorn worker loaded the full ML model set into memory, consuming ~500 MB RSS per worker. On a 4 GB Fly.io VM, that meant running exactly <strong>one worker</strong> — a catastrophic limitation for a web service.</p>
+
+<h3 id="the-solution-http-sidecar">The Solution: HTTP Sidecar</h3>
+
+<p>The Docling maintainers (IBM) publish <a href="https://github.com/docling-project/docling-serve">docling-serve</a> — a standalone FastAPI service that wraps Docling behind an HTTP API. Instead of importing Docling directly, WikiMind just calls <code class="language-plaintext highlighter-rouge">POST /v1/convert/source</code> on the sidecar. The sidecar handles all the ML heavy lifting; the main app just sends a URL and gets back structured text.</p>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/04-sidecar-migration.svg" alt="Before and after: monolithic 3 GB container vs sidecar architecture with 400 MB main app and separate docling-serve" /></p>
+
+<h3 id="before-and-after">Before and After</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Before (in-process)</th>
+      <th>After (sidecar)</th>
+      <th>Improvement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Main image size</td>
+      <td>~3 GB</td>
+      <td>~400 MB</td>
+      <td><strong>7.5x smaller</strong></td>
+    </tr>
+    <tr>
+      <td>CI Docker build</td>
+      <td>12-14 min</td>
+      <td>2-3 min</td>
+      <td><strong>5x faster</strong></td>
+    </tr>
+    <tr>
+      <td>Cold start</td>
+      <td>10-15 s</td>
+      <td>2-3 s</td>
+      <td><strong>5x faster</strong></td>
+    </tr>
+    <tr>
+      <td>Workers per 4 GB VM</td>
+      <td>1</td>
+      <td>4-8</td>
+      <td><strong>4-8x more</strong></td>
+    </tr>
+    <tr>
+      <td>gunicorn timeout</td>
+      <td>120 s</td>
+      <td>30 s</td>
+      <td><strong>4x tighter</strong></td>
+    </tr>
+    <tr>
+      <td>PDF extraction latency</td>
+      <td>In-process</td>
+      <td>+~100 ms (network)</td>
+      <td>Negligible</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The key insight: the ~100 ms network hop per PDF request is completely negligible compared to the 5-30 seconds that Docling actually takes to extract a complex PDF. We traded imperceptible latency for a dramatically better deployment profile.</p>
+
+<h3 id="production-topology-on-flyio">Production Topology on Fly.io</h3>
+
+<p>In production, the sidecar runs as a separate Fly.io app on the internal network:</p>
+
+<ul>
+  <li><strong>wikimind</strong> (<code class="language-plaintext highlighter-rouge">fly.toml</code>): The main app. 1 GB RAM, shared CPU, auto-stop/start on connection count, 4 gunicorn workers.</li>
+  <li><strong>wikimind-docling</strong> (<code class="language-plaintext highlighter-rouge">fly.docling.toml</code>): The sidecar. 4 GB RAM, 2 shared CPUs, auto-stop/start on request count, internal-only (no public routing).</li>
+</ul>
+
+<p>The main app reaches the sidecar at <code class="language-plaintext highlighter-rouge">http://wikimind-docling.internal:5001</code>. Both apps have independent health checks and can scale independently. When nobody is using WikiMind, both machines stop. When a request comes in, the main app starts in 2-3 seconds. If that request involves a PDF, the sidecar starts on demand.</p>
+
+<h3 id="graceful-degradation">Graceful Degradation</h3>
+
+<p>Not every environment has (or needs) docling-serve running. WikiMind retains a pymupdf (fitz) fallback that does basic text extraction without structure. You get plain text instead of heading hierarchy and tables, but PDF ingestion still works. The sidecar is an enhancement, not a hard dependency.</p>
+
+<h2 id="deployment">Deployment</h2>
+
+<p>WikiMind supports three deployment modes, matching different stages of the project lifecycle.</p>
+
+<p><strong>Local dev</strong> uses <code class="language-plaintext highlighter-rouge">make dev</code> for a single-process uvicorn server with hot reload. Background jobs run in-process via asyncio. SQLite is the default database. No Docker, no Redis — just <code class="language-plaintext highlighter-rouge">pip install</code> and go.</p>
+
+<p><strong>Docker Compose</strong> brings up the full stack: gateway, ARQ worker, Redis, and docling-serve. A production-variant compose file (<code class="language-plaintext highlighter-rouge">docker-compose.prod.yml</code>) adds PostgreSQL and resource limits (CPU/RAM caps per service), mirroring cloud topology on a home server or staging box.</p>
+
+<p><strong>Fly.io</strong> handles cloud deployment and is where things get interesting.</p>
+
+<h3 id="flyio-production-topology">Fly.io Production Topology</h3>
+
+<p><img src="https://manavgup.github.io/shipai/assets/images/posts/wikimind/05-flyio-topology.svg" alt="Fly.io production topology: CI/CD pipeline, three Fly apps (wikimind, wikimind-docling, wikimind-db), internal networking, and secrets management" /></p>
+
+<p>The production stack runs as three independent Fly apps in the <code class="language-plaintext highlighter-rouge">ord</code> (Chicago) region:</p>
+
+<p><strong>wikimind</strong> is the public-facing app. It serves the FastAPI gateway and the compiled React SPA (baked into the Docker image at build time from the <code class="language-plaintext highlighter-rouge">frontend</code> multi-stage build). It runs on a shared-cpu-1x VM with 1 GB RAM and 4 gunicorn workers. A 1 GB persistent volume at <code class="language-plaintext highlighter-rouge">/home/wikimind/.wikimind</code> stores SQLite data for single-user deployments, though production uses the attached Postgres cluster. The app has connection-based concurrency limits (soft 25 / hard 50) and uses rolling deploys so there’s zero downtime on redeploy.</p>
+
+<p><strong>wikimind-docling</strong> is the PDF extraction sidecar. It’s internal-only — no public routing, reachable only at <code class="language-plaintext highlighter-rouge">http://wikimind-docling.internal:5001</code> on the Fly private network. It uses IBM’s pre-built <code class="language-plaintext highlighter-rouge">docling-serve-cpu</code> image directly from Quay.io, so we never build or maintain this image ourselves. It needs more resources (shared-cpu-2x, 4 GB RAM) because it loads PyTorch and OCR models into memory, but since it’s request-scoped (concurrency soft 5 / hard 10), it only spins up when someone actually ingests a PDF.</p>
+
+<p><strong>wikimind-db</strong> is a managed Fly Postgres 16 cluster. Fly auto-injects <code class="language-plaintext highlighter-rouge">DATABASE_URL</code> as a secret when you attach it to the main app. The entrypoint script runs Alembic migrations on startup, so schema changes ship with the code and apply automatically on deploy.</p>
+
+<h3 id="zero-cost-idle">Zero-Cost Idle</h3>
+
+<p>The most important configuration detail for a personal project: every machine is set to <code class="language-plaintext highlighter-rouge">auto_stop_machines = "stop"</code> with <code class="language-plaintext highlighter-rouge">min_machines_running = 0</code>. When nobody is using WikiMind, all three apps stop completely. Fly charges nothing for stopped machines. When a request comes in:</p>
+
+<ol>
+  <li>The Fly proxy receives the HTTPS request and starts the <code class="language-plaintext highlighter-rouge">wikimind</code> machine (~2-3 s cold start).</li>
+  <li>If the request involves PDF ingestion, the gateway calls <code class="language-plaintext highlighter-rouge">wikimind-docling.internal:5001</code>, which triggers that machine to start on demand.</li>
+  <li>Postgres stays running or starts via the same mechanism.</li>
+</ol>
+
+<p>This means WikiMind costs essentially nothing when idle — just the persistent volume storage (~$0.15/GB/month). During active use, you’re paying for the actual compute seconds consumed. For a personal knowledge base that gets fed a few articles a day, the monthly bill rounds to zero.</p>
+
+<h3 id="cicd-push-to-deploy">CI/CD: Push-to-Deploy</h3>
+
+<p>The deployment pipeline chains two GitHub Actions workflows:</p>
+
+<ol>
+  <li>
+    <p><strong>Docker workflow</strong> fires on push to <code class="language-plaintext highlighter-rouge">main</code>. It builds the multi-stage <code class="language-plaintext highlighter-rouge">prod</code> Docker image (which includes the compiled React frontend), runs a Trivy CVE scan (fails on unfixed CRITICAL/HIGH), and publishes multi-arch images (amd64 + arm64) to GHCR. A weekly Monday rebuild from scratch catches base-image bit-rot that layer caching hides day-to-day. There’s also a hard image size gate at 1200 MB — if a dependency accidentally pulls in PyTorch again, CI fails.</p>
+  </li>
+  <li>
+    <p><strong>Deploy workflow</strong> triggers when the Docker workflow succeeds. It deploys the docling-serve sidecar first (creating the app if it doesn’t exist), then deploys the main app using the freshly-published GHCR image. After deploy, it polls <code class="language-plaintext highlighter-rouge">https://wikimind.fly.dev/health</code> every 2 seconds for up to 60 seconds, failing the workflow if the health check doesn’t return <code class="language-plaintext highlighter-rouge">{"status": "ok"}</code>.</p>
+  </li>
+</ol>
+
+<p>The entire chain — code push to verified production deployment — takes about 5 minutes.</p>
+
+<h3 id="infrastructure-setup">Infrastructure Setup</h3>
+
+<p>First-time setup is handled by an idempotent bash script (<code class="language-plaintext highlighter-rouge">scripts/fly-setup.sh</code>) that creates the app, volume, Postgres cluster, configures secrets (API keys, JWT secret, OAuth credentials), and prints a deploy token for CI. It’s safe to re-run — each step checks whether the resource exists before creating it. The only manual steps are adding the <code class="language-plaintext highlighter-rouge">FLY_API_TOKEN</code> to GitHub secrets and configuring OAuth redirect URIs.</p>
+
+<h3 id="database-layer">Database Layer</h3>
+
+<p>The database story is intentionally layered: SQLite for single-device development, PostgreSQL for shared access across devices and cloud deployments. The same codebase and queries work on both, thanks to SQLModel’s abstraction over SQLAlchemy. The <code class="language-plaintext highlighter-rouge">docker-entrypoint.sh</code> checks whether <code class="language-plaintext highlighter-rouge">DATABASE_URL</code> points to Postgres and runs Alembic migrations accordingly — SQLite deployments skip migrations entirely since SQLModel handles table creation directly.</p>
+
+<h2 id="whats-next">What’s Next</h2>
+
+<p>WikiMind’s core pipeline — ingest, compile, query, file-back — is solid. Phase 2 is about making the knowledge base more navigable and more intelligent:</p>
+
+<ul>
+  <li><strong>Semantic search</strong> via ChromaDB and embeddings, so queries match on meaning rather than just keywords</li>
+  <li><strong>Knowledge graph view</strong> to visualize how sources and articles interconnect</li>
+  <li><strong>More source types</strong> — podcasts, Kindle highlights, RSS feeds</li>
+  <li><strong>Wiki health dashboard</strong> to surface stale articles, contradictions, and gaps in coverage</li>
+  <li><strong>Collaboration</strong> — shared wikis where a team feeds the same knowledge base</li>
+</ul>
+
+<p>The architecture was designed to support all of this. The adapter pattern makes new source types a single-file addition. The LLM Router means any of these features can leverage whichever model is best suited. And the sidecar pattern established with docling-serve gives us a template for extracting any future heavy-compute concern (like embedding generation) into its own scalable service.</p>
+
+<p>If you’re interested, the project is on GitHub. Set one API key, run <code class="language-plaintext highlighter-rouge">make dev</code>, and start feeding it.</p>
+
+        </div>
+
+        <!-- Share buttons -->
+        <div class="mt-14 pt-8 border-t border-black/[0.06] dark:border-white/[0.08]">
+          <h3 class="font-serif text-lg font-bold text-ink mb-4">Share this article</h3>
+          <div class="flex flex-wrap gap-3">
+            <!-- Twitter/X -->
+            <a href="https://twitter.com/intent/tweet?text=Building+WikiMind%3A+A+Personal+Knowledge+OS+Powered+by+LLMs&url=https%3A%2F%2Fmanavgup.github.io%2Fshipai%2Fblog%2F2026%2F04%2F21%2Fbuilding-wikimind-personal-knowledge-os%2F"
+               target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-button bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.12] text-ink dark:text-gray-200 text-sm font-medium transition-colors"
+               aria-label="Share on X (Twitter)">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+              Post on X
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmanavgup.github.io%2Fshipai%2Fblog%2F2026%2F04%2F21%2Fbuilding-wikimind-personal-knowledge-os%2F"
+               target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-button bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.12] text-ink dark:text-gray-200 text-sm font-medium transition-colors"
+               aria-label="Share on LinkedIn">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              LinkedIn
+            </a>
+            <!-- Copy link -->
+            <button onclick="copyPostLink(this)"
+                    class="inline-flex items-center gap-2 px-4 py-2.5 rounded-button bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.12] text-ink dark:text-gray-200 text-sm font-medium transition-colors cursor-pointer"
+                    aria-label="Copy link to clipboard">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+              </svg>
+              <span class="copy-label">Copy link</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Related Episodes -->
+        
+
+        <!-- Subscribe CTA -->
+        <div class="mt-14 mb-4 bg-accent/[0.04] dark:bg-accent/[0.08] border border-accent/10 dark:border-accent/20 rounded-card p-8 text-center">
+          <div class="flex justify-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+              <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-ink mb-2">Enjoying this article?</h3>
+          <p class="text-sm text-muted dark:text-gray-400 max-w-md mx-auto mb-5">Ship AI is a video podcast covering the trends, tools, and strategies driving enterprise AI. New episodes every two weeks.</p>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <a href="/shipai/episodes/" class="inline-flex items-center gap-2 px-5 py-2.5 bg-accent text-white text-sm font-semibold rounded-button hover:bg-accent-hover transition-colors">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"/>
+              </svg>
+              Browse Episodes
+            </a>
+            <a href="/shipai/" class="inline-flex items-center gap-2 px-5 py-2.5 bg-black/[0.04] dark:bg-white/[0.08] text-ink dark:text-gray-200 text-sm font-semibold rounded-button hover:bg-black/[0.08] dark:hover:bg-white/[0.12] transition-colors">
+              Visit Homepage
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Desktop ToC sidebar -->
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <nav class="bg-white dark:bg-dark-card rounded-card border border-black/[0.06] dark:border-white/[0.08] shadow-card p-5" id="desktop-toc-wrapper" aria-label="Table of contents">
+            <h4 class="font-serif font-bold text-sm text-ink mb-3 uppercase tracking-wide">On this page</h4>
+            <div id="desktop-toc"></div>
+          </nav>
+          <!-- Read time & word count -->
+          <div class="mt-4 px-1 text-xs text-muted dark:text-gray-400 space-y-1">
+            <div class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+              </svg>
+              8 min read
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+              </svg>
+              2205 words
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</article>
+
+<script>
+// Table of Contents generator
+(function() {
+  var content = document.getElementById('post-content');
+  if (!content) return;
+
+  var headings = content.querySelectorAll('h2, h3');
+  if (headings.length < 2) {
+    // Hide ToC if fewer than 2 headings
+    var desktopWrapper = document.getElementById('desktop-toc-wrapper');
+    var mobileWrapper = document.getElementById('mobile-toc-wrapper');
+    if (desktopWrapper) desktopWrapper.style.display = 'none';
+    if (mobileWrapper) mobileWrapper.style.display = 'none';
+    return;
+  }
+
+  function buildTocList(headings) {
+    var list = document.createElement('ul');
+    list.className = 'space-y-1';
+
+    headings.forEach(function(heading, i) {
+      // Ensure heading has an id for linking
+      if (!heading.id) {
+        heading.id = 'heading-' + i;
+      }
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + heading.id;
+      a.textContent = heading.textContent;
+      a.className = 'block text-sm leading-snug transition-colors duration-200 hover:text-accent';
+
+      if (heading.tagName === 'H2') {
+        a.classList.add('text-ink/70', 'font-medium', 'py-1');
+      } else {
+        a.classList.add('text-muted', 'pl-3', 'py-0.5', 'text-xs');
+      }
+
+      a.setAttribute('data-toc-link', '');
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+    return list;
+  }
+
+  var desktopToc = document.getElementById('desktop-toc');
+  var mobileToc = document.getElementById('mobile-toc');
+
+  if (desktopToc) desktopToc.appendChild(buildTocList(headings));
+  if (mobileToc) mobileToc.appendChild(buildTocList(headings).cloneNode(true));
+
+  // Active heading highlight on scroll
+  var tocLinks = document.querySelectorAll('[data-toc-link]');
+  var headingOffsets = [];
+
+  function updateOffsets() {
+    headingOffsets = [];
+    headings.forEach(function(h) {
+      headingOffsets.push({ id: h.id, top: h.getBoundingClientRect().top + window.scrollY });
+    });
+  }
+  updateOffsets();
+  window.addEventListener('resize', updateOffsets);
+
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        var scrollPos = window.scrollY + 120;
+        var active = null;
+        for (var i = headingOffsets.length - 1; i >= 0; i--) {
+          if (scrollPos >= headingOffsets[i].top) {
+            active = headingOffsets[i].id;
+            break;
+          }
+        }
+        tocLinks.forEach(function(link) {
+          if (link.getAttribute('href') === '#' + active) {
+            link.classList.remove('text-ink/70', 'text-muted');
+            link.classList.add('text-accent', 'font-semibold');
+          } else {
+            link.classList.remove('text-accent', 'font-semibold');
+            if (link.closest('li') && link.classList.contains('pl-3')) {
+              link.classList.add('text-muted');
+            } else {
+              link.classList.add('text-ink/70');
+            }
+          }
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+
+// Copy link to clipboard
+function copyPostLink(btn) {
+  var url = window.location.href;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function() {
+      showCopied(btn);
+    }).catch(function() {
+      fallbackCopy(url, btn);
+    });
+  } else {
+    fallbackCopy(url, btn);
+  }
+}
+
+function fallbackCopy(text, btn) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); showCopied(btn); }
+  catch(e) { /* silently fail */ }
+  document.body.removeChild(ta);
+}
+
+function showCopied(btn) {
+  var label = btn.querySelector('.copy-label');
+  if (label) {
+    label.textContent = 'Copied!';
+    setTimeout(function() { label.textContent = 'Copy link'; }, 2000);
+  }
+}
+</script>
+
+  </main>
+
+  <footer class="bg-ink text-white/80 py-16" role="contentinfo">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2.5 mb-4">
+          <img src="/shipai/assets/images/logo.jpg" alt="" loading="lazy" decoding="async" width="36" height="36" class="w-9 h-9 rounded-lg">
+          <span class="font-serif font-bold text-lg text-white">Ship AI</span>
+        </div>
+        <p class="text-sm text-white/50 leading-relaxed">A podcast exploring AI trends, enterprise adoption, and what it means for business leaders and technologists. Hosted by Manav Gupta.</p>
+      </div>
+      <!-- Quick Links -->
+      <nav aria-label="Footer navigation">
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Quick Links</h4>
+        <div class="space-y-2.5">
+          
+            <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Episodes</a>
+          
+            <a href="/shipai/clips/" class="block text-sm hover:text-white transition-colors">Clips</a>
+          
+            <a href="/shipai/blog/" class="block text-sm hover:text-white transition-colors">Blog</a>
+          
+            <a href="/shipai/state-of-ai/" class="block text-sm hover:text-white transition-colors">Slides</a>
+          
+            <a href="/shipai/about/" class="block text-sm hover:text-white transition-colors">About</a>
+          
+        </div>
+      </nav>
+      <!-- Series -->
+      <div>
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Series</h4>
+        <div class="space-y-2.5">
+          <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">State of AI 2025</a>
+          <a href="/shipai/episodes/" class="block text-sm hover:text-white transition-colors">Guest Conversations</a>
+        </div>
+      </div>
+      <!-- Listen On -->
+      <div>
+        <h4 class="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Listen On</h4>
+        <div class="space-y-2.5">
+          
+            <a href="https://open.spotify.com/show/5BWnylG2E3ozrpdyJxRBE3" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></span>
+              Spotify
+            </a>
+          
+            <a href="https://podcasts.apple.com/us/podcast/ship-ai/id1832355436" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.053 2.399.236.227.246.6.022.84a.59.59 0 01-.84.024c-1.38-1.32-3.2-2.064-5.235-2.064-2.035 0-3.855.744-5.235 2.064a.59.59 0 01-.84-.024.604.604 0 01.022-.84c1.605-1.497 3.717-2.399 6.053-2.399zM12 6.528c3.03 0 5.496 2.458 5.496 5.496 0 1.632-.576 2.832-1.392 3.744-.468.516-1.008.924-1.536 1.26-.312.192-.612.36-.876.48a3.6 3.6 0 01-.456.18c-.072.024-.144.024-.168.024h-.024l-.048-.024c-.048-.024-.048-.048-.072-.072-.024-.048-.024-.072-.024-.12 0-.072.024-.12.048-.168.048-.048.096-.072.144-.096a5.56 5.56 0 00.408-.192c.264-.144.564-.336.84-.552.492-.384.936-.84 1.272-1.392.336-.552.552-1.2.552-2.064 0-2.376-1.92-4.296-4.296-4.296-2.376 0-4.296 1.92-4.296 4.296 0 .864.216 1.512.552 2.064.336.552.78 1.008 1.272 1.392.276.216.576.408.84.552.12.072.264.144.408.192.048.024.096.048.144.096.024.048.048.096.048.168 0 .048 0 .072-.024.12-.024.024-.024.048-.072.072l-.048.024h-.024c-.024 0-.096 0-.168-.024a3.6 3.6 0 01-.456-.18 8.5 8.5 0 01-.876-.48c-.528-.336-1.068-.744-1.536-1.26C6.576 14.856 6 13.656 6 12.024 6 8.986 8.462 6.528 12 6.528zm-.024 3.168c1.296 0 2.352 1.056 2.352 2.352 0 .672-.168 1.2-.48 1.632-.312.408-.72.72-1.176.96a.132.132 0 01-.048.024.12.12 0 01-.072-.024.12.12 0 01-.024-.072c0-.048.024-.072.048-.096.408-.216.744-.48.984-.816.264-.36.384-.792.384-1.296v-.312c0-1.104-.864-1.968-1.968-1.968s-1.968.864-1.968 1.968v.312c0 .504.12.936.384 1.296.24.336.576.6.984.816.024.024.048.048.048.096a.12.12 0 01-.024.072.12.12 0 01-.072.024.132.132 0 01-.048-.024 3.36 3.36 0 01-1.176-.96c-.312-.432-.48-.96-.48-1.632 0-1.296 1.056-2.352 2.352-2.352zM12 13.2a.792.792 0 01.792.792v3.48c0 .12-.024.24-.072.348l-.696 1.632a.132.132 0 01-.048.048.084.084 0 01-.048 0 .084.084 0 01-.048 0 .132.132 0 01-.048-.048l-.696-1.632A.816.816 0 0111.064 17.472v-3.48A.792.792 0 0112 13.2z"/></svg></span>
+              Apple Podcasts
+            </a>
+          
+            <a href="https://www.youtube.com/playlist?list=PLF0cewATp-wl_xK1rbE2bX2YcRVlZKUhM" target="_blank" rel="noopener" class="flex items-center gap-2 text-sm hover:text-white transition-colors">
+              <span class="w-4 h-4 [&>svg]:w-4 [&>svg]:h-4" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span>
+              YouTube
+            </a>
+          
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <span class="text-xs text-white/30">&copy; 2026 Ship AI. All rights reserved.</span>
+      <a href="/shipai/feed.xml" class="text-xs text-white/30 hover:text-white/60 transition-colors">RSS Feed</a>
+    </div>
+  </div>
+</footer>
+
+
+  <script>
+  // Sticky nav scroll effect — runs immediately (affects above-fold UX)
+  (function() {
+    var nav = document.getElementById('main-nav');
+    if (!nav) return;
+    var scrolled = false;
+    window.addEventListener('scroll', function() {
+      var shouldBeScrolled = window.scrollY > 60;
+      if (shouldBeScrolled !== scrolled) {
+        scrolled = shouldBeScrolled;
+        if (scrolled) { nav.classList.add('nav-scrolled'); }
+        else { nav.classList.remove('nav-scrolled'); }
+      }
+    }, { passive: true });
+  })();
+
+  // Scroll fade-in animations — deferred to avoid blocking first paint
+  // Respects prefers-reduced-motion: animations are skipped entirely
+  (function() {
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initObserver() {
+      if (prefersReducedMotion) {
+        // If user prefers reduced motion, make all elements visible without animation
+        document.querySelectorAll('.observe').forEach(function(el) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.observe').forEach(function(el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+        observer.observe(el);
+      });
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initObserver);
+    } else {
+      setTimeout(initObserver, 1);
+    }
+  })();
+  </script>
+</body>
+</html>

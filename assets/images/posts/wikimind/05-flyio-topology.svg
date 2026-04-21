@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 620">
+  <defs>
+    <marker id="a" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#6366f1"/>
+    </marker>
+    <marker id="a-green" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#16a34a"/>
+    </marker>
+    <marker id="a-slate" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="7" markerHeight="5.5" orient="auto">
+      <path d="M0,.5 L9,4 L0,7.5z" fill="#64748b"/>
+    </marker>
+    <filter id="s"><feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity=".08"/></filter>
+    <filter id="s2"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity=".05"/></filter>
+  </defs>
+  <style>
+    text{font-family:'Inter',system-ui,-apple-system,sans-serif}
+    .fly-border{rx:16;fill:#f8fafc;stroke:#cbd5e1;stroke-width:1.5}
+    .app{rx:10;stroke-width:1.5}
+    .app-title{font-size:13px;font-weight:700;dominant-baseline:central}
+    .app-sub{font-size:10px;font-weight:400;dominant-baseline:central;fill:#64748b}
+    .spec{font-size:10px;font-weight:500;fill:#475569;dominant-baseline:central}
+    .spec-val{font-size:10px;font-weight:600;dominant-baseline:central}
+    .badge{rx:4;stroke-width:0}
+    .badge-lbl{font-size:9px;font-weight:600;text-anchor:middle;dominant-baseline:central;letter-spacing:.03em}
+    .conn{stroke:#6366f1;stroke-width:1.4;fill:none;marker-end:url(#a)}
+    .conn-int{stroke:#64748b;stroke-width:1.2;fill:none;stroke-dasharray:6 3;marker-end:url(#a-slate)}
+    .conn-ci{stroke:#16a34a;stroke-width:1.4;fill:none;marker-end:url(#a-green)}
+    .edge-lbl{font-size:10px;font-weight:500;text-anchor:middle;dominant-baseline:central}
+    .section-lbl{font-size:11px;font-weight:600;letter-spacing:.04em;dominant-baseline:central}
+  </style>
+
+  <!-- ==================== CI/CD Pipeline (top) ==================== -->
+  <text class="section-lbl" x="20" y="24" fill="#64748b">CI / CD PIPELINE</text>
+
+  <!-- GitHub box -->
+  <g filter="url(#s2)">
+    <rect x="20" y="38" width="160" height="52" rx="8" fill="#fff" stroke="#d1d5db" stroke-width="1"/>
+  </g>
+  <text class="app-title" x="40" y="58" fill="#1f2937">GitHub</text>
+  <text class="app-sub" x="40" y="74">push to main</text>
+
+  <!-- Docker workflow -->
+  <g filter="url(#s2)">
+    <rect x="230" y="38" width="168" height="52" rx="8" fill="#fff" stroke="#d1d5db" stroke-width="1"/>
+  </g>
+  <text class="app-title" x="250" y="58" fill="#1f2937">Docker Workflow</text>
+  <text class="app-sub" x="250" y="74">build → scan → publish</text>
+
+  <!-- GHCR box -->
+  <g filter="url(#s2)">
+    <rect x="448" y="38" width="130" height="52" rx="8" fill="#fff" stroke="#d1d5db" stroke-width="1"/>
+  </g>
+  <text class="app-title" x="468" y="58" fill="#1f2937">GHCR</text>
+  <text class="app-sub" x="468" y="74">multi-arch image</text>
+
+  <!-- Deploy workflow -->
+  <g filter="url(#s2)">
+    <rect x="628" y="38" width="168" height="52" rx="8" fill="#fff" stroke="#d1d5db" stroke-width="1"/>
+  </g>
+  <text class="app-title" x="648" y="58" fill="#1f2937">Deploy Workflow</text>
+  <text class="app-sub" x="648" y="74">fly deploy + health check</text>
+
+  <!-- CI arrows -->
+  <line class="conn-ci" x1="180" y1="64" x2="228" y2="64"/>
+  <line class="conn-ci" x1="398" y1="64" x2="446" y2="64"/>
+  <line class="conn-ci" x1="578" y1="64" x2="626" y2="64"/>
+
+  <!-- Arrow from Deploy down into Fly.io -->
+  <path class="conn-ci" d="M712,90 L712,126"/>
+
+  <!-- ==================== Fly.io boundary ==================== -->
+  <g filter="url(#s)">
+    <rect class="fly-border" x="20" y="128" width="776" height="476" rx="16"/>
+  </g>
+  <text class="section-lbl" x="44" y="154" fill="#7c3aed">FLY.IO  —  ORD (CHICAGO)</text>
+
+  <!-- Public badge -->
+  <rect class="badge" x="680" y="144" width="90" height="20" fill="#dbeafe" rx="4"/>
+  <text class="badge-lbl" x="725" y="154" fill="#1d4ed8">FLYCAST + TLS</text>
+
+  <!-- ==================== wikimind app ==================== -->
+  <g filter="url(#s)">
+    <rect class="app" x="44" y="174" width="420" height="260" fill="#f0fdf4" stroke="#86efac" rx="10"/>
+  </g>
+  <text class="app-title" x="68" y="200" fill="#166534">wikimind</text>
+  <text class="app-sub" x="160" y="200">wikimind.fly.dev</text>
+
+  <!-- Public badge -->
+  <rect class="badge" x="362" y="188" width="80" height="20" fill="#dcfce7" rx="4"/>
+  <text class="badge-lbl" x="402" y="198" fill="#166534">PUBLIC</text>
+
+  <!-- Specs -->
+  <text class="spec" x="68" y="226">VM</text>
+  <text class="spec-val" x="110" y="226" fill="#166534">shared-cpu-1x · 1 GB RAM</text>
+  <text class="spec" x="68" y="244">Workers</text>
+  <text class="spec-val" x="130" y="244" fill="#166534">4 gunicorn (WEB_CONCURRENCY)</text>
+  <text class="spec" x="68" y="262">Scaling</text>
+  <text class="spec-val" x="130" y="262" fill="#166534">auto-stop on idle · min 0 machines</text>
+  <text class="spec" x="68" y="280">Deploy</text>
+  <text class="spec-val" x="130" y="280" fill="#166534">rolling · GHCR image</text>
+
+  <!-- Inner boxes: FastAPI + Frontend -->
+  <rect x="68" y="298" width="172" height="48" rx="6" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
+  <text fill="#fff" font-size="12px" font-weight="600" x="154" y="316" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif">FastAPI Gateway</text>
+  <text fill="rgba(255,255,255,.7)" font-size="10px" x="154" y="334" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif">:7842</text>
+
+  <rect x="260" y="298" width="172" height="48" rx="6" fill="#4ade80" stroke="#22c55e" stroke-width="1"/>
+  <text fill="#14532d" font-size="12px" font-weight="600" x="346" y="316" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif">React SPA</text>
+  <text fill="#166534" font-size="10px" x="346" y="334" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif">static /dist</text>
+
+  <!-- Volume -->
+  <rect x="68" y="360" width="132" height="36" rx="6" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1"/>
+  <text fill="#3730a3" font-size="11px" font-weight="500" x="134" y="378" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif">📁 wikimind_data</text>
+  <text class="app-sub" x="68" y="410">1 GB persistent volume</text>
+
+  <!-- Health check -->
+  <rect x="260" y="360" width="132" height="36" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text fill="#166534" font-size="11px" font-weight="500" x="326" y="378" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif">GET /health</text>
+  <text class="app-sub" x="260" y="410">every 30 s · 60 s grace</text>
+
+  <!-- ==================== wikimind-docling sidecar ==================== -->
+  <g filter="url(#s)">
+    <rect class="app" x="500" y="174" width="272" height="260" fill="#fffbeb" stroke="#fde68a" rx="10"/>
+  </g>
+  <text class="app-title" x="524" y="200" fill="#854d0e">wikimind-docling</text>
+
+  <!-- Internal badge -->
+  <rect class="badge" x="660" y="188" width="90" height="20" fill="#fef3c7" rx="4"/>
+  <text class="badge-lbl" x="705" y="198" fill="#92400e">INTERNAL</text>
+
+  <!-- Specs -->
+  <text class="spec" x="524" y="226">VM</text>
+  <text class="spec-val" x="560" y="226" fill="#854d0e">shared-cpu-2x · 4 GB RAM</text>
+  <text class="spec" x="524" y="244">Image</text>
+  <text class="spec-val" x="570" y="244" fill="#854d0e">quay.io/docling-serve-cpu</text>
+  <text class="spec" x="524" y="262">Scaling</text>
+  <text class="spec-val" x="580" y="262" fill="#854d0e">auto-stop · request-based</text>
+  <text class="spec" x="524" y="280">Concurrency</text>
+  <text class="spec-val" x="602" y="280" fill="#854d0e">soft 5 / hard 10</text>
+
+  <rect x="524" y="298" width="224" height="48" rx="6" fill="#eab308" stroke="#ca8a04" stroke-width="1"/>
+  <text fill="#fff" font-size="12px" font-weight="600" x="636" y="316" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif">docling-serve</text>
+  <text fill="rgba(255,255,255,.7)" font-size="10px" x="636" y="334" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif">POST /v1/convert/source</text>
+
+  <!-- Health check -->
+  <rect x="524" y="360" width="132" height="36" rx="6" fill="#fffbeb" stroke="#fde68a" stroke-width="1"/>
+  <text fill="#854d0e" font-size="11px" font-weight="500" x="590" y="378" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif">GET /health</text>
+  <text class="app-sub" x="524" y="410">:5001 · 30 s interval</text>
+
+  <!-- Internal network arrow: wikimind → docling -->
+  <path class="conn-int" d="M440,322 L522,322"/>
+  <text class="edge-lbl" x="481" y="312" fill="#64748b">.internal</text>
+
+  <!-- ==================== wikimind-db (Postgres) ==================== -->
+  <g filter="url(#s)">
+    <rect class="app" x="44" y="460" width="320" height="120" fill="#eff6ff" stroke="#93c5fd" rx="10"/>
+  </g>
+  <text class="app-title" x="68" y="486" fill="#1e40af">wikimind-db</text>
+  <text class="app-sub" x="175" y="486">Fly Postgres</text>
+
+  <!-- Specs -->
+  <text class="spec" x="68" y="510">VM</text>
+  <text class="spec-val" x="110" y="510" fill="#1e40af">shared-cpu-1x · 256 MB</text>
+  <text class="spec" x="68" y="528">Engine</text>
+  <text class="spec-val" x="120" y="528" fill="#1e40af">PostgreSQL 16</text>
+  <text class="spec" x="68" y="546">Volume</text>
+  <text class="spec-val" x="120" y="546" fill="#1e40af">1 GB persistent disk</text>
+  <text class="spec" x="68" y="564">Access</text>
+  <text class="spec-val" x="120" y="564" fill="#1e40af">DATABASE_URL auto-injected</text>
+
+  <!-- Arrow: wikimind → postgres -->
+  <path class="conn-int" d="M200,434 L200,458"/>
+  <text class="edge-lbl" x="237" y="448" fill="#64748b">asyncpg</text>
+
+  <!-- ==================== Secrets store ==================== -->
+  <g filter="url(#s2)">
+    <rect x="420" y="460" width="352" height="120" rx="10" fill="#faf5ff" stroke="#d8b4fe" stroke-width="1"/>
+  </g>
+  <text class="app-title" x="444" y="486" fill="#6b21a8">Secrets</text>
+  <text class="app-sub" x="506" y="486">fly secrets (encrypted at rest)</text>
+
+  <text class="spec" x="444" y="512" fill="#6b21a8">ANTHROPIC_API_KEY</text>
+  <text class="spec" x="444" y="530" fill="#6b21a8">WIKIMIND_AUTH__JWT_SECRET_KEY</text>
+  <text class="spec" x="444" y="548" fill="#6b21a8">WIKIMIND_AUTH__GOOGLE_CLIENT_*</text>
+  <text class="spec" x="444" y="566" fill="#6b21a8">WIKIMIND_AUTH__GITHUB_CLIENT_*</text>
+
+  <!-- ==================== Internet / User ==================== -->
+  <rect x="20" y="104" width="72" height="22" rx="4" fill="#e0e7ff" stroke="#c7d2fe" stroke-width="1"/>
+  <text fill="#3730a3" font-size="9px" font-weight="600" x="56" y="115" text-anchor="middle" dominant-baseline="central" letter-spacing=".03em" font-family="Inter,system-ui,sans-serif">HTTPS</text>
+
+  <path class="conn" d="M92,115 L92,174"/>
+</svg>
