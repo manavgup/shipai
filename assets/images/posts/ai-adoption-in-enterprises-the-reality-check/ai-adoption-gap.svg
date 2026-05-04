@@ -1,0 +1,32 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; fill: #1a1a2e; }
+    .label { font-family: 'DM Sans', sans-serif; font-size: 14px; fill: #1a1a2e; }
+    .number { font-family: 'DM Sans', sans-serif; font-size: 32px; font-weight: 700; }
+    .sublabel { font-family: 'DM Sans', sans-serif; font-size: 12px; fill: #64748b; }
+  </style>
+  
+  <rect width="680" height="400" fill="#faf8f5"/>
+  
+  <text x="340" y="40" text-anchor="middle" class="title">The Enterprise AI Gap</text>
+  
+  <!-- Experimenting bar -->
+  <rect x="80" y="80" width="520" height="100" rx="8" fill="#dbeafe"/>
+  <rect x="80" y="80" width="322" height="100" rx="8" fill="#1e40af"/>
+  <text x="100" y="140" class="number" fill="#ffffff">62%</text>
+  <text x="100" y="165" class="label" fill="#ffffff">Experimenting with AI agents</text>
+  
+  <!-- Results bar -->
+  <rect x="80" y="200" width="520" height="100" rx="8" fill="#dbeafe"/>
+  <rect x="80" y="200" width="31" height="100" rx="8" fill="#1e40af"/>
+  <text x="130" y="260" class="number" fill="#1a1a2e">6%</text>
+  <text x="130" y="285" class="label" fill="#1a1a2e">Achieving meaningful results</text>
+  
+  <!-- Annotation -->
+  <line x1="450" y1="130" x2="450" y2="250" stroke="#1a1a2e" stroke-width="2" stroke-dasharray="4"/>
+  <text x="470" y="200" class="label">10:1 ratio</text>
+  <text x="470" y="218" class="sublabel">experiment to results</text>
+  
+  <!-- Bottom text -->
+  <text x="340" y="360" text-anchor="middle" class="sublabel">Source: Ship AI research on enterprise AI agent adoption</text>
+</svg>

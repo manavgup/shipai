@@ -1,0 +1,29 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+  <rect width="680" height="400" fill="#faf8f5"/>
+  <text x="340" y="35" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">Time to 1 Million Users</text>
+  
+  <!-- Bars -->
+  <rect x="80" y="70" width="500" height="40" rx="4" fill="#dbeafe"/>
+  <rect x="80" y="70" width="500" height="40" rx="4" fill="#1a1a2e"/>
+  <text x="90" y="95" font-size="13" fill="#faf8f5" font-weight="500">Ford Model T: 2,500 days</text>
+  
+  <rect x="80" y="120" width="336" height="40" rx="4" fill="#dbeafe"/>
+  <rect x="80" y="120" width="336" height="40" rx="4" fill="#1e40af" opacity="0.8"/>
+  <text x="90" y="145" font-size="13" fill="#faf8f5" font-weight="500">TiVo: 1,680 days</text>
+  
+  <rect x="80" y="170" width="15" height="40" rx="4" fill="#dbeafe"/>
+  <rect x="80" y="170" width="15" height="40" rx="4" fill="#1e40af" opacity="0.6"/>
+  <text x="105" y="195" font-size="13" fill="#1a1a2e" font-weight="500">iPhone: 74 days</text>
+  
+  <rect x="80" y="220" width="2" height="40" rx="1" fill="#1e40af"/>
+  <text x="92" y="245" font-size="13" fill="#1a1a2e" font-weight="600">ChatGPT: 5 days</text>
+  
+  <!-- Time to 100M -->
+  <text x="340" y="295" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">Time to 100 Million Users</text>
+  
+  <rect x="80" y="315" width="500" height="30" rx="4" fill="#1a1a2e"/>
+  <text x="90" y="335" font-size="12" fill="#faf8f5">Telephone: 75 years</text>
+  
+  <rect x="80" y="355" width="7" height="30" rx="2" fill="#1e40af"/>
+  <text x="97" y="375" font-size="12" fill="#1a1a2e" font-weight="600">ChatGPT: 2 months (450x faster)</text>
+</svg>

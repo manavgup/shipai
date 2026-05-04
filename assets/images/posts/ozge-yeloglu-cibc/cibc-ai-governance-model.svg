@@ -1,0 +1,54 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans">
+  <rect width="680" height="400" fill="#faf8f5"/>
+  <text x="340" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">CIBC's AI Governance Model: 4 Years of Development</text>
+  
+  <!-- Timeline -->
+  <line x1="80" y1="80" x2="600" y2="80" stroke="#1a1a2e" stroke-width="2"/>
+  
+  <!-- Year markers -->
+  <circle cx="120" cy="80" r="8" fill="#1e40af"/>
+  <text x="120" y="110" text-anchor="middle" font-size="12" fill="#1a1a2e">Year 1</text>
+  <text x="120" y="125" text-anchor="middle" font-size="10" fill="#1a1a2e">Define AI</text>
+  
+  <circle cx="280" cy="80" r="8" fill="#1e40af"/>
+  <text x="280" y="110" text-anchor="middle" font-size="12" fill="#1a1a2e">Year 2</text>
+  <text x="280" y="125" text-anchor="middle" font-size="10" fill="#1a1a2e">6 Pillars</text>
+  
+  <circle cx="440" cy="80" r="8" fill="#1e40af"/>
+  <text x="440" y="110" text-anchor="middle" font-size="12" fill="#1a1a2e">Year 3</text>
+  <text x="440" y="125" text-anchor="middle" font-size="10" fill="#1a1a2e">Operating Model</text>
+  
+  <circle cx="560" cy="80" r="8" fill="#1e40af"/>
+  <text x="560" y="110" text-anchor="middle" font-size="12" fill="#1a1a2e">Year 4</text>
+  <text x="560" y="125" text-anchor="middle" font-size="10" fill="#1a1a2e">PCM Team</text>
+  
+  <!-- Four teams boxes -->
+  <rect x="40" y="160" width="140" height="100" rx="8" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <text x="110" y="185" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">AI Delivery</text>
+  <text x="110" y="205" text-anchor="middle" font-size="10" fill="#1a1a2e">Build solutions</text>
+  <text x="110" y="220" text-anchor="middle" font-size="10" fill="#1a1a2e">Test processes</text>
+  <text x="110" y="235" text-anchor="middle" font-size="10" fill="#1a1a2e">Validate fast</text>
+  
+  <rect x="200" y="160" width="140" height="100" rx="8" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <text x="270" y="185" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">AI Governance</text>
+  <text x="270" y="205" text-anchor="middle" font-size="10" fill="#1a1a2e">Ex-data scientists</text>
+  <text x="270" y="220" text-anchor="middle" font-size="10" fill="#1a1a2e">Risk advisory</text>
+  <text x="270" y="235" text-anchor="middle" font-size="10" fill="#1a1a2e">13 risk partners</text>
+  
+  <rect x="360" y="160" width="140" height="100" rx="8" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <text x="430" y="185" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">Applied Research</text>
+  <text x="430" y="205" text-anchor="middle" font-size="10" fill="#1a1a2e">Unique models</text>
+  <text x="430" y="220" text-anchor="middle" font-size="10" fill="#1a1a2e">Competitive edge</text>
+  <text x="430" y="235" text-anchor="middle" font-size="10" fill="#1a1a2e">Multi-year bets</text>
+  
+  <rect x="520" y="160" width="140" height="100" rx="8" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <text x="590" y="185" text-anchor="middle" font-size="13" font-weight="bold" fill="#1a1a2e">PCM Team</text>
+  <text x="590" y="205" text-anchor="middle" font-size="10" fill="#1a1a2e">"Small and mighty"</text>
+  <text x="590" y="220" text-anchor="middle" font-size="10" fill="#1a1a2e">2 people</text>
+  <text x="590" y="235" text-anchor="middle" font-size="10" fill="#1a1a2e">Tool adoption</text>
+  
+  <!-- Key outcome -->
+  <rect x="140" y="290" width="400" height="80" rx="8" fill="#1e40af"/>
+  <text x="340" y="320" text-anchor="middle" font-size="14" font-weight="bold" fill="#faf8f5">Result: Zero projects blocked</text>
+  <text x="340" y="345" text-anchor="middle" font-size="12" fill="#dbeafe">"We always tell people what the mitigation approaches are"</text>
+</svg>

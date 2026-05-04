@@ -1,0 +1,39 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="680" height="400" fill="#faf8f5"/>
+  <text x="340" y="35" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="18" font-weight="600" fill="#1a1a2e">Where Mag 7 AI CapEx Actually Goes (2024)</text>
+  
+  <!-- Bar chart -->
+  <g transform="translate(80, 70)">
+    <!-- GPUs & Chips - 50% -->
+    <rect x="0" y="0" width="250" height="45" fill="#1e40af" rx="4"/>
+    <text x="260" y="28" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1a2e">GPUs & Specialized Chips</text>
+    <text x="460" y="28" font-family="DM Sans, sans-serif" font-size="13" font-weight="600" fill="#1e40af">50%</text>
+    
+    <!-- Data Centers - 25% -->
+    <rect x="0" y="60" width="125" height="45" fill="#1e40af" opacity="0.8" rx="4"/>
+    <text x="135" y="88" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1a2e">Data Center Infrastructure</text>
+    <text x="460" y="88" font-family="DM Sans, sans-serif" font-size="13" font-weight="600" fill="#1e40af">25%</text>
+    
+    <!-- Energy & Cooling - 12% -->
+    <rect x="0" y="120" width="60" height="45" fill="#1e40af" opacity="0.6" rx="4"/>
+    <text x="70" y="148" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1a2e">Energy & Cooling Systems</text>
+    <text x="460" y="148" font-family="DM Sans, sans-serif" font-size="13" font-weight="600" fill="#1e40af">12%</text>
+    
+    <!-- Compliance & Safety - 8% (highlighted) -->
+    <rect x="0" y="180" width="40" height="45" fill="#ef4444" rx="4"/>
+    <text x="50" y="208" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1a2e">Compliance, Safety & Evaluation</text>
+    <text x="460" y="208" font-family="DM Sans, sans-serif" font-size="13" font-weight="600" fill="#ef4444">8%+</text>
+    <text x="50" y="225" font-family="DM Sans, sans-serif" font-size="10" fill="#666">(growing fastest)</text>
+    
+    <!-- Other - 5% -->
+    <rect x="0" y="240" width="25" height="45" fill="#1e40af" opacity="0.4" rx="4"/>
+    <text x="35" y="268" font-family="DM Sans, sans-serif" font-size="13" fill="#1a1a2e">Networking & Other</text>
+    <text x="460" y="268" font-family="DM Sans, sans-serif" font-size="13" font-weight="600" fill="#1e40af">5%</text>
+  </g>
+  
+  <!-- Annotation -->
+  <g transform="translate(80, 345)">
+    <rect x="0" y="0" width="520" height="40" fill="#dbeafe" rx="6"/>
+    <text x="20" y="25" font-family="DM Sans, sans-serif" font-size="12" fill="#1a1a2e">Training costs 2.25x inference costs. For AI to become profitable, this ratio has to flip.</text>
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+  <rect width="680" height="400" fill="#faf8f5"/>
+  <text x="340" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">AI's Hidden Cost Stack (Per Enterprise)</text>
+  
+  <!-- Stacked bar representation -->
+  <rect x="100" y="60" width="200" height="280" fill="#dbeafe" stroke="#1e40af" stroke-width="2" rx="4"/>
+  
+  <!-- Cost segments -->
+  <rect x="100" y="60" width="200" height="56" fill="#1e40af"/>
+  <text x="200" y="92" text-anchor="middle" font-size="12" fill="#faf8f5" font-weight="bold">Data Licensing</text>
+  <text x="200" y="108" text-anchor="middle" font-size="11" fill="#faf8f5">$800M+/year industry</text>
+  
+  <rect x="100" y="116" width="200" height="56" fill="#3b82f6"/>
+  <text x="200" y="148" text-anchor="middle" font-size="12" fill="#faf8f5" font-weight="bold">Compliance (EU + US)</text>
+  <text x="200" y="164" text-anchor="middle" font-size="11" fill="#faf8f5">+25% of AI budgets</text>
+  
+  <rect x="100" y="172" width="200" height="56" fill="#60a5fa"/>
+  <text x="200" y="204" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="bold">Safety & Alignment</text>
+  <text x="200" y="220" text-anchor="middle" font-size="11" fill="#1a1a2e">20-30% of training cost</text>
+  
+  <rect x="100" y="228" width="200" height="56" fill="#93c5fd"/>
+  <text x="200" y="260" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="bold">Talent Premium</text>
+  <text x="200" y="276" text-anchor="middle" font-size="11" fill="#1a1a2e">$0.80 per $1 on chips</text>
+  
+  <rect x="100" y="284" width="200" height="56" fill="#dbeafe" stroke="#1e40af"/>
+  <text x="200" y="316" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="bold">Infrastructure (visible)</text>
+  
+  <!-- Annotation arrows -->
+  <line x1="310" y1="88" x2="380" y2="88" stroke="#1a1a2e" stroke-width="1.5"/>
+  <text x="390" y="85" font-size="11" fill="#1a1a2e">New: "Scrape everything"</text>
+  <text x="390" y="100" font-size="11" fill="#1a1a2e">era is over</text>
+  
+  <line x1="310" y1="144" x2="380" y2="144" stroke="#1a1a2e" stroke-width="1.5"/>
+  <text x="390" y="141" font-size="11" fill="#1a1a2e">EU AI Act: $5-10M</text>
+  <text x="390" y="156" font-size="11" fill="#1a1a2e">US States: $2-5M each</text>
+  
+  <line x1="310" y1="200" x2="380" y2="200" stroke="#1a1a2e" stroke-width="1.5"/>
+  <text x="390" y="197" font-size="11" fill="#1a1a2e">Anthropic: 30%</text>
+  <text x="390" y="212" font-size="11" fill="#1a1a2e">OpenAI: 25%</text>
+  
+  <!-- Bottom insight box -->
+  <rect x="100" y="355" width="480" height="35" fill="#1e40af" rx="4"/>
+  <text x="340" y="378" text-anchor="middle" font-size="13" fill="#faf8f5" font-weight="bold">Result: 63%+ cost increase beyond visible infrastructure spend</text>
+</svg>

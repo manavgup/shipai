@@ -1,0 +1,41 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="680" height="400" fill="#faf8f5"/>
+  <text x="340" y="35" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="18" font-weight="700" fill="#1a1a2e">AI Reasoning Cost Per Million Tokens (Log Scale)</text>
+  <text x="340" y="55" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#1a1a2e" opacity="0.7">2022-2024: A 99.7% decline</text>
+  
+  <!-- Y-axis -->
+  <line x1="80" y1="80" x2="80" y2="340" stroke="#1a1a2e" stroke-width="1"/>
+  <text x="70" y="100" text-anchor="end" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">$60</text>
+  <text x="70" y="160" text-anchor="end" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">$6</text>
+  <text x="70" y="220" text-anchor="end" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">$0.60</text>
+  <text x="70" y="280" text-anchor="end" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">$0.06</text>
+  <text x="70" y="330" text-anchor="end" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">$0.02</text>
+  
+  <!-- X-axis -->
+  <line x1="80" y1="340" x2="620" y2="340" stroke="#1a1a2e" stroke-width="1"/>
+  <text x="150" y="360" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">2022</text>
+  <text x="340" y="360" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">2023</text>
+  <text x="530" y="360" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">2024</text>
+  
+  <!-- Cost decline path - stepped drops -->
+  <path d="M120 95 L200 95 L200 155 L280 155 L280 200 L360 200 L360 245 L440 245 L440 290 L520 290 L520 325 L580 325" stroke="#1e40af" stroke-width="3" fill="none"/>
+  
+  <!-- Data points -->
+  <circle cx="120" cy="95" r="6" fill="#1e40af"/>
+  <circle cx="200" cy="155" r="5" fill="#1e40af"/>
+  <circle cx="280" cy="200" r="5" fill="#1e40af"/>
+  <circle cx="360" cy="245" r="5" fill="#1e40af"/>
+  <circle cx="440" cy="290" r="5" fill="#1e40af"/>
+  <circle cx="520" cy="325" r="5" fill="#1e40af"/>
+  <circle cx="580" cy="325" r="6" fill="#1e40af"/>
+  
+  <!-- Labels -->
+  <text x="120" y="82" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#1a1a2e">GPT-3</text>
+  <text x="580" y="312" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#1a1a2e">Llama 2 70B</text>
+  
+  <!-- Annotation box -->
+  <rect x="400" y="120" width="200" height="70" rx="4" fill="#dbeafe"/>
+  <text x="500" y="142" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" font-weight="600" fill="#1a1a2e">10x cost drop</text>
+  <text x="500" y="160" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">per year — faster than</text>
+  <text x="500" y="178" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#1a1a2e">Moore's Law</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+  <rect width="680" height="400" fill="#faf8f5"/>
+  
+  <!-- Title -->
+  <text x="340" y="35" text-anchor="middle" fill="#1a1a2e" font-size="18" font-weight="700">Enterprise AI Agent Adoption Funnel</text>
+  
+  <!-- Funnel sections -->
+  <polygon points="140,70 540,70 500,130 180,130" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <polygon points="180,135 500,135 460,195 220,195" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <polygon points="220,200 460,200 420,260 260,260" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+  <polygon points="260,265 420,265 380,325 300,325" fill="#1e40af" stroke="#1a1a2e" stroke-width="2"/>
+  
+  <!-- Percentages -->
+  <text x="340" y="108" text-anchor="middle" fill="#1a1a2e" font-size="22" font-weight="700">88%</text>
+  <text x="340" y="173" text-anchor="middle" fill="#1a1a2e" font-size="22" font-weight="700">62%</text>
+  <text x="340" y="238" text-anchor="middle" fill="#1a1a2e" font-size="22" font-weight="700">23%</text>
+  <text x="340" y="305" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700">6%</text>
+  
+  <!-- Labels on right -->
+  <text x="560" y="100" fill="#1a1a2e" font-size="12" font-weight="600">Using AI regularly</text>
+  <text x="520" y="165" fill="#1a1a2e" font-size="12" font-weight="600">Experimenting with agents</text>
+  <text x="480" y="230" fill="#1a1a2e" font-size="12" font-weight="600">Successfully scaled agents</text>
+  <text x="440" y="295" fill="#1e40af" font-size="12" font-weight="700">Achieved meaningful impact</text>
+  
+  <!-- Bottom stat -->
+  <rect x="140" y="345" width="400" height="45" rx="6" fill="#1a1a2e"/>
+  <text x="340" y="373" text-anchor="middle" fill="#ffffff" font-size="13">According to Gartner: 40% of agentic AI projects will fail or be canceled by 2027</text>
+</svg>

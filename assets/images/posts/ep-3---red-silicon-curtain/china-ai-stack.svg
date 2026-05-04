@@ -1,0 +1,48 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+  <rect width="680" height="400" fill="#faf8f5"/>
+  <text x="340" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">China's Three-Pronged Sovereign AI Strategy</text>
+  
+  <!-- Three pillars -->
+  <rect x="40" y="60" width="180" height="280" fill="#dbeafe" rx="8"/>
+  <rect x="250" y="60" width="180" height="280" fill="#dbeafe" rx="8"/>
+  <rect x="460" y="60" width="180" height="280" fill="#dbeafe" rx="8"/>
+  
+  <!-- Pillar 1 -->
+  <text x="130" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">East Data</text>
+  <text x="130" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">West Computing</text>
+  <line x1="80" y1="120" x2="180" y2="120" stroke="#1e40af" stroke-width="2"/>
+  <text x="130" y="145" text-anchor="middle" font-size="11" fill="#1a1a2e">Train in West</text>
+  <text x="130" y="162" text-anchor="middle" font-size="11" fill="#1a1a2e">(cheap energy)</text>
+  <text x="130" y="190" text-anchor="middle" font-size="11" fill="#1a1a2e">Serve in East</text>
+  <text x="130" y="207" text-anchor="middle" font-size="11" fill="#1a1a2e">(near consumers)</text>
+  <text x="130" y="250" text-anchor="middle" font-size="24" font-weight="bold" fill="#1e40af">50%</text>
+  <text x="130" y="275" text-anchor="middle" font-size="11" fill="#1a1a2e">cheaper electricity</text>
+  <text x="130" y="292" text-anchor="middle" font-size="11" fill="#1a1a2e">in western hubs</text>
+  
+  <!-- Pillar 2 -->
+  <text x="340" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">Big Fund 3</text>
+  <text x="340" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">Chip Sovereignty</text>
+  <line x1="290" y1="120" x2="390" y2="120" stroke="#1e40af" stroke-width="2"/>
+  <text x="340" y="145" text-anchor="middle" font-size="11" fill="#1a1a2e">Target: Equipment</text>
+  <text x="340" y="162" text-anchor="middle" font-size="11" fill="#1a1a2e">& Materials</text>
+  <text x="340" y="190" text-anchor="middle" font-size="11" fill="#1a1a2e">15-year horizon</text>
+  <text x="340" y="207" text-anchor="middle" font-size="11" fill="#1a1a2e">(patient capital)</text>
+  <text x="340" y="250" text-anchor="middle" font-size="24" font-weight="bold" fill="#1e40af">$47.5B</text>
+  <text x="340" y="275" text-anchor="middle" font-size="11" fill="#1a1a2e">investment</text>
+  <text x="340" y="292" text-anchor="middle" font-size="11" fill="#1a1a2e">(exceeds US CHIPS Act)</text>
+  
+  <!-- Pillar 3 -->
+  <text x="550" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">C2Net</text>
+  <text x="550" y="108" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">National Grid</text>
+  <line x1="500" y1="120" x2="600" y2="120" stroke="#1e40af" stroke-width="2"/>
+  <text x="550" y="145" text-anchor="middle" font-size="11" fill="#1a1a2e">"Compute power as</text>
+  <text x="550" y="162" text-anchor="middle" font-size="11" fill="#1a1a2e">convenient as electricity"</text>
+  <text x="550" y="190" text-anchor="middle" font-size="11" fill="#1a1a2e">8 hubs (3 east, 5 west)</text>
+  <text x="550" y="207" text-anchor="middle" font-size="11" fill="#1a1a2e">30% YoY growth</text>
+  <text x="550" y="250" text-anchor="middle" font-size="24" font-weight="bold" fill="#1e40af">280</text>
+  <text x="550" y="275" text-anchor="middle" font-size="11" fill="#1a1a2e">exaflops total</text>
+  <text x="550" y="292" text-anchor="middle" font-size="11" fill="#1a1a2e">compute capacity</text>
+  
+  <!-- Bottom line -->
+  <text x="340" y="370" text-anchor="middle" font-size="12" font-style="italic" fill="#1a1a2e">Goal: Sanction-proof parallel compute stack by 2030</text>
+</svg>

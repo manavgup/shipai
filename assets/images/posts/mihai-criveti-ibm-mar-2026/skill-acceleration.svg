@@ -1,0 +1,44 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans">
+  <rect width="680" height="400" fill="#faf8f5"/>
+  <text x="340" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">AI Accelerates Skills, Doesn't Replace Them</text>
+  
+  <g transform="translate(60, 70)">
+    <rect x="0" y="0" width="250" height="130" fill="#dbeafe" rx="8"/>
+    <text x="125" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a2e">Before AI</text>
+    <text x="125" y="55" text-anchor="middle" font-size="13" fill="#1a1a2e">1 problem at a time</text>
+    <text x="125" y="80" text-anchor="middle" font-size="13" fill="#1a1a2e">Sequential debugging</text>
+    <text x="125" y="105" text-anchor="middle" font-size="13" fill="#1a1a2e">Manual learning curve</text>
+  </g>
+  
+  <g transform="translate(370, 70)">
+    <rect x="0" y="0" width="250" height="130" fill="#1e40af" rx="8"/>
+    <text x="125" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#faf8f5">With AI</text>
+    <text x="125" y="55" text-anchor="middle" font-size="13" fill="#faf8f5">100 concurrent problems</text>
+    <text x="125" y="80" text-anchor="middle" font-size="13" fill="#faf8f5">Parallel terminal chaos</text>
+    <text x="125" y="105" text-anchor="middle" font-size="13" fill="#faf8f5">Learning often skipped</text>
+  </g>
+  
+  <path d="M310 135 L370 135" stroke="#1a1a2e" stroke-width="3" marker-end="url(#arrow)"/>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#1a1a2e"/></marker></defs>
+  
+  <text x="340" y="235" text-anchor="middle" font-size="15" font-weight="bold" fill="#1a1a2e">Skills That Still Matter</text>
+  
+  <g transform="translate(60, 260)">
+    <rect x="0" y="0" width="130" height="50" fill="#dbeafe" rx="6"/>
+    <text x="65" y="30" text-anchor="middle" font-size="12" fill="#1a1a2e">Communication</text>
+  </g>
+  <g transform="translate(200, 260)">
+    <rect x="0" y="0" width="130" height="50" fill="#dbeafe" rx="6"/>
+    <text x="65" y="30" text-anchor="middle" font-size="12" fill="#1a1a2e">Collaboration</text>
+  </g>
+  <g transform="translate(340, 260)">
+    <rect x="0" y="0" width="130" height="50" fill="#dbeafe" rx="6"/>
+    <text x="65" y="30" text-anchor="middle" font-size="12" fill="#1a1a2e">Debugging</text>
+  </g>
+  <g transform="translate(490, 260)">
+    <rect x="0" y="0" width="130" height="50" fill="#dbeafe" rx="6"/>
+    <text x="65" y="30" text-anchor="middle" font-size="12" fill="#1a1a2e">Reasoning</text>
+  </g>
+  
+  <text x="340" y="355" text-anchor="middle" font-size="11" fill="#1a1a2e" font-style="italic">"Previously you were an individual contributor. Now you're managing armies of untrained agents."</text>
+</svg>

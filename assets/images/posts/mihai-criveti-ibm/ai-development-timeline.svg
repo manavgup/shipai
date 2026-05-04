@@ -1,0 +1,70 @@
+<svg width="680" height="400" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans">
+  <rect width="680" height="400" fill="#faf8f5"/>
+  
+  <text x="340" y="35" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">AI Doesn't Eliminate Enterprise Development Time</text>
+  
+  <g transform="translate(60, 70)">
+    <text x="0" y="0" font-size="13" font-weight="600" fill="#1a1a2e">Traditional Development Pipeline</text>
+    
+    <rect x="0" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="40" y="40" text-anchor="middle" font-size="10" fill="white">Code</text>
+    <text x="40" y="65" text-anchor="middle" font-size="9" fill="#666">2-4 hrs</text>
+    
+    <rect x="90" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="130" y="40" text-anchor="middle" font-size="10" fill="white">Compile</text>
+    <text x="130" y="65" text-anchor="middle" font-size="9" fill="#666">30 min</text>
+    
+    <rect x="180" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="220" y="40" text-anchor="middle" font-size="10" fill="white">Lint/Sonar</text>
+    <text x="220" y="65" text-anchor="middle" font-size="9" fill="#666">20 min</text>
+    
+    <rect x="270" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="310" y="40" text-anchor="middle" font-size="10" fill="white">Unit Test</text>
+    <text x="310" y="65" text-anchor="middle" font-size="9" fill="#666">15 min</text>
+    
+    <rect x="360" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="400" y="40" text-anchor="middle" font-size="10" fill="white">Build Image</text>
+    <text x="400" y="65" text-anchor="middle" font-size="9" fill="#666">10 min</text>
+    
+    <rect x="450" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="490" y="40" text-anchor="middle" font-size="10" fill="white">Deploy</text>
+    <text x="490" y="65" text-anchor="middle" font-size="9" fill="#666">15 min</text>
+  </g>
+  
+  <g transform="translate(60, 180)">
+    <text x="0" y="0" font-size="13" font-weight="600" fill="#1a1a2e">AI-Assisted Development Pipeline</text>
+    
+    <rect x="0" y="15" width="80" height="40" rx="4" fill="#16a34a"/>
+    <text x="40" y="40" text-anchor="middle" font-size="10" fill="white">AI Code</text>
+    <text x="40" y="65" text-anchor="middle" font-size="9" fill="#16a34a" font-weight="600">15 min ↓</text>
+    
+    <rect x="90" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="130" y="40" text-anchor="middle" font-size="10" fill="white">Compile</text>
+    <text x="130" y="65" text-anchor="middle" font-size="9" fill="#666">30 min</text>
+    
+    <rect x="180" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="220" y="40" text-anchor="middle" font-size="10" fill="white">Lint/Sonar</text>
+    <text x="220" y="65" text-anchor="middle" font-size="9" fill="#666">20 min</text>
+    
+    <rect x="270" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="310" y="40" text-anchor="middle" font-size="10" fill="white">Unit Test</text>
+    <text x="310" y="65" text-anchor="middle" font-size="9" fill="#666">15 min</text>
+    
+    <rect x="360" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="400" y="40" text-anchor="middle" font-size="10" fill="white">Build Image</text>
+    <text x="400" y="65" text-anchor="middle" font-size="9" fill="#666">10 min</text>
+    
+    <rect x="450" y="15" width="80" height="40" rx="4" fill="#1e40af"/>
+    <text x="490" y="40" text-anchor="middle" font-size="10" fill="white">Deploy</text>
+    <text x="490" y="65" text-anchor="middle" font-size="9" fill="#666">15 min</text>
+  </g>
+  
+  <g transform="translate(60, 280)">
+    <rect x="0" y="0" width="560" height="80" rx="6" fill="#dbeafe" stroke="#1e40af" stroke-width="1"/>
+    <text x="280" y="25" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a2e">Time Savings Reality Check</text>
+    <text x="280" y="48" text-anchor="middle" font-size="11" fill="#1a1a2e">Traditional: ~4-5 hours per feature</text>
+    <text x="280" y="68" text-anchor="middle" font-size="11" fill="#1a1a2e">AI-Assisted: ~2-3 hours per feature (compile/test/deploy unchanged)</text>
+  </g>
+  
+  <text x="340" y="385" text-anchor="middle" font-size="10" fill="#666">Context Forge CI/CD: 1,000+ make commands, 60+ GitHub Actions checkers</text>
+</svg>
