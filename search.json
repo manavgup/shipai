@@ -131,16 +131,6 @@
   },
   
   {
-    "title": "Logan Kelly | Governing AI Agents",
-    "url": "/shipai/episodes/logan-kelly-governing-ai-agents/",
-    "series": "state-of-ai",
-    "episode_number": 0,
-    "date": "Apr 7, 2026",
-    "duration": "45 min",
-    "description": "AI Governance Isn't an Afterthought — It's a Kill SwitchLogan Kelly, founder of Waxel, built AI agents for sales automation, shipped them to production, and immediately realized he had no control o..."
-  },
-  
-  {
     "title": "Alex Seymour & Kyle Sava | From Demo to Production: What Actually Breaks",
     "url": "/shipai/episodes/alex-seymour-kyle-sava-from-demo-to-production-what-actually-breaks/",
     "series": "state-of-ai",
@@ -158,6 +148,16 @@
     "date": "Apr 21, 2026",
     "duration": "58 min",
     "description": "John is Head of AI &amp; Developer Relations at Itential, a Google Developer Expert, former Cisco AI Technical Leader, former Senior Network Architect for the Parliament of Canada — and a fellow Ca..."
+  },
+  
+  {
+    "title": "Sumeet Vaidya | AI Driven SDLC",
+    "url": "/shipai/episodes/sumeet-vaidya-ai-driven-sdlc/",
+    "series": "state-of-ai",
+    "episode_number": 0,
+    "date": "Jul 28, 2026",
+    "duration": "43 min",
+    "description": "Guest: Sumeet Vaidya, Co-founder &amp; CEO, Crafting (previously Facebook, Uber, Discord)Sumeet joins Manav to argue that the industry is optimizing the wrong half of the software lifecycle. Code g..."
   }
   
 ]
